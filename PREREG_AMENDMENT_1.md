@@ -92,20 +92,3 @@ here so it is a pre-committed choice rather than an implementation detail.
 Last layer only; strata (step index for A, remaining moves for C); fresh seeds 10–14; 4L/d128 on
 25k solves (no CUDA, declared); L3 definition of `b1`; L4 effect = `L(e1) / median{L(e) : e != e1}`
 with 5/5 required and paired t reported; no seed may be dropped post hoc.
-
----
-
-## A1.5 — SCALE REPLICATION protocol (filed with the wrap-up; no new criteria)
-
-If a CUDA host becomes available, rerun **unchanged**:
-`src/confirm_resume.sh` (train) -> `src/confirm.py` -> `src/confirm_gates.py`
-with only these substitutions:
-- **6 layers / d=256** (the `device_auto()=='cuda'` branch in `train.py` already selects this).
-- **250k solves** (`python3 src/gen_data.py --kind mixed --n 250000`), re-run `src/qa.py --kind mixed`
-  and require the same 16 hard gates to pass before training.
-- **Seeds 20–24** per arm, plus hash twins 20–24 for arm A.
-
-**No criterion changes.** L1–L4 thresholds, the last-layer rule, the strata, the `e1` definition, the
-top-2 mechanics and the arm-C L1+L2+L4 rule all carry over verbatim from `PREREGISTRATION.md` and
-A1.1–A1.4. Report pass/fail per leg in the same table. A scale replication that fails any leg is
-reported as a failure at that scale, not reconciled against the 4L/d128 result.
