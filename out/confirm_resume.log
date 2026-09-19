@@ -1,0 +1,143 @@
+=== SKIP moe_mixed_s10 (already trained)
+=== SKIP moe_mixed_s11 (already trained)
+=== SKIP moe_mixed_s12 (already trained)
+=== SKIP moe_mixed_s13 (already trained)
+=== SKIP moe_mixed_s14 (already trained)
+=== TRAIN state_mixed_s10 23:31:53
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6077 test_acc=0.4857 tok/s=30965
+  ep2/3 loss=1.3997 test_acc=0.5282 tok/s=31121
+  ep3/3 loss=1.3954 test_acc=0.5395 tok/s=31188
+DONE state_mixed_s10: test_acc=0.5395 majority=0.1151 tok/s=31188 wall=2449s
+=== TRAIN state_mixed_s11 00:12:46
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6168 test_acc=0.4758 tok/s=30724
+  ep2/3 loss=1.3989 test_acc=0.5277 tok/s=30777
+  ep3/3 loss=1.3980 test_acc=0.5405 tok/s=30893
+DONE state_mixed_s11: test_acc=0.5405 majority=0.1151 tok/s=30893 wall=2472s
+=== TRAIN state_mixed_s12 00:54:00
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6179 test_acc=0.4746 tok/s=31429
+  ep2/3 loss=1.4390 test_acc=0.5239 tok/s=31349
+  ep3/3 loss=1.4087 test_acc=0.5364 tok/s=30819
+DONE state_mixed_s12: test_acc=0.5364 majority=0.1151 tok/s=30819 wall=2478s
+=== TRAIN state_mixed_s13 01:35:20
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.5621 test_acc=0.4756 tok/s=31959
+  ep2/3 loss=1.4392 test_acc=0.5284 tok/s=31302
+  ep3/3 loss=1.3763 test_acc=0.5412 tok/s=29533
+DONE state_mixed_s13: test_acc=0.5412 majority=0.1151 tok/s=29533 wall=2586s
+=== TRAIN state_mixed_s14 02:18:28
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.5271 test_acc=0.4789 tok/s=26275
+  ep2/3 loss=1.4405 test_acc=0.5215 tok/s=27054
+  ep3/3 loss=1.5078 test_acc=0.5325 tok/s=28535
+DONE state_mixed_s14: test_acc=0.5325 majority=0.1151 tok/s=28534 wall=2676s
+=== TRAIN hash_mixed_s10 03:03:06
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.1790 test_acc=0.1686 tok/s=7947
+  ep2/10 loss=2.1466 test_acc=0.1744 tok/s=7973
+  ep3/10 loss=2.1275 test_acc=0.1838 tok/s=7984
+  ep4/10 loss=2.0941 test_acc=0.1875 tok/s=7988
+  ep5/10 loss=2.0794 test_acc=0.1930 tok/s=7990
+  ep6/10 loss=2.0949 test_acc=0.1965 tok/s=7991
+  ep7/10 loss=2.0830 test_acc=0.1958 tok/s=7993
+  ep8/10 loss=2.0628 test_acc=0.1996 tok/s=7993
+  ep9/10 loss=2.0647 test_acc=0.1995 tok/s=7994
+  ep10/10 loss=2.0703 test_acc=0.2013 tok/s=7995
+DONE hash_mixed_s10: test_acc=0.2013 majority=0.1151 tok/s=7995 wall=577s
+=== TRAIN hash_mixed_s11 03:12:44
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.2009 test_acc=0.1722 tok/s=7977
+  ep2/10 loss=2.1439 test_acc=0.1802 tok/s=7990
+  ep3/10 loss=2.1081 test_acc=0.1853 tok/s=7993
+  ep4/10 loss=2.0820 test_acc=0.1927 tok/s=7995
+  ep5/10 loss=2.0838 test_acc=0.1979 tok/s=7996
+  ep6/10 loss=2.0636 test_acc=0.1989 tok/s=7997
+  ep7/10 loss=2.0617 test_acc=0.1998 tok/s=7997
+  ep8/10 loss=2.0510 test_acc=0.2003 tok/s=7998
+  ep9/10 loss=2.0246 test_acc=0.2007 tok/s=7998
+  ep10/10 loss=2.0621 test_acc=0.2007 tok/s=7998
+DONE hash_mixed_s11: test_acc=0.2007 majority=0.1151 tok/s=7998 wall=576s
+=== TRAIN hash_mixed_s12 03:22:22
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.1941 test_acc=0.1679 tok/s=7969
+  ep2/10 loss=2.1273 test_acc=0.1747 tok/s=7986
+  ep3/10 loss=2.1106 test_acc=0.1854 tok/s=7993
+  ep4/10 loss=2.0902 test_acc=0.1924 tok/s=7995
+  ep5/10 loss=2.0624 test_acc=0.1954 tok/s=7996
+  ep6/10 loss=2.0695 test_acc=0.1982 tok/s=7997
+  ep7/10 loss=2.0773 test_acc=0.2007 tok/s=7997
+  ep8/10 loss=2.0680 test_acc=0.1998 tok/s=7998
+  ep9/10 loss=2.0325 test_acc=0.1993 tok/s=7998
+  ep10/10 loss=2.0556 test_acc=0.2001 tok/s=7999
+DONE hash_mixed_s12: test_acc=0.2001 majority=0.1151 tok/s=7999 wall=576s
+=== TRAIN hash_mixed_s13 03:31:59
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.1908 test_acc=0.1665 tok/s=7970
+  ep2/10 loss=2.1450 test_acc=0.1760 tok/s=7983
+  ep3/10 loss=2.1042 test_acc=0.1830 tok/s=7989
+  ep4/10 loss=2.1027 test_acc=0.1932 tok/s=7992
+  ep5/10 loss=2.0826 test_acc=0.1980 tok/s=7993
+  ep6/10 loss=2.0817 test_acc=0.1985 tok/s=7994
+  ep7/10 loss=2.0750 test_acc=0.2006 tok/s=7995
+  ep8/10 loss=2.0775 test_acc=0.2010 tok/s=7995
+  ep9/10 loss=2.0725 test_acc=0.2014 tok/s=7996
+  ep10/10 loss=2.0787 test_acc=0.2017 tok/s=7996
+DONE hash_mixed_s13: test_acc=0.2017 majority=0.1151 tok/s=7996 wall=577s
+=== TRAIN hash_mixed_s14 03:41:37
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.2130 test_acc=0.1731 tok/s=7969
+  ep2/10 loss=2.1445 test_acc=0.1786 tok/s=7985
+  ep3/10 loss=2.1164 test_acc=0.1836 tok/s=7991
+  ep4/10 loss=2.0900 test_acc=0.1922 tok/s=7995
+  ep5/10 loss=2.0809 test_acc=0.1958 tok/s=7996
+  ep6/10 loss=2.0766 test_acc=0.1969 tok/s=7997
+  ep7/10 loss=2.0405 test_acc=0.2007 tok/s=7998
+  ep8/10 loss=2.0803 test_acc=0.1999 tok/s=7998
+  ep9/10 loss=2.0613 test_acc=0.2007 tok/s=7999
+  ep10/10 loss=2.0619 test_acc=0.2002 tok/s=8000
+DONE hash_mixed_s14: test_acc=0.2002 majority=0.1151 tok/s=8000 wall=576s
+=== CONFIRMATORY ANALYSIS 03:51:15
+  [moe_mixed_s10] acc=0.2030 (bar 0.1439, 1.41x) probe=0.986 | cNMI=0.1592 shuf=0.0011 p=0.0050 | hash=0.0497 | b1=+0.582 p=0.005 | causal L(e1)=0.0448 med_other=0.0050 eff=9.00x self_ok=True
+  [moe_mixed_s11] acc=0.2015 (bar 0.1439, 1.40x) probe=0.986 | cNMI=0.1289 shuf=0.0013 p=0.0050 | hash=0.0273 | b1=+0.373 p=0.005 | causal L(e1)=0.0305 med_other=0.0150 eff=2.04x self_ok=True
+  [moe_mixed_s12] acc=0.2010 (bar 0.1439, 1.40x) probe=0.986 | cNMI=0.0706 shuf=0.0012 p=0.0050 | hash=0.0559 | b1=+0.370 p=0.010 | causal L(e1)=0.0191 med_other=0.0053 eff=3.61x self_ok=True
+  [moe_mixed_s13] acc=0.2010 (bar 0.1439, 1.40x) probe=0.987 | cNMI=0.1921 shuf=0.0012 p=0.0050 | hash=0.0139 | b1=+0.532 p=0.005 | causal L(e1)=0.0622 med_other=0.0053 eff=11.82x self_ok=True
+  [moe_mixed_s14] acc=0.2023 (bar 0.1439, 1.41x) probe=0.984 | cNMI=0.1526 shuf=0.0013 p=0.0050 | hash=0.0304 | b1=+0.657 p=0.005 | causal L(e1)=0.0318 med_other=0.0201 eff=1.59x self_ok=True
+  [state_mixed_s10] acc=0.5395 (bar 0.1455, 3.71x) probe=1.000 | cNMI=0.1191 shuf=0.0015 p=0.0050 | hash=None | b1=-0.008 p=0.075 | causal L(e1)=0.1533 med_other=0.0119 eff=12.86x self_ok=True
+  [state_mixed_s11] acc=0.5405 (bar 0.1455, 3.71x) probe=1.000 | cNMI=0.1698 shuf=0.0012 p=0.0050 | hash=None | b1=+0.054 p=0.279 | causal L(e1)=0.1979 med_other=0.0369 eff=5.36x self_ok=True
+  [state_mixed_s12] acc=0.5364 (bar 0.1455, 3.69x) probe=1.000 | cNMI=0.1240 shuf=0.0014 p=0.0050 | hash=None | b1=+0.386 p=0.045 | causal L(e1)=0.1014 med_other=0.0152 eff=6.68x self_ok=True
+  [state_mixed_s13] acc=0.5412 (bar 0.1455, 3.72x) probe=1.000 | cNMI=0.1393 shuf=0.0013 p=0.0050 | hash=None | b1=+0.077 p=0.144 | causal L(e1)=0.2025 med_other=0.0140 eff=14.43x self_ok=True
+  [state_mixed_s14] acc=0.5325 (bar 0.1455, 3.66x) probe=1.000 | cNMI=0.1301 shuf=0.0014 p=0.0050 | hash=None | b1=+0.092 p=0.109 | causal L(e1)=0.3419 med_other=0.0121 eff=28.15x self_ok=True
+=== CONFIRMATORY GATES 04:05:48
+
+=== ARM A ===
+  L1 learning  : acc_ratio [1.41, 1.4, 1.397, 1.397, 1.406] probe [0.986, 0.986, 0.986, 0.987, 0.984] -> PASS
+  L2 nulls     : cNMI [0.1592, 0.1289, 0.0706, 0.1921, 0.1526] vs shuf [0.0011, 0.0013, 0.0012, 0.0012, 0.0013] permp [0.005, 0.005, 0.005, 0.005, 0.005]
+                 hash twin [0.0497, 0.0273, 0.0559, 0.0139, 0.0304] beaten 5/5 (required) -> PASS
+  L3 changept  : b1 [0.582, 0.373, 0.37, 0.532, 0.657] p [0.005, 0.005, 0.01, 0.005, 0.005] -> PASS
+  L4 causal    : L(e1) [0.0448, 0.0305, 0.0191, 0.0622, 0.0318] vs med_other [0.005, 0.015, 0.0053, 0.0053, 0.0201] wins 5/5 sign p=0.0312 paired t p=0.0367 -> PASS
+  self-control exact: [True, True, True, True, True]
+  ==> CONFIRMED
+
+=== ARM C ===
+  L1 learning  : acc_ratio [3.707, 3.714, 3.686, 3.719, 3.659] probe [1.0, 1.0, 1.0, 1.0, 1.0] -> PASS
+  L2 nulls     : cNMI [0.1191, 0.1698, 0.124, 0.1393, 0.1301] vs shuf [0.0015, 0.0012, 0.0014, 0.0013, 0.0014] permp [0.005, 0.005, 0.005, 0.005, 0.005]
+                 hash twin [None, None, None, None, None] beaten 0/5 (arm C exempt) -> PASS
+  L3 changept  : b1 [-0.008, 0.054, 0.386, 0.077, 0.092] p [0.075, 0.279, 0.045, 0.144, 0.109] -> FAIL   [REPORTED ONLY - not required for arm C per A1.3]
+  L4 causal    : L(e1) [0.1533, 0.1979, 0.1014, 0.2025, 0.3419] vs med_other [0.0119, 0.0369, 0.0152, 0.014, 0.0121] wins 5/5 sign p=0.0312 paired t p=0.0112 -> PASS
+  self-control exact: [True, True, True, True, True]
+  ==> CONFIRMED
+=== regenerate results.md 04:05:49
+wrote out/results.md
+=== CONFIRMATORY DONE 04:05:49

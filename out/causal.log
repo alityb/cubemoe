@@ -1,0 +1,36 @@
+=== causal moe_mixed 17:55:50
+  moe_mixed L3 e1=7(P(p1|e)=0.98) e2=4(P(p2|e)=1.00) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    self      p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    random    p2_G1mass=0.9660  p2_acc=0.1931  p1_acc=0.1661
+    single    p2_G1mass=0.9756  p2_acc=0.1943  p1_acc=0.1600
+    swap      p2_G1mass=0.9437  p2_acc=0.1834  p1_acc=0.1587
+=== causal moe_mixed_s1 17:56:19
+  moe_mixed_s1 L3 e1=0(P(p1|e)=0.98) e2=4(P(p2|e)=1.00) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9803  p2_acc=0.2123  p1_acc=0.1878
+    self      p2_G1mass=0.9803  p2_acc=0.2123  p1_acc=0.1878
+    random    p2_G1mass=0.9686  p2_acc=0.1902  p1_acc=0.1623
+    single    p2_G1mass=0.9756  p2_acc=0.2033  p1_acc=0.1685
+    swap      p2_G1mass=0.9519  p2_acc=0.1921  p1_acc=0.1631
+=== causal moe_mixed_s2 17:56:48
+  moe_mixed_s2 L3 e1=0(P(p1|e)=0.98) e2=5(P(p2|e)=1.00) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9804  p2_acc=0.2140  p1_acc=0.1892
+    self      p2_G1mass=0.9804  p2_acc=0.2140  p1_acc=0.1892
+    random    p2_G1mass=0.9751  p2_acc=0.2064  p1_acc=0.1709
+    single    p2_G1mass=0.9803  p2_acc=0.2104  p1_acc=0.1749
+    swap      p2_G1mass=0.9590  p2_acc=0.2050  p1_acc=0.1615
+=== causal moe_mixed_s3 17:57:18
+  moe_mixed_s3 L3 e1=7(P(p1|e)=0.99) e2=3(P(p2|e)=1.00) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9811  p2_acc=0.2135  p1_acc=0.1905
+    self      p2_G1mass=0.9811  p2_acc=0.2135  p1_acc=0.1905
+    random    p2_G1mass=0.9528  p2_acc=0.1918  p1_acc=0.1719
+    single    p2_G1mass=0.9778  p2_acc=0.2030  p1_acc=0.1709
+    swap      p2_G1mass=0.8259  p2_acc=0.1413  p1_acc=0.1693
+=== causal moe_mixed_s4 17:57:46
+  moe_mixed_s4 L3 e1=5(P(p1|e)=0.98) e2=2(P(p2|e)=1.00) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9793  p2_acc=0.2057  p1_acc=0.1836
+    self      p2_G1mass=0.9793  p2_acc=0.2057  p1_acc=0.1836
+    random    p2_G1mass=0.9701  p2_acc=0.1974  p1_acc=0.1703
+    single    p2_G1mass=0.9749  p2_acc=0.1963  p1_acc=0.1704
+    swap      p2_G1mass=0.9601  p2_acc=0.1904  p1_acc=0.1775
+=== CAUSAL DONE 17:58:15

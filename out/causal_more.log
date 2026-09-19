@@ -1,0 +1,37 @@
+=== LAYER SWEEP on moe_mixed (is the causal effect depth-specific?) 17:59:53
+  moe_mixed L0 e1=3(P(p1|e)=0.70) e2=6(P(p2|e)=0.97) changed swap=0.97 rand=1.00
+    baseline  p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    self      p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    random    p2_G1mass=0.9638  p2_acc=0.1973  p1_acc=0.1756
+    single    p2_G1mass=0.9602  p2_acc=0.1981  p1_acc=0.1761
+    swap      p2_G1mass=0.9736  p2_acc=0.2017  p1_acc=0.1766
+  moe_mixed L1 e1=4(P(p1|e)=0.70) e2=5(P(p2|e)=0.99) changed swap=0.96 rand=1.00
+    baseline  p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    self      p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    random    p2_G1mass=0.9649  p2_acc=0.2021  p1_acc=0.1842
+    single    p2_G1mass=0.9645  p2_acc=0.2037  p1_acc=0.1824
+    swap      p2_G1mass=0.9666  p2_acc=0.2020  p1_acc=0.1827
+  moe_mixed L2 e1=0(P(p1|e)=0.98) e2=4(P(p2|e)=0.99) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    self      p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    random    p2_G1mass=0.9685  p2_acc=0.1982  p1_acc=0.1769
+    single    p2_G1mass=0.9707  p2_acc=0.2032  p1_acc=0.1804
+    swap      p2_G1mass=0.9602  p2_acc=0.2050  p1_acc=0.1803
+  moe_mixed L3 e1=7(P(p1|e)=0.98) e2=4(P(p2|e)=1.00) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    self      p2_G1mass=0.9804  p2_acc=0.2104  p1_acc=0.1930
+    random    p2_G1mass=0.9660  p2_acc=0.1931  p1_acc=0.1661
+    single    p2_G1mass=0.9756  p2_acc=0.1943  p1_acc=0.1600
+    swap      p2_G1mass=0.9437  p2_acc=0.1834  p1_acc=0.1587
+=== CONTROL: hash twin (token-identity router) 18:01:43
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/intervene.py", line 122, in <module>
+    a=ap.parse_args(); run(a.tag,a.data,a.max_solves,a.layer)
+  File "/Users/alityb/projects/cubemoe/src/intervene.py", line 31, in run
+    dev=device_auto(); m,cfg=load(tag,dev); d,te=build(data,max_solves)
+  File "/Users/alityb/projects/cubemoe/src/intervene.py", line 23, in load
+    m.load_state_dict(ck['sd']); m.eval(); return m,cfg
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2639, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for SeqModel:
+	Unexpected key(s) in state_dict: "blocks.0.ffn.hash_tab", "blocks.1.ffn.hash_tab", "blocks.2.ffn.hash_tab", "blocks.3.ffn.hash_tab". 

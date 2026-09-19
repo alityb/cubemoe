@@ -1,0 +1,44 @@
+{
+ "tag": "hash_mixed",
+ "layer": 3,
+ "e_phase1": 5,
+ "e_phase2": 4,
+ "p_phase1_given_e1": 0.9654088050314465,
+ "p_phase2_given_e2": 0.8949979330301777,
+ "frac_tokens_changed_swap": 0.9888077858880778,
+ "frac_tokens_changed_rand": 1.0,
+ "baseline": {
+  "phase1_g1mass": 0.4886764585971832,
+  "phase1_acc": 0.18123948574066162,
+  "phase2_g1mass": 0.9792121648788452,
+  "phase2_acc": 0.2096853256225586
+ },
+ "single_pair": [
+  7,
+  2
+ ],
+ "swap": {
+  "phase1_g1mass": 0.46846237778663635,
+  "phase1_acc": 0.1746336817741394,
+  "phase2_g1mass": 0.9723575115203857,
+  "phase2_acc": 0.2016652375459671
+ },
+ "random": {
+  "phase1_g1mass": 0.4364359974861145,
+  "phase1_acc": 0.17271198332309723,
+  "phase2_g1mass": 0.9763034582138062,
+  "phase2_acc": 0.19774703681468964
+ },
+ "single": {
+  "phase1_g1mass": 0.4404774606227875,
+  "phase1_acc": 0.17055007815361023,
+  "phase2_g1mass": 0.9759398102760315,
+  "phase2_acc": 0.20050202310085297
+ },
+ "self": {
+  "phase1_g1mass": 0.4886764585971832,
+  "phase1_acc": 0.18123948574066162,
+  "phase2_g1mass": 0.9792121648788452,
+  "phase2_acc": 0.2096853256225586
+ }
+}

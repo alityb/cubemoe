@@ -1,0 +1,162 @@
+=== regen forced 19:20:07
+  move tables: 1.2s
+  twist-slice prun: 3.5s
+  flip-slice prun:  2.9s
+  TOTAL BUILD: 7.6s
+  p2 move tables: 13.0s
+  p2 corner prun: 2.0s
+  p2 udedge prun: 2.3s
+  P2 TOTAL BUILD: 17.3s
+  move tables: 1.2s
+  twist-slice prun: 3.1s
+  flip-slice prun:  2.9s
+  TOTAL BUILD: 7.2s
+  p2 move tables: 13.0s
+  p2 corner prun: 2.0s
+  p2 udedge prun: 2.1s
+  P2 TOTAL BUILD: 17.0s
+  move tables: 1.1s
+  twist-slice prun: 3.7s
+  flip-slice prun:  3.1s
+  TOTAL BUILD: 7.9s
+  p2 move tables: 12.9s
+  p2 corner prun: 2.1s
+  p2 udedge prun: 2.4s
+  P2 TOTAL BUILD: 17.3s
+  move tables: 1.2s
+  twist-slice prun: 3.4s
+  flip-slice prun:  3.1s
+  TOTAL BUILD: 7.7s
+  p2 move tables: 13.2s
+  p2 corner prun: 2.2s
+  p2 udedge prun: 2.6s
+  P2 TOTAL BUILD: 18.0s
+  move tables: 1.2s
+  twist-slice prun: 3.4s
+  flip-slice prun:  3.0s
+  TOTAL BUILD: 7.6s
+  p2 move tables: 13.1s
+  p2 corner prun: 2.2s
+  p2 udedge prun: 2.2s
+  P2 TOTAL BUILD: 17.5s
+  move tables: 1.0s
+  twist-slice prun: 3.5s
+  flip-slice prun:  3.1s
+  TOTAL BUILD: 7.7s
+  p2 move tables: 13.0s
+  p2 corner prun: 2.1s
+  p2 udedge prun: 2.2s
+  P2 TOTAL BUILD: 17.3s
+  move tables: 1.2s
+  twist-slice prun: 3.5s
+  flip-slice prun:  3.0s
+  TOTAL BUILD: 7.6s
+  p2 move tables: 13.1s
+  p2 corner prun: 2.1s
+  p2 udedge prun: 2.3s
+  P2 TOTAL BUILD: 17.5s
+  move tables: 1.2s
+  twist-slice prun: 3.5s
+  flip-slice prun:  3.1s
+  TOTAL BUILD: 7.7s
+  p2 move tables: 13.0s
+  p2 corner prun: 1.9s
+  p2 udedge prun: 2.4s
+  P2 TOTAL BUILD: 17.3s
+  move tables: 1.2s
+  twist-slice prun: 3.5s
+  flip-slice prun:  3.2s
+  TOTAL BUILD: 7.8s
+  p2 move tables: 12.9s
+  p2 corner prun: 2.0s
+  p2 udedge prun: 2.1s
+  P2 TOTAL BUILD: 17.0s
+  move tables: 1.2s
+  twist-slice prun: 3.5s
+  flip-slice prun:  3.0s
+  TOTAL BUILD: 7.7s
+  p2 move tables: 12.9s
+  p2 corner prun: 2.0s
+  p2 udedge prun: 2.2s
+  P2 TOTAL BUILD: 17.1s
+[forced] 25000 solves in 793.9s (31.5/s wall, 10 workers)
+  steps=715052  seam mean=15.01 sd=3.14 range=10-20
+  sol_len mean=28.60  phase1 frac=0.525
+  rows in step-index cells containing BOTH phases: 0.350
+  saved /Users/alityb/projects/cubemoe/data/forced.npz (12.3 MB)
+=== repair/relabel seam 19:33:25
+relabelled 294/25000 solves (1.1760%)
+phase-2 subset violations after relabel: 0
+seam sd 3.15  phase1 frac 0.525
+=== QA forced 19:33:33
+  move tables: 0.6s
+  twist-slice prun: 1.5s
+  flip-slice prun:  1.4s
+  TOTAL BUILD: 3.5s
+
+=== DATA CARD: forced ===
+  [PASS] L1 maneuver replays to solved
+  [PASS] L1 every state passes verify() (perm/twist/flip/parity)
+  [PASS] L1 stored states == replayed states
+  [PASS] L1 phase-2 moves subset of the 10 G1 moves
+  [PASS] L1 in_G1 monotone (first True stays True)
+  [PASS] L1 stored seam == first G1 entry (phase is a STATE property)
+  [PASS] L2 kociemba accepts every sampled state (independent legality)
+  [PASS] L2 kociemba solves the penultimate state in exactly our last move
+  [PASS] L2 cubie G1 test == coordinate-table G1 test
+  [PASS] L3 phase-1 lag-2 repetition near chance (no cyclic DFS padding)
+  [PASS] L3 repeated 5-prefix rate low (paths not stereotyped)
+  [PASS] L5 no duplicate scrambles
+  [PASS] L5 seam sd >= 3.0
+  [PASS] L5 >=9% of position cells mixed
+  seam sd=3.15 mixed=0.385 phase1=0.525
+  stereotypy: H1=4.15 H2=8.03 H3=11.89 distinct phase1=25000/25000 prefix-repeat k=5:0.013 lag2=0.057
+  confound: move=0.747 pos=0.905 maj=0.525
+  leakage: overall=0.1787 | excl-last-3=0.0827(keep 0.90) excl-last-4=0.0458(keep 0.86) excl-last-5=0.0138(keep 0.83) excl-last-6=0.0028(keep 0.79) excl-last-7=0.0004(keep 0.76) excl-last-8=0.0001(keep 0.72)
+  VERDICT: PASS
+=== QA PASSED - training 19:33:58
+=== train moe on forced (10 ep) 19:33:58
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.4121 test_acc=0.1334 tok/s=9405
+  ep2/10 loss=2.3974 test_acc=0.1323 tok/s=9444
+  ep3/10 loss=2.3851 test_acc=0.1344 tok/s=9430
+  ep4/10 loss=2.3828 test_acc=0.1348 tok/s=9411
+  ep5/10 loss=2.3793 test_acc=0.1364 tok/s=9394
+  ep6/10 loss=2.3625 test_acc=0.1367 tok/s=9385
+  ep7/10 loss=2.3719 test_acc=0.1385 tok/s=9386
+  ep8/10 loss=2.3617 test_acc=0.1387 tok/s=9329
+  ep9/10 loss=2.3531 test_acc=0.1391 tok/s=9259
+  ep10/10 loss=2.3493 test_acc=0.1392 tok/s=9204
+DONE moe_forced: test_acc=0.1392 majority=0.0951 tok/s=9204 wall=696s
+=== train dense on forced (10 ep) 19:45:35
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=dense params=1.34M  train=22500 test=2500
+  ep1/10 loss=2.4138 test_acc=0.1274 tok/s=32997
+  ep2/10 loss=2.3781 test_acc=0.1316 tok/s=33442
+  ep3/10 loss=2.3775 test_acc=0.1353 tok/s=33785
+  ep4/10 loss=2.3710 test_acc=0.1345 tok/s=33811
+  ep5/10 loss=2.3682 test_acc=0.1380 tok/s=33736
+  ep6/10 loss=2.3618 test_acc=0.1370 tok/s=33687
+  ep7/10 loss=2.3539 test_acc=0.1381 tok/s=33758
+  ep8/10 loss=2.3619 test_acc=0.1405 tok/s=33773
+  ep9/10 loss=2.3523 test_acc=0.1394 tok/s=33677
+  ep10/10 loss=2.3538 test_acc=0.1401 tok/s=33824
+DONE dense_forced: test_acc=0.1401 majority=0.0951 tok/s=33824 wall=189s
+=== train hash on forced (10 ep) 19:48:46
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.4085 test_acc=0.1319 tok/s=9578
+  ep2/10 loss=2.3741 test_acc=0.1339 tok/s=9431
+  ep3/10 loss=2.3715 test_acc=0.1329 tok/s=9405
+  ep4/10 loss=2.3693 test_acc=0.1365 tok/s=9484
+  ep5/10 loss=2.3653 test_acc=0.1348 tok/s=9463
+  ep6/10 loss=2.3543 test_acc=0.1359 tok/s=9473
+  ep7/10 loss=2.3541 test_acc=0.1362 tok/s=9485
+  ep8/10 loss=2.3481 test_acc=0.1373 tok/s=9463
+  ep9/10 loss=2.3451 test_acc=0.1382 tok/s=9488
+  ep10/10 loss=2.3464 test_acc=0.1382 tok/s=9509
+DONE hash_forced: test_acc=0.1382 majority=0.0951 tok/s=9509 wall=674s
+=== train state on forced (3 ep) 20:00:00
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=643436 test=71616

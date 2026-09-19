@@ -1,0 +1,44 @@
+{
+ "tag": "moe_mixed",
+ "layer": 3,
+ "e_phase1": 7,
+ "e_phase2": 4,
+ "p_phase1_given_e1": 0.9832303618711385,
+ "p_phase2_given_e2": 0.9960526315789474,
+ "frac_tokens_changed_swap": 0.9965531224655312,
+ "frac_tokens_changed_rand": 1.0,
+ "baseline": {
+  "phase1_g1mass": 0.4859108328819275,
+  "phase1_acc": 0.1930098533630371,
+  "phase2_g1mass": 0.9804308414459229,
+  "phase2_acc": 0.21035875380039215
+ },
+ "single_pair": [
+  6,
+  2
+ ],
+ "swap": {
+  "phase1_g1mass": 0.24820633232593536,
+  "phase1_acc": 0.15865962207317352,
+  "phase2_g1mass": 0.9436869621276855,
+  "phase2_acc": 0.1834210902452469
+ },
+ "random": {
+  "phase1_g1mass": 0.31180721521377563,
+  "phase1_acc": 0.166106179356575,
+  "phase2_g1mass": 0.9659734964370728,
+  "phase2_acc": 0.1930941641330719
+ },
+ "single": {
+  "phase1_g1mass": 0.2611604332923889,
+  "phase1_acc": 0.15998078882694244,
+  "phase2_g1mass": 0.9755630493164062,
+  "phase2_acc": 0.19431859254837036
+ },
+ "self": {
+  "phase1_g1mass": 0.4859108328819275,
+  "phase1_acc": 0.1930098533630371,
+  "phase2_g1mass": 0.9804308414459229,
+  "phase2_acc": 0.21035875380039215
+ }
+}

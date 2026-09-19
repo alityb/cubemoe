@@ -1,0 +1,32 @@
+device mps
+--- moe_mixed
+  [moe_mixed L0] condNMI=0.0480 (shuf 0.0005, posrouter 0.0000) rawNMI=0.1386 cp_slope=0.257 p=0.0050 probe=0.959 | exclTail condNMI=0.0559
+  [moe_mixed L1] condNMI=0.0430 (shuf 0.0006, posrouter 0.0000) rawNMI=0.1316 cp_slope=0.403 p=0.0050 probe=0.975 | exclTail condNMI=0.0503
+  [moe_mixed L2] condNMI=0.1282 (shuf 0.0006, posrouter 0.0000) rawNMI=0.2496 cp_slope=0.172 p=0.0050 probe=0.985 | exclTail condNMI=0.1498
+  [moe_mixed L3] condNMI=0.1538 (shuf 0.0007, posrouter 0.0000) rawNMI=0.3738 cp_slope=0.310 p=0.0050 probe=0.987 | exclTail condNMI=0.1798
+--- moe_naive
+  [moe_naive L0] condNMI=0.0188 (shuf 0.0003, posrouter 0.0000) rawNMI=0.1530 cp_slope=-0.245 p=0.0050 probe=0.996 | exclTail condNMI=0.0220
+  [moe_naive L1] condNMI=0.0083 (shuf 0.0002, posrouter 0.0000) rawNMI=0.2480 cp_slope=-1.081 p=0.0050 probe=0.996 | exclTail condNMI=0.0097
+  [moe_naive L2] condNMI=0.0193 (shuf 0.0001, posrouter 0.0000) rawNMI=0.3037 cp_slope=0.398 p=0.0050 probe=0.997 | exclTail condNMI=0.0226
+  [moe_naive L3] condNMI=0.0126 (shuf 0.0002, posrouter 0.0000) rawNMI=0.2766 cp_slope=-0.023 p=0.0050 probe=0.996 | exclTail condNMI=0.0147
+--- hash_mixed
+  [hash_mixed L0] condNMI=0.0277 (shuf 0.0005, posrouter 0.0000) rawNMI=0.0541 cp_slope=0.496 p=0.0050 probe=0.964 | exclTail condNMI=0.0324
+  [hash_mixed L1] condNMI=0.0406 (shuf 0.0006, posrouter 0.0000) rawNMI=0.0816 cp_slope=0.567 p=0.0050 probe=0.978 | exclTail condNMI=0.0473
+  [hash_mixed L2] condNMI=0.0425 (shuf 0.0005, posrouter 0.0000) rawNMI=0.0923 cp_slope=0.403 p=0.0050 probe=0.985 | exclTail condNMI=0.0495
+  [hash_mixed L3] condNMI=0.0598 (shuf 0.0006, posrouter 0.0000) rawNMI=0.1370 cp_slope=0.551 p=0.0050 probe=0.985 | exclTail condNMI=0.0699
+--- dense_mixed
+  [dense_mixed L0] condNMI=0.0847 (shuf 0.0013, posrouter 0.0000) rawNMI=0.1910 cp_slope=0.958 p=0.0050 probe=0.959 | exclTail condNMI=0.0988
+  [dense_mixed L1] condNMI=0.0897 (shuf 0.0012, posrouter 0.0000) rawNMI=0.2643 cp_slope=0.506 p=0.0050 probe=0.976 | exclTail condNMI=0.1048
+  [dense_mixed L2] condNMI=0.1736 (shuf 0.0013, posrouter 0.0000) rawNMI=0.3671 cp_slope=0.484 p=0.0050 probe=0.985 | exclTail condNMI=0.2031
+  [dense_mixed L3] condNMI=0.1305 (shuf 0.0012, posrouter 0.0000) rawNMI=0.3346 cp_slope=0.353 p=0.0050 probe=0.984 | exclTail condNMI=0.1528
+--- state_mixed
+  [state_mixed L0] condNMI=0.0008 (shuf 0.0002, posrouter 0.0000) rawNMI=0.0030 cp_slope=0.360 p=0.2090 probe=0.997 | exclTail condNMI=0.0009
+  [state_mixed L1] condNMI=0.0215 (shuf 0.0013, posrouter 0.0000) rawNMI=0.0697 cp_slope=0.304 p=0.0050 probe=1.000 | exclTail condNMI=0.0251
+  [state_mixed L2] condNMI=0.0395 (shuf 0.0014, posrouter 0.0000) rawNMI=0.1452 cp_slope=0.457 p=0.0050 probe=1.000 | exclTail condNMI=0.0463
+  [state_mixed L3] condNMI=0.0843 (shuf 0.0015, posrouter 0.0000) rawNMI=0.4928 cp_slope=0.340 p=0.0050 probe=1.000 | exclTail condNMI=0.0988
+--- state_dense_mixed
+  [state_dense_mixed L0] condNMI=0.0794 (shuf 0.0013, posrouter 0.0000) rawNMI=0.4829 cp_slope=0.211 p=0.0050 probe=1.000 | exclTail condNMI=0.0930
+  [state_dense_mixed L1] condNMI=0.0808 (shuf 0.0012, posrouter 0.0000) rawNMI=0.4733 cp_slope=0.367 p=0.0050 probe=1.000 | exclTail condNMI=0.0947
+  [state_dense_mixed L2] condNMI=0.0414 (shuf 0.0013, posrouter 0.0000) rawNMI=0.3186 cp_slope=0.199 p=0.0050 probe=1.000 | exclTail condNMI=0.0485
+  [state_dense_mixed L3] condNMI=0.0920 (shuf 0.0012, posrouter 0.0000) rawNMI=0.2934 cp_slope=0.503 p=0.0050 probe=1.000 | exclTail condNMI=0.1078
+wrote out/results.json

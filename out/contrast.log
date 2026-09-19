@@ -1,0 +1,49 @@
+=== contrast: sequence arm (router vs nulls) 14:22:27
+  [moe_mixed L0] router=0.0486 shuf=0.0014 posr=0.0000 kmeans_own=0.0689 permp=0.0050 slope=-0.137 (p=0.602) probe=0.957
+  [moe_mixed L1] router=0.0430 shuf=0.0013 posr=0.0000 kmeans_own=0.0761 permp=0.0050 slope=+0.315 (p=0.060) probe=0.974
+  [moe_mixed L2] router=0.1300 shuf=0.0013 posr=0.0000 kmeans_own=0.1270 permp=0.0050 slope=+0.242 (p=0.020) probe=0.985
+  [moe_mixed L3] router=0.1514 shuf=0.0013 posr=0.0000 kmeans_own=0.1389 permp=0.0050 slope=+0.393 (p=0.005) probe=0.986
+  [moe_mixed_s1 L0] router=0.0369 shuf=0.0016 posr=0.0000 kmeans_own=0.0603 permp=0.0050 slope=+0.728 (p=0.149) probe=0.956
+  [moe_mixed_s1 L1] router=0.0448 shuf=0.0012 posr=0.0000 kmeans_own=0.0745 permp=0.0050 slope=+0.128 (p=0.199) probe=0.971
+  [moe_mixed_s1 L2] router=0.0939 shuf=0.0014 posr=0.0000 kmeans_own=0.0631 permp=0.0050 slope=+0.602 (p=0.005) probe=0.982
+  [moe_mixed_s1 L3] router=0.1330 shuf=0.0013 posr=0.0000 kmeans_own=0.1540 permp=0.0050 slope=+0.368 (p=0.005) probe=0.986
+  [moe_mixed_s2 L0] router=0.0261 shuf=0.0011 posr=0.0000 kmeans_own=0.0481 permp=0.0050 slope=+0.261 (p=0.124) probe=0.965
+  [moe_mixed_s2 L1] router=0.0375 shuf=0.0013 posr=0.0000 kmeans_own=0.0751 permp=0.0050 slope=-0.055 (p=0.662) probe=0.977
+  [moe_mixed_s2 L2] router=0.1154 shuf=0.0012 posr=0.0000 kmeans_own=0.1367 permp=0.0050 slope=+0.474 (p=0.005) probe=0.985
+  [moe_mixed_s2 L3] router=0.1005 shuf=0.0014 posr=0.0000 kmeans_own=0.1432 permp=0.0050 slope=+0.316 (p=0.020) probe=0.986
+  [moe_mixed_s3 L0] router=0.0367 shuf=0.0012 posr=0.0000 kmeans_own=0.0537 permp=0.0050 slope=-0.008 (p=0.070) probe=0.949
+  [moe_mixed_s3 L1] router=0.0337 shuf=0.0013 posr=0.0000 kmeans_own=0.0906 permp=0.0050 slope=+0.149 (p=0.328) probe=0.978
+  [moe_mixed_s3 L2] router=0.0539 shuf=0.0011 posr=0.0000 kmeans_own=0.1105 permp=0.0050 slope=-0.051 (p=0.109) probe=0.983
+  [moe_mixed_s3 L3] router=0.1465 shuf=0.0014 posr=0.0000 kmeans_own=0.1171 permp=0.0050 slope=+0.520 (p=0.005) probe=0.987
+  [moe_mixed_s4 L0] router=0.0451 shuf=0.0011 posr=0.0000 kmeans_own=0.0623 permp=0.0050 slope=+0.185 (p=0.269) probe=0.954
+  [moe_mixed_s4 L1] router=0.0483 shuf=0.0015 posr=0.0000 kmeans_own=0.0935 permp=0.0050 slope=+0.060 (p=0.109) probe=0.980
+  [moe_mixed_s4 L2] router=0.1387 shuf=0.0012 posr=0.0000 kmeans_own=0.1476 permp=0.0050 slope=+0.452 (p=0.005) probe=0.986
+  [moe_mixed_s4 L3] router=0.1340 shuf=0.0010 posr=0.0000 kmeans_own=0.0999 permp=0.0050 slope=+0.323 (p=0.005) probe=0.986
+=== contrast: position-blind arm C 14:23:58
+  [state_mixed L0] router=0.0008 shuf=0.0002 posr=0.0000 kmeans_own=0.0446 permp=0.2090 slope=-0.347 (p=0.960) probe=0.997
+  [state_mixed L1] router=0.0215 shuf=0.0013 posr=0.0000 kmeans_own=0.0747 permp=0.0050 slope=-0.196 (p=0.866) probe=1.000
+  [state_mixed L2] router=0.0395 shuf=0.0014 posr=0.0000 kmeans_own=0.0817 permp=0.0050 slope=+0.053 (p=0.607) probe=1.000
+  [state_mixed L3] router=0.0843 shuf=0.0015 posr=0.0000 kmeans_own=0.0959 permp=0.0050 slope=+0.483 (p=0.005) probe=1.000
+  [state_mixed_s1 L0] router=0.0000 shuf=0.0000 posr=0.0000 kmeans_own=0.0280 permp=1.0000 slope=+0.000 (p=0.154) probe=1.000
+  [state_mixed_s1 L1] router=0.0045 shuf=0.0020 posr=0.0000 kmeans_own=0.0581 permp=0.0050 slope=+0.011 (p=0.428) probe=1.000
+  [state_mixed_s1 L2] router=0.0097 shuf=0.0010 posr=0.0000 kmeans_own=0.0408 permp=0.0050 slope=+0.219 (p=0.139) probe=1.000
+  [state_mixed_s1 L3] router=0.1368 shuf=0.0009 posr=0.0000 kmeans_own=0.0832 permp=0.0050 slope=+0.065 (p=0.159) probe=1.000
+  [state_mixed_s2 L0] router=0.0292 shuf=0.0003 posr=0.0000 kmeans_own=0.0270 permp=0.0050 slope=+0.375 (p=0.005) probe=0.996
+  [state_mixed_s2 L1] router=0.0061 shuf=0.0005 posr=0.0000 kmeans_own=0.0798 permp=0.0050 slope=+0.064 (p=0.020) probe=0.999
+  [state_mixed_s2 L2] router=0.0377 shuf=0.0016 posr=0.0000 kmeans_own=0.0645 permp=0.0050 slope=+0.425 (p=0.040) probe=1.000
+  [state_mixed_s2 L3] router=0.1796 shuf=0.0012 posr=0.0000 kmeans_own=0.0888 permp=0.0050 slope=+0.272 (p=0.025) probe=1.000
+=== contrast: hash twin (null) 14:25:06
+  [hash_mixed L0] router=0.0293 shuf=0.0011 posr=0.0000 kmeans_own=0.0628 permp=0.0050 slope=+0.262 (p=0.010) probe=0.964
+  [hash_mixed L1] router=0.0420 shuf=0.0012 posr=0.0000 kmeans_own=0.1222 permp=0.0050 slope=+0.291 (p=0.269) probe=0.977
+  [hash_mixed L2] router=0.0424 shuf=0.0012 posr=0.0000 kmeans_own=0.1428 permp=0.0050 slope=+0.189 (p=0.085) probe=0.985
+  [hash_mixed L3] router=0.0609 shuf=0.0012 posr=0.0000 kmeans_own=0.1328 permp=0.0050 slope=+0.039 (p=0.035) probe=0.986
+=== contrast: dense sanity check 14:25:24
+  [dense_mixed L0] (dense) kmeans_own=0.0739 probe=0.959
+  [dense_mixed L1] (dense) kmeans_own=0.0921 probe=0.976
+  [dense_mixed L2] (dense) kmeans_own=0.1471 probe=0.985
+  [dense_mixed L3] (dense) kmeans_own=0.1535 probe=0.984
+  [state_dense_mixed L0] (dense) kmeans_own=0.0766 probe=1.000
+  [state_dense_mixed L1] (dense) kmeans_own=0.0883 probe=1.000
+  [state_dense_mixed L2] (dense) kmeans_own=0.0677 probe=1.000
+  [state_dense_mixed L3] (dense) kmeans_own=0.0875 probe=1.000
+=== CONTRAST DONE 14:25:49

@@ -1,0 +1,106 @@
+{
+ "mixed": {
+  "kind": "mixed",
+  "phase1_frac": 0.33753011580010883,
+  "anchor_cond_nmi": 0.21607818405766568,
+  "rows": [
+   {
+    "name": "perfect phase tracker",
+    "nmi_raw": 0.4798388401171577,
+    "cond_nmi": 0.21607818405766568,
+    "slope": 0.5689591262540058,
+    "partial_slope": 0.5231625746344594,
+    "partial_p": 0.004975124378109453,
+    "frac_of_anchor": 1.0
+   },
+   {
+    "name": "phase tracker + 30% noise",
+    "nmi_raw": 0.18271814543825546,
+    "cond_nmi": 0.07933790322922069,
+    "slope": 0.419002311332116,
+    "partial_slope": 0.45411908119683053,
+    "partial_p": 0.004975124378109453,
+    "frac_of_anchor": 0.36717220470553125
+   },
+   {
+    "name": "phase tracker + 60% noise",
+    "nmi_raw": 0.0538440357854866,
+    "cond_nmi": 0.02299001846945667,
+    "slope": 0.4811596273634693,
+    "partial_slope": 0.04725029672086024,
+    "partial_p": 0.12935323383084577,
+    "frac_of_anchor": 0.10639675897739509
+   },
+   {
+    "name": "pure position router",
+    "nmi_raw": 0.2762364172023185,
+    "cond_nmi": 0.0,
+    "slope": -0.061051166296561765,
+    "partial_slope": -0.020079423680048173,
+    "partial_p": 0.3880597014925373,
+    "frac_of_anchor": 0.0
+   },
+   {
+    "name": "uniform random routing",
+    "nmi_raw": 4.1058084795472556e-05,
+    "cond_nmi": 0.0005063542429646086,
+    "slope": 0.5595908090860217,
+    "partial_slope": -0.009159660449301957,
+    "partial_p": 0.6069651741293532,
+    "frac_of_anchor": 0.002343384387335816
+   }
+  ]
+ },
+ "naive": {
+  "kind": "naive",
+  "phase1_frac": 0.5292259083728278,
+  "anchor_cond_nmi": 0.04646239477820541,
+  "rows": [
+   {
+    "name": "perfect phase tracker",
+    "nmi_raw": 0.4993878731236625,
+    "cond_nmi": 0.04646239477820541,
+    "slope": 1.0916839765314745,
+    "partial_slope": 0.9539607719232706,
+    "partial_p": 0.004975124378109453,
+    "frac_of_anchor": 1.0
+   },
+   {
+    "name": "phase tracker + 30% noise",
+    "nmi_raw": 0.1947418823393899,
+    "cond_nmi": 0.014246541492793086,
+    "slope": 1.230439852775073,
+    "partial_slope": 1.0611480917297653,
+    "partial_p": 0.004975124378109453,
+    "frac_of_anchor": 0.3066252086402541
+   },
+   {
+    "name": "phase tracker + 60% noise",
+    "nmi_raw": 0.05484882094429706,
+    "cond_nmi": 0.003929168307149786,
+    "slope": 0.7433074596406699,
+    "partial_slope": 0.8031669809554103,
+    "partial_p": 0.029850746268656716,
+    "frac_of_anchor": 0.08456663342271116
+   },
+   {
+    "name": "pure position router",
+    "nmi_raw": 0.4841255560821153,
+    "cond_nmi": 0.0,
+    "slope": -0.6406180532779504,
+    "partial_slope": 0.4434367320719096,
+    "partial_p": 0.004975124378109453,
+    "frac_of_anchor": 0.0
+   },
+   {
+    "name": "uniform random routing",
+    "nmi_raw": 0.0001347841748108218,
+    "cond_nmi": 0.0001593553126196999,
+    "slope": 0.33576400276957946,
+    "partial_slope": 0.2868627741505731,
+    "partial_p": 0.263681592039801,
+    "frac_of_anchor": 0.003429769674602531
+   }
+  ]
+ }
+}

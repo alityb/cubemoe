@@ -1,0 +1,15 @@
+=== state seed 3 17:54:37
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6325 test_acc=0.4641 tok/s=20513
+  ep2/3 loss=1.5114 test_acc=0.5259 tok/s=18480
+  ep3/3 loss=1.4332 test_acc=0.5389 tok/s=18677
+DONE state_mixed_s3: test_acc=0.5389 majority=0.1151 tok/s=18677 wall=4089s
+  [state_mixed_s3 L0] router=0.0039 shuf=0.0008 posr=0.0000 kmeans_own=0.0321 permp=0.0050 slope=+0.022 (p=0.119) probe=0.990
+  [state_mixed_s3 L1] router=0.0049 shuf=0.0005 posr=0.0000 kmeans_own=0.0539 permp=0.0050 slope=+0.377 (p=0.005) probe=0.999
+  [state_mixed_s3 L2] router=0.0371 shuf=0.0011 posr=0.0000 kmeans_own=0.0576 permp=0.0050 slope=+0.428 (p=0.045) probe=1.000
+  [state_mixed_s3 L3] router=0.0879 shuf=0.0014 posr=0.0000 kmeans_own=0.0705 permp=0.0050 slope=+0.193 (p=0.050) probe=1.000
+=== state seed 4 19:03:31
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6577 test_acc=0.4710 tok/s=18028

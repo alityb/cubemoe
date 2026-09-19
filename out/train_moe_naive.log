@@ -1,0 +1,15 @@
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/12 loss=2.3349 test_acc=0.1439 tok/s=6873
+  ep2/12 loss=2.3139 test_acc=0.1461 tok/s=7180
+  ep3/12 loss=2.2929 test_acc=0.1432 tok/s=7098
+  ep4/12 loss=2.2860 test_acc=0.1467 tok/s=7263
+  ep5/12 loss=2.2791 test_acc=0.1479 tok/s=7337
+  ep6/12 loss=2.2744 test_acc=0.1480 tok/s=7380
+  ep7/12 loss=2.2752 test_acc=0.1539 tok/s=7405
+  ep8/12 loss=2.2629 test_acc=0.1552 tok/s=7443
+  ep9/12 loss=2.2598 test_acc=0.1543 tok/s=7456
+  ep10/12 loss=2.2498 test_acc=0.1566 tok/s=7501
+  ep11/12 loss=2.2673 test_acc=0.1562 tok/s=7534
+  ep12/12 loss=2.2569 test_acc=0.1570 tok/s=7562
+DONE moe_naive: test_acc=0.1570 majority=0.0931 tok/s=7562 wall=739s

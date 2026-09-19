@@ -1,0 +1,54 @@
+{
+ "tag": "dense_mixed",
+ "kind": "dense",
+ "strat": "step index",
+ "n_rows": 24660,
+ "max_solves": 1200,
+ "layers": [
+  {
+   "layer": 0,
+   "kmeans_own_hidden_cond_nmi": 0.07389078088408962,
+   "kmeans_own_hidden_raw_nmi": 0.1320820457805175,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.2833060107144132,
+   "probe": {
+    "probe_acc": 0.9590429845904298,
+    "probe_acc_strat_wt": 0.9590429845904299
+   }
+  },
+  {
+   "layer": 1,
+   "kmeans_own_hidden_cond_nmi": 0.092072816476302,
+   "kmeans_own_hidden_raw_nmi": 0.19700300729968945,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.6346504650088486,
+   "probe": {
+    "probe_acc": 0.9758042714247094,
+    "probe_acc_strat_wt": 0.9758042714247095
+   }
+  },
+  {
+   "layer": 2,
+   "kmeans_own_hidden_cond_nmi": 0.14712215470489343,
+   "kmeans_own_hidden_raw_nmi": 0.33676635181434533,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.4919249583047274,
+   "probe": {
+    "probe_acc": 0.9849959448499594,
+    "probe_acc_strat_wt": 0.9849959448499594
+   }
+  },
+  {
+   "layer": 3,
+   "kmeans_own_hidden_cond_nmi": 0.15353892541397784,
+   "kmeans_own_hidden_raw_nmi": 0.35981149300459025,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.3727033899417485,
+   "probe": {
+    "probe_acc": 0.9840497431738308,
+    "probe_acc_strat_wt": 0.9840497431738308
+   }
+  }
+ ],
+ "best_kmeans_own": 0.15353892541397784
+}

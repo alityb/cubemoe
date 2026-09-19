@@ -1,0 +1,35 @@
+=== state seed 4 21:25:14
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6601 test_acc=0.4693 tok/s=26131
+  ep2/3 loss=1.4353 test_acc=0.5191 tok/s=24143
+  ep3/3 loss=1.3936 test_acc=0.5304 tok/s=23253
+DONE state_mixed_s4: test_acc=0.5304 majority=0.1151 tok/s=23253 wall=3284s
+  state_mixed_s4 L3 e1=0(0.99) e2=6(1.00) n=16387
+    baseline  p2_G1mass=0.9984  p2_acc=0.5314  p1_acc=0.5276
+    self      p2_G1mass=0.9984  p2_acc=0.5314  p1_acc=0.5276
+    random    p2_G1mass=0.9735  p2_acc=0.3632  p1_acc=0.3397
+    single    p2_G1mass=0.9625  p2_acc=0.3823  p1_acc=0.3102
+    swap      p2_G1mass=0.9257  p2_acc=0.2868  p1_acc=0.3566
+  [state_mixed_s4 L0] router=0.0000 shuf=0.0000 posr=0.0000 kmeans_own=0.0266 permp=1.0000 slope=+0.000 (p=0.154) probe=0.998
+  [state_mixed_s4 L1] router=0.0187 shuf=0.0013 posr=0.0000 kmeans_own=0.0632 permp=0.0050 slope=+0.284 (p=0.254) probe=1.000
+  [state_mixed_s4 L2] router=0.0471 shuf=0.0014 posr=0.0000 kmeans_own=0.0625 permp=0.0050 slope=+0.479 (p=0.005) probe=1.000
+  [state_mixed_s4 L3] router=0.0554 shuf=0.0016 posr=0.0000 kmeans_own=0.0710 permp=0.0050 slope=-0.103 (p=0.512) probe=1.000
+=== state seed 5 22:22:04
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.6464 test_acc=0.4816 tok/s=23291
+  ep2/3 loss=1.4236 test_acc=0.5281 tok/s=23224
+  ep3/3 loss=1.3391 test_acc=0.5379 tok/s=23202
+DONE state_mixed_s5: test_acc=0.5379 majority=0.1151 tok/s=23202 wall=3292s
+  state_mixed_s5 L3 e1=1(1.00) e2=0(1.00) n=16387
+    baseline  p2_G1mass=0.9986  p2_acc=0.5319  p1_acc=0.5450
+    self      p2_G1mass=0.9986  p2_acc=0.5319  p1_acc=0.5450
+    random    p2_G1mass=0.9398  p2_acc=0.3916  p1_acc=0.3752
+    single    p2_G1mass=0.9926  p2_acc=0.4434  p1_acc=0.3727
+    swap      p2_G1mass=0.7201  p2_acc=0.3002  p1_acc=0.3640
+  [state_mixed_s5 L0] router=0.1093 shuf=0.0013 posr=0.0000 kmeans_own=0.0393 permp=0.0050 slope=+0.330 (p=0.005) probe=0.999
+  [state_mixed_s5 L1] router=0.0039 shuf=0.0012 posr=0.0000 kmeans_own=0.0787 permp=0.0050 slope=-0.028 (p=0.552) probe=0.999
+  [state_mixed_s5 L2] router=0.0171 shuf=0.0015 posr=0.0000 kmeans_own=0.0722 permp=0.0050 slope=-0.056 (p=0.363) probe=1.000
+  [state_mixed_s5 L3] router=0.1252 shuf=0.0017 posr=0.0000 kmeans_own=0.0826 permp=0.0050 slope=+0.161 (p=0.080) probe=1.000
+=== ARM C 4,5 DONE 23:19:03

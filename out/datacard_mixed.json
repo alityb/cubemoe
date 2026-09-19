@@ -1,0 +1,217 @@
+{
+ "kind": "mixed",
+ "n_solves": 25000,
+ "n_steps": 514586,
+ "seam_minus_firstG1": {
+  "0": 25000
+ },
+ "L2_sampled": 1200,
+ "label_determinism": {
+  "n": 2000,
+  "standalone": 0.9955,
+  "with_context": 1.0
+ },
+ "stereotypy": {
+  "lag2_repeat": 0.05177211254469143,
+  "unigram_entropy": 4.0908798411013745,
+  "bigram_entropy": 7.7996484975027895,
+  "trigram_entropy": 11.456854604842368,
+  "repeated_prefix_rate": {
+   "3": 0.8486032710956724,
+   "4": 0.27255102040816326,
+   "5": 0.02936889272795984
+  },
+  "n_distinct_phase1": 19963,
+  "n_phase1": 25000
+ },
+ "stereotypy_phase2": {
+  "lag2_repeat": 0.14778800577041973,
+  "entropy": 3.1921163171611013,
+  "distinct_5prefix": 10439,
+  "n": 25000
+ },
+ "confound": {
+  "majority": 0.6629406940725165,
+  "move": 0.8458508393154885,
+  "position": 0.8697205131892434,
+  "pos_move": 0.9168710380772116
+ },
+ "leakage": {
+  "overall": 0.25017486593611565,
+  "by_remaining": {
+   "1": 1.0,
+   "2": 1.0,
+   "3": 1.0,
+   "4": 0.9924,
+   "5": 0.8036,
+   "6": 0.2728,
+   "7": 0.0612,
+   "8": 0.0156,
+   "9": 0.0036,
+   "10": 0.0008
+  },
+  "excl_last": {
+   "3": 0.1222707423580786,
+   "4": 0.06981286775344844,
+   "5": 0.02273660439334839,
+   "6": 0.005593945376768674,
+   "7": 0.0015014130946773433,
+   "8": 0.0003813397737384009
+  },
+  "rows_kept": {
+   "3": 0.8542783865702961,
+   "4": 0.8057045154270615,
+   "5": 0.7571306442838268,
+   "6": 0.7085567731405922,
+   "7": 0.6599829019973575,
+   "8": 0.6114090308541229
+  },
+  "excl_last3": 0.1222707423580786
+ },
+ "distribution": {
+  "seam_mean": 6.93784,
+  "seam_sd": 3.43814719498744,
+  "seam_hist": {
+   "0": 2071,
+   "1": 1072,
+   "2": 1130,
+   "3": 1127,
+   "4": 1077,
+   "5": 1081,
+   "6": 1135,
+   "7": 1200,
+   "8": 1896,
+   "9": 5797,
+   "10": 7085,
+   "11": 329
+  },
+  "sollen_mean": 20.58344,
+  "phase1_frac": 0.33705930592748345,
+  "mixed_position_cells": 0.534367433237593,
+  "move_hist_phase1": {
+   "U": 11807,
+   "U'": 9889,
+   "U2": 8035,
+   "R": 15918,
+   "R'": 8822,
+   "R2": 6945,
+   "F": 15586,
+   "F'": 8720,
+   "F2": 6581,
+   "D": 9118,
+   "D'": 8827,
+   "D2": 6652,
+   "L": 14522,
+   "L'": 8116,
+   "L2": 5671,
+   "B": 14498,
+   "B'": 7941,
+   "B2": 5798
+  },
+  "move_hist_phase2": {
+   "U": 34123,
+   "U'": 29636,
+   "U2": 17237,
+   "R": 0,
+   "R'": 0,
+   "R2": 51913,
+   "F": 0,
+   "F'": 0,
+   "F2": 50401,
+   "D": 23132,
+   "D'": 23035,
+   "D2": 13510,
+   "L": 0,
+   "L'": 0,
+   "L2": 49631,
+   "B": 0,
+   "B'": 0,
+   "B2": 48522
+  }
+ },
+ "code_sha256": "9a16be1213e377ba",
+ "gen_seeds": "1000..1009 (worker i -> 1000+i)",
+ "hard_checks": [
+  {
+   "name": "L1 maneuver replays to solved",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 every state passes verify() (perm/twist/flip/parity)",
+   "ok": true,
+   "detail": "0 bad states"
+  },
+  {
+   "name": "L1 stored states == replayed states",
+   "ok": true,
+   "detail": "0/25000 mismatch"
+  },
+  {
+   "name": "L1 phase-2 moves subset of the 10 G1 moves",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 in_G1 monotone (first True stays True)",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 stored seam == first G1 entry (phase is a STATE property)",
+   "ok": true,
+   "detail": "0/25000 disagree; offset dist [(0, 25000)]"
+  },
+  {
+   "name": "L2 kociemba accepts every sampled state (independent legality)",
+   "ok": true,
+   "detail": "0/1200 rejected"
+  },
+  {
+   "name": "L2 kociemba solves the penultimate state in exactly our last move",
+   "ok": true,
+   "detail": "0/1200 mismatch"
+  },
+  {
+   "name": "L2 cubie G1 test == coordinate-table G1 test",
+   "ok": true,
+   "detail": "0/1200 disagree"
+  },
+  {
+   "name": "L2b label determinism (standalone re-solve) >= 0.95",
+   "ok": true,
+   "detail": "0.9955"
+  },
+  {
+   "name": "L2b label determinism WITH lastface context == 1.0",
+   "ok": true,
+   "detail": "2000/2000; gap is the consecutive-same-face rule at the split"
+  },
+  {
+   "name": "L3 phase-1 lag-2 repetition near chance (no cyclic DFS padding)",
+   "ok": true,
+   "detail": "P(move[t]==move[t-2])=0.052 (chance 0.056); >0.10 means the forced search is burning excess length as a repeating short cycle"
+  },
+  {
+   "name": "L3 repeated 5-prefix rate low (paths not stereotyped)",
+   "ok": true,
+   "detail": "0.029"
+  },
+  {
+   "name": "L5 no duplicate scrambles",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "name": "L5 seam sd >= 3.0",
+   "ok": true,
+   "detail": "sd=3.44"
+  },
+  {
+   "name": "L5 >=9% of position cells mixed",
+   "ok": true,
+   "detail": "0.534"
+  }
+ ],
+ "PASS": true
+}

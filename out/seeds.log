@@ -1,0 +1,129 @@
+=== moe   seed 1 10:25:59
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.2164 test_acc=0.1683 tok/s=5060
+  ep2/10 loss=2.1605 test_acc=0.1806 tok/s=5202
+  ep3/10 loss=2.1201 test_acc=0.1864 tok/s=5104
+  ep4/10 loss=2.1085 test_acc=0.1947 tok/s=5081
+  ep5/10 loss=2.0966 test_acc=0.1991 tok/s=5108
+  ep6/10 loss=2.0889 test_acc=0.1990 tok/s=5106
+  ep7/10 loss=2.0494 test_acc=0.2009 tok/s=5081
+  ep8/10 loss=2.0472 test_acc=0.2010 tok/s=5079
+  ep9/10 loss=2.0589 test_acc=0.2017 tok/s=5092
+  ep10/10 loss=2.0803 test_acc=0.2016 tok/s=5129
+DONE moe_mixed_s1: test_acc=0.2016 majority=0.1151 tok/s=5129 wall=899s
+=== dense seed 1 10:41:01
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=dense params=1.34M  train=22500 test=2500
+  ep1/10 loss=2.2009 test_acc=0.1697 tok/s=19188
+  ep2/10 loss=2.1521 test_acc=0.1814 tok/s=18985
+  ep3/10 loss=2.1179 test_acc=0.1831 tok/s=18631
+  ep4/10 loss=2.0976 test_acc=0.1915 tok/s=18430
+  ep5/10 loss=2.0961 test_acc=0.1922 tok/s=18805
+  ep6/10 loss=2.0844 test_acc=0.1992 tok/s=18858
+  ep7/10 loss=2.0479 test_acc=0.2007 tok/s=19017
+  ep8/10 loss=2.0410 test_acc=0.1994 tok/s=19087
+  ep9/10 loss=2.0540 test_acc=0.2024 tok/s=19187
+  ep10/10 loss=2.0741 test_acc=0.2014 tok/s=19218
+DONE dense_mixed_s1: test_acc=0.2014 majority=0.1151 tok/s=19218 wall=240s
+=== moe   seed 2 10:45:03
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.1891 test_acc=0.1682 tok/s=4363
+  ep2/10 loss=2.1658 test_acc=0.1713 tok/s=4651
+  ep3/10 loss=2.1324 test_acc=0.1782 tok/s=4908
+  ep4/10 loss=2.0937 test_acc=0.1879 tok/s=5046
+  ep5/10 loss=2.0926 test_acc=0.1950 tok/s=5133
+  ep6/10 loss=2.0952 test_acc=0.1986 tok/s=5186
+  ep7/10 loss=2.0797 test_acc=0.2013 tok/s=5227
+  ep8/10 loss=2.0585 test_acc=0.2024 tok/s=5265
+  ep9/10 loss=2.0623 test_acc=0.2032 tok/s=5291
+  ep10/10 loss=2.0553 test_acc=0.2038 tok/s=5314
+DONE moe_mixed_s2: test_acc=0.2038 majority=0.1151 tok/s=5314 wall=868s
+=== dense seed 2 10:59:33
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=dense params=1.34M  train=22500 test=2500
+  ep1/10 loss=2.1743 test_acc=0.1709 tok/s=20197
+  ep2/10 loss=2.1537 test_acc=0.1711 tok/s=20408
+  ep3/10 loss=2.1187 test_acc=0.1780 tok/s=20490
+  ep4/10 loss=2.0799 test_acc=0.1904 tok/s=20532
+  ep5/10 loss=2.0798 test_acc=0.1926 tok/s=20548
+  ep6/10 loss=2.0938 test_acc=0.1990 tok/s=20572
+  ep7/10 loss=2.0663 test_acc=0.2010 tok/s=20585
+  ep8/10 loss=2.0526 test_acc=0.2037 tok/s=20593
+  ep9/10 loss=2.0547 test_acc=0.2027 tok/s=20612
+  ep10/10 loss=2.0499 test_acc=0.2033 tok/s=20613
+DONE dense_mixed_s2: test_acc=0.2033 majority=0.1151 tok/s=20613 wall=224s
+=== moe   seed 3 11:03:19
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.2239 test_acc=0.1695 tok/s=4841
+  ep2/10 loss=2.1639 test_acc=0.1767 tok/s=5141
+  ep3/10 loss=2.1045 test_acc=0.1826 tok/s=5247
+  ep4/10 loss=2.1043 test_acc=0.1914 tok/s=5139
+  ep5/10 loss=2.0964 test_acc=0.1985 tok/s=5080
+  ep6/10 loss=2.0717 test_acc=0.2004 tok/s=5040
+  ep7/10 loss=2.0555 test_acc=0.2011 tok/s=5014
+  ep8/10 loss=2.0607 test_acc=0.2034 tok/s=4994
+  ep9/10 loss=2.0647 test_acc=0.2027 tok/s=4978
+  ep10/10 loss=2.0397 test_acc=0.2032 tok/s=5000
+DONE moe_mixed_s3: test_acc=0.2032 majority=0.1151 tok/s=5000 wall=922s
+=== dense seed 3 11:18:43
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=dense params=1.34M  train=22500 test=2500
+  ep1/10 loss=2.2085 test_acc=0.1666 tok/s=20456
+  ep2/10 loss=2.1545 test_acc=0.1746 tok/s=20517
+  ep3/10 loss=2.0968 test_acc=0.1852 tok/s=20611
+  ep4/10 loss=2.0945 test_acc=0.1925 tok/s=20575
+  ep5/10 loss=2.0858 test_acc=0.1973 tok/s=20626
+  ep6/10 loss=2.0616 test_acc=0.1993 tok/s=20647
+  ep7/10 loss=2.0540 test_acc=0.2017 tok/s=20622
+  ep8/10 loss=2.0542 test_acc=0.2015 tok/s=20644
+  ep9/10 loss=2.0536 test_acc=0.2036 tok/s=20644
+  ep10/10 loss=2.0405 test_acc=0.2045 tok/s=20639
+DONE dense_mixed_s3: test_acc=0.2045 majority=0.1151 tok/s=20639 wall=223s
+=== moe   seed 4 11:22:29
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.2050 test_acc=0.1683 tok/s=5112
+  ep2/10 loss=2.1654 test_acc=0.1758 tok/s=5285
+  ep3/10 loss=2.1150 test_acc=0.1826 tok/s=5356
+  ep4/10 loss=2.1233 test_acc=0.1885 tok/s=5379
+  ep5/10 loss=2.0968 test_acc=0.1945 tok/s=5405
+  ep6/10 loss=2.0692 test_acc=0.1972 tok/s=5418
+  ep7/10 loss=2.0820 test_acc=0.1988 tok/s=5425
+  ep8/10 loss=2.0501 test_acc=0.1996 tok/s=5437
+  ep9/10 loss=2.0586 test_acc=0.1999 tok/s=5445
+  ep10/10 loss=2.0429 test_acc=0.1996 tok/s=5453
+DONE moe_mixed_s4: test_acc=0.1996 majority=0.1151 tok/s=5453 wall=845s
+=== dense seed 4 11:36:36
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=dense params=1.34M  train=22500 test=2500
+  ep1/10 loss=2.1941 test_acc=0.1702 tok/s=20574
+  ep2/10 loss=2.1550 test_acc=0.1756 tok/s=20568
+  ep3/10 loss=2.1120 test_acc=0.1862 tok/s=20584
+  ep4/10 loss=2.1162 test_acc=0.1918 tok/s=20597
+  ep5/10 loss=2.0841 test_acc=0.1959 tok/s=20601
+  ep6/10 loss=2.0631 test_acc=0.2008 tok/s=20412
+  ep7/10 loss=2.0714 test_acc=0.1972 tok/s=20260
+  ep8/10 loss=2.0399 test_acc=0.2002 tok/s=20140
+  ep9/10 loss=2.0493 test_acc=0.2026 tok/s=20016
+  ep10/10 loss=2.0395 test_acc=0.2012 tok/s=19891
+DONE dense_mixed_s4: test_acc=0.2012 majority=0.1151 tok/s=19891 wall=232s
+=== state       seed 1 11:40:30
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468
+  ep1/3 loss=1.5416 test_acc=0.4871 tok/s=21198
+  ep2/3 loss=1.4087 test_acc=0.5279 tok/s=20773
+  ep3/3 loss=1.4577 test_acc=0.5406 tok/s=21295
+DONE state_mixed_s1: test_acc=0.5406 majority=0.1151 tok/s=21295 wall=3586s
+=== state_dense seed 1 12:40:19
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state_dense params=1.33M  train=463118 test=51468
+  ep1/3 loss=1.4915 test_acc=0.4902 tok/s=89755
+  ep2/3 loss=1.3412 test_acc=0.5351 tok/s=90613
+  ep3/3 loss=1.4266 test_acc=0.5511 tok/s=90478
+DONE state_dense_mixed_s1: test_acc=0.5511 majority=0.1151 tok/s=90478 wall=844s
+=== state       seed 2 12:54:26
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=463118 test=51468

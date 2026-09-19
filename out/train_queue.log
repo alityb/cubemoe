@@ -1,0 +1,7 @@
+=== moe on forced (10 ep) 18:35:15
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=1.9179 test_acc=0.3107 tok/s=8305
+  ep2/10 loss=1.8509 test_acc=0.3191 tok/s=8551
+  ep3/10 loss=1.8670 test_acc=0.3192 tok/s=8379
+  ep4/10 loss=1.8411 test_acc=0.3199 tok/s=8369

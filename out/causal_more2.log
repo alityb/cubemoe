@@ -1,0 +1,15 @@
+=== CONTROL: hash twin (token-identity router) 18:02:01
+  hash_mixed L3 e1=5(P(p1|e)=0.97) e2=4(P(p2|e)=0.89) changed swap=0.99 rand=1.00
+    baseline  p2_G1mass=0.9792  p2_acc=0.2097  p1_acc=0.1812
+    self      p2_G1mass=0.9792  p2_acc=0.2097  p1_acc=0.1812
+    random    p2_G1mass=0.9763  p2_acc=0.1977  p1_acc=0.1727
+    single    p2_G1mass=0.9759  p2_acc=0.2005  p1_acc=0.1706
+    swap      p2_G1mass=0.9724  p2_acc=0.2017  p1_acc=0.1746
+=== naive-set model (seam sd 0.65) 18:02:29
+  moe_naive L3 e1=6(P(p1|e)=0.97) e2=7(P(p2|e)=0.99) changed swap=1.00 rand=1.00
+    baseline  p2_G1mass=0.9785  p2_acc=0.1978  p1_acc=0.1272
+    self      p2_G1mass=0.9785  p2_acc=0.1978  p1_acc=0.1272
+    random    p2_G1mass=0.9733  p2_acc=0.1773  p1_acc=0.1169
+    single    p2_G1mass=0.9774  p2_acc=0.1782  p1_acc=0.1183
+    swap      p2_G1mass=0.9714  p2_acc=0.1903  p1_acc=0.1145
+=== CAUSAL EXTRAS DONE 18:02:56

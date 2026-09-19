@@ -1,0 +1,86 @@
+=== regen forced 18:41:20
+  move tables: 0.9s
+  twist-slice prun: 2.8s
+  flip-slice prun:  2.6s
+  TOTAL BUILD: 6.3s
+  p2 move tables: 11.2s
+  p2 corner prun: 1.8s
+  p2 udedge prun: 1.9s
+  P2 TOTAL BUILD: 14.9s
+  move tables: 0.9s
+  twist-slice prun: 2.6s
+  flip-slice prun:  2.7s
+  TOTAL BUILD: 6.2s
+  p2 move tables: 11.2s
+  p2 corner prun: 1.7s
+  p2 udedge prun: 1.8s
+  P2 TOTAL BUILD: 14.6s
+  move tables: 0.9s
+  twist-slice prun: 2.9s
+  flip-slice prun:  2.4s
+  TOTAL BUILD: 6.3s
+  p2 move tables: 11.0s
+  p2 corner prun: 1.7s
+  p2 udedge prun: 1.8s
+  P2 TOTAL BUILD: 14.5s
+  move tables: 0.9s
+  twist-slice prun: 2.9s
+  flip-slice prun:  2.5s
+  TOTAL BUILD: 6.3s
+  p2 move tables: 10.9s
+  p2 corner prun: 1.8s
+  p2 udedge prun: 1.9s
+  P2 TOTAL BUILD: 14.6s
+  move tables: 0.9s
+  twist-slice prun: 2.8s
+  flip-slice prun:  2.5s
+  TOTAL BUILD: 6.2s
+  p2 move tables: 11.4s
+  p2 corner prun: 1.7s
+  p2 udedge prun: 1.8s
+  P2 TOTAL BUILD: 15.0s
+  move tables: 0.9s
+  twist-slice prun: 2.8s
+  flip-slice prun:  2.3s
+  TOTAL BUILD: 6.0s
+  p2 move tables: 10.6s
+  p2 corner prun: 1.7s
+  p2 udedge prun: 1.9s
+  P2 TOTAL BUILD: 14.2s
+  move tables: 0.9s
+  twist-slice prun: 2.8s
+  flip-slice prun:  2.6s
+  TOTAL BUILD: 6.2s
+  p2 move tables: 10.9s
+  p2 corner prun: 1.8s
+  p2 udedge prun: 1.8s
+  P2 TOTAL BUILD: 14.5s
+  move tables: 0.9s
+  twist-slice prun: 2.9s
+  flip-slice prun:  2.5s
+  TOTAL BUILD: 6.3s
+  p2 move tables: 10.8s
+  p2 corner prun: 1.6s
+  p2 udedge prun: 1.9s
+  P2 TOTAL BUILD: 14.3s
+  move tables: 0.9s
+  twist-slice prun: 2.7s
+  flip-slice prun:  2.6s
+  TOTAL BUILD: 6.2s
+  p2 move tables: 11.0s
+  p2 corner prun: 1.7s
+  p2 udedge prun: 1.9s
+  P2 TOTAL BUILD: 14.7s
+  move tables: 0.9s
+  twist-slice prun: 2.8s
+  flip-slice prun:  2.6s
+  TOTAL BUILD: 6.3s
+  p2 move tables: 10.9s
+  p2 corner prun: 1.7s
+  p2 udedge prun: 1.9s
+  P2 TOTAL BUILD: 14.4s
+[forced] 25000 solves in 739.5s (33.8/s wall, 10 workers)
+  steps=714611  seam mean=14.99 sd=3.17 range=10-20
+  sol_len mean=28.58  phase1 frac=0.524
+  rows in step-index cells containing BOTH phases: 0.350
+  saved /Users/alityb/projects/cubemoe/data/forced.npz (12.2 MB)

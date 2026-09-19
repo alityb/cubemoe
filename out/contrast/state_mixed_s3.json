@@ -1,0 +1,101 @@
+{
+ "tag": "state_mixed_s3",
+ "kind": "moe",
+ "strat": "remaining moves",
+ "n_rows": 16387,
+ "max_solves": 800,
+ "layers": [
+  {
+   "layer": 0,
+   "router_cond_nmi": 0.0038989078992911074,
+   "router_raw_nmi": 0.07931758699714538,
+   "router_cond_mi_bits": 0.0033329462182863094,
+   "utilization": 0.25,
+   "null_shuffled": 0.000833484047616853,
+   "null_position_router": 0.0,
+   "perm_p": 0.004975124378109453,
+   "cp_slope": 0.5739596423704139,
+   "cp_partial_slope": 0.02179909745006521,
+   "cp_r": 0.3218498403607331,
+   "cp_partial_p": 0.11940298507462686,
+   "kmeans_own_hidden_cond_nmi": 0.03214036117112923,
+   "kmeans_own_hidden_raw_nmi": 0.301188017160317,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": -0.16403815899561547,
+   "probe": {
+    "probe_acc": 0.9898311978848892,
+    "probe_acc_strat_wt": 0.9898021619416683
+   }
+  },
+  {
+   "layer": 1,
+   "router_cond_nmi": 0.004856616226687901,
+   "router_raw_nmi": 0.0257275409601266,
+   "router_cond_mi_bits": 0.0035724009671118796,
+   "utilization": 0.26458473179959724,
+   "null_shuffled": 0.0004955958143761456,
+   "null_position_router": 0.0,
+   "perm_p": 0.004975124378109453,
+   "cp_slope": 0.42823993411256767,
+   "cp_partial_slope": 0.37693457403270364,
+   "cp_r": 0.23820079028513028,
+   "cp_partial_p": 0.004975124378109453,
+   "kmeans_own_hidden_cond_nmi": 0.053932911674504536,
+   "kmeans_own_hidden_raw_nmi": 0.39166562422962825,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.05237318500191215,
+   "probe": {
+    "probe_acc": 0.9991864958307911,
+    "probe_acc_strat_wt": 0.9991841729553335
+   }
+  },
+  {
+   "layer": 2,
+   "router_cond_nmi": 0.03705640178834047,
+   "router_raw_nmi": 0.22301402935018214,
+   "router_cond_mi_bits": 0.049337554259370225,
+   "utilization": 0.6011777628608043,
+   "null_shuffled": 0.0011343334711769518,
+   "null_position_router": 0.0,
+   "perm_p": 0.004975124378109453,
+   "cp_slope": 0.5791700369854724,
+   "cp_partial_slope": 0.42763201680897117,
+   "cp_r": 0.30698640773757324,
+   "cp_partial_p": 0.04477611940298507,
+   "kmeans_own_hidden_cond_nmi": 0.05764073888204418,
+   "kmeans_own_hidden_raw_nmi": 0.37322664222666513,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.29003316852114736,
+   "probe": {
+    "probe_acc": 0.9995932479153956,
+    "probe_acc_strat_wt": 0.9995920864776667
+   }
+  },
+  {
+   "layer": 3,
+   "router_cond_nmi": 0.08794810715524828,
+   "router_raw_nmi": 0.4235771403318632,
+   "router_cond_mi_bits": 0.08376884924977976,
+   "utilization": 0.5952736925611766,
+   "null_shuffled": 0.001400698346078148,
+   "null_position_router": 0.0,
+   "perm_p": 0.004975124378109453,
+   "cp_slope": 0.27504508212015083,
+   "cp_partial_slope": 0.193000190588631,
+   "cp_r": 0.18485504773877598,
+   "cp_partial_p": 0.04975124378109453,
+   "kmeans_own_hidden_cond_nmi": 0.07054419420974421,
+   "kmeans_own_hidden_raw_nmi": 0.4255952444940478,
+   "kmeans_perm_p": 0.004975124378109453,
+   "kmeans_cp_partial_slope": 0.11588797563680839,
+   "probe": {
+    "probe_acc": 1.0,
+    "probe_acc_strat_wt": 1.0
+   }
+  }
+ ],
+ "best_layer": 3,
+ "best_router_cond_nmi": 0.08794810715524828,
+ "best_kmeans_own": 0.07054419420974421,
+ "best_cp_partial_slope": 0.42763201680897117
+}

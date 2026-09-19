@@ -1,0 +1,170 @@
+{
+ "kind": "naive",
+ "n_solves": 25000,
+ "n_steps": 519467,
+ "seam_minus_firstG1": {
+  "0": 25000
+ },
+ "L2_sampled": 800,
+ "stereotypy": {
+  "unigram_entropy": 4.146925682728155,
+  "bigram_entropy": 7.877353882231578,
+  "trigram_entropy": 11.586473109508942,
+  "repeated_prefix_rate": {
+   "3": 0.8728,
+   "4": 0.33528,
+   "5": 0.03871999999999998
+  },
+  "n_distinct_phase1": 25000,
+  "n_phase1": 25000
+ },
+ "confound": {
+  "majority": 0.5291346707298057,
+  "move": 0.740589873851467,
+  "position": 0.9818698781635792,
+  "pos_move": 0.994115121846046
+ },
+ "leakage": {
+  "overall": 0.24047316302546912,
+  "by_remaining": {
+   "1": 1.0,
+   "2": 1.0,
+   "3": 1.0,
+   "4": 0.99,
+   "5": 0.7308,
+   "6": 0.2232,
+   "7": 0.0404,
+   "8": 0.0076,
+   "9": 0.0008,
+   "10": 0.0
+  },
+  "excl_last": {
+   "3": 0.11219204611989371,
+   "4": 0.05982436882546652,
+   "5": 0.01725625539257981,
+   "6": 0.0033056955508589387,
+   "7": 0.0006103586583735395,
+   "8": 6.268413464552121e-05
+  },
+  "rows_kept": {
+   "3": 0.8555080337533233,
+   "4": 0.8073440450044311,
+   "5": 0.7591800562555389,
+   "6": 0.7110160675066466,
+   "7": 0.6628520787577544,
+   "8": 0.6146880900088622
+  },
+  "excl_last3": 0.11219204611989371
+ },
+ "distribution": {
+  "seam_mean": 10.99472,
+  "seam_sd": 0.6452690304051482,
+  "seam_hist": {
+   "6": 1,
+   "7": 3,
+   "8": 25,
+   "9": 393,
+   "10": 3897,
+   "11": 16038,
+   "12": 4643
+  },
+  "sollen_mean": 20.77868,
+  "phase1_frac": 0.5291346707298057,
+  "mixed_position_cells": 0.28875751491432566,
+  "move_hist_phase1": {
+   "U": 18630,
+   "U'": 15423,
+   "U2": 14231,
+   "R": 18763,
+   "R'": 17908,
+   "R2": 12488,
+   "F": 18365,
+   "F'": 17740,
+   "F2": 11801,
+   "D": 14387,
+   "D'": 14228,
+   "D2": 12000,
+   "L": 17177,
+   "L'": 16550,
+   "L2": 10829,
+   "B": 17001,
+   "B'": 16609,
+   "B2": 10738
+  },
+  "move_hist_phase2": {
+   "U": 20506,
+   "U'": 18704,
+   "U2": 14572,
+   "R": 0,
+   "R'": 0,
+   "R2": 35695,
+   "F": 0,
+   "F'": 0,
+   "F2": 35147,
+   "D": 17947,
+   "D'": 17586,
+   "D2": 12822,
+   "L": 0,
+   "L'": 0,
+   "L2": 35595,
+   "B": 0,
+   "B'": 0,
+   "B2": 36025
+  }
+ },
+ "code_sha256": "2a0163dc3c70287c",
+ "gen_seeds": "1000..1009 (worker i -> 1000+i)",
+ "hard_checks": [
+  {
+   "name": "L1 maneuver replays to solved",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 every state passes verify() (perm/twist/flip/parity)",
+   "ok": true,
+   "detail": "0 bad states"
+  },
+  {
+   "name": "L1 stored states == replayed states",
+   "ok": true,
+   "detail": "0/25000 mismatch"
+  },
+  {
+   "name": "L1 phase-2 moves subset of the 10 G1 moves",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 in_G1 monotone (first True stays True)",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 stored seam == first G1 entry (phase is a STATE property)",
+   "ok": true,
+   "detail": "0/25000 disagree; offset dist [(0, 25000)]"
+  },
+  {
+   "name": "L2 kociemba accepts every sampled state (independent legality)",
+   "ok": true,
+   "detail": "0/800 rejected"
+  },
+  {
+   "name": "L2 kociemba solves the penultimate state in exactly our last move",
+   "ok": true,
+   "detail": "0/800 mismatch"
+  },
+  {
+   "name": "L2 cubie G1 test == coordinate-table G1 test",
+   "ok": true,
+   "detail": "0/800 disagree"
+  },
+  {
+   "name": "L5 no duplicate scrambles",
+   "ok": true,
+   "detail": "0 duplicates"
+  }
+ ],
+ "PASS": true
+}

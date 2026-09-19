@@ -1,0 +1,60 @@
+=== QA forced 18:59:06
+  move tables: 0.6s
+  twist-slice prun: 1.5s
+  flip-slice prun:  1.4s
+  TOTAL BUILD: 3.4s
+
+=== DATA CARD: forced ===
+  [PASS] L1 maneuver replays to solved
+  [PASS] L1 every state passes verify() (perm/twist/flip/parity)
+  [PASS] L1 stored states == replayed states
+  [PASS] L1 phase-2 moves subset of the 10 G1 moves
+  [PASS] L1 in_G1 monotone (first True stays True)
+  [PASS] L1 stored seam == first G1 entry (phase is a STATE property)
+  [PASS] L2 kociemba accepts every sampled state (independent legality)
+  [PASS] L2 kociemba solves the penultimate state in exactly our last move
+  [PASS] L2 cubie G1 test == coordinate-table G1 test
+  [PASS] L5 no duplicate scrambles
+  [PASS] L5 seam sd >= 3.0
+  [PASS] L5 >=9% of position cells mixed
+  seam sd=3.17 mixed=0.385 phase1=0.524
+  stereotypy: H1=4.15 H2=8.03 H3=11.46 distinct phase1=25000/25000 prefix-repeat k=3:0.873
+  confound: move=0.747 pos=0.904 maj=0.524
+  leakage: overall=0.1791 | excl-last-3=0.0826(keep 0.89) excl-last-4=0.0458(keep 0.86) excl-last-5=0.0143(keep 0.82) excl-last-6=0.0032(keep 0.79) excl-last-7=0.0008(keep 0.75) excl-last-8=0.0002(keep 0.72)
+  VERDICT: PASS
+=== QA PASSED - training 18:59:31
+=== train moe on forced (10 ep) 18:59:31
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.4112 test_acc=0.1331 tok/s=9171
+  ep2/10 loss=2.1122 test_acc=0.2441 tok/s=9299
+  ep3/10 loss=2.1065 test_acc=0.2503 tok/s=9304
+  ep4/10 loss=2.0993 test_acc=0.2512 tok/s=9305
+  ep5/10 loss=2.0510 test_acc=0.2528 tok/s=9303
+  ep6/10 loss=2.0735 test_acc=0.2559 tok/s=9310
+  ep7/10 loss=2.0030 test_acc=0.2557 tok/s=9321
+  ep8/10 loss=2.0557 test_acc=0.2577 tok/s=9336
+  ep9/10 loss=2.0666 test_acc=0.2584 tok/s=9345
+  ep10/10 loss=2.0230 test_acc=0.2575 tok/s=9312
+DONE moe_forced: test_acc=0.2575 majority=0.0982 tok/s=9312 wall=688s
+=== train dense on forced (10 ep) 19:11:01
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=dense params=1.34M  train=22500 test=2500
+  ep1/10 loss=2.3699 test_acc=0.1705 tok/s=33882
+  ep2/10 loss=2.1505 test_acc=0.2423 tok/s=33968
+  ep3/10 loss=2.1232 test_acc=0.2450 tok/s=34109
+  ep4/10 loss=2.1008 test_acc=0.2549 tok/s=34212
+  ep5/10 loss=2.0480 test_acc=0.2585 tok/s=34293
+  ep6/10 loss=2.0416 test_acc=0.2568 tok/s=34386
+  ep7/10 loss=2.0206 test_acc=0.2580 tok/s=34436
+  ep8/10 loss=2.0447 test_acc=0.2598 tok/s=34497
+  ep9/10 loss=2.0368 test_acc=0.2604 tok/s=34548
+  ep10/10 loss=2.0385 test_acc=0.2597 tok/s=34590
+DONE dense_forced: test_acc=0.2597 majority=0.0982 tok/s=34590 wall=185s
+=== train hash on forced (10 ep) 19:14:08
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.50M  train=22500 test=2500
+  ep1/10 loss=2.4152 test_acc=0.1328 tok/s=9697
+  ep2/10 loss=2.1291 test_acc=0.2444 tok/s=9767
+  ep3/10 loss=2.1228 test_acc=0.2487 tok/s=9771
+  ep4/10 loss=2.0782 test_acc=0.2506 tok/s=9748

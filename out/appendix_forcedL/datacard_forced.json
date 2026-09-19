@@ -1,0 +1,196 @@
+{
+ "kind": "forced",
+ "n_solves": 25000,
+ "n_steps": 715052,
+ "seam_minus_firstG1": {
+  "0": 25000
+ },
+ "L2_sampled": 1500,
+ "stereotypy": {
+  "lag2_repeat": 0.05692442584872864,
+  "unigram_entropy": 4.15496162562723,
+  "bigram_entropy": 8.029926716882102,
+  "trigram_entropy": 11.891229903342012,
+  "repeated_prefix_rate": {
+   "3": 0.83844,
+   "4": 0.1834,
+   "5": 0.01324000000000003
+  },
+  "n_distinct_phase1": 25000,
+  "n_phase1": 25000
+ },
+ "confound": {
+  "majority": 0.5245003160609298,
+  "move": 0.7470002181659515,
+  "position": 0.905160743554315,
+  "pos_move": 0.9506665249520314
+ },
+ "leakage": {
+  "overall": 0.17873100983020554,
+  "by_remaining": {
+   "1": 1.0,
+   "2": 1.0,
+   "3": 1.0,
+   "4": 0.9904,
+   "5": 0.8032,
+   "6": 0.2632,
+   "7": 0.054,
+   "8": 0.008,
+   "9": 0.0012,
+   "10": 0.0
+  },
+  "excl_last": {
+   "3": 0.08266267390354981,
+   "4": 0.04583225136328226,
+   "5": 0.013803369646119494,
+   "6": 0.002790730535537657,
+   "7": 0.000425012935176288,
+   "8": 5.8121512709237446e-05
+  },
+  "rows_kept": {
+   "3": 0.895274798927614,
+   "4": 0.860366398570152,
+   "5": 0.82545799821269,
+   "6": 0.7905495978552279,
+   "7": 0.7556411974977658,
+   "8": 0.7207327971403038
+  },
+  "excl_last3": 0.08266267390354981
+ },
+ "distribution": {
+  "seam_mean": 15.0018,
+  "seam_sd": 3.146483236885269,
+  "seam_hist": {
+   "9": 19,
+   "10": 2180,
+   "11": 2237,
+   "12": 2330,
+   "13": 2325,
+   "14": 2283,
+   "15": 2293,
+   "16": 2238,
+   "17": 2300,
+   "18": 2307,
+   "19": 2269,
+   "20": 2219
+  },
+  "sollen_mean": 28.60208,
+  "phase1_frac": 0.5245003160609298,
+  "mixed_position_cells": 0.3845860161219044,
+  "move_hist_phase1": {
+   "U": 20973,
+   "U'": 21003,
+   "U2": 17524,
+   "R": 23814,
+   "R'": 23865,
+   "R2": 16617,
+   "F": 23838,
+   "F'": 23611,
+   "F2": 16750,
+   "D": 20843,
+   "D'": 20804,
+   "D2": 17550,
+   "L": 23820,
+   "L'": 23546,
+   "L2": 16685,
+   "B": 23619,
+   "B'": 23634,
+   "B2": 16549
+  },
+  "move_hist_phase2": {
+   "U": 33544,
+   "U'": 29669,
+   "U2": 17191,
+   "R": 0,
+   "R'": 0,
+   "R2": 51897,
+   "F": 0,
+   "F'": 0,
+   "F2": 50257,
+   "D": 23020,
+   "D'": 22901,
+   "D2": 13493,
+   "L": 0,
+   "L'": 0,
+   "L2": 49477,
+   "B": 0,
+   "B'": 0,
+   "B2": 48558
+  }
+ },
+ "code_sha256": "3aeb895d3c2663e9",
+ "gen_seeds": "1000..1009 (worker i -> 1000+i)",
+ "hard_checks": [
+  {
+   "name": "L1 maneuver replays to solved",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 every state passes verify() (perm/twist/flip/parity)",
+   "ok": true,
+   "detail": "0 bad states"
+  },
+  {
+   "name": "L1 stored states == replayed states",
+   "ok": true,
+   "detail": "0/25000 mismatch"
+  },
+  {
+   "name": "L1 phase-2 moves subset of the 10 G1 moves",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 in_G1 monotone (first True stays True)",
+   "ok": true,
+   "detail": "0/25000 fail"
+  },
+  {
+   "name": "L1 stored seam == first G1 entry (phase is a STATE property)",
+   "ok": true,
+   "detail": "0/25000 disagree; offset dist [(0, 25000)]"
+  },
+  {
+   "name": "L2 kociemba accepts every sampled state (independent legality)",
+   "ok": true,
+   "detail": "0/1500 rejected"
+  },
+  {
+   "name": "L2 kociemba solves the penultimate state in exactly our last move",
+   "ok": true,
+   "detail": "0/1500 mismatch"
+  },
+  {
+   "name": "L2 cubie G1 test == coordinate-table G1 test",
+   "ok": true,
+   "detail": "0/1500 disagree"
+  },
+  {
+   "name": "L3 phase-1 lag-2 repetition near chance (no cyclic DFS padding)",
+   "ok": true,
+   "detail": "P(move[t]==move[t-2])=0.057 (chance 0.056); >0.10 means the forced search is burning excess length as a repeating short cycle"
+  },
+  {
+   "name": "L3 repeated 5-prefix rate low (paths not stereotyped)",
+   "ok": true,
+   "detail": "0.013"
+  },
+  {
+   "name": "L5 no duplicate scrambles",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "name": "L5 seam sd >= 3.0",
+   "ok": true,
+   "detail": "sd=3.15"
+  },
+  {
+   "name": "L5 >=9% of position cells mixed",
+   "ok": true,
+   "detail": "0.385"
+  }
+ ],
+ "PASS": true
+}
