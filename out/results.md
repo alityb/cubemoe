@@ -9,6 +9,7 @@
 
 - **sequence arm: CONFIRMED** (L1 P / L2 P / L3 P / L4 P) — held-out accuracy 0.2018, ratio to majority|(phase,stratum) [1.41, 1.4, 1.397, 1.397, 1.406]; fresh seeds 10-14.
 - **position-blind arm: CONFIRMED** (L1 P / L2 P / L3 F (reported only) / L4 P) — held-out accuracy 0.5380, ratio to majority|(phase,stratum) [3.707, 3.714, 3.686, 3.719, 3.659]; fresh seeds 10-14.
+- **Scale replication (6L/d256, 250k, seeds 20-24)**: arm A **CONFIRMED**, arm C **CONFIRMED** — same criteria, no changes (Part III).
 
 The headline comes **only** from Part II. Part I is hypothesis-generating and contains a documented null->positive reversal; none of it is a claim.
 
@@ -33,7 +34,7 @@ Realized seam histogram (mixed): 0:2071, 1:1072, 2:1130, 3:1127, 4:1077, 5:1081,
 ## 2. Data QA (`src/qa.py`)
 
 
-**mixed** — verdict **PASS**, code sha256 `9a16be1213e377ba`
+**mixed** — verdict **PASS**, code sha256 `68e74b274b607ded`
 
 | hard invariant | result |
 |---|---|
@@ -54,7 +55,7 @@ Realized seam histogram (mixed): 0:2071, 1:1072, 2:1130, 3:1127, 4:1077, 5:1081,
 | L5 seam sd >= 3.0 | PASS |
 | L5 >=9% of position cells mixed | PASS |
 
-Label determinism over 2000 intermediate states: standalone re-solve **0.9955**, re-solve with the `lastface` context **1.0000**. The gap is entirely the consecutive-same-face rule at the split — `(state, last-move-face) -> next move` is exactly deterministic.
+Label determinism over 2000 intermediate states: standalone re-solve **0.9930**, re-solve with the `lastface` context **1.0000**. The gap is entirely the consecutive-same-face rule at the split — `(state, last-move-face) -> next move` is exactly deterministic.
 
 
 **naive** — verdict **PASS**, code sha256 `2a0163dc3c70287c`
@@ -413,3 +414,62 @@ Reported for completeness. Neither column enters any pre-registered criterion.
 **Arm C**: router 0.1365 ± 0.0201 vs own-state k-means 0.0781 ± 0.0086 — router higher in **5/5** seeds. L4 ratio median **12.86x** (range 5.36-28.15).
 
 The k-means column is a *readout* of the same hidden states the router reads; it has no causal role by construction, which is why it is a control and not a null. On arm A it is roughly at parity with the router; on arm C the router is clearly above it.
+
+
+
+---
+
+# PART III — SCALE REPLICATION (Amendment 2)
+
+Same pre-registration, **no new criteria**, fresh seeds **20-24**, at **6 layers / d=256 on 250k solves** (CUDA, A100-40GB via Modal) instead of 4L/d128 on 25k.
+
+The 250k dataset passed all 16 QA gates. It was generated once, downloaded (sha256 `80ea6303...`, 86.1 MB) and uploaded byte-identical to the second workspace, so both arms trained on exactly the same file. Arm A + hash twins ran on workspace `ali-moh-islam-1`; arm C on `dnfcubes` (a billing split only — identical code, data and seeds).
+
+
+## Sequence arm A — fresh seeds 20-24, 6L/d256, 250k
+
+| leg | per-seed | verdict |
+|---|---|---|
+| **L1** learning | acc/bar [2.481, 2.456, 2.428, 2.467, 2.448], probe [0.999, 0.999, 1.0, 0.999, 0.999] | **PASS** |
+| **L2** router vs nulls | cNMI [0.2045, 0.168, 0.1992, 0.1964, 0.2152] vs shuffled [0.0015, 0.0013, 0.0011, 0.0016, 0.0016], perm p [0.005, 0.005, 0.005, 0.005, 0.005], hash twin [0.0544, 0.0387, 0.0583, 0.0106, 0.0371] beaten 5/5 | **PASS** |
+| **L3** change-point | b1 [0.441, 0.234, 0.322, 0.318, 0.357], p [0.005, 0.005, 0.005, 0.005, 0.005] | **PASS** |
+| **L4** causal | L(e1) [0.4875, 0.1188, 0.4454, 0.3323, 0.0815] vs median-other [0.0018, 0.0045, 0.0015, 0.0024, 0.0029]; wins 5/5, sign p=0.0312, paired t p=0.0253 | **PASS** |
+
+per-seed causal ratio: [270.8, 26.4, 296.9, 138.5, 28.1]
+
+self-control exact: [True, True, True, True, True]
+
+### **CONFIRMED**
+
+
+## Position-blind arm C — fresh seeds 20-24, 6L/d256, 250k
+
+| leg | per-seed | verdict |
+|---|---|---|
+| **L1** learning | acc/bar [4.858, 4.872, 4.866, 4.856, 4.895], probe [1.0, 1.0, 1.0, 1.0, 1.0] | **PASS** |
+| **L2** router vs nulls | cNMI [0.0979, 0.0934, 0.0762, 0.0638, 0.077] vs shuffled [0.0012, 0.0014, 0.0012, 0.0015, 0.0012], perm p [0.005, 0.005, 0.005, 0.005, 0.005], hash exempt | **PASS** |
+| **L3** change-point | b1 [0.22, 0.073, 0.078, -0.099, 0.084], p [0.05, 0.085, 0.323, 0.303, 0.363] | **FAIL** *(reported only, A1.3)* |
+| **L4** causal | L(e1) [0.2056, 0.1642, 0.3135, 0.2278, 0.1494] vs median-other [0.0175, 0.0187, 0.0112, 0.0118, 0.0091]; wins 5/5, sign p=0.0312, paired t p=0.0025 | **PASS** |
+
+per-seed causal ratio: [11.7, 8.8, 28.0, 19.3, 16.4]
+
+self-control exact: [True, True, True, True, True]
+
+### **CONFIRMED**
+
+
+## Scale comparison (both runs, same criteria)
+
+| | 4L/d128, 25k, seeds 10-14 | 6L/d256, 250k, seeds 20-24 |
+|---|---|---|
+| arm A acc ratio | 1.397-1.410 | **2.428-2.481** |
+| arm A probe | 0.984-0.987 | **0.999-1.000** |
+| arm A cond NMI | 0.071-0.192 | **0.168-0.215** |
+| arm A L3 b1 (all p<=0.01) | +0.370..+0.657 | **+0.234..+0.441** |
+| arm A L4 paired t | 0.037 | **0.025** |
+| arm C L4 paired t | 0.011 | **0.0025** |
+| arm C L3 | FAIL (1/5) | **FAIL (0/5 at p<0.01)** |
+
+**The causal effect sharpens markedly with scale.** Arm A's strongest seed moves from L(e1)=0.045 vs median-other 0.005 (~9x) to **0.488 vs 0.0018 (~270x)**: forcing a phase-2 token through the phase-1 expert destroys roughly half of all G1-legal probability mass, while the median other-expert swap costs ~0.2%.
+
+**Arm C's L3 failed again on independent seeds at 10x data**, as A1.3 predicted from the design of the test rather than from any result. The underfitting caveat on the small-scale run is closed: probes are ~1.000 and accuracy is 2.4-4.9x its bar.

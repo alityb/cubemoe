@@ -1,0 +1,13 @@
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-joFXDolbIfJ2qvgrDfeDsK
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/replicate.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function gen_shard.
+├── 🔨 Created function merge.
+├── 🔨 Created function qa.
+├── 🔨 Created function train.
+├── 🔨 Created function confirm.
+├── 🔨 Created function gates.
+└── 🔨 Created function prefix_diag.

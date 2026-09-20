@@ -1,0 +1,105 @@
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-1eEHlxXkrKR9tAlXvsHDY5
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/replicate.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function gen_shard.
+├── 🔨 Created function merge.
+├── 🔨 Created function qa.
+├── 🔨 Created function train.
+├── 🔨 Created function confirm.
+├── 🔨 Created function gates.
+├── 🔨 Created function prefix_diag.
+└── 🔨 Created function throughput_probe.
+--- group 1: ['moe_s20', 'moe_s21', 'moe_s22']
+    DONE moe_mixed_s20: test_acc=0.3427 majority=0.1141 tok/s=17597 wall=2628s
+    DONE moe_mixed_s21: test_acc=0.3394 majority=0.1141 tok/s=17396 wall=2659s
+    DONE moe_mixed_s22: test_acc=0.3355 majority=0.1141 tok/s=17409 wall=2657s
+--- group 2: ['moe_s23', 'moe_s24', 'hash_s20']
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+    DONE moe_mixed_s23: test_acc=0.3408 majority=0.1141 tok/s=17606 wall=2627s
+    DONE moe_mixed_s24: test_acc=0.3383 majority=0.1141 tok/s=17361 wall=2664s
+    DONE hash_mixed_s20: test_acc=0.3374 majority=0.1141 tok/s=18284 wall=2530s
+--- group 3: ['hash_s21', 'hash_s22', 'hash_s23']
+    SKIP hash_mixed_s21
+    DONE hash_mixed_s22: test_acc=0.3461 majority=0.1141 tok/s=18128 wall=2551s
+    DONE hash_mixed_s23: test_acc=0.3405 majority=0.1141 tok/s=18450 wall=2507s
+--- group 4: ['hash_s24']
+    DONE hash_mixed_s24: test_acc=0.3430 majority=0.1141 tok/s=18470 wall=2504s
+    [moe_mixed_s20] acc=0.3427 (bar 0.1382, 2.48x) probe=0.999 | cNMI=0.2045 shuf=0.0015 p=0.0050 | hash=0.0544 | b1=+0.441 p=0.005 | causal L(e1)=0.4875 med_other=0.0018 eff=267.79x self_ok=True
+    [moe_mixed_s21] acc=0.3394 (bar 0.1382, 2.46x) probe=0.999 | cNMI=0.1680 shuf=0.0013 p=0.0050 | hash=0.0387 | b1=+0.234 p=0.005 | causal L(e1)=0.1188 med_other=0.0045 eff=26.25x self_ok=True
+    [moe_mixed_s22] acc=0.3355 (bar 0.1382, 2.43x) probe=1.000 | cNMI=0.1992 shuf=0.0011 p=0.0050 | hash=0.0583 | b1=+0.322 p=0.005 | causal L(e1)=0.4454 med_other=0.0015 eff=303.23x self_ok=True
+    [moe_mixed_s23] acc=0.3408 (bar 0.1382, 2.47x) probe=0.999 | cNMI=0.1964 shuf=0.0016 p=0.0050 | hash=0.0106 | b1=+0.318 p=0.005 | causal L(e1)=0.3323 med_other=0.0024 eff=141.40x self_ok=True
+    [moe_mixed_s24] acc=0.3383 (bar 0.1382, 2.45x) probe=0.999 | cNMI=0.2152 shuf=0.0016 p=0.0050 | hash=0.0371 | b1=+0.357 p=0.005 | causal L(e1)=0.0815 med_other=0.0029 eff=28.28x self_ok=True
+
+=== ARM A ===
+  incomplete: 0 seeds
+
+=== ARM C ===
+  incomplete: 0 seeds
+
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-1eEHlxXkrKR9tAlXvsHDY5

@@ -3,12 +3,16 @@ import json, os, glob
 import numpy as np
 from scipy import stats
 ROOT='/Users/alityb/projects/cubemoe'
-SEEDS=[10,11,12,13,14]
+import argparse as _ap
+_p=_ap.ArgumentParser(); _p.add_argument('--seeds',default='10,11,12,13,14'); _p.add_argument('--dir',default=None)
+_a,_=_p.parse_known_args()
+SEEDS=[int(x) for x in _a.seeds.split(',')]
+CONFDIR=_a.dir or f'{ROOT}/out/confirm'
 def load(arm):
     base='moe_mixed_s' if arm=='A' else 'state_mixed_s'
     r=[]
     for s in SEEDS:
-        p=f'{ROOT}/out/confirm/{base}{s}.json'
+        p=f'{CONFDIR}/{base}{s}.json'
         if os.path.exists(p): r.append(json.load(open(p)))
     return r
 def gate(arm):
@@ -50,7 +54,7 @@ def gate(arm):
         self_exact=[x['causal']['self_exact'] for x in R])
 if __name__=='__main__':
     out={a:gate(a) for a in ('A','C')}
-    json.dump(out,open(f'{ROOT}/out/confirm/gates.json','w'),indent=1)
+    json.dump(out,open(f'{CONFDIR}/gates.json','w'),indent=1)
     for a,g in out.items():
         print(f"\n=== ARM {a} ===")
         if g.get('error'): print("  incomplete:",g['n'],"seeds"); continue

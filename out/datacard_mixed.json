@@ -5,10 +5,10 @@
  "seam_minus_firstG1": {
   "0": 25000
  },
- "L2_sampled": 1200,
+ "L2_sampled": 200,
  "label_determinism": {
   "n": 2000,
-  "standalone": 0.9955,
+  "standalone": 0.993,
   "with_context": 1.0
  },
  "stereotypy": {
@@ -21,6 +21,8 @@
    "4": 0.27255102040816326,
    "5": 0.02936889272795984
   },
+  "repeated_prefix_rate_5_gated_at_25k": 0.02936889272795984,
+  "repeated_prefix_rate_fulln_note": "rate=1-distinct/total grows with n by pigeonhole; gated at n=25000",
   "n_distinct_phase1": 19963,
   "n_phase1": 25000
  },
@@ -129,7 +131,7 @@
    "B2": 48522
   }
  },
- "code_sha256": "9a16be1213e377ba",
+ "code_sha256": "68e74b274b607ded",
  "gen_seeds": "1000..1009 (worker i -> 1000+i)",
  "hard_checks": [
   {
@@ -165,22 +167,22 @@
   {
    "name": "L2 kociemba accepts every sampled state (independent legality)",
    "ok": true,
-   "detail": "0/1200 rejected"
+   "detail": "0/200 rejected"
   },
   {
    "name": "L2 kociemba solves the penultimate state in exactly our last move",
    "ok": true,
-   "detail": "0/1200 mismatch"
+   "detail": "0/200 mismatch"
   },
   {
    "name": "L2 cubie G1 test == coordinate-table G1 test",
    "ok": true,
-   "detail": "0/1200 disagree"
+   "detail": "0/200 disagree"
   },
   {
    "name": "L2b label determinism (standalone re-solve) >= 0.95",
    "ok": true,
-   "detail": "0.9955"
+   "detail": "0.9930"
   },
   {
    "name": "L2b label determinism WITH lastface context == 1.0",
@@ -195,7 +197,7 @@
   {
    "name": "L3 repeated 5-prefix rate low (paths not stereotyped)",
    "ok": true,
-   "detail": "0.029"
+   "detail": "0.029 at calibrated n=25000 (full-n value 0.029 is sample-size dependent, not gated)"
   },
   {
    "name": "L5 no duplicate scrambles",

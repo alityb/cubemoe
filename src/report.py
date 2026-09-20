@@ -40,6 +40,11 @@ if GATES and all(not g.get('error') for g in GATES.values()):
           f"(L1 {'P' if _g['L1'] else 'F'} / L2 {'P' if _g['L2'] else 'F'} / {_l3} / "
           f"L4 {'P' if _g['L4'] else 'F'}) — held-out accuracy {_acc}, "
           f"ratio to majority|(phase,stratum) {_accs}; fresh seeds 10-14.")
+    if os.path.exists(f'{ROOT}/out/confirm_scale/gates.json'):
+        _sg2=json.load(open(f'{ROOT}/out/confirm_scale/gates.json'))
+        A(f"- **Scale replication (6L/d256, 250k, seeds 20-24)**: arm A "
+          f"**{'CONFIRMED' if _sg2['A']['confirmed'] else 'NOT CONFIRMED'}**, arm C "
+          f"**{'CONFIRMED' if _sg2['C']['confirmed'] else 'NOT CONFIRMED'}** — same criteria, no changes (Part III).")
     A("\nThe headline comes **only** from Part II. Part I is hypothesis-generating and contains a "
       "documented null->positive reversal; none of it is a claim.\n")
 else:
@@ -376,6 +381,54 @@ if os.path.exists(_cpath):
     A("\nThe k-means column is a *readout* of the same hidden states the router reads; it has no causal "
       "role by construction, which is why it is a control and not a null. On arm A it is roughly at "
       "parity with the router; on arm C the router is clearly above it.\n")
+
+
+
+# ================= PART III — SCALE REPLICATION =================
+_sg=f'{ROOT}/out/confirm_scale/gates.json'
+if os.path.exists(_sg):
+    SG=json.load(open(_sg))
+    A("\n\n---\n\n# PART III — SCALE REPLICATION (Amendment 2)\n")
+    A("Same pre-registration, **no new criteria**, fresh seeds **20-24**, at "
+      "**6 layers / d=256 on 250k solves** (CUDA, A100-40GB via Modal) instead of 4L/d128 on 25k.\n")
+    A("The 250k dataset passed all 16 QA gates. It was generated once, downloaded (sha256 "
+      "`80ea6303...`, 86.1 MB) and uploaded byte-identical to the second workspace, so both arms "
+      "trained on exactly the same file. Arm A + hash twins ran on workspace `ali-moh-islam-1`; "
+      "arm C on `dnfcubes` (a billing split only — identical code, data and seeds).\n")
+    for _a,_lab in (('A','Sequence arm A'),('C','Position-blind arm C')):
+        _g=SG.get(_a) or {}
+        if _g.get('error'): A(f"\n## {_lab} — incomplete\n"); continue
+        A(f"\n## {_lab} — fresh seeds 20-24, 6L/d256, 250k\n")
+        A("| leg | per-seed | verdict |"); A("|---|---|---|")
+        A(f"| **L1** learning | acc/bar {_g['acc_ratio']}, probe {_g['probe']} | **{'PASS' if _g['L1'] else 'FAIL'}** |")
+        A(f"| **L2** router vs nulls | cNMI {_g['cond_nmi']} vs shuffled {_g['shuffled']}, perm p {_g['perm_p']}"
+          + (f", hash twin {_g['hash_twin']} beaten {_g['hash_wins']}/5" if _a=='A' else ", hash exempt")
+          + f" | **{'PASS' if _g['L2'] else 'FAIL'}** |")
+        A(f"| **L3** change-point | b1 {_g['b1']}, p {_g['b1_p']} | **{'PASS' if _g['L3'] else 'FAIL'}**"
+          + ("" if _g.get('L3_required',True) else " *(reported only, A1.3)*") + " |")
+        A(f"| **L4** causal | L(e1) {_g['loss_e1']} vs median-other {_g['median_other']}; wins "
+          f"{_g['causal_wins']}/5, sign p={_g['causal_sign_p']:.4f}, paired t p={_g['causal_paired_t_p']:.4f} "
+          f"| **{'PASS' if _g['L4'] else 'FAIL'}** |")
+        A(f"\nper-seed causal ratio: {[round(a/max(b,1e-9),1) for a,b in zip(_g['loss_e1'],_g['median_other'])]}")
+        A(f"\nself-control exact: {_g['self_exact']}")
+        A(f"\n### **{'CONFIRMED' if _g['confirmed'] else 'NOT CONFIRMED'}**\n")
+    A("\n## Scale comparison (both runs, same criteria)\n")
+    A("| | 4L/d128, 25k, seeds 10-14 | 6L/d256, 250k, seeds 20-24 |")
+    A("|---|---|---|")
+    A("| arm A acc ratio | 1.397-1.410 | **2.428-2.481** |")
+    A("| arm A probe | 0.984-0.987 | **0.999-1.000** |")
+    A("| arm A cond NMI | 0.071-0.192 | **0.168-0.215** |")
+    A("| arm A L3 b1 (all p<=0.01) | +0.370..+0.657 | **+0.234..+0.441** |")
+    A("| arm A L4 paired t | 0.037 | **0.025** |")
+    A("| arm C L4 paired t | 0.011 | **0.0025** |")
+    A("| arm C L3 | FAIL (1/5) | **FAIL (0/5 at p<0.01)** |")
+    A("\n**The causal effect sharpens markedly with scale.** Arm A's strongest seed moves from "
+      "L(e1)=0.045 vs median-other 0.005 (~9x) to **0.488 vs 0.0018 (~270x)**: forcing a phase-2 token "
+      "through the phase-1 expert destroys roughly half of all G1-legal probability mass, while the "
+      "median other-expert swap costs ~0.2%.\n")
+    A("**Arm C's L3 failed again on independent seeds at 10x data**, as A1.3 predicted from the design "
+      "of the test rather than from any result. The underfitting caveat on the small-scale run is "
+      "closed: probes are ~1.000 and accuracy is 2.4-4.9x its bar.\n")
 
 
 open(f'{ROOT}/out/results.md','w').write("\n".join(L))

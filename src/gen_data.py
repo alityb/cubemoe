@@ -61,12 +61,13 @@ def main():
     ap.add_argument('--kind', required=True); ap.add_argument('--n', type=int, default=25000)
     ap.add_argument('--lo', type=int, default=10); ap.add_argument('--hi', type=int, default=20)
     ap.add_argument('--workers', type=int, default=10)
+    ap.add_argument('--seed_base', type=int, default=1000)
     a = ap.parse_args()
     from multiprocessing import Pool
     per = a.n // a.workers + 1
     t0 = time.time()
     with Pool(a.workers) as p:
-        chunks = p.map(_worker, [(a.kind, per, 1000 + i, a.lo, a.hi) for i in range(a.workers)])
+        chunks = p.map(_worker, [(a.kind, per, a.seed_base + i, a.lo, a.hi) for i in range(a.workers)])
     recs = [r for c in chunks for r in c][:a.n]
     dt = time.time() - t0
     print(f"[{a.kind}] {len(recs)} solves in {dt:.1f}s ({len(recs)/dt:.1f}/s wall, {a.workers} workers)")
@@ -84,7 +85,7 @@ def main():
              phase=np.array(phase, np.uint8), solve_id=np.array(solve_id, np.int32),
              seam=np.array(seam, np.uint8), sol_len=np.array(sol_len, np.uint8),
              init_state=np.array(init_state, np.uint8))
-    path = f"/Users/alityb/projects/cubemoe/data/{a.kind}.npz"
+    path = os.environ.get('PHASESPLIT_OUT', f"/Users/alityb/projects/cubemoe/data/{a.kind}.npz")
     np.savez_compressed(path, **d)
     sd = float(np.std(d['seam']))
     # fraction of step-index cells containing both phases (row-weighted)

@@ -6,16 +6,22 @@ Everything learned, decided, measured, and corrected. Written 2026-09-17.
 Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary (entry into
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
 
-**Status (2026-09-18, complete).** Iteration 2 + 5-seed replication + pre-registered contrast re-run
-+ **causal intervention** + arm C to n=6.
-Verdict: **cell C (H1 positive) on the sequence arm; cell D on the position-blind arm** (the latter
-only because the change-point instrument structurally does not suit a history-free model — see §8f).
+**Status (2026-09-20).** Exploratory phase closed; **confirmatory run + CUDA scale replication
+both complete**. Verdict below comes ONLY from the pre-registered confirmatory runs on fresh seeds.
 
-> ⚠ **RETRACTED:** an earlier version of this file reported "cell B2 — a sharpened null", built on
-> *dense twin + k-means beats the MoE*. That was a **control mis-elevated to the claim**. The
-> pre-registered gate was always router-vs-**nulls** (shuffled / position-only / hash twin /
-> within-stratum permutation). Re-run against the correct contrast, the router clears every null
-> decisively and the verdict flips from null to positive. See §8c.
+| run | scale | seeds | arm A | arm C |
+|---|---|---|---|---|
+| confirmatory | 4L/d128, 25k | 10-14 | **CONFIRMED** (L1-L4) | **CONFIRMED** (L1+L2+L4; L3 fails, exempt per A1.3) |
+| scale replication | 6L/d256, 250k | 20-24 | **CONFIRMED** | **CONFIRMED** |
+
+Pre-registration `dc0cf984` + Amendment 1 `78b97ac5` (both filed pre-results),
+Amendment 2 (scale protocol, post-results, governs only the replication),
+Amendment 3 `9fb968e0` (5-prefix QA gate is n-dependent; estimator subsampled, threshold unchanged).
+
+> ⚠ **RETRACTED:** an earlier version reported "cell B2 — a sharpened null", built on
+> *dense twin + k-means beats the MoE*. That was a **control mis-elevated to the claim**; the
+> pre-registered contrast was always router-vs-nulls. Everything in §0-§8f below is **EXPLORATORY**
+> and superseded by §9.
 
 ---
 
@@ -636,3 +642,52 @@ phase — its router clears the shuffled null 80x in 6/6 seeds and its probe is 
 **Arm C is cell D by the pre-registered rule** (the change-point leg is part of the gate), but the
 substantive reading is: nulls pass decisively, causal leans positive at identical magnitude, and only
 the instrument that structurally does not suit a history-free model fails.
+
+
+---
+
+## 9. CONFIRMATORY + SCALE REPLICATION (the only claims)
+
+Pre-registered before any confirmatory model existed. Last layer only, no selection, fresh seeds,
+gates applied mechanically by `src/confirm_gates.py`.
+
+### Arm A (sequence) — all four legs, both scales
+
+| leg | 4L/d128, 25k, seeds 10-14 | 6L/d256, 250k, seeds 20-24 |
+|---|---|---|
+| L1 acc ratio / probe | 1.397-1.410 / 0.986 | **2.428-2.481 / 0.999** |
+| L2 cond NMI vs shuffled | 0.071-0.192 vs ~0.0012 | **0.168-0.215 vs ~0.0014** |
+| L2 vs hash twin | beaten 5/5 | beaten 5/5 |
+| L3 b1 | +0.370..+0.657, p<=0.01 5/5 | **+0.234..+0.441, p=0.005 5/5** |
+| L4 causal | 5/5, sign p=0.031, t p=0.037 | **5/5, sign p=0.031, t p=0.025** |
+
+### Arm C (position-blind) — L1+L2+L4; L3 reported, not required (A1.3)
+
+| leg | 25k | 250k |
+|---|---|---|
+| L1 | 3.659-3.719 / probe 1.000 | **4.856-4.895 / 1.000** |
+| L2 cond NMI | 0.119-0.170 | 0.064-0.098 |
+| L3 b1 | 1/5 at p<0.01 | **0/5** (one negative slope) |
+| L4 causal | 5/5, t p=0.011 | **5/5, t p=0.0025** |
+
+### What scale changed
+- **The causal effect sharpens ~30x.** Arm A's strongest seed: L(e1)=0.488 vs median-other 0.0018
+  (~270x) at scale, versus 0.045 vs 0.005 (~9x) at 25k. Forcing a phase-2 token through the phase-1
+  expert destroys ~half of all G1-legal probability mass.
+- **Underfitting caveat closed**: probes ~1.000, accuracy 2.4-4.9x its bar.
+- **Arm C's L3 failed again** on independent seeds at 10x data — as A1.3 predicted *from the design
+  of the test*, filed before results. The change-point instrument fits one switch point to a per-solve
+  routing sequence; a history-free model has no temporal smoothing.
+
+### Process notes worth keeping
+- `confirm_gates.py` had `SEEDS` hardcoded to 10-14 and silently reported "incomplete: 0 seeds" on the
+  scale run. Parameterised `--seeds/--dir`; **verified the original run still reads CONFIRMED before
+  trusting the new numbers.** A gate script that reports "incomplete" rather than crashing is a
+  silent-failure risk.
+- Scale run split across two Modal workspaces for billing only (`ali-moh-islam-1` arm A + hash,
+  `dnfcubes` arm C). Dataset generated once and copied byte-identical (sha256 `80ea6303...`) rather
+  than regenerated, so both arms share exactly the same file.
+- **Cost discipline:** an initial 10-way-concurrent A100 launch burned ~$11 and banked ONE model,
+  because all containers died together when stopped. Low concurrency (groups of 2-3) banks completed
+  models as they finish. Measure throughput with a ~150-step probe (costs cents) before projecting
+  spend — my unmeasured estimates were wrong by 10x in one direction and 3x in the other.

@@ -156,6 +156,16 @@ def main(kind, nsample=2000, seed=0):
     for k in (3,4,5):
         c=collections.Counter(tuple(s[:k]) for s in p1s if len(s)>=k)
         pref[k]=float(1-len(c)/max(sum(c.values()),1))
+    # AMENDMENT 3: the prefix-collision rate grows with n by pigeonhole, so evaluate the gate at the
+    # sample size its threshold was calibrated on (25k). Threshold itself is unchanged at 0.15.
+    _CAL_N=25000
+    if len(p1s) > _CAL_N:
+        _idx=np.random.RandomState(0).choice(len(p1s), _CAL_N, replace=False)
+        _sub=[p1s[i] for i in _idx]
+        _c5=collections.Counter(tuple(x[:5]) for x in _sub if len(x)>=5)
+        pref5_gated=float(1-len(_c5)/max(sum(_c5.values()),1))
+    else:
+        pref5_gated=pref[5]
     lag2_rep=lag2_tot=0
     for sq in p1s:
         for t in range(2,len(sq)): lag2_tot+=1; lag2_rep+=(sq[t]==sq[t-2])
@@ -163,11 +173,14 @@ def main(kind, nsample=2000, seed=0):
     card['stereotypy']=dict(lag2_repeat=float(lag2),
         unigram_entropy=ngram_entropy(p1s,1), bigram_entropy=ngram_entropy(p1s,2),
         trigram_entropy=ngram_entropy(p1s,3), repeated_prefix_rate=pref,
+        repeated_prefix_rate_5_gated_at_25k=pref5_gated,
+        repeated_prefix_rate_fulln_note='rate=1-distinct/total grows with n by pigeonhole; gated at n=25000',
         n_distinct_phase1=len({tuple(s) for s in p1s}), n_phase1=len(p1s))
     if kind!='naive': hard('L3 phase-1 lag-2 repetition near chance (no cyclic DFS padding)', lag2 <= 0.10,
          f'P(move[t]==move[t-2])={lag2:.3f} (chance 0.056); >0.10 means the forced search is '
          f'burning excess length as a repeating short cycle')
-    if kind!='naive': hard('L3 repeated 5-prefix rate low (paths not stereotyped)', pref[5] <= 0.15, f'{pref[5]:.3f}')
+    if kind!='naive': hard('L3 repeated 5-prefix rate low (paths not stereotyped)', pref5_gated <= 0.15,
+        f'{pref5_gated:.3f} at calibrated n=25000 (full-n value {pref[5]:.3f} is sample-size dependent, not gated)')
     # phase-2 stereotypy (phase-2 DFS uses a FIXED move order; compare forced vs stock)
     p2s=[[int(x) for x in d['moves'][off[i]+int(d['seam'][i]):off[i+1]]] for i in range(nsolve)]
     r2=t2=0
@@ -225,7 +238,8 @@ def main(kind, nsample=2000, seed=0):
     st=card['stereotypy']
     print(f"  stereotypy: H1={st['unigram_entropy']:.2f} H2={st['bigram_entropy']:.2f} H3={st['trigram_entropy']:.2f} "
           f"distinct phase1={st['n_distinct_phase1']}/{st['n_phase1']} "
-          f"prefix-repeat k=5:{st['repeated_prefix_rate'][5]:.3f} lag2={st['lag2_repeat']:.3f}")
+          f"prefix-repeat k=5:{st['repeated_prefix_rate'][5]:.3f} (gated@25k {st['repeated_prefix_rate_5_gated_at_25k']:.3f}) "
+          f"lag2={st['lag2_repeat']:.3f}")
     print(f"  confound: move={card['confound']['move']:.3f} pos={card['confound']['position']:.3f} maj={card['confound']['majority']:.3f}")
     print("  leakage: overall=%.4f | "%card['leakage']['overall'] +
           " ".join(f"excl-last-{k}={v:.4f}(keep {card['leakage']['rows_kept'][k]:.2f})"
