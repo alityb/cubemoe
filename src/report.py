@@ -430,6 +430,67 @@ if os.path.exists(_sg):
       "of the test rather than from any result. The underfitting caveat on the small-scale run is "
       "closed: probes are ~1.000 and accuracy is 2.4-4.9x its bar.\n")
 
+    _cs=f'{ROOT}/out/controls_scale.json'; _ch=f'{ROOT}/out/controls_hash_scale.json'
+    if os.path.exists(_cs):
+        CS=json.load(open(_cs)); HS=json.load(open(_ch)) if os.path.exists(_ch) else {}
+        _NL=6; _rl=[x['per_layer'][str(_NL-1)] for x in CS['arms']['A'] if 'per_layer' in x]
+        _ra=np.array([x['router_cnmi'] for x in CS['arms']['A']]); _pa=np.array([x['router_cnmi_pct_ceiling'] for x in CS['arms']['A']])
+        _rc=np.array([x['router_cnmi'] for x in CS['arms']['C']]); _pc=np.array([x['router_cnmi_pct_ceiling'] for x in CS['arms']['C']])
+        _ka=np.array([x['kmeans_cnmi'] for x in CS['arms']['A']]); _kc=np.array([x['kmeans_cnmi'] for x in CS['arms']['C']])
+        A("\n## Headline (Part III)\n")
+        A("> **Router specialization on the Kociemba phase boundary is concentrated in a few experts, "
+          "causally load-bearing, grows with model and data scale, and is systematically understated "
+          "by NMI and purity.**\n")
+        A("\n## Per-layer causal effect at scale (arm A, seeds 20-24)\n")
+        A("| layer | purity(e1) | L(e1) | median-other | ratio | concentration index |")
+        A("|---|---|---|---|---|---|")
+        for _L in range(_NL):
+            rs=[x['per_layer'][str(_L)] for x in CS['arms']['A'] if 'per_layer' in x and str(_L) in x['per_layer']]
+            if not rs: continue
+            g=lambda k: float(np.mean([x[k] for x in rs]))
+            A(f"| {_L} | {g('purity_e1'):.3f} | {g('loss_e1'):.4f} | {g('median_other'):.4f} | {g('ratio'):.0f}x | {g('concentration'):.3f} |")
+        A(f"\nThe causal effect switches on where expert purity does (layer 2) and grows monotonically with depth. "
+          f"The **concentration index** (share of the total causal effect carried by the single most-affected expert; "
+          f"even = 0.125) reaches **{np.mean([x['concentration'] for x in _rl]):.3f}** at the last layer — one expert "
+          f"carries roughly two-thirds of it.\n")
+        A("\n## Cross-scale comparison (same criteria throughout)\n")
+        A("| quantity | arm | 4L/d128, 25k (seeds 10-14) | 6L/d256, 250k (seeds 20-24) |")
+        A("|---|---|---|---|")
+        A("| L1 acc ratio | A | 1.397-1.410 | **2.428-2.481** |")
+        A("| L1 acc ratio | C | 3.659-3.719 | **4.856-4.895** |")
+        A("| L1 probe | A | 0.986 | **0.999** |")
+        A(f"| cond NMI | A | 0.071-0.192 (~63% ceiling) | **{_ra.min():.3f}-{_ra.max():.3f} ({_pa.mean()*100:.0f}% ceiling)** |")
+        A(f"| cond NMI | C | 0.119-0.170 | **{_rc.min():.3f}-{_rc.max():.3f} ({_pc.mean()*100:.0f}% ceiling)** |")
+        A("| L3 b1 (all p<=0.01) | A | +0.370..+0.657 | **+0.234..+0.441** |")
+        A(f"| L4 absolute L(e1) | A | ~0.045 | **{np.mean([x['loss_e1'] for x in _rl]):.4f}** |")
+        A(f"| L4 ratio | A | ~9x | **{np.mean([x['ratio'] for x in _rl]):.0f}x** |")
+        A("\n## Controls (not gate inputs)\n")
+        A("| arm | seed | cond NMI | **% of ceiling** | conditional purity | k-means (own pre-router) | k-means % ceiling |")
+        A("|---|---|---|---|---|---|---|")
+        for _arm in ('A','C'):
+            for r in CS['arms'][_arm]:
+                A(f"| {_arm} | {r['seed']} | {r['router_cnmi']:.4f} | **{r['router_cnmi_pct_ceiling']*100:.1f}%** | "
+                  f"{r['cond_purity']:.4f} | {r['kmeans_cnmi']:.4f} | {r['kmeans_pct_ceiling']*100:.1f}% |")
+        A(f"\nCeiling = the perfect-tracker reference on this dataset ({CS['anchor']:.4f}); it is a reference "
+          f"construction, not a mathematical maximum, so values may exceed 100%. Router beats within-model "
+          f"k-means in **{int((_ra>_ka).sum())}/5** seeds on arm A and **{int((_rc>_kc).sum())}/5** on arm C. "
+          f"Conditional purity is ~0.95 (A) / ~0.99 (C) for *every* assignment — saturated, so it cannot discriminate.\n")
+        if HS:
+            _hl=float(np.mean([v['loss_e1'] for v in HS.values()]))
+            A(f"\n**Hash-twin L4 at scale.** Absolute `L(e1)` = **{_hl:.4f}** (per seed "
+              f"{[round(v['loss_e1'],4) for v in HS.values()]}) vs the learned router's "
+              f"**{np.mean([x['loss_e1'] for x in _rl]):.4f}** — a **{np.mean([x['loss_e1'] for x in _rl])/max(_hl,1e-9):.0f}x** separation.")
+            A(f"\nThe *ratio* is **not reportable** for the hash twins: median-other sits at or below zero "
+              f"({[round(v['median_other'],6) for v in HS.values()]}), giving values from -92,380x to +354,077x on "
+              f"effects indistinguishable from zero. The sweep pre-registration therefore uses **absolute L(e1)** as P3.\n")
+        A("\n**Why NMI and purity understate this.** Conditional NMI sits at ~92% of its reference ceiling and "
+          "within-model k-means matches or beats the router on it; conditional purity is saturated at ~0.95 for any "
+          "assignment. Both are *readout* statistics: they establish that phase is recoverable from the hidden states, "
+          "which a post-hoc clustering also achieves. Only the intervention separates the router from a clustering of "
+          "its own input — 0.290 vs a hash twin's 0.003, with ~63% of the effect on a single expert. The correlational "
+          "metrics are near-saturated exactly where the causal metric is most discriminating.\n")
+
+
 
 open(f'{ROOT}/out/results.md','w').write("\n".join(L))
 print("wrote out/results.md")

@@ -1,4 +1,4 @@
-"""Figures 0-2 from PART II DATA ONLY: last layer, fresh seeds 10-14."""
+"""Figures 0-2 from PART II DATA ONLY: last layer, fresh seeds '+','.join(map(str,SEEDS))+'."""
 import json, numpy as np, matplotlib
 matplotlib.use('Agg'); import matplotlib.pyplot as plt
 import sys; sys.path.insert(0,'/Users/alityb/projects/cubemoe/src')
@@ -8,18 +8,21 @@ from model import device_auto
 ROOT='/Users/alityb/projects/cubemoe'
 SURF='#fcfcfb'; INK='#0b0b0b'; INK2='#52514e'; GRID='#e3e2df'
 C1,C2,C3,C4='#2a78d6','#eb6834','#1baf7a','#eda100'
-SEEDS=[10,11,12,13,14]
+import os as _os
+SEEDS=[int(x) for x in _os.environ.get('FIG_SEEDS','10,11,12,13,14').split(',')]
+CONF=_os.environ.get('FIG_CONF','confirm')
+DATA=_os.environ.get('FIG_DATA','mixed')
 def style(ax):
     ax.set_facecolor(SURF)
     for s in ('top','right'): ax.spines[s].set_visible(False)
     for s in ('left','bottom'): ax.spines[s].set_color(GRID); ax.spines[s].set_linewidth(1)
     ax.grid(True,axis='y',color=GRID,lw=.8); ax.set_axisbelow(True)
     ax.tick_params(colors=INK2,labelsize=9,length=0)
-def L(t): return json.load(open(f'{ROOT}/out/confirm/{t}.json'))
+def L(t): return json.load(open(f'{ROOT}/out/{CONF}/{t}.json'))
 
 # fig0 — dataset property: how much the step index alone gives away
 fig,ax=plt.subplots(figsize=(7.2,4.0),facecolor=SURF); style(ax)
-for k,col,lab in [('naive',C2,'stock Kociemba'),('mixed',C1,'mixed (confirmatory set)')]:
+for k,col,lab in [('naive',C2,'stock Kociemba'),(DATA,C1,'mixed (250k scale set)' if DATA!='mixed' else 'mixed (confirmatory set)')]:
     d=np.load(f'{ROOT}/data/{k}.npz'); ps,ph=d['pos'],d['phase']
     xs,ys=[],[]
     for p in np.unique(ps):
@@ -52,14 +55,15 @@ for ax,(base,arm,hasH) in zip(axes,[('moe_mixed_s','Arm A (sequence)',True),('st
     ax.set_xticks(x); ax.set_xticklabels([f'seed {s}' for s in SEEDS])
     ax.set_ylabel('conditional NMI (last layer)',color=INK2,fontsize=10)
     ax.set_title(arm,color=INK,fontsize=10.5,loc='left',pad=8)
-    ax.legend(frameon=True,facecolor=SURF,edgecolor=GRID,fontsize=8.5,labelcolor=INK2,loc='upper left')
-fig.suptitle('Fig 1 — CONFIRMATORY: router vs its pre-registered nulls, last layer, fresh seeds 10-14',
+fig.suptitle(f'Fig 1 — router vs pre-registered nulls, last layer, seeds {SEEDS[0]}-{SEEDS[-1]} (6L/d256, 250k)',
              color=INK,fontsize=12,x=.008,ha='left')
-fig.tight_layout(rect=[0,0,1,.93]); fig.savefig(f'{ROOT}/out/fig1_conditional_nmi.png',dpi=160,facecolor=SURF); plt.close(fig)
+h,l=axes[0].get_legend_handles_labels()
+fig.legend(h,l,loc='upper right',bbox_to_anchor=(0.995,0.975),ncol=4,frameon=False,fontsize=9,labelcolor=INK2)
+fig.tight_layout(rect=[0,0,1,.90]); fig.savefig(f'{ROOT}/out/fig1_conditional_nmi.png',dpi=160,facecolor=SURF); plt.close(fig)
 
 # fig2 — change-point: scatter (arm A seed 10) + per-seed b1 both arms
 dev=device_auto()
-ex=extract_seq('moe_mixed_s10','mixed',dev,1200); Lx=ex['NL']-1
+ex=extract_seq(f'moe_mixed_s{SEEDS[0]}',DATA,dev,1200); Lx=ex['NL']-1
 cp=cp_test(ex['e1'][Lx],ex['solve'],ex['seam'],ex['sollen'],nperm=200)
 fig,axes=plt.subplots(1,2,figsize=(11.5,4.4),facecolor=SURF)
 ax=axes[0]; style(ax)
@@ -69,7 +73,7 @@ lo,hi=xs.min()-1,xs.max()+1
 a,b=np.polyfit(xs,ys,1); ax.plot([lo,hi],[a*lo+b,a*hi+b],color=INK,lw=2,zorder=4)
 ax.set_xlabel('true seam index (G1 entry)',color=INK2,fontsize=10)
 ax.set_ylabel('router change-point index',color=INK2,fontsize=10)
-ax.set_title('Arm A seed 10, last layer',color=INK,fontsize=10.5,loc='left',pad=8)
+ax.set_title(f'Arm A seed {SEEDS[0]}, last layer',color=INK,fontsize=10.5,loc='left',pad=8)
 ax.text(.03,.95,f"b1 (length-controlled) {cp['partial_slope']:+.3f}\np {cp['partial_p']:.3f}   n {cp['n']}",
         transform=ax.transAxes,va='top',fontsize=9,color=INK,bbox=dict(fc=SURF,ec=GRID,boxstyle='round,pad=0.4'))
 ax=axes[1]; style(ax); x=np.arange(len(SEEDS)); w=.38

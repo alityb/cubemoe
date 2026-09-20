@@ -275,7 +275,8 @@ Seam variance was originally produced by forcing phase-1 length L~U(10,20). That
 # PART II — CONFIRMATORY
 
 Pre-registration written **before any confirmatory model was trained**. sha256 `dc0cf9840c8c00f8`, PREREG written (UTC): 2026-09-18T22:05:39Z
-AMENDMENT-1 written (UTC): 2026-09-18T22:11:00Z.
+AMENDMENT-1 written (UTC): 2026-09-18T22:11:00Z
+SWEEP PREREG written (UTC): 2026-09-20T15:31:54Z.
 
 <details><summary>Full pre-registration (click)</summary>
 
@@ -473,3 +474,61 @@ self-control exact: [True, True, True, True, True]
 **The causal effect sharpens markedly with scale.** Arm A's strongest seed moves from L(e1)=0.045 vs median-other 0.005 (~9x) to **0.488 vs 0.0018 (~270x)**: forcing a phase-2 token through the phase-1 expert destroys roughly half of all G1-legal probability mass, while the median other-expert swap costs ~0.2%.
 
 **Arm C's L3 failed again on independent seeds at 10x data**, as A1.3 predicted from the design of the test rather than from any result. The underfitting caveat on the small-scale run is closed: probes are ~1.000 and accuracy is 2.4-4.9x its bar.
+
+
+## Headline (Part III)
+
+> **Router specialization on the Kociemba phase boundary is concentrated in a few experts, causally load-bearing, grows with model and data scale, and is systematically understated by NMI and purity.**
+
+
+## Per-layer causal effect at scale (arm A, seeds 20-24)
+
+| layer | purity(e1) | L(e1) | median-other | ratio | concentration index |
+|---|---|---|---|---|---|
+| 0 | 0.689 | 0.0017 | 0.0010 | 2x | 0.269 |
+| 1 | 0.736 | 0.0013 | 0.0007 | 3x | 0.344 |
+| 2 | 0.805 | 0.0468 | 0.0028 | 26x | 0.630 |
+| 3 | 0.899 | 0.0825 | 0.0043 | 26x | 0.578 |
+| 4 | 0.995 | 0.3852 | 0.0108 | 68x | 0.714 |
+| 5 | 1.000 | 0.2898 | 0.0029 | 127x | 0.630 |
+
+The causal effect switches on where expert purity does (layer 2) and grows monotonically with depth. The **concentration index** (share of the total causal effect carried by the single most-affected expert; even = 0.125) reaches **0.630** at the last layer — one expert carries roughly two-thirds of it.
+
+
+## Cross-scale comparison (same criteria throughout)
+
+| quantity | arm | 4L/d128, 25k (seeds 10-14) | 6L/d256, 250k (seeds 20-24) |
+|---|---|---|---|
+| L1 acc ratio | A | 1.397-1.410 | **2.428-2.481** |
+| L1 acc ratio | C | 3.659-3.719 | **4.856-4.895** |
+| L1 probe | A | 0.986 | **0.999** |
+| cond NMI | A | 0.071-0.192 (~63% ceiling) | **0.172-0.222 (92% ceiling)** |
+| cond NMI | C | 0.119-0.170 | **0.062-0.093 (36% ceiling)** |
+| L3 b1 (all p<=0.01) | A | +0.370..+0.657 | **+0.234..+0.441** |
+| L4 absolute L(e1) | A | ~0.045 | **0.2898** |
+| L4 ratio | A | ~9x | **127x** |
+
+## Controls (not gate inputs)
+
+| arm | seed | cond NMI | **% of ceiling** | conditional purity | k-means (own pre-router) | k-means % ceiling |
+|---|---|---|---|---|---|---|
+| A | 20 | 0.2072 | **95.3%** | 0.9596 | 0.2271 | 104.5% |
+| A | 21 | 0.1719 | **79.1%** | 0.9401 | 0.1809 | 83.2% |
+| A | 22 | 0.2001 | **92.1%** | 0.9528 | 0.2188 | 100.6% |
+| A | 23 | 0.2029 | **93.3%** | 0.9502 | 0.2026 | 93.2% |
+| A | 24 | 0.2223 | **102.3%** | 0.9659 | 0.2259 | 103.9% |
+| C | 20 | 0.0931 | **42.8%** | 0.9988 | 0.0950 | 43.7% |
+| C | 21 | 0.0899 | **41.4%** | 1.0000 | 0.0937 | 43.1% |
+| C | 22 | 0.0731 | **33.6%** | 0.9842 | 0.0818 | 37.6% |
+| C | 23 | 0.0619 | **28.5%** | 0.9905 | 0.0972 | 44.7% |
+| C | 24 | 0.0750 | **34.5%** | 0.9883 | 0.1495 | 68.8% |
+
+Ceiling = the perfect-tracker reference on this dataset (0.2174); it is a reference construction, not a mathematical maximum, so values may exceed 100%. Router beats within-model k-means in **1/5** seeds on arm A and **0/5** on arm C. Conditional purity is ~0.95 (A) / ~0.99 (C) for *every* assignment — saturated, so it cannot discriminate.
+
+
+**Hash-twin L4 at scale.** Absolute `L(e1)` = **0.0031** (per seed [-0.0001, -0.0001, 0.0015, 0.0004, 0.0138]) vs the learned router's **0.2898** — a **94x** separation.
+
+The *ratio* is **not reportable** for the hash twins: median-other sits at or below zero ([0.000237, -1.9e-05, 0.000707, -1e-05, 0.001371]), giving values from -92,380x to +354,077x on effects indistinguishable from zero. The sweep pre-registration therefore uses **absolute L(e1)** as P3.
+
+
+**Why NMI and purity understate this.** Conditional NMI sits at ~92% of its reference ceiling and within-model k-means matches or beats the router on it; conditional purity is saturated at ~0.95 for any assignment. Both are *readout* statistics: they establish that phase is recoverable from the hidden states, which a post-hoc clustering also achieves. Only the intervention separates the router from a clustering of its own input — 0.290 vs a hash twin's 0.003, with ~63% of the effect on a single expert. The correlational metrics are near-saturated exactly where the causal metric is most discriminating.

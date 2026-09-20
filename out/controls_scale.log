@@ -1,0 +1,12 @@
+perfect-tracker anchor (ceiling) on mixed250k: 0.2174
+  moe_mixed_s20: cNMI=0.2072 (95.3% ceiling) condPurity=0.9596 kmeans=0.2271 [153s]
+  moe_mixed_s21: cNMI=0.1719 (79.1% ceiling) condPurity=0.9401 kmeans=0.1809 [157s]
+  moe_mixed_s22: cNMI=0.2001 (92.1% ceiling) condPurity=0.9528 kmeans=0.2188 [158s]
+  moe_mixed_s23: cNMI=0.2029 (93.3% ceiling) condPurity=0.9502 kmeans=0.2026 [124s]
+  moe_mixed_s24: cNMI=0.2223 (102.3% ceiling) condPurity=0.9659 kmeans=0.2259 [121s]
+  state_mixed_s20: cNMI=0.0931 (42.8% ceiling) condPurity=0.9988 kmeans=0.0950 [31s]
+  state_mixed_s21: cNMI=0.0899 (41.4% ceiling) condPurity=1.0000 kmeans=0.0937 [31s]
+  state_mixed_s22: cNMI=0.0731 (33.6% ceiling) condPurity=0.9842 kmeans=0.0818 [31s]
+  state_mixed_s23: cNMI=0.0619 (28.5% ceiling) condPurity=0.9905 kmeans=0.0972 [31s]
+  state_mixed_s24: cNMI=0.0750 (34.5% ceiling) condPurity=0.9883 kmeans=0.1495 [31s]
+wrote out/controls_scale.json

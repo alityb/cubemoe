@@ -6,8 +6,8 @@ Everything learned, decided, measured, and corrected. Written 2026-09-17.
 Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary (entry into
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
 
-**Status (2026-09-20).** Exploratory phase closed; **confirmatory run + CUDA scale replication
-both complete**. Verdict below comes ONLY from the pre-registered confirmatory runs on fresh seeds.
+**Status (2026-09-20).** **Confirmed at two scales; routing sweep pending.** Exploratory phase closed;
+confirmatory run + CUDA scale replication both complete. Verdict below comes ONLY from the pre-registered confirmatory runs on fresh seeds.
 
 | run | scale | seeds | arm A | arm C |
 |---|---|---|---|---|
@@ -691,3 +691,42 @@ gates applied mechanically by `src/confirm_gates.py`.
   because all containers died together when stopped. Low concurrency (groups of 2-3) banks completed
   models as they finish. Measure throughput with a ~150-step probe (costs cents) before projecting
   spend — my unmeasured estimates were wrong by 10x in one direction and 3x in the other.
+
+
+## 10. SCALE CONTROLS + concentration (seeds 20-24, 6L/d256, 250k)
+
+Perfect-tracker reference ceiling on the 250k set = **0.2174** (a reference construction,
+not a mathematical maximum — values can exceed 100%).
+
+| arm | cond NMI | % ceiling | conditional purity | within-model k-means | router beats k-means |
+|---|---|---|---|---|---|
+| A | 0.2009 ± 0.0183 | **92%** | 0.954 | 0.2111 | **1/5** |
+| C | 0.079 ± 0.013 | 36% | 0.992 | 0.103 | 0/5 |
+
+### Per-layer causal effect (arm A) — turns on with purity, grows with depth
+| layer | purity(e1) | L(e1) | median-other | ratio | concentration |
+|---|---|---|---|---|---|
+| 0 | 0.689 | 0.0017 | 0.0010 | 2x | 0.269 |
+| 1 | 0.736 | 0.0013 | 0.0007 | 3x | 0.344 |
+| 2 | 0.805 | 0.0468 | 0.0028 | 26x | 0.630 |
+| 3 | 0.899 | 0.0825 | 0.0043 | 26x | 0.578 |
+| 4 | 0.995 | 0.3852 | 0.0108 | 68x | 0.714 |
+| 5 | 1.000 | 0.2898 | 0.0029 | 127x | 0.630 |
+
+**Concentration index** = share of total causal effect on the single most-affected expert
+(even = 0.125). At the last layer: **0.630** — one expert carries ~2/3 of it.
+
+### Hash twin at scale — and a statistic that breaks
+Absolute `L(e1)` = **0.0031** vs learned router
+**0.2898** — a **94x** separation.
+**The RATIO is unusable for near-null arms**: hash median-other is at or below zero per seed
+([0.000237, -1.9e-05, 0.000707, -1e-05, 0.001371]), producing -92,380x and +354,077x on effects
+indistinguishable from zero. **Report absolute L(e1); quote the ratio only when median-other > 0.001.**
+This defect was found before the sweep ran and its P3 endpoint was changed to absolute L(e1).
+
+### The headline this supports
+Specialization is **concentrated** (0.63 on one expert), **causally load-bearing** (L(e1) 0.29 vs
+hash 0.003), **grows with scale** (cond NMI 63% -> 92% of ceiling; L4 ~9x -> ~127x), and is
+**understated by NMI/purity** — both are saturated (purity ~0.95 for *any* assignment; k-means beats
+the router on cond NMI 4/5) precisely where the causal test is most discriminating. Correlational
+metrics show phase is *recoverable* from hidden states; only intervention shows it is *used*.
