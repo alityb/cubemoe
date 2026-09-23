@@ -38,7 +38,7 @@ def causal_seq(tag, data, dev, max_solves):
                 if ov is not None and li==L:
                     blk.ffn._override=torch.from_numpy(ov[b0:b0+64].reshape(-1)).to(dev)
             with torch.no_grad(): lg,info=m(x,pm,collect=(ov is None))
-            out.append((lg.cpu(), info[L][1].reshape(bb,x.shape[1],2)[:,:,0].cpu() if ov is None else None))
+            out.append((lg.cpu(), info[L][1].reshape(bb,x.shape[1],-1)[:,:,0].cpu() if ov is None else None))
         for blk in m.blocks: blk.ffn._override=None
         return torch.cat([o[0] for o in out],0), (torch.cat([o[1] for o in out],0) if ov is None else None)
     lg,route=fwd(None)
@@ -96,7 +96,7 @@ def causal_state(tag, data, dev, max_solves):
                     blk.ffn._override=torch.from_numpy(o.reshape(-1)).to(dev)
             with torch.no_grad(): lg,info=m(x,collect=(ov is None))
             Ls.append(lg.cpu())
-            if ov is None: R.append(info[L][1].reshape(bb,55,2)[:,0,0].cpu())
+            if ov is None: R.append(info[L][1].reshape(bb,55,-1)[:,0,0].cpu())
         for blk in m.blocks: blk.ffn._override=None
         return torch.cat(Ls,0), (torch.cat(R,0) if R else None)
     lg,route=fwd(None); sel2=(ph==2); strat=rem[sel2]

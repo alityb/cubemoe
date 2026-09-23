@@ -42,8 +42,8 @@ def extract_seq(tag, data, dev, max_solves=2500):
                 for li in range(NL):
                     RS[li].append(store[('rs',li)].reshape(B,T,-1)[r][idx].cpu().numpy().astype(np.float16))
                     if kind=='moe':
-                        ti = info[li][1].reshape(B,T,2)[r][idx].cpu().numpy()
-                        E1[li].append(ti[:,0]); E2[li].append(ti[:,1])
+                        ti = info[li][1].reshape(B,T,-1)[r][idx].cpu().numpy()
+                        E1[li].append(ti[:,0]); E2[li].append(ti[:,1] if ti.shape[1]>1 else ti[:,0])
                     else:
                         FH[li].append(store[('fh',li)].reshape(B,T,-1)[r][idx].cpu().numpy().astype(np.float16))
     for h in hooks: h.remove()
@@ -76,7 +76,7 @@ def extract_state(tag, data, dev, max_solves=2500):
             for li in range(NL):
                 RS[li].append(store[('rs',li)].reshape(B,55,-1)[:,0].cpu().numpy().astype(np.float16))
                 if kind=='moe':
-                    ti = info[li][1].reshape(B,55,2)
+                    ti = info[li][1].reshape(B,55,-1)
                     ECLS[li].append(ti[:,0,0].cpu().numpy())
                     stick = ti[:,1:,0].cpu().numpy()
                     EAGG[li].append(np.array([np.bincount(s, minlength=8).argmax() for s in stick]))

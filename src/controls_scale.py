@@ -54,7 +54,7 @@ def per_layer_causal(tag, data, is_state, max_solves, dev):
                     if ov is not None and li==L: blk.ffn._override=torch.from_numpy(ov[b0:b0+64].reshape(-1)).to(dev)
                 with torch.no_grad(): lg,info=m(x,pm,collect=(ov is None))
                 res.append(lg.cpu())
-                if ov is None: rt.append(info[L][1].reshape(bb,x.shape[1],2)[:,:,0].cpu())
+                if ov is None: rt.append(info[L][1].reshape(bb,x.shape[1],-1)[:,:,0].cpu())
             for blk in m.blocks: blk.ffn._override=None
             return torch.cat(res,0),(torch.cat(rt,0) if rt else None)
         def g1m(lg):
