@@ -111,3 +111,32 @@ If top-1/8 shows **equal or higher** concentration than top-2/8, the slack mecha
 concentration would then be a property of the task or the representation, not of routing capacity.
 V3 (top-2, LBL off) discriminates further — if V3 also concentrates, LBL is not the cause and the
 mechanism is misattributed.
+
+---
+
+## 5. ADDENDUM — executed plan ("CORE+"), declared before any sweep model trained
+
+Hardware probe on the sweep workspace (120 steps, ~$0.05): **A10G 14,294 tok/s, 0.90 h/model,
+$0.99/model** vs L4 $1.28 and A100 $1.57. A10G is used.
+
+At that rate the budget admits **25 models**, so the executed plan is a **declared subset of FULL**:
+
+| run | variants | models | cost |
+|---|---|---|---|
+| **CORE+ (executed)** | V1, V2, V4, H1, H2 | 25 | **~$24.75** |
+| ~~CORE~~ | V1, V2, H1, H2 | 20 | $19.79 |
+| ~~FULL~~ | V1–V5, H1, H2 | 35 | $34.65 (exceeds the $30 credit) |
+
+**V4 (top-2/8/large-scope) is retained and retrained at seeds 30–34**, so the primary endpoint P1
+keeps **exact per-seed pairing** — the property plain CORE would have given up in exchange for
+arbitrary index-matching against seeds 20–24.
+
+**Dropped: V3 (top-2/8/LBL off) and V5 (expert-choice/8).** Both are *mechanistic follow-ups* —
+V3 would attribute concentration to LBL versus top-2, V5 tests an alternative balancing scheme.
+Neither is required to test H_slack, whose prediction is about top-1 vs top-2. Dropping them
+narrows what the sweep can explain but does not weaken the test of the stated hypothesis.
+**Consequence recorded in advance:** if H_slack is supported, this run cannot distinguish whether
+top-2 *routing* or the *LBL* is responsible — that is exactly what V3 was for, and it remains unrun.
+
+Nothing else changes: hypothesis, predictions, directions, pairing, pass rule, L1–L4 and the
+concentration index are all as specified above.
