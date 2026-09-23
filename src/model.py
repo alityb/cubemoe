@@ -49,15 +49,33 @@ class MoEFFN(nn.Module):
         y = torch.einsum('ne,end->nd', W, yall)
         return y.reshape(B, T, d), probs, topi
 
-def lb_loss(probs, topi, E, mask):
-    """Switch load-balance loss at WHOLE-BATCH scope. mask: (N,) bool of valid tokens."""
-    p = probs[mask]; ti = topi[mask]
+def _lbl_one(p, ti, E):
     if p.numel() == 0: return p.new_zeros(())
     f = torch.zeros(E, device=p.device)
     f.scatter_add_(0, ti.reshape(-1), torch.ones(ti.numel(), device=p.device))
     f = f / ti.numel()
-    P = p.mean(0)
-    return E * (f * P).sum()
+    return E * (f * p.mean(0)).sum()
+
+def lb_loss(probs, topi, E, mask, scope='large', B=None, T=None):
+    """Switch load-balance loss.
+    scope='large' : balanced over the WHOLE batch (default, as used in all prior runs)
+    scope='local' : balanced within each SEQUENCE independently, then averaged
+    scope='off'   : no auxiliary loss
+    """
+    if scope == 'off': return probs.new_zeros(())
+    if scope == 'large' or B is None:
+        return _lbl_one(probs[mask], topi[mask], E)
+    # vectorised per-sequence balance (identical maths to the per-sequence loop)
+    pv = probs.reshape(B, T, -1); tv = topi.reshape(B, T, -1); mv = mask.reshape(B, T).float()
+    cnt = mv.sum(1)                                   # (B,) valid tokens per sequence
+    live = cnt > 0
+    k = tv.shape[-1]
+    oh = torch.zeros(B, T, E, device=probs.device, dtype=probs.dtype)
+    oh.scatter_(2, tv.clamp(min=0), 1.0)              # (B,T,E) counts of expert picks per token
+    f = (oh * mv[:, :, None]).sum(1) / (cnt[:, None] * k).clamp(min=1)   # (B,E) fraction of picks
+    P = (pv * mv[:, :, None]).sum(1) / cnt[:, None].clamp(min=1)         # (B,E) mean gate prob
+    per_seq = E * (f * P).sum(-1)                     # (B,)
+    return (per_seq * live).sum() / live.sum().clamp(min=1)
 
 class Block(nn.Module):
     def __init__(self, d, nh, kind, n_exp=8, k=2, router='learned'):
