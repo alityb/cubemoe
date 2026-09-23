@@ -1,0 +1,5 @@
+# model checkpoints and datasets — too large for GitHub (100MB/file limit)
+*.pt
+*.npz
+__pycache__/
+*.pyc
