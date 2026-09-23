@@ -38,12 +38,12 @@ def run(args):
     if args.model in ('moe', 'dense', 'hash'):
         kind = 'dense' if args.model == 'dense' else 'moe'
         router = 'hash' if args.model == 'hash' else 'learned'
-        m = SeqModel(D, NL, 4, maxlen, kind, 8, 2, router).to(dev)
+        m = SeqModel(D, NL, 4, maxlen, kind, args.experts, args.topk, router).to(dev)
         Xtr, Ytr, Ptr = build_seq(d, tr, maxlen); Xte, Yte, Pte = build_seq(d, te, maxlen)
         bs = 128
     else:  # state / state-dense
         kind = 'dense' if args.model == 'state_dense' else 'moe'
-        m = StateModel(D, NL, 4, kind, 8, 2).to(dev)
+        m = StateModel(D, NL, 4, kind, args.experts, args.topk).to(dev)
         off = np.concatenate([[0], np.cumsum(d['sol_len'].astype(np.int64))])
         mtr = np.concatenate([np.arange(off[i], off[i+1]) for i in tr])
         mte = np.concatenate([np.arange(off[i], off[i+1]) for i in te])
@@ -74,8 +74,9 @@ def run(args):
                 loss = F.cross_entropy(logits, y)
                 valid = torch.ones(x.shape[0] * 55, dtype=torch.bool, device=dev)
                 ntok += x.shape[0] * 55
-            if kind == 'moe' and args.model != 'hash':
-                aux = sum(lb_loss(p, t, 8, valid) for p, t in info) / len(info)
+            if kind == 'moe' and args.model != 'hash' and args.lbl_scope != 'off':
+                _B, _T = (x.shape[0], x.shape[1]) if args.model in ('moe','dense','hash') else (x.shape[0], 55)
+                aux = sum(lb_loss(p, t, args.experts, valid, args.lbl_scope, _B, _T) for p, t in info) / len(info)
                 loss = loss + args.lbl * aux
             opt.zero_grad(); loss.backward()
             torch.nn.utils.clip_grad_norm_(m.parameters(), 1.0); opt.step(); sched.step(); step += 1
@@ -96,11 +97,13 @@ def run(args):
         print(f"  ep{ep+1}/{args.epochs} loss={loss.item():.4f} test_acc={acc:.4f} tok/s={ntok/(time.time()-t0):.0f}")
     maj = float(np.bincount(Yte[Yte != -100].ravel(), minlength=N_MOVE).max() / (Yte != -100).sum())
     wall = time.time() - t0
-    tag = f"{args.model}_{args.data}" + (f"_s{args.seed}" if args.seed else "")
-    torch.save({'sd': m.state_dict(), 'cfg': dict(D=D, NL=NL, maxlen=maxlen, model=args.model, data=args.data)},
+    tag = args.tag or (f"{args.model}_{args.data}" + (f"_s{args.seed}" if args.seed else ""))
+    torch.save({'sd': m.state_dict(), 'cfg': dict(D=D, NL=NL, maxlen=maxlen, model=args.model, data=args.data,
+                           experts=args.experts, topk=args.topk, lbl_scope=args.lbl_scope)},
                f'{ROOT}/out/{tag}.pt')
     res = dict(tag=tag, acc=acc, majority=maj, params=np_, tok_s=ntok/wall, wall_s=wall, device=dev,
-               d=D, layers=NL, acc_hist=acc_hist, epochs=args.epochs, batch=bs)
+               d=D, layers=NL, acc_hist=acc_hist, epochs=args.epochs, batch=bs,
+               experts=args.experts, topk=args.topk, lbl_scope=args.lbl_scope)
     json.dump(res, open(f'{ROOT}/out/{tag}.json', 'w'), indent=1)
     print(f"DONE {tag}: test_acc={acc:.4f} majority={maj:.4f} tok/s={ntok/wall:.0f} wall={wall:.0f}s")
 
@@ -109,4 +112,7 @@ if __name__ == '__main__':
     ap.add_argument('--model', required=True); ap.add_argument('--data', default='forced')
     ap.add_argument('--epochs', type=int, default=10); ap.add_argument('--lr', type=float, default=3e-4)
     ap.add_argument('--lbl', type=float, default=0.01); ap.add_argument('--seed', type=int, default=0)
+    ap.add_argument('--experts', type=int, default=8); ap.add_argument('--topk', type=int, default=2)
+    ap.add_argument('--lbl_scope', default='large', choices=['off','local','large'])
+    ap.add_argument('--tag', default=None)
     run(ap.parse_args())
