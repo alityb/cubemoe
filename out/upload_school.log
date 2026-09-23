@@ -1,0 +1,10 @@
+Created Volume 'phasesplit-vol' in environment 'None'. 
+
+Code example:
+
+                                                                                
+@app.function(volumes={"/my_vol": modal.Volume.from_name("phasesplit-vol")})    
+def some_func():                                                                
+    os.listdir("/my_vol")                                                       
+                                                                                
+✓ Uploaded file 'out/scale/mixed250k.npz' to 'data/mixed.npz'

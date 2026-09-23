@@ -1,0 +1,143 @@
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-TqqskF6UpXtyWW1gRmqLLn
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/sweep.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function verify_data.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l4.
+└── 🔨 Created function train_variant.
+V6_top1_e8_large: seeds [30, 31, 32, 33, 34]  (~$5.50 at post-fix rate)
+--- group 1: ['V6_top1_e8_large_s30', 'V6_top1_e8_large_s31', 'V6_top1_e8_large_s32']
+Stopping app - uncaught exception raised locally: ConnectionError('[Errno 8] nodename nor servname provided, or not known').
+Runner terminated.
+Runner terminated.
+Runner terminated.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/alityb/projects/cubemoe/modal/sweep.py:130 in run_arm                 │
+│                                                                              │
+│   129 │   │   print(f"--- group {i//3+1}: {[f'{a}_s{s}' for a,s in grp]}", f │
+│ ❱ 130 │   │   for r in train_variant.starmap(grp):                           │
+│   131 │   │   │   print("   ", (r or "").strip().splitlines()[-1] if r else  │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:839 in __iter__                              │
+│                                                                              │
+│    838 │   │   │   with Runner() as runner:                                  │
+│ ❱  839 │   │   │   │   yield from run_async_gen(runner, self._async_iterable │
+│    840 │   │   except NestedEventLoops:                                      │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:917 in run_async_gen                         │
+│                                                                              │
+│    916 │   │   │   else:                                                     │
+│ ❱  917 │   │   │   │   next_yield = runner.run(gen.asend(next_send))  # type │
+│    918 │   │   except KeyboardInterrupt as e:                                │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/ba │
+│ se_events.py:649 in run_until_complete                                       │
+│                                                                              │
+│    648 │   │                                                                 │
+│ ❱  649 │   │   return future.result()                                        │
+│    650                                                                       │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:749 in asend                                 │
+│                                                                              │
+│    748 │   │   self.iterated = True                                          │
+│ ❱  749 │   │   return await self.gen.asend(value)                            │
+│    750                                                                       │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/parallel_map.py:1057 in _starmap_async                             │
+│                                                                              │
+│   1056 │   _maybe_warn_about_wrap_exceptions("starmap.aio", wrap_returned_ex │
+│ ❱ 1057 │   async for output in _map_helper(                                  │
+│   1058 │   │   self,                                                         │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/parallel_map.py:1009 in _map_helper                                │
+│                                                                              │
+│   1008 │   ) as map_output_stream:                                           │
+│ ❱ 1009 │   │   async for output in map_output_stream:                        │
+│   1010 │   │   │   yield output                                              │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:1091 in async_merge                          │
+│                                                                              │
+│   1090 │   │   │   │   │   assert_type(item, ExceptionWrapper)               │
+│ ❱ 1091 │   │   │   │   │   raise item.value                                  │
+│   1092                                                                       │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:1070 in producer                             │
+│                                                                              │
+│   1069 │   │   │   async with aclosing(generator) as stream:                 │
+│ ❱ 1070 │   │   │   │   async for item in stream:                             │
+│   1071 │   │   │   │   │   await queue.put(ValueWrapper(item))               │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_object.py:55 in wrapped                                           │
+│                                                                              │
+│    54 │   │   async with aclosing(method(self, *args, **kwargs)) as stream:  │
+│ ❱  55 │   │   │   async for item in stream:                                  │
+│    56 │   │   │   │   yield item                                             │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_functions.py:1642 in _map                                         │
+│                                                                              │
+│   1641 │   │   │   ) as stream:                                              │
+│ ❱ 1642 │   │   │   │   async for item in stream:                             │
+│   1643 │   │   │   │   │   yield item                                        │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/parallel_map.py:965 in _map_invocation_inputplane                  │
+│                                                                              │
+│    964 │   ) as merged:                                                      │
+│ ❱  965 │   │   async for maybe_output in merged:                             │
+│    966 │   │   │   if maybe_output is not None:  # ignore None sentinels     │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:1091 in async_merge                          │
+│                                                                              │
+│   1090 │   │   │   │   │   assert_type(item, ExceptionWrapper)               │
+│ ❱ 1091 │   │   │   │   │   raise item.value                                  │
+│   1092                                                                       │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/async_utils.py:1070 in producer                             │
+│                                                                              │
+│   1069 │   │   │   async with aclosing(generator) as stream:                 │
+│ ❱ 1070 │   │   │   │   async for item in stream:                             │
+│   1071 │   │   │   │   │   await queue.put(ValueWrapper(item))               │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/parallel_map.py:813 in check_lost_inputs                           │
+│                                                                              │
+│    812 │   │   │   │   metadata = await client.get_input_plane_metadata(func │
+│ ❱  813 │   │   │   │   response: api_pb2.MapCheckInputsResponse = await inpu │
+│    814 │   │   │   │   │   request, metadata=metadata                        │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_grpc_client.py:129 in __call__                                    │
+│                                                                              │
+│   128 │   │   │   with grpc_error_converter():                               │
+│ ❱ 129 │   │   │   │   return await _retry_transient_errors(                  │
+│   130 │   │   │   │   │   self,  # type: ignore                              │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/grpc_utils.py:604 in _retry_transient_errors                │
+│                                                                              │
+│   603 │   │   │   with suppress_tb_frame():                                  │
+│ ❱ 604 │   │   │   │   process_exception_before_retry(                        │
+│   605 │   │   │   │   │   exc,                                               │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/grpc_utils.py:448 in process_exception_before_retry         │
+│                                                                              │
+│   447 │   │   │   if isinstance(exc, OSError):                               │
+│ ❱ 448 │   │   │   │   raise ConnectionError(str(exc))                        │
+│   449 │   │   │   elif isinstance(exc, asyncio.TimeoutError):                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ConnectionError: [Errno 8] nodename nor servname provided, or not known

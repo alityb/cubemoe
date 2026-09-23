@@ -1,0 +1,36 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-PwjjIZhT4uBsU6wGMQIMQd
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/sweep.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function verify_data.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l4.
+└── 🔨 Created function train_variant.
+V6_top1_e8_large: seeds [30, 31, 32, 33, 34]  (~$5.50 at post-fix rate)
+--- group 1: ['V6_top1_e8_large_s30', 'V6_top1_e8_large_s31', 'V6_top1_e8_large_s32']
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+    DONE V6_top1_e8_large_s30: test_acc=0.2768 majority=0.1141 tok/s=11621 wall=3980s
+    DONE V6_top1_e8_large_s31: test_acc=0.2773 majority=0.1141 tok/s=11579 wall=3994s
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+    DONE V6_top1_e8_large_s32: test_acc=0.2711 majority=0.1141 tok/s=11527 wall=4012s
+--- group 2: ['V6_top1_e8_large_s33', 'V6_top1_e8_large_s34']
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ [Errno 8] nodename nor servname provided, or not known                       │
+╰──────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,17 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-tpI13lfNxPJQElZaNLNQGm
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/sweep.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function verify_data.
+├── 🔨 Created function train_variant.
+├── 🔨 Created function probe_a10g.
+└── 🔨 Created function probe_l4.
+V6_top1_e8_large: submitting 2 models in ONE starmap -> [33, 34]
+    DONE V6_top1_e8_large_s33: test_acc=0.2715 majority=0.1141 tok/s=14817 wall=3121s
+    DONE V6_top1_e8_large_s34: test_acc=0.2688 majority=0.1141 tok/s=11430 wall=4046s
+V6_top1_e8_large DISPATCH COMPLETE
+✓ App completed. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-tpI13lfNxPJQElZaNLNQGm

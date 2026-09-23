@@ -1,0 +1,32 @@
+ceiling (perfect-tracker reference) = 0.2174
+
+  V6_top1_e8_large_s30: E=8 k=1 conc=0.566 cNMI=0.0151 (7%) L(e1)=-0.0000
+  V6_top1_e8_large_s31: E=8 k=1 conc=0.381 cNMI=0.0229 (11%) L(e1)=-0.0001
+  V6_top1_e8_large_s32: E=8 k=1 conc=0.459 cNMI=0.0197 (9%) L(e1)=-0.0000
+  V6_top1_e8_large_s33: E=8 k=1 conc=0.302 cNMI=0.0195 (9%) L(e1)=-0.0000
+  V6_top1_e8_large_s34: E=8 k=1 conc=0.816 cNMI=0.0219 (10%) L(e1)=-0.0000
+  moe_mixed_s20: E=8 k=2 conc=0.624 cNMI=0.2072 (95%) L(e1)=0.4826
+  moe_mixed_s21: E=8 k=2 conc=0.769 cNMI=0.1719 (79%) L(e1)=0.1185
+  moe_mixed_s22: E=8 k=2 conc=0.524 cNMI=0.2001 (92%) L(e1)=0.4393
+  moe_mixed_s23: E=8 k=2 conc=0.787 cNMI=0.2029 (93%) L(e1)=0.3298
+  moe_mixed_s24: E=8 k=2 conc=0.446 cNMI=0.2223 (102%) L(e1)=0.0789
+
+=== H_slack, index-matched pairs (30<->20, ...) ===
+
+P1 concentration index (PRIMARY)  [predicted: top-1 LOWER]
+  top-1 0.5051+/-0.1995  vs  top-2 0.6302+/-0.1491
+  per-pair diff [np.float64(-0.058), np.float64(-0.3874), np.float64(-0.0651), np.float64(-0.4852), np.float64(0.3701)]
+  predicted direction in 4/5 pairs ; paired t p=0.4519
+  PASS RULE: >=4/5 AND paired t p<0.05 -> INCONCLUSIVE
+
+P2 ceiling-normalised cond NMI  [predicted: top-1 HIGHER]
+  top-1 0.0912+/-0.0140  vs  top-2 0.9240+/-0.0844
+  per-pair diff [np.float64(-0.8837), np.float64(-0.6851), np.float64(-0.83), np.float64(-0.8436), np.float64(-0.9218)]
+  predicted direction in 0/5 pairs ; paired t p=0.0000
+
+P3 absolute L(e1)  [predicted: top-1 SMALLER]
+  top-1 -0.0000+/-0.0000  vs  top-2 0.2898+/-0.1837
+  per-pair diff [np.float64(-0.4826), np.float64(-0.1186), np.float64(-0.4393), np.float64(-0.3299), np.float64(-0.0789)]
+  predicted direction in 5/5 pairs ; paired t p=0.0243
+
+wrote out/sweep_h_slack.json

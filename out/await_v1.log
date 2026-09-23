@@ -1,0 +1,16 @@
+  have V1_top1_e8_local_s30
+  have V1_top1_e8_local_s31
+  have V1_top1_e8_local_s32
+  have V1_top1_e8_local_s33
+  have V1_top1_e8_local_s34
+=== ALL 5 V1 SEEDS PRESENT — running H_slack analysis 20:22:04
+ceiling (perfect-tracker reference) = 0.2174
+
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/sweep_analysis.py", line 60, in <module>
+    r=analyse(t,data,ms,dev); r['cnmi_pct_ceiling']=r['cond_nmi']/anchor
+  File "/Users/alityb/projects/cubemoe/src/sweep_analysis.py", line 35, in analyse
+    ex=extract_seq(tag,data,dev,max_solves)
+  File "/Users/alityb/projects/cubemoe/src/extract.py", line 45, in extract_seq
+    ti = info[li][1].reshape(B,T,2)[r][idx].cpu().numpy()
+RuntimeError: shape '[64, 82, 2]' is invalid for input of size 5248
