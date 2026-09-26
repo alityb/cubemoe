@@ -492,5 +492,65 @@ if os.path.exists(_sg):
 
 
 
+
+# ================= PART IV — ROUTING SWEEP (H_slack) =================
+_sv=f'{ROOT}/out/sweep_V6_top1_e8_large.json'; _s1=f'{ROOT}/out/sweep_h_slack.json'
+if os.path.exists(_sv):
+    A("\n\n---\n\n# PART IV — ROUTING SWEEP: H_slack REJECTED\n")
+    A("Pre-registered in `PREREGISTRATION_SWEEP.md` (`c1b023f4`) + `PREREG_SWEEP_AMENDMENT_4.md` "
+      "(`2f9add95`), both filed before the relevant models trained. 6L/d256, 250k, seeds 30-34, "
+      "last layer, same L1-L4.\n")
+    A("\n**H_slack was:** top-2 + LBL creates *slack* letting one expert monopolise phase-1 slot 0; "
+      "under top-1 the balance constraint binds directly, so specialization should **spread** — "
+      "predicting LOWER concentration, HIGHER ceiling-normalised cNMI, SMALLER L(e1).\n")
+    SV=json.load(open(_sv)); S1=json.load(open(_s1)) if os.path.exists(_s1) else None
+    A("\n## Arms\n")
+    A("| arm | routing | experts | LBL scope | differs from baseline by |")
+    A("|---|---|---|---|---|")
+    A("| baseline | top-2 | 8 | large | — |")
+    A("| V1 | top-1 | 8 | local | **two axes** (arity AND scope) — confounded, see A4.1 |")
+    A("| V6 | top-1 | 8 | large | **arity only** — the actual H_slack test |")
+    A("| V7 | top-2 | 8 | local | scope only — **NOT RUN** (budget exhausted) |")
+    A("\n## Results (last layer, 5 seeds each)\n")
+    A("| arm | cond NMI | % of ceiling | L(e1) | sum_e L(e) | concentration |")
+    A("|---|---|---|---|---|---|")
+    for lab,D in (("V6 (arity only)",SV),("V1 (confounded)",S1)):
+        if not D: continue
+        R=D['V1']; cn=np.mean([r['cond_nmi'] for r in R])
+        le=np.mean([r['loss_e1'] for r in R]); sl=np.mean([r['loss_e1']+7*r['median_other'] for r in R])
+        A(f"| {lab} | {cn:.4f} | **{cn/D['anchor']*100:.0f}%** | {le:+.5f} | {sl:.4f} | "
+          f"**undefined** (below floor) |")
+    B=SV['baseline']; cb=np.mean([r['cond_nmi'] for r in B])
+    A(f"| baseline (top-2/8/large) | {cb:.4f} | **{cb/SV['anchor']*100:.0f}%** | "
+      f"{np.mean([r['loss_e1'] for r in B]):+.4f} | {np.mean([r['loss_e1']+7*r['median_other'] for r in B]):.4f} | "
+      f"{np.mean([r['concentration_raw'] if r.get('concentration_raw') is not None else r['concentration'] for r in B]):.3f} |")
+    A("\n## Verdict on each pre-registered prediction\n")
+    A("| | prediction | result |")
+    A("|---|---|---|")
+    A("| **P1** concentration (PRIMARY) | top-1 LOWER | **UNEVALUABLE** — sum_e L(e) is 0.0001-0.0012 vs "
+      "the pre-stated 0.05 floor (A4.3). There is no causal effect to concentrate. |")
+    A("| **P2** ceiling-normalised cond NMI | top-1 HIGHER | **REVERSED** — top-1 **9%** vs top-2 **92%** "
+      "of ceiling; predicted direction in **0/5** pairs, paired t **p < 0.0001**. |")
+    A("| **P3** absolute L(e1) | top-1 SMALLER | **vacuously true** — 5/5, p=0.024, but only because "
+      "L(e1) is ~0. Not support for H_slack. |")
+    A("\n### **H_slack is REJECTED, and its premise is inverted.**\n")
+    A("Top-1 routing does not *spread* specialization — it **eliminates** it. Top-2 appears to be "
+      "**necessary for phase specialization to exist at all** at this scale. The 'slack' the "
+      "hypothesis treated as an artefact to be removed is, on this evidence, the mechanism's "
+      "precondition.\n")
+    A("\n## Decision matrix (A4.5), as far as budget allowed\n")
+    A("| V6 (arity only) | V7 (scope only) | conclusion |")
+    A("|---|---|---|")
+    A("| **COLLAPSE** (observed) | **not run** | **Arity alone is sufficient** to destroy specialization. "
+      "V1's collapse is fully explained without invoking scope. Whether scope *independently* also "
+      "suffices is unresolved. |")
+    A("\n**V6 trains normally** — test acc 0.2688-0.2773 vs majority 0.1141 (ratio 2.36-2.43), matching "
+      "the baseline's 2.43-2.48. So this is not a failure to learn the task; it is a model that learns "
+      "the task without routing on phase.\n")
+    A("\n*Reporting note: the A4.3 floor was pre-registered but initially not implemented in "
+      "`sweep_analysis.py`, which reported P1 as 'inconclusive (4/5, p=0.45)'. Those numbers were "
+      "computed from noise. The floor is now enforced in code and P1 is reported as unevaluable.*\n")
+
+
 open(f'{ROOT}/out/results.md','w').write("\n".join(L))
 print("wrote out/results.md")
