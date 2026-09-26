@@ -6,13 +6,14 @@ Everything learned, decided, measured, and corrected. Written 2026-09-17.
 Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary (entry into
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
 
-**Status (2026-09-20).** **Confirmed at two scales; routing sweep pending.** Exploratory phase closed;
-confirmatory run + CUDA scale replication both complete. Verdict below comes ONLY from the pre-registered confirmatory runs on fresh seeds.
+**Status (2026-09-25).** **Confirmed at two scales; routing sweep run — H_slack REJECTED (§11).**
+Exploratory phase closed; confirmatory run + CUDA scale replication + routing sweep all complete. Verdict below comes ONLY from the pre-registered confirmatory runs on fresh seeds.
 
 | run | scale | seeds | arm A | arm C |
 |---|---|---|---|---|
 | confirmatory | 4L/d128, 25k | 10-14 | **CONFIRMED** (L1-L4) | **CONFIRMED** (L1+L2+L4; L3 fails, exempt per A1.3) |
 | scale replication | 6L/d256, 250k | 20-24 | **CONFIRMED** | **CONFIRMED** |
+| routing sweep (§11) | 6L/d256, 250k | 30-34 | top-1 **collapses** (9% of ceiling) | n/a |
 
 Pre-registration `dc0cf984` + Amendment 1 `78b97ac5` (both filed pre-results),
 Amendment 2 (scale protocol, post-results, governs only the replication),
