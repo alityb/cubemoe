@@ -1,0 +1,145 @@
+{
+ "kind": "cfop",
+ "n_solves": 10000,
+ "n_steps": 611547,
+ "state_conflict_rate": 0.06838306915788542,
+ "state_conflict_n": 90344,
+ "stage_share": {
+  "cross": 0.09777008144917725,
+  "F2L": 0.29049770500059685,
+  "OLL": 0.23272618457780023,
+  "PLL": 0.3790060289724257
+ },
+ "mixed_step_cells": 0.5066953153232703,
+ "move_hist_by_stage": {
+  "cross": {
+   "U": 3345,
+   "U'": 3331,
+   "U2": 3293,
+   "R": 3216,
+   "R'": 3371,
+   "R2": 3295,
+   "F": 3366,
+   "F'": 3189,
+   "F2": 3349,
+   "D": 3282,
+   "D'": 3355,
+   "D2": 3435,
+   "L": 3296,
+   "L'": 3277,
+   "L2": 3350,
+   "B": 3363,
+   "B'": 3300,
+   "B2": 3378
+  },
+  "F2L": {
+   "U": 14407,
+   "U'": 15637,
+   "U2": 12293,
+   "R": 14302,
+   "R'": 15222,
+   "R2": 5398,
+   "F": 9125,
+   "F'": 8542,
+   "F2": 5975,
+   "D": 5498,
+   "D'": 5498,
+   "D2": 3262,
+   "L": 10751,
+   "L'": 10417,
+   "L2": 5563,
+   "B": 14881,
+   "B'": 13509,
+   "B2": 7373
+  },
+  "OLL": {
+   "U": 24022,
+   "U'": 24262,
+   "U2": 17215,
+   "R": 31484,
+   "R'": 31484,
+   "R2": 0,
+   "F": 6928,
+   "F'": 6928,
+   "F2": 0,
+   "D": 0,
+   "D'": 0,
+   "D2": 0,
+   "L": 0,
+   "L'": 0,
+   "L2": 0,
+   "B": 0,
+   "B'": 0,
+   "B2": 0
+  },
+  "PLL": {
+   "U": 39395,
+   "U'": 29738,
+   "U2": 4931,
+   "R": 55903,
+   "R'": 40992,
+   "R2": 19073,
+   "F": 14426,
+   "F'": 14426,
+   "F2": 0,
+   "D": 0,
+   "D'": 0,
+   "D2": 0,
+   "L": 0,
+   "L'": 0,
+   "L2": 0,
+   "B": 0,
+   "B'": 0,
+   "B2": 12896
+  }
+ },
+ "code_sha256": "95dd9915869fc719",
+ "hard_checks": [
+  {
+   "name": "L1 maneuver replays to solved",
+   "ok": true,
+   "detail": "0/10000"
+  },
+  {
+   "name": "L1 every state passes verify()",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "L1 stored states == replayed states",
+   "ok": true,
+   "detail": "0/10000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of cross segment",
+   "ok": true,
+   "detail": "10000/10000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of F2L segment",
+   "ok": true,
+   "detail": "10000/10000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of OLL segment",
+   "ok": true,
+   "detail": "10000/10000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of PLL segment",
+   "ok": true,
+   "detail": "10000/10000"
+  },
+  {
+   "name": "L5 no duplicate scrambles",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "L5 >=9% of step cells contain >1 stage",
+   "ok": true,
+   "detail": "0.507"
+  }
+ ],
+ "PASS": true
+}
