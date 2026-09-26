@@ -43,8 +43,14 @@ def analyse(tag, data, max_solves, dev):
     try: pl=per_layer_causal(tag,data,False,max_solves,dev)
     finally: _cs.SeqModel=_cs_orig
     last=pl[max(pl.keys())]
+    # AMENDMENT A4.3: concentration is UNDEFINED when sum_e L(e) < 0.05 (floor from null-arm noise).
+    sum_L = last['loss_e1'] + 7*last['median_other']
+    below = sum_L < 0.05
     return dict(tag=tag,experts=E,topk=k,cond_nmi=mt['nmi_strat_wt'],
-                concentration=last['concentration'],loss_e1=last['loss_e1'],
+                concentration=(None if below else last['concentration']),
+                concentration_raw=last['concentration'], sum_L=float(sum_L),
+                below_floor=bool(below), max_L=float(max(last['loss_e1'],last['median_other'])),
+                loss_e1=last['loss_e1'],
                 median_other=last['median_other'],purity_e1=last['purity_e1'])
 
 if __name__=='__main__':
@@ -66,9 +72,18 @@ if __name__=='__main__':
     a=out['V1']; b=out['baseline']
     if len(a)==len(b)==5:
         print("\n=== H_slack, index-matched pairs (30<->20, ...) ===")
+        nb_a=[r for r in a if r['below_floor']]; nb_b=[r for r in b if r['below_floor']]
+        if nb_a or nb_b:
+            print(f"\n!! A4.3 FLOOR: concentration UNDEFINED for {len(nb_a)}/5 top-1 and {len(nb_b)}/5 top-2 seeds")
+            print(f"   (sum_e L(e) < 0.05; top-1 sums {[round(r['sum_L'],4) for r in a]})")
+            print( "   P1 is therefore UNEVALUABLE, not inconclusive — there is no causal effect to concentrate.")
         for key,lab,pred in [('concentration','P1 concentration index (PRIMARY)','top-1 LOWER'),
                              ('cnmi_pct_ceiling','P2 ceiling-normalised cond NMI','top-1 HIGHER'),
                              ('loss_e1','P3 absolute L(e1)','top-1 SMALLER')]:
+            if key=='concentration' and (nb_a or nb_b):
+                print(f"\n{lab}  [predicted: {pred}]  -> **UNEVALUABLE (A4.3 floor)**")
+                print(f"  max_e L(e): top-1 {np.mean([r['max_L'] for r in a]):.5f}  top-2 {np.mean([r['max_L'] for r in b]):.4f}")
+                continue
             x=np.array([r[key] for r in a]); y=np.array([r[key] for r in b]); d=x-y
             wins=int((d<0).sum()) if 'LOWER' in pred or 'SMALLER' in pred else int((d>0).sum())
             t,p=stats.ttest_rel(x,y)
