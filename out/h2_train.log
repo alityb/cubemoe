@@ -1,0 +1,141 @@
+=== moe seed 40 00:18:57
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8875 test_acc=0.3676 tok/s=11905
+  ep2/10 loss=1.5903 test_acc=0.4306 tok/s=12021
+  ep3/10 loss=1.3159 test_acc=0.5360 tok/s=11992
+  ep4/10 loss=1.0788 test_acc=0.6290 tok/s=12116
+  ep5/10 loss=0.9940 test_acc=0.6504 tok/s=12240
+  ep6/10 loss=0.9704 test_acc=0.6612 tok/s=12420
+  ep7/10 loss=0.9338 test_acc=0.6681 tok/s=12563
+  ep8/10 loss=0.9137 test_acc=0.6724 tok/s=12608
+  ep9/10 loss=0.9188 test_acc=0.6731 tok/s=12622
+  ep10/10 loss=0.9219 test_acc=0.6738 tok/s=12688
+DONE moe_cfop_s40: test_acc=0.6738 majority=0.1731 tok/s=12688 wall=432s
+=== moe seed 41 00:26:13
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8464 test_acc=0.3689 tok/s=13200
+  ep2/10 loss=1.5709 test_acc=0.4305 tok/s=13346
+  ep3/10 loss=1.3488 test_acc=0.5358 tok/s=13290
+  ep4/10 loss=1.1053 test_acc=0.6295 tok/s=13392
+  ep5/10 loss=1.0181 test_acc=0.6518 tok/s=13409
+  ep6/10 loss=0.9851 test_acc=0.6614 tok/s=13390
+  ep7/10 loss=0.9442 test_acc=0.6697 tok/s=13426
+  ep8/10 loss=0.9150 test_acc=0.6724 tok/s=13440
+  ep9/10 loss=0.9135 test_acc=0.6729 tok/s=13443
+  ep10/10 loss=0.9093 test_acc=0.6738 tok/s=13441
+DONE moe_cfop_s41: test_acc=0.6738 majority=0.1731 tok/s=13441 wall=408s
+=== moe seed 42 00:33:02
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8671 test_acc=0.3672 tok/s=13649
+  ep2/10 loss=1.5584 test_acc=0.4319 tok/s=13860
+  ep3/10 loss=1.2586 test_acc=0.5676 tok/s=13803
+  ep4/10 loss=1.0813 test_acc=0.6307 tok/s=13711
+  ep5/10 loss=1.0097 test_acc=0.6520 tok/s=13689
+  ep6/10 loss=0.9541 test_acc=0.6612 tok/s=13688
+  ep7/10 loss=0.9430 test_acc=0.6666 tok/s=13686
+  ep8/10 loss=0.9140 test_acc=0.6699 tok/s=13684
+  ep9/10 loss=0.9029 test_acc=0.6725 tok/s=13675
+  ep10/10 loss=0.9252 test_acc=0.6727 tok/s=13662
+DONE moe_cfop_s42: test_acc=0.6727 majority=0.1731 tok/s=13662 wall=401s
+=== moe seed 43 00:39:44
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8657 test_acc=0.3640 tok/s=13277
+  ep2/10 loss=1.5815 test_acc=0.4143 tok/s=13511
+  ep3/10 loss=1.3327 test_acc=0.5394 tok/s=13613
+  ep4/10 loss=1.0982 test_acc=0.6181 tok/s=13705
+  ep5/10 loss=1.0144 test_acc=0.6429 tok/s=13634
+  ep6/10 loss=0.9623 test_acc=0.6561 tok/s=13620
+  ep7/10 loss=0.9599 test_acc=0.6656 tok/s=13595
+  ep8/10 loss=0.9322 test_acc=0.6701 tok/s=13609
+  ep9/10 loss=0.9149 test_acc=0.6728 tok/s=13611
+  ep10/10 loss=0.9193 test_acc=0.6727 tok/s=13579
+DONE moe_cfop_s43: test_acc=0.6727 majority=0.1731 tok/s=13578 wall=404s
+=== moe seed 44 00:46:29
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=moe params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8630 test_acc=0.3661 tok/s=13427
+  ep2/10 loss=1.5963 test_acc=0.4184 tok/s=13600
+  ep3/10 loss=1.2923 test_acc=0.5365 tok/s=13636
+  ep4/10 loss=1.1035 test_acc=0.6233 tok/s=13693
+  ep5/10 loss=1.0074 test_acc=0.6477 tok/s=13777
+  ep6/10 loss=0.9753 test_acc=0.6590 tok/s=13844
+  ep7/10 loss=0.9316 test_acc=0.6659 tok/s=13860
+  ep8/10 loss=0.9014 test_acc=0.6696 tok/s=13746
+  ep9/10 loss=0.9198 test_acc=0.6716 tok/s=13686
+  ep10/10 loss=0.9252 test_acc=0.6723 tok/s=13651
+DONE moe_cfop_s44: test_acc=0.6723 majority=0.1731 tok/s=13651 wall=401s
+=== hash seed 40 00:53:12
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.9271 test_acc=0.3607 tok/s=13705
+  ep2/10 loss=1.5982 test_acc=0.4259 tok/s=13761
+  ep3/10 loss=1.2728 test_acc=0.5574 tok/s=13835
+  ep4/10 loss=1.0867 test_acc=0.6293 tok/s=13855
+  ep5/10 loss=0.9968 test_acc=0.6522 tok/s=13870
+  ep6/10 loss=0.9633 test_acc=0.6637 tok/s=13844
+  ep7/10 loss=0.9341 test_acc=0.6700 tok/s=13851
+  ep8/10 loss=0.9128 test_acc=0.6726 tok/s=13865
+  ep9/10 loss=0.9239 test_acc=0.6728 tok/s=13908
+  ep10/10 loss=0.9228 test_acc=0.6739 tok/s=13948
+DONE hash_cfop_s40: test_acc=0.6739 majority=0.1731 tok/s=13948 wall=393s
+=== hash seed 41 00:59:46
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8850 test_acc=0.3634 tok/s=13996
+  ep2/10 loss=1.5445 test_acc=0.4442 tok/s=13883
+  ep3/10 loss=1.3146 test_acc=0.5620 tok/s=13929
+  ep4/10 loss=1.1147 test_acc=0.6233 tok/s=13928
+  ep5/10 loss=1.0362 test_acc=0.6480 tok/s=13954
+  ep6/10 loss=0.9980 test_acc=0.6564 tok/s=14000
+  ep7/10 loss=0.9610 test_acc=0.6631 tok/s=14024
+  ep8/10 loss=0.9286 test_acc=0.6655 tok/s=14011
+  ep9/10 loss=0.9356 test_acc=0.6676 tok/s=14011
+  ep10/10 loss=0.9205 test_acc=0.6671 tok/s=14003
+DONE hash_cfop_s41: test_acc=0.6671 majority=0.1731 tok/s=14003 wall=391s
+=== hash seed 42 01:06:19
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.8929 test_acc=0.3613 tok/s=13554
+  ep2/10 loss=1.5215 test_acc=0.4528 tok/s=13577
+  ep3/10 loss=1.2735 test_acc=0.5543 tok/s=13530
+  ep4/10 loss=1.0848 test_acc=0.6242 tok/s=13512
+  ep5/10 loss=1.0203 test_acc=0.6478 tok/s=13553
+  ep6/10 loss=0.9557 test_acc=0.6588 tok/s=13606
+  ep7/10 loss=0.9379 test_acc=0.6650 tok/s=13688
+  ep8/10 loss=0.9073 test_acc=0.6685 tok/s=13737
+  ep9/10 loss=0.9054 test_acc=0.6701 tok/s=13796
+  ep10/10 loss=0.9288 test_acc=0.6701 tok/s=13814
+DONE hash_cfop_s42: test_acc=0.6701 majority=0.1731 tok/s=13814 wall=397s
+=== hash seed 43 01:12:57
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.9073 test_acc=0.3585 tok/s=14020
+  ep2/10 loss=1.5414 test_acc=0.4383 tok/s=14125
+  ep3/10 loss=1.2710 test_acc=0.5622 tok/s=14132
+  ep4/10 loss=1.0959 test_acc=0.6158 tok/s=14071
+  ep5/10 loss=1.0200 test_acc=0.6421 tok/s=14127
+  ep6/10 loss=0.9782 test_acc=0.6538 tok/s=14187
+  ep7/10 loss=0.9763 test_acc=0.6601 tok/s=14163
+  ep8/10 loss=0.9475 test_acc=0.6646 tok/s=14145
+  ep9/10 loss=0.9315 test_acc=0.6662 tok/s=14123
+  ep10/10 loss=0.9445 test_acc=0.6662 tok/s=14105
+DONE hash_cfop_s43: test_acc=0.6662 majority=0.1731 tok/s=14104 wall=388s
+=== hash seed 44 01:19:27
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=hash params=4.51M  train=9000 test=1000
+  ep1/10 loss=1.9179 test_acc=0.3614 tok/s=13554
+  ep2/10 loss=1.5752 test_acc=0.4310 tok/s=11629
+  ep3/10 loss=1.2916 test_acc=0.5372 tok/s=11126
+  ep4/10 loss=1.1017 test_acc=0.6232 tok/s=10896
+  ep5/10 loss=0.9972 test_acc=0.6503 tok/s=10753
+  ep6/10 loss=0.9737 test_acc=0.6605 tok/s=10665
+  ep7/10 loss=0.9292 test_acc=0.6681 tok/s=10600
+  ep8/10 loss=0.9030 test_acc=0.6709 tok/s=10559
+  ep9/10 loss=0.9252 test_acc=0.6708 tok/s=10522
+  ep10/10 loss=0.9241 test_acc=0.6709 tok/s=10498
+DONE hash_cfop_s44: test_acc=0.6709 majority=0.1731 tok/s=10498 wall=522s
+=== H2 TRAINING DONE 01:28:10
