@@ -6,8 +6,16 @@ Everything learned, decided, measured, and corrected. Written 2026-09-17.
 Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary (entry into
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
 
-**Status (2026-09-25).** **Confirmed at two scales; routing sweep run — H_slack REJECTED (§11).**
-Exploratory phase closed; confirmatory run + CUDA scale replication + routing sweep all complete. Verdict below comes ONLY from the pre-registered confirmatory runs on fresh seeds.
+**Status (2026-09-26).** **H1 confirmed at two scales; H_slack REJECTED (§11); H2/CFOP REJECTED (§12).**
+All four pre-registered programmes are complete. Verdicts come ONLY from pre-registered runs on fresh seeds.
+
+**Headline, in one line:** a router recovered the Kociemba G1 decomposition robustly and causally
+(~270x causal effect at scale), and **failed** to recover the CFOP 4-stage decomposition its own
+training data was built from — because CFOP stage is 86% determined by token position, so the network
+gets it free and the router never encodes it. **Revised claim: routing encodes a data-latent
+decomposition only when that decomposition is not already recoverable from position.** The original H2
+framing ("routing tracks the data's decomposition, not a fixed property of the cube") is **not
+supported**; but neither is the converse — the CFOP router carries G1 no better than chance causally.
 
 | run | scale | seeds | arm A | arm C |
 |---|---|---|---|---|
@@ -773,3 +781,114 @@ appeal to scope. Whether scope *independently* also suffices is **unresolved** (
 ### Budget
 All three Modal workspaces exhausted (~$89 total spent). Credits reset monthly.
 Remaining unrun: **V7** (~$6), **H1 hash twin for top-1** (~$6), **H2/CFOP** (~$30-50).
+
+## 12. H2 / CFOP — REJECTED, and the reason is a position confound (2026-09-26)
+
+Governing doc: `PREREGISTRATION_H2.md` (`c5d6b4ab`). 5 MoE seeds 40–44 on CFOP data (acc 0.6723–0.6738
+vs `maj|(stage,pos)` = 0.1986, a 3.4x ratio, well over the 1.30x L1 gate) + 5 hash twins (0.6662–0.6739).
+All 9 CFOP QA gates passed, including the four segment-boundary predicates at 10,000/10,000.
+
+### Verdict: H2 REJECTED by the pre-registered rule
+
+| trained on | vs CFOP stage | vs G1 phase | stage>G1? |
+|---|---|---|---|
+| CFOP (s40–44)     | 0.0009 | 0.0485 | **0/5** |
+| Kociemba (s20–24) | 0.0130 | 0.1911 | 0/5 |
+
+Rule was "REJECTED if the inequality reverses in >=4/5 seeds": it reversed **5/5**, paired t p=0.0005.
+
+**Ceiling-normalized** (methodology control #3 — the raw numbers are uninterpretable without it,
+because the stage ceiling is 8.5x smaller than the G1 ceiling and the raw comparison is structurally
+rigged against stage):
+
+| | cNMI | ceiling | % of ceiling | shuffled null |
+|---|---|---|---|---|
+| CFOP router vs CFOP stage | 0.0007–0.0015 | 0.0657 | **1–2%** | 1–2% |
+| CFOP router vs G1 phase   | 0.0397–0.0665 | 0.5564 | 7–12% | 2% |
+| Kociemba router vs G1     | 0.1635–0.2133 | 0.5190 | 32–41% | 1–2% |
+
+The CFOP router sits **at its own null** for stage even after normalization. The verdict survives the
+normalization that could have rescued it.
+
+### The causal test agrees (`src/h2_causal.py`) — this is what makes the null credible
+
+Correlational cNMI has almost no headroom here, and in H1 a 7x causal effect coexisted with cNMI
+0.0193 (control #5), so the intervention decides. Force **only** stage-*s* tokens through expert *e*,
+read out position-stratified per-stage accuracy -> damage matrix `L[e,s]`. `self_exact=True` on all
+5 seeds (forcing the current routing is a bit-exact no-op, validating the hook).
+
+- If experts specialized by stage, a stage's **own** routed expert would be much less damaging than an
+  arbitrary one. It is not: `L_native` = 0.0675 vs `L_median` = 0.0722 over 20 cells (5 seeds x 4
+  stages), paired **t=0.576, p=0.57**; native less damaging in only 14/20 (binomial p=0.12).
+- **Positive control on the same models**, H1's exact G1-mass readout: also absent — L(e1)=0.088 vs
+  median_other=0.061, p=0.60, 3/5 seeds, and **2/5 seeds negative** (s40 −0.052, s41 −0.004).
+  Reference: H1 at scale gave L(e1)=0.290 vs 0.0011 (~270x, 5/5).
+
+So the CFOP router carries **neither** decomposition causally. That matters: the rejection is **not**
+"routing is a fixed property of the cube" — the CFOP router doesn't partition on G1 either. The weak
+correlational G1 signal (7–12% of ceiling) has no causal counterpart.
+
+### One apparent signal, killed by control #6
+
+"Native expert == least-damaging expert in 7/20 cells vs chance 2.5, binomial p=0.008" looks like weak
+specialization. It is the **load/diversity artifact**: forcing stage-*s* tokens onto the expert that
+already handles most of them perturbs fewer tokens, so it damages less for reasons unrelated to
+identity. `argmax(already-routed fraction)` == `argmin(damage)` in **exactly the same 7/20 cells**
+(p=0.008), and the two predictors coincide 4/4 in s41 and s43. No residual identity effect.
+
+### WHY G1 but not CFOP stage — verified, and NOT the obvious explanation
+
+The obvious story — "G1 restricts the legal move set and stage doesn't" — is **false**, measured:
+
+| label | distinct moves used | pairwise JS between label move-distributions |
+|---|---|---|
+| CFOP stages 1/2/3/4 | 18 / 18 / **7** / **9** | up to **0.4367** bits (1 vs 3) |
+| G1 phases 1/2 | 18 / **10** (G1-mass exactly 1.0000) | 0.3827 bits |
+
+CFOP stages are *more* sharply separated in output distribution than G1 phases. So that is not it.
+
+The actual mechanism is **positional availability of the label**:
+
+| label | maj(label \| pos) | H(label) | H(label \| pos) | entropy removed by position | seam sd |
+|---|---|---|---|---|---|
+| CFOP stage | **0.9196** | 1.8660 | 0.2568 | **86.2%** | 1.41 |
+| G1 phase (Kociemba) | 0.8689 | 0.9216 | 0.3880 | **57.9%** | **3.45** |
+
+In the CFOP data the stage boundaries are nearly pinned to token position (cross is 4–8 moves and the
+F2L/OLL/PLL segments are fixed-length canonical algs, so segment offsets barely vary). The network
+gets stage almost free from positional embeddings and the router has no reason to encode it. In
+Kociemba the seam genuinely moves (sd 3.45), so phase must be computed from the state — and it is.
+
+**Revised claim: a router encodes a data-latent decomposition only when that decomposition is not
+already recoverable from token position.** This is a limitation of the CFOP *data design*, named
+precisely and fixable in principle (widen `cross_len` far beyond (4,8) to decorrelate stage from
+position). It is **not** evidence that H2 would pass if fixed — that is untested and must not be claimed.
+
+### Two defects found and fixed in the analysis before the verdict was trusted
+
+Both would have produced a "REJECTED" headline off broken code. Caught because the Kociemba row
+printed `cNMI(stage)` **bit-identical** to `cNMI(G1)` (0.2072 = 0.2072, all 5 seeds), which is
+impossible for two different labelings.
+
+1. **The Kociemba control row was vacuous** — it passed `ex['phase']` (already the G1 phase) as the
+   "stage" label, so it measured G1 twice. Fixed by applying `cfop.stage_of` to the states.
+2. **`g1_labels()` mis-aligned rows** — it paired `te[:len(uniq)]` against a differing extraction
+   order and truncated with `lab[:len(ex['phase'])]`, so labels were silently shifted and the tail was
+   cut (per-stage output read `[x, x, nan, nan]`: stages 3–4 dropped entirely, though they are 61% of
+   the data). Replaced by `both_labels()`, which replays the **same** `te` order extraction uses and
+   **asserts** `len(labels) == len(rows)`.
+
+### Disclosure against the pre-registration
+
+`PREREGISTRATION_H2.md` §1 asserts "both label functions are computable on either dataset ... so are
+the CFOP stage predicates." **That premise is false as needed for the 2x2.** The stage predicate is
+valid only at segment *boundaries*: within a segment it is non-monotone (a PLL alg moves the DR edge
+out mid-maneuver), so per-token it agrees with the construction label only **27.6%** of the time and
+reads 74% "stage 1". On Kociemba trajectories it is near-constant (dist [4216, 2, 0, 41]) — Kociemba
+paths essentially never have the cross solved until the end. So the Kociemba row's "vs CFOP stage"
+cell has almost no label entropy and is **not a real measurement**; the prereg's own §2.1 anticipated
+the non-monotonicity but the 2x2 was specified as if it did not matter. The CFOP row — the actual test
+— is unaffected, since it uses the construction label. The generator is sound: 100/100 at every
+segment boundary, and all 179 PLL / 148 OLL / 231 F2L canonical maneuvers preserve the D edges.
+
+Artefacts: `out/h2_2x2.json`, `out/h2_causal.json`, `src/h2_analysis.py`, `src/h2_causal.py`.
