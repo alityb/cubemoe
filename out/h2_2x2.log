@@ -1,0 +1,18 @@
+  moe_cfop_s40: cNMI(stage)=0.0004 cNMI(G1)=0.0614 | shuf 0.0005/0.0033 | per-stage [0.0, 0.0, nan, nan]
+  moe_cfop_s41: cNMI(stage)=0.0006 cNMI(G1)=0.0419 | shuf 0.0003/0.0032 | per-stage [0.001, 0.001, nan, nan]
+  moe_cfop_s42: cNMI(stage)=0.0006 cNMI(G1)=0.0361 | shuf 0.0002/0.0036 | per-stage [0.001, 0.001, nan, nan]
+  moe_cfop_s43: cNMI(stage)=0.0004 cNMI(G1)=0.0428 | shuf 0.0003/0.0030 | per-stage [0.0, 0.0, nan, nan]
+  moe_cfop_s44: cNMI(stage)=0.0009 cNMI(G1)=0.0404 | shuf 0.0003/0.0031 | per-stage [0.001, 0.001, nan, nan]
+  moe_mixed_s20: cNMI(stage)=0.2072 cNMI(G1)=0.2072 | shuf 0.0020/0.0020 | per-stage [0.207, 0.207, nan, nan]
+  moe_mixed_s21: cNMI(stage)=0.1719 cNMI(G1)=0.1719 | shuf 0.0022/0.0022 | per-stage [0.172, 0.172, nan, nan]
+  moe_mixed_s22: cNMI(stage)=0.2001 cNMI(G1)=0.2001 | shuf 0.0023/0.0023 | per-stage [0.2, 0.2, nan, nan]
+  moe_mixed_s23: cNMI(stage)=0.2029 cNMI(G1)=0.2029 | shuf 0.0034/0.0034 | per-stage [0.203, 0.203, nan, nan]
+  moe_mixed_s24: cNMI(stage)=0.2223 cNMI(G1)=0.2223 | shuf 0.0035/0.0035 | per-stage [0.222, 0.222, nan, nan]
+
+=== H2 PRIMARY ENDPOINT: 2x2 cross-evaluation ===
+trained on    vs CFOP stage   vs G1 phase  stage>G1?
+cfop                 0.0006        0.0445       0/5
+
+  H2 pass rule: stage > G1 in >=4/5 AND paired t p<0.05
+    0/5 seeds, paired t p=0.0006 -> **REJECTED**
+kociemba             0.2009        0.2009       0/5
