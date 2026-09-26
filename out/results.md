@@ -276,7 +276,8 @@ Seam variance was originally produced by forcing phase-1 length L~U(10,20). That
 
 Pre-registration written **before any confirmatory model was trained**. sha256 `dc0cf9840c8c00f8`, PREREG written (UTC): 2026-09-18T22:05:39Z
 AMENDMENT-1 written (UTC): 2026-09-18T22:11:00Z
-SWEEP PREREG written (UTC): 2026-09-20T15:31:54Z.
+SWEEP PREREG written (UTC): 2026-09-20T15:31:54Z
+AMENDMENT-4 (UTC): 2026-09-21T00:48:47Z.
 
 <details><summary>Full pre-registration (click)</summary>
 
@@ -532,3 +533,56 @@ The *ratio* is **not reportable** for the hash twins: median-other sits at or be
 
 
 **Why NMI and purity understate this.** Conditional NMI sits at ~92% of its reference ceiling and within-model k-means matches or beats the router on it; conditional purity is saturated at ~0.95 for any assignment. Both are *readout* statistics: they establish that phase is recoverable from the hidden states, which a post-hoc clustering also achieves. Only the intervention separates the router from a clustering of its own input — 0.290 vs a hash twin's 0.003, with ~63% of the effect on a single expert. The correlational metrics are near-saturated exactly where the causal metric is most discriminating.
+
+
+
+---
+
+# PART IV — ROUTING SWEEP: H_slack REJECTED
+
+Pre-registered in `PREREGISTRATION_SWEEP.md` (`c1b023f4`) + `PREREG_SWEEP_AMENDMENT_4.md` (`2f9add95`), both filed before the relevant models trained. 6L/d256, 250k, seeds 30-34, last layer, same L1-L4.
+
+
+**H_slack was:** top-2 + LBL creates *slack* letting one expert monopolise phase-1 slot 0; under top-1 the balance constraint binds directly, so specialization should **spread** — predicting LOWER concentration, HIGHER ceiling-normalised cNMI, SMALLER L(e1).
+
+
+## Arms
+
+| arm | routing | experts | LBL scope | differs from baseline by |
+|---|---|---|---|---|
+| baseline | top-2 | 8 | large | — |
+| V1 | top-1 | 8 | local | **two axes** (arity AND scope) — confounded, see A4.1 |
+| V6 | top-1 | 8 | large | **arity only** — the actual H_slack test |
+| V7 | top-2 | 8 | local | scope only — **NOT RUN** (budget exhausted) |
+
+## Results (last layer, 5 seeds each)
+
+| arm | cond NMI | % of ceiling | L(e1) | sum_e L(e) | concentration |
+|---|---|---|---|---|---|
+| V6 (arity only) | 0.0198 | **9%** | -0.00003 | 0.0002 | **undefined** (below floor) |
+| V1 (confounded) | 0.0178 | **8%** | +0.00004 | 0.0002 | **undefined** (below floor) |
+| baseline (top-2/8/large) | 0.2009 | **92%** | +0.2898 | 0.3100 | 0.630 |
+
+## Verdict on each pre-registered prediction
+
+| | prediction | result |
+|---|---|---|
+| **P1** concentration (PRIMARY) | top-1 LOWER | **UNEVALUABLE** — sum_e L(e) is 0.0001-0.0012 vs the pre-stated 0.05 floor (A4.3). There is no causal effect to concentrate. |
+| **P2** ceiling-normalised cond NMI | top-1 HIGHER | **REVERSED** — top-1 **9%** vs top-2 **92%** of ceiling; predicted direction in **0/5** pairs, paired t **p < 0.0001**. |
+| **P3** absolute L(e1) | top-1 SMALLER | **vacuously true** — 5/5, p=0.024, but only because L(e1) is ~0. Not support for H_slack. |
+
+### **H_slack is REJECTED, and its premise is inverted.**
+
+Top-1 routing does not *spread* specialization — it **eliminates** it. Top-2 appears to be **necessary for phase specialization to exist at all** at this scale. The 'slack' the hypothesis treated as an artefact to be removed is, on this evidence, the mechanism's precondition.
+
+
+## Decision matrix (A4.5), as far as budget allowed
+
+| V6 (arity only) | V7 (scope only) | conclusion |
+|---|---|---|
+| **COLLAPSE** (observed) | **not run** | **Arity alone is sufficient** to destroy specialization. V1's collapse is fully explained without invoking scope. Whether scope *independently* also suffices is unresolved. |
+
+**V6 trains normally** — test acc 0.2688-0.2773 vs majority 0.1141 (ratio 2.36-2.43), matching the baseline's 2.43-2.48. So this is not a failure to learn the task; it is a model that learns the task without routing on phase.
+
+
+*Reporting note: the A4.3 floor was pre-registered but initially not implemented in `sweep_analysis.py`, which reported P1 as 'inconclusive (4/5, p=0.45)'. Those numbers were computed from noise. The floor is now enforced in code and P1 is reported as unevaluable.*

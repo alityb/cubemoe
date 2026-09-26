@@ -1,0 +1,20 @@
+# pre-rewrite git record 2026-09-23T17:06:01Z
+a70c483 (HEAD -> main) Add remaining analysis artefacts
+69e559d Add sweep results: V1 and V6 both collapse; H_slack premise inverted
+a05a7e8 Amendment 4: record V1 two-axis confound, add V6/V7 single-axis arms, concentration floor 0.05
+bdac362 Sweep prereg: switch P3 to absolute L(e1); ratio unstable near zero denominator
+ec23a0f Add Modal sweep app with single-dispatch entrypoint (client death stalled grouped dispatch)
+4d19744 Add scale controls: ceiling-normalised cNMI, conditional purity, per-layer L4, concentration index
+11d11e8 Make routing extraction top-k agnostic (was hardcoded to top-2)
+130a21c Expose --experts/--topk/--lbl_scope/--tag and record them in the checkpoint cfg
+d3d2c40 Add lb_loss scope {off,local,large} and vectorise the local-scope path
+6ae7897 Ignore checkpoints, datasets and __pycache__ (exceed GitHub 100MB limit)
+95ee24d (tag: confirmatory-v2) confirmatory-v2: scale controls, concentration index, Part III, sweep prereg
+54f96a5 (tag: scale-replication-v1) scale-replication-v1: 6L/d256 on 250k solves, seeds 20-24 — both arms CONFIRMED
+f8d3994 (tag: confirmatory-v1) Split post-results scale protocol out of Amendment 1
+5b72639 confirmatory-v1 prereg dc0cf984 amend1 e0fdaba4
+
+# tags:
+confirmatory-v1 confirmatory-v1 prereg dc0cf984 amend1 78b97ac5
+confirmatory-v2 confirmatory-v2 prereg dc0cf984 amend1-3 (78b97ac5, amend2, 9fb968e0) sweep 2d15b995
+scale-replication-v1 scale-replication-v1 prereg dc0cf984 amend1 78b97ac5 amend3 9fb968e0

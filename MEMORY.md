@@ -730,3 +730,45 @@ hash 0.003), **grows with scale** (cond NMI 63% -> 92% of ceiling; L4 ~9x -> ~12
 **understated by NMI/purity** — both are saturated (purity ~0.95 for *any* assignment; k-means beats
 the router on cond NMI 4/5) precisely where the causal test is most discriminating. Correlational
 metrics show phase is *recoverable* from hidden states; only intervention shows it is *used*.
+
+---
+
+## 11. ROUTING SWEEP — H_slack REJECTED (2026-09-21..25)
+
+Pre-registered: `PREREGISTRATION_SWEEP.md` `c1b023f4` + `PREREG_SWEEP_AMENDMENT_4.md` `2f9add95`.
+6L/d256, 250k, seeds 30-34, last layer, same L1-L4.
+
+| arm | routing / experts / LBL scope | cond NMI | % ceiling | L(e1) | Σ_e L(e) |
+|---|---|---|---|---|---|
+| baseline | top-2 / 8 / large | 0.2009 | **92%** | +0.2898 | 0.3100 |
+| **V6** (arity only) | top-1 / 8 / large | 0.0198 | **9%** | −0.00003 | 0.0002 |
+| V1 (confounded) | top-1 / 8 / local | 0.0178 | 8% | +0.00004 | 0.0002 |
+| V7 (scope only) | top-2 / 8 / local | **NOT RUN** — budget exhausted | | | |
+
+**Verdict: H_slack REJECTED; its premise is inverted.**
+- P1 (concentration, PRIMARY): **UNEVALUABLE** — Σ_e L(e) 0.0001–0.0012 vs the pre-stated 0.05 floor.
+  There is no causal effect to concentrate.
+- P2 (ceiling-normalised cNMI): **REVERSED** — 0/5 pairs in the predicted direction, p < 0.0001.
+- P3 (absolute L(e1)): vacuously true (5/5, p=0.024) only because L(e1) ≈ 0.
+
+**Top-1 routing does not spread specialization — it eliminates it.** Top-2 appears *necessary* for
+phase specialization to exist at all at this scale. V6 trains normally (acc ratio 2.36–2.43, matching
+baseline 2.43–2.48), so this is a model that learns the task **without routing on phase**.
+
+**Decision matrix (A4.5):** V6 collapses on arity alone → arity is sufficient; V1's collapse needs no
+appeal to scope. Whether scope *independently* also suffices is **unresolved** (V7 unrun).
+
+### Process notes
+- The A4.3 concentration floor was **pre-registered but not implemented in code**; the first pass
+  reported P1 as "inconclusive (4/5, p=0.45)" from noise-derived values. Floor now enforced in
+  `sweep_analysis.py`. **A pre-registered rule that lives only in prose will not be applied.**
+- Two client-side DNS failures killed `modal run` mid-arm. `--detach` protects already-dispatched
+  work but NOT the group loop, which ran on the client — dispatch all seeds in one `starmap`.
+- Local-scope LBL was 2.8x slower than large-scope (4,118 vs 11,579 tok/s) because it looped over
+  128 sequences x 6 layers in Python. Vectorised, verified identical (1.06878528 vs 1.06878531).
+- Cost estimates were wrong three times (10x high, 3x low, 3.5x low). A valid probe is **one complete
+  model timed end-to-end**, not a steady-state inner loop.
+
+### Budget
+All three Modal workspaces exhausted (~$89 total spent). Credits reset monthly.
+Remaining unrun: **V7** (~$6), **H1 hash twin for top-1** (~$6), **H2/CFOP** (~$30-50).
