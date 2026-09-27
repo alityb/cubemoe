@@ -1,0 +1,21 @@
+=== s10 (25k) 23:28:21
+  [moe_mixed_s10] acc=0.2030 (bar 0.1439, 1.41x) probe=0.974 | cNMI=0.1517 shuf=0.0012 p=0.0050 | hash=0.0292 | b1=+0.609 p=0.005 | causal L(e1)=0.0448 med_other=0.0050 eff=9.00x self_ok=True
+=== s11 (25k) 23:30:10
+  [moe_mixed_s11] acc=0.2015 (bar 0.1439, 1.40x) probe=0.974 | cNMI=0.1118 shuf=0.0015 p=0.0050 | hash=0.0118 | b1=+0.642 p=0.005 | causal L(e1)=0.0305 med_other=0.0150 eff=2.04x self_ok=True
+=== s12 (25k) 23:31:52
+  [moe_mixed_s12] acc=0.2010 (bar 0.1439, 1.40x) probe=0.968 | cNMI=0.0598 shuf=0.0014 p=0.0050 | hash=0.0109 | b1=+0.446 p=0.020 | causal L(e1)=0.0191 med_other=0.0053 eff=3.61x self_ok=True
+=== s13 (25k) 23:33:41
+  [moe_mixed_s13] acc=0.2010 (bar 0.1439, 1.40x) probe=0.972 | cNMI=0.2053 shuf=0.0012 p=0.0050 | hash=0.0096 | b1=+0.532 p=0.005 | causal L(e1)=0.0622 med_other=0.0053 eff=11.82x self_ok=True
+=== s14 (25k) 23:35:31
+  [moe_mixed_s14] acc=0.2023 (bar 0.1439, 1.41x) probe=0.972 | cNMI=0.1312 shuf=0.0014 p=0.0050 | hash=0.0113 | b1=+0.651 p=0.005 | causal L(e1)=0.0318 med_other=0.0201 eff=1.59x self_ok=True
+=== s20 (250k) 23:37:20
+  [moe_mixed_s20] acc=0.3427 (bar 0.1382, 2.48x) probe=0.999 | cNMI=0.2747 shuf=0.0012 p=0.0050 | hash=0.0154 | b1=+0.412 p=0.005 | causal L(e1)=0.4875 med_other=0.0018 eff=267.78x self_ok=True
+=== s21 (250k) 23:40:51
+  [moe_mixed_s21] acc=0.3394 (bar 0.1382, 2.46x) probe=0.999 | cNMI=0.2120 shuf=0.0015 p=0.0050 | hash=0.0158 | b1=+0.478 p=0.005 | causal L(e1)=0.1188 med_other=0.0045 eff=26.25x self_ok=True
+=== s22 (250k) 23:43:09
+  [moe_mixed_s22] acc=0.3355 (bar 0.1382, 2.43x) probe=0.999 | cNMI=0.2499 shuf=0.0012 p=0.0050 | hash=0.0177 | b1=+0.741 p=0.005 | causal L(e1)=0.4454 med_other=0.0015 eff=303.23x self_ok=True
+=== s23 (250k) 23:44:50
+  [moe_mixed_s23] acc=0.3408 (bar 0.1382, 2.47x) probe=0.999 | cNMI=0.2782 shuf=0.0013 p=0.0050 | hash=0.0054 | b1=+0.433 p=0.005 | causal L(e1)=0.3323 med_other=0.0024 eff=141.40x self_ok=True
+=== s24 (250k) 23:46:31
+  [moe_mixed_s24] acc=0.3383 (bar 0.1382, 2.45x) probe=0.998 | cNMI=0.2752 shuf=0.0013 p=0.0050 | hash=0.0143 | b1=+0.645 p=0.005 | causal L(e1)=0.0815 med_other=0.0029 eff=28.28x self_ok=True
+=== H1 RERUN DONE 23:48:12

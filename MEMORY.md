@@ -977,18 +977,33 @@ with move *t*'s phase/stage. Because phase/stage is piecewise constant along a s
 exactly the **segment-boundary** tokens, which carry the most decomposition information, and it
 included a final position whose target is −100.
 
-**Direction is ATTENUATION only** — it can hide alignment, never manufacture it:
+### Full re-run, all 10 arm-A models at the original `max_solves 1200` (RESOLVED)
 
-| model | metric | OLD (54+t) | FIXED (53+t) |
-|---|---|---|---|
-| `moe_mixed_s20` (H1) | vs G1 | 0.1957 (38% of ceiling) | **0.2617 (50%)** |
-| `moe_cfop_s40` (H2) | vs stage | 0.0007 (1%) | 0.0004 (1%, still null) |
+`src/h1_rerun.sh` -> `out/confirm_fixed/`, `out/confirm_scale_fixed/` (published dirs untouched).
 
-**No verdict changes.** But `confirm.py` imports the same `extract_seq`, so **H1's correlational legs
-(L2, L3) in both the confirmatory run and the scale replication were reported CONSERVATIVELY** — H1 is
-stronger than published. The causal legs never used this path (`confirm.py:causal_seq` and
-`h2_causal.py` both index 53+t), so the ~270x headline is untouched. `EXTRACT_OFF1=1` reproduces the old
-behaviour for audit.
+| | cNMI published | cNMI fixed | change | causal `L(e1)` |
+|---|---|---|---|---|
+| **25k** seeds 10-14 | 0.1407 | 0.1320 | −0.0087, t=−1.46, **p=0.22**, up 1/5 | 0.0377 -> 0.0377, **diff exactly 0.0** |
+| **250k** seeds 20-24 | 0.1967 | **0.2580** | **+0.0613, t=+9.06, p=0.0008, up 5/5** | 0.2931 -> 0.2931, max diff 6.9e-07 |
 
-**UNRESOLVED:** the 0.1957 -> 0.2617 figure is ONE seed at 200 solves. H1's correlational legs should be
-re-run across seeds before any revised H1 magnitude is quoted. Do not restate H1's numbers until then.
+**The effect is SCALE-DEPENDENT, not uniformly attenuating.** An earlier claim in this file that the bug
+"attenuated every correlational number, H1 is stronger than published" was an **overgeneralization from
+one seed at 200 solves** and is corrected here: it holds for the 250k replication (+31% relative) and
+NOT for the confirmatory run (p=0.22, mean shift slightly downward).
+
+**The causal legs are provably untouched** — differences are *exactly zero* on all five 25k seeds and
+<=6.9e-07 at scale (MPS float nondeterminism; same selected expert, same baseline to 6 dp). So
+`confirm.py:causal_seq` and `h2_causal.py` never used this path, as their 53+t indexing implies, and
+H1's headline causal effect is unmoved. `EXTRACT_OFF1=1` reproduces the old behaviour for audit.
+
+**No verdict changes** at either scale: every gate still clears widely (cNMI 0.0598-0.2782 vs shuffled
+nulls 0.0011-0.0016, permutation p=0.005 throughout, hash twins 0.0096-0.0154, change-point slope
+positive at p<=0.02 on all 10 seeds).
+
+**STILL UNRESOLVED — do not restate H1's "92% of ceiling".** That figure came from a *different*
+normalization pipeline (`controls_scale.py`/`calibrate.py`), not from `confirm.py`, and is not
+comparable to `h2_analysis.py`'s ceiling (which gives 0.5190 for mixed250k, i.e. the fixed 0.2580 would
+be ~50% under THAT convention). The ceiling-normalized H1 figure must be recomputed in its own pipeline
+before any % is quoted. Conjecture, untested, for the scale-dependence: at 250k routing is far more
+sharply phase-specialized, so a one-step shift at the boundary destroys proportionally more of a crisp
+signal than it does in the blurrier 25k models.
