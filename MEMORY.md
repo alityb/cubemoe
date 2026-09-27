@@ -1037,9 +1037,12 @@ vector agrees (0.1188 vs 0.1137 etc.).
 | primary (4 stages) | +0.0023 | **2/5** | p=0.8168 | **+0.0052**, p=0.7233 | −0.0607, **p=0.0347** |
 | secondary (stages 3–4) | +0.0021 | 3/5 | p=0.8624 | **+0.0078**, p=0.6172 | −0.1288, **p=0.0084** |
 
-`is_native` POSITIVE = a stage's own expert damages it slightly *more*. The **load artifact is
-significant for the third time across three tests** — it is a robust property of this intervention
-design, not a one-off.
+`is_native` POSITIVE = a stage's own expert damages it slightly *more*. The **load artifact appeared in
+all three causal tests**, though not always as a significant predictor: in H2 it fully explained a
+spurious 7/20 signal (binomial p=0.008) while its correlation with damage was NOT significant (rho +0.11,
+p=0.155); in H2b it was significant only on stages 2-4 (p=0.0078; all stages p=0.052); in H2c p=0.035
+(all) and p=0.0084 (stages 3-4). (Corrected 2026-09-27: an earlier line here said "significant for the
+third time across three tests", which overstated H2 and H2b-primary.)
 
 OLS verified with three independent solvers (`np.linalg.lstsq`, `scipy.linalg.lstsq`, normal equations):
 identical to 5 dp, cond(X)=8.2/12.4, full rank. The macOS Accelerate BLAS RuntimeWarnings are cosmetic.
