@@ -7,7 +7,8 @@ Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary 
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
 
 **Status (2026-09-26).** **H1 confirmed at two scales; H_slack REJECTED (§11); H2/CFOP REJECTED (§12);
-H2b/position-decorrelation REJECTED on its causal leg (§13).** All five pre-registered programmes complete. Verdicts come ONLY from pre-registered runs on fresh seeds.
+H2b/position-decorrelation REJECTED on its causal leg (§13); H2c/stage-specific readout finds nothing but
+missed its own resolution bar (§15).** All six pre-registered programmes complete. Verdicts come ONLY from pre-registered runs on fresh seeds.
 
 **Headline, in one line:** a router recovered the Kociemba G1 decomposition robustly and causally
 (~270x causal effect at scale), and **failed** to recover the CFOP 4-stage decomposition its own
@@ -1007,3 +1008,64 @@ be ~50% under THAT convention). The ceiling-normalized H1 figure must be recompu
 before any % is quoted. Conjecture, untested, for the scale-dependence: at 250k routing is far more
 sharply phase-specialized, so a one-step shift at the boundary destroys proportionally more of a crisp
 signal than it does in the blurrier 25k models.
+
+## 15. H2c / STAGE-SPECIFIC READOUT — finds nothing, but MISSED its own resolution bar (2026-09-27)
+
+Governing doc: `PREREG_AMENDMENT_6_STAGE_SPECIFIC_READOUT.md` (`1dc2f1cf`), filed before the readout
+was implemented. A SEPARATE test, not a re-analysis: **H2b's REJECTED verdict is untouched** and the
+A6.1 rule forbids writing "H_pos was supported" under any outcome here.
+
+### Instrument validated (A6.4 gate CLEARED — H2c not void)
+
+`M_s` = moves whose training-split frequency in stage *s* exceeds their frequency elsewhere, frozen +
+hashed before any intervention (`out/h2c_msets_*.json`).
+
+**The derivation validated itself blind:** on Kociemba data it recovered **M_2 == exactly the 10 G1
+moves** (mass 1.000 in phase 2, 0.456 elsewhere) and M_1 == exactly the 8 non-G1 quarter turns (mass
+0.000 in phase 2), without being told what G1 is. On CFOP: |M_3|=5 (0.904 of stage mass), |M_4|=8 (0.979).
+
+**Positive control vs `confirm.py`'s H1 machinery, all 40 cells (5 seeds x 8 experts):**
+Pearson **r=0.99978**, slope **0.971**, mean |diff| **0.0023**. Reproduces H1 at full strength
+(s20: L=0.4753 vs median_other 0.0025). The one apparent mismatch (s21) was **`argmax` instability in
+labelling which expert is "e1"** at 200 vs 1200 solves, not a readout error — the underlying per-expert
+vector agrees (0.1188 vs 0.1137 etc.).
+
+### Result: no effect, and the point estimate is in the WRONG direction
+
+| | advantage | seeds | paired t | `is_native` coef | `already_routed_frac` |
+|---|---|---|---|---|---|
+| primary (4 stages) | +0.0023 | **2/5** | p=0.8168 | **+0.0052**, p=0.7233 | −0.0607, **p=0.0347** |
+| secondary (stages 3–4) | +0.0021 | 3/5 | p=0.8624 | **+0.0078**, p=0.6172 | −0.1288, **p=0.0084** |
+
+`is_native` POSITIVE = a stage's own expert damages it slightly *more*. The **load artifact is
+significant for the third time across three tests** — it is a robust property of this intervention
+design, not a one-off.
+
+OLS verified with three independent solvers (`np.linalg.lstsq`, `scipy.linalg.lstsq`, normal equations):
+identical to 5 dp, cond(X)=8.2/12.4, full rank. The macOS Accelerate BLAS RuntimeWarnings are cosmetic.
+
+### THE CAVEAT — H2c missed its own pre-declared resolution bar
+
+A6.4 required the instrument to improve resolution **>= ~3x** over H2b before its null could be read as
+evidence about routing. Measured:
+
+| readout | mean \|background\| | mean between-expert spread | pooled spread/background |
+|---|---|---|---|
+| H2b (raw per-stage accuracy) | 0.1209 | 0.0372 | 0.308 |
+| H2c (stage-characteristic mass) | **0.0435** | 0.0391 | **0.898** |
+
+Improvement **2.9x** — *at* the bar, not clearly above it. MDE also unmet (0.0274 vs observed 0.0023).
+
+**Therefore A6.5's anticipated conclusion ("H2b's null is ROBUST") is NOT licensed.** `src/h2b_report.py`
+auto-printed that line because the pass rule was coded but the *interpretation* was not gated on the
+resolution check — a flaw in the reporting code relative to the amendment. Report per the amendment.
+
+### Honest end state of the causal question
+
+Two independent readouts (accuracy, stage-characteristic move mass), load artifact controlled in both,
+find **no causal stage specialization and no directional hint of one**. Neither achieved the resolution
+to **exclude** a small effect, and H2c narrowly missed the bar set for claiming it had. The converging
+nulls are suggestive, not decisive.
+
+Artefacts: `out/h2c.json`, `out/h2c_poscontrol.json`, `out/h2c_verdict.json`, `out/h2c_msets_*.json`,
+`src/h2c_readout.py`, `out/h2c.log`, `out/h2c_poscontrol.log`.

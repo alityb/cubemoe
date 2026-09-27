@@ -1,0 +1,39 @@
+{
+ "verdict": "H2c FINDS NOTHING -> H2b's null is ROBUST, not merely underpowered (A6.5)",
+ "primary": {
+  "n": 20,
+  "L_native": 0.02612750007648173,
+  "L_median": 0.02838084084990187,
+  "adv": 0.002253340773420133,
+  "t": 0.23491008877890282,
+  "p": 0.816791616102124,
+  "seeds_pos": 2,
+  "is_native_coef": 0.005156724852339307,
+  "is_native_p": 0.7232888090031497,
+  "frac_coef": -0.060675337318923495,
+  "frac_p": 0.03467054495944296,
+  "partial_ok": false,
+  "passed": false,
+  "mde": 0.02743413297181625
+ },
+ "secondary": {
+  "n": 10,
+  "L_native": 0.04473028177219431,
+  "L_median": 0.04678258567021319,
+  "adv": 0.002052303898018881,
+  "t": 0.1783920921135753,
+  "p": 0.8623660132324239,
+  "seeds_pos": 3,
+  "is_native_coef": 0.007756925274290469,
+  "is_native_p": 0.6171500972201022,
+  "frac_coef": -0.12881226300337384,
+  "frac_p": 0.008377739134759959,
+  "partial_ok": false,
+  "passed": false,
+  "mde": 0.03290274293435082
+ },
+ "resolution_h2b": 0.30785579046673617,
+ "resolution_h2c": 0.898127151399986,
+ "improvement": 2.9173631915071243,
+ "poscontrol_r": 0.99978
+}
