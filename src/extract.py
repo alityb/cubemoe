@@ -1,5 +1,5 @@
 """Routing / residual extraction for seq (A,B,hash) and state (C) models."""
-import sys, numpy as np, torch
+import sys, os, numpy as np, torch
 sys.path.insert(0, '/Users/alityb/projects/cubemoe/src')
 from model import SeqModel, StateModel
 ROOT = '/Users/alityb/projects/cubemoe'
@@ -35,7 +35,13 @@ def extract_seq(tag, data, dev, max_solves=2500):
             B, T = x.shape
             for r in range(B):
                 i = te[b0+r]; nmv = int(d['sol_len'][i]); sm = int(d['seam'][i])
-                mv = d['moves'][off[i]:off[i+1]]; idx = 54 + np.arange(nmv)
+                mv = d['moves'][off[i]:off[i+1]]
+                # build_seq puts the target for move t at index 53+t, so the residual/routing
+                # that PREDICTS move t lives at 53+t. Reading 54+t was off by one: it took the
+                # position predicting move t+1 while labelling it with move t's phase/stage,
+                # which mislabels exactly the segment-boundary tokens, and included a final
+                # position whose target is -100. Env var reproduces the old behaviour for audit.
+                idx = (54 if os.environ.get('EXTRACT_OFF1')=='1' else 53) + np.arange(nmv)
                 for t in range(nmv):
                     meta.append((b0+r, t, nmv-t, 1 if t<sm else 2, int(mv[t]),
                                  int(mv[t-1]) if t>0 else 18, sm, nmv))

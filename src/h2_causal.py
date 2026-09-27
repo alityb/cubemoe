@@ -101,6 +101,15 @@ def run(tag, data, dev, max_solves, E=8):
             me=(cur==e)&msel; tot=me.sum()
             sc.append(((STG==s)&me).sum()/tot if tot>=50 else -1.0)
         native[s]=int(np.argmax(sc))
+    # A5.4 artifact control: fraction of stage-s tokens ALREADY routed to e.
+    # Forcing stage-s onto the expert that already handles most of them perturbs fewer
+    # tokens and so damages less for reasons unrelated to expert IDENTITY. In H2 this
+    # fully explained the apparent 7/20 signal, so Leg 2 must be partialled on it.
+    fr=np.zeros((E,len(stages)))
+    for j,s_ in enumerate(stages):
+        sel_=(STG==s_); ns=sel_.sum()
+        for e in range(E): fr[e,j]=((cur==e)&sel_).sum()/max(ns,1)
+    out['already_routed_frac']=fr.tolist()
     out['stages']=stages; out['base_stage']={int(k):v for k,v in base_s.items()}
     out['damage']=Lm.tolist(); out['native']={int(k):v for k,v in native.items()}
     out['native_distinct']=len(set(native.values()))
@@ -131,12 +140,13 @@ def run(tag, data, dev, max_solves, E=8):
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('--max_solves',type=int,default=200)
-    ap.add_argument('--tags',default=''); a=ap.parse_args(); dev=device_auto()
+    ap.add_argument('--tags',default=''); ap.add_argument('--data',default='cfop')
+    ap.add_argument('--out',default='h2_causal'); a=ap.parse_args(); dev=device_auto()
     tags=a.tags.split(',') if a.tags else [f'moe_cfop_s{s}' for s in range(40,45)]
     res=[]
     for t in tags:
         if not os.path.exists(f'{ROOT}/out/{t}.pt'): continue
-        r=run(t,'cfop',dev,a.max_solves); res.append(r)
+        r=run(t,a.data,dev,a.max_solves); res.append(r)
         Lm=np.array(r['damage'])
         print(f"\n{t}  layer={r['layer']}  self_exact={r['self_exact']}")
         print(f"  stage accuracy damage L[e,s]  (rows=expert, cols=stage {r['stages']})")
@@ -151,5 +161,5 @@ if __name__=='__main__':
             g=r['g1']
             print(f"  [G1 readout, H1-style] e1={g['e1']} base={g['baseline']:.4f} "
                   f"L(e1)={g['loss_e1']:.4f} median_other={g['median_other']:.4f} conc={g['concentration']:.3f}")
-    json.dump(res,open(f'{ROOT}/out/h2_causal.json','w'),indent=1)
+    json.dump(res,open(f'{ROOT}/out/{a.out}.json','w'),indent=1)
     print(f"\nwrote out/h2_causal.json ({len(res)} models)")

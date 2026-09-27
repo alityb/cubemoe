@@ -74,14 +74,17 @@ def run(tag, data, max_solves, dev):
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('--max_solves',type=int,default=600)
+    ap.add_argument('--tags',default=''); ap.add_argument('--data',default='cfop')
+    ap.add_argument('--no_kociemba',action='store_true'); ap.add_argument('--out',default='h2_2x2')
     a=ap.parse_args(); dev=device_auto(); res={'cfop':[], 'kociemba':[]}
-    for s in range(40,45):
-        t=f'moe_cfop_s{s}'
-        if os.path.exists(f'{ROOT}/out/{t}.pt'): res['cfop'].append(run(t,'cfop',a.max_solves,dev))
-    for s in range(20,25):
-        t=f'moe_mixed_s{s}'
-        if os.path.exists(f'{ROOT}/out/{t}.pt'): res['kociemba'].append(run(t,'mixed250k',a.max_solves,dev))
-    json.dump(res,open(f'{ROOT}/out/h2_2x2.json','w'),indent=1)
+    tags=a.tags.split(',') if a.tags else [f'moe_cfop_s{s}' for s in range(40,45)]
+    for t in tags:
+        if os.path.exists(f'{ROOT}/out/{t}.pt'): res['cfop'].append(run(t,a.data,a.max_solves,dev))
+    if not a.no_kociemba:
+        for s in range(20,25):
+            t=f'moe_mixed_s{s}'
+            if os.path.exists(f'{ROOT}/out/{t}.pt'): res['kociemba'].append(run(t,'mixed250k',a.max_solves,dev))
+    json.dump(res,open(f'{ROOT}/out/{a.out}.json','w'),indent=1)
     print("\n=== H2 PRIMARY ENDPOINT: 2x2 cross-evaluation ===")
     print(f"{'trained on':<12}{'vs CFOP stage':>15}{'vs G1 phase':>14}{'stage>G1?':>11}")
     for k,rows in res.items():
