@@ -126,7 +126,7 @@ def causal_state(tag, data, dev, max_solves):
                 effect=float(losses[e1]/max(np.median(others),1e-9)),self_exact=bool(self_ok),
                 n_phase2_rows=int(sel2.sum()))
 
-def run(tag, data, is_state, max_solves):
+def run(tag, data, is_state, max_solves, outdir='confirm'):
     dev=device_auto()
     ex=(extract_state if is_state else extract_seq)(tag,data,dev,max_solves)
     L=ex['NL']-1
@@ -160,8 +160,8 @@ def run(tag, data, is_state, max_solves):
             out['hash_twin']=metrics(hx['e1'][hL],hx['phase'],hx['pos'])['nmi_strat_wt']
             out['hash_twin_tag']=htag
     out['causal']=(causal_state if is_state else causal_seq)(tag,data,dev,max_solves)
-    os.makedirs(f'{ROOT}/out/confirm',exist_ok=True)
-    json.dump(out,open(f'{ROOT}/out/confirm/{tag}.json','w'),indent=1)
+    os.makedirs(f'{ROOT}/out/{outdir}',exist_ok=True)
+    json.dump(out,open(f'{ROOT}/out/{outdir}/{tag}.json','w'),indent=1)
     c=out['causal']
     print(f"  [{tag}] acc={out['acc']:.4f} (bar {out['bar']:.4f}, {out['acc_ratio']:.2f}x) probe={out['probe']:.3f} | "
           f"cNMI={out['cond_nmi']:.4f} shuf={out['shuffled']:.4f} p={out['perm_p']:.4f} | "
@@ -173,4 +173,5 @@ def run(tag, data, is_state, max_solves):
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('--tag'); ap.add_argument('--data',default='mixed')
     ap.add_argument('--state',action='store_true'); ap.add_argument('--max_solves',type=int,default=1200)
-    a=ap.parse_args(); run(a.tag,a.data,a.state,a.max_solves)
+    ap.add_argument('--outdir',default='confirm')
+    a=ap.parse_args(); run(a.tag,a.data,a.state,a.max_solves,a.outdir)
