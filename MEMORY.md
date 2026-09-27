@@ -6,16 +6,22 @@ Everything learned, decided, measured, and corrected. Written 2026-09-17.
 Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary (entry into
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
 
-**Status (2026-09-26).** **H1 confirmed at two scales; H_slack REJECTED (§11); H2/CFOP REJECTED (§12).**
-All four pre-registered programmes are complete. Verdicts come ONLY from pre-registered runs on fresh seeds.
+**Status (2026-09-26).** **H1 confirmed at two scales; H_slack REJECTED (§11); H2/CFOP REJECTED (§12);
+H2b/position-decorrelation REJECTED on its causal leg (§13).** All five pre-registered programmes complete. Verdicts come ONLY from pre-registered runs on fresh seeds.
 
 **Headline, in one line:** a router recovered the Kociemba G1 decomposition robustly and causally
 (~270x causal effect at scale), and **failed** to recover the CFOP 4-stage decomposition its own
 training data was built from — because CFOP stage is 86% determined by token position, so the network
-gets it free and the router never encodes it. **Revised claim: routing encodes a data-latent
-decomposition only when that decomposition is not already recoverable from position.** The original H2
-framing ("routing tracks the data's decomposition, not a fixed property of the cube") is **not
-supported**; but neither is the converse — the CFOP router carries G1 no better than chance causally.
+gets it free and the router never encodes it. H2b then **manipulated** position-availability directly (cross widened to 0-25, landing at 57.3%
+removed-by-position vs Kociemba's 57.9%). Result: routing **alignment** with stage appeared, 5/5 seeds,
+2.4x above its own shuffled null — but **no causal evidence it is used** (is_native coef -0.0014,
+p=0.92 after the mandatory artifact control), so H_pos is REJECTED per A5.4. That null is
+**underpowered** (observed +0.0094 vs MDE 0.0239) and its causal readout is the design's weak link (§13).
+
+**Therefore: position-decorrelation is sufficient to make routing ALIGN with a decomposition, and is
+NOT shown sufficient to make routing causally IMPLEMENT it.** The general claim "MoE routers recover the
+decomposition latent in their training data" is **unsupported**: the one demonstrated instance of causal
+recovery remains G1 alone. The original H2 framing is not supported, and neither is its converse.
 
 | run | scale | seeds | arm A | arm C |
 |---|---|---|---|---|
@@ -892,3 +898,97 @@ the non-monotonicity but the 2x2 was specified as if it did not matter. The CFOP
 segment boundary, and all 179 PLL / 148 OLL / 231 F2L canonical maneuvers preserve the D edges.
 
 Artefacts: `out/h2_2x2.json`, `out/h2_causal.json`, `src/h2_analysis.py`, `src/h2_causal.py`.
+
+## 13. H2b / POSITION DECORRELATION — H_pos REJECTED on the causal leg (2026-09-26)
+
+Governing doc: `PREREG_AMENDMENT_5_POSITION_DECORRELATION.md` (`d4dd9b54`), filed before data generation.
+Data `cfop_dec.npz`: 10k solves, `cross_len=(0,25)`, 677,580 steps. Fresh seeds 50–54, 4L/d128,
+maxlen 145. Uses the FIXED `53+t` extraction (see §14).
+
+**A5.3 void condition PASSED:** removed-by-position **57.3%**, inside the declared 50–65% window and
+within 0.6 pts of Kociemba's 57.9%. All 9 QA gates passed; state-only conflict 6.26%.
+
+### Verdict: H_pos REJECTED (Leg 2 decisive per A5.4)
+
+| gate | result |
+|---|---|
+| L1 learning | **PASS** — acc 0.5611–0.5747, 5/5 at 3.30x the 0.1701 bar |
+| Leg 1 correlational | **PASS** — stage 9.7% of ceiling (null 3.8%) vs G1 6.2%; stage>G1 **5/5**, p=0.0075 |
+| Leg 2 causal (co-primary) | **FAIL** — advantage +0.0094, paired t p=0.2723, 4/5 seeds |
+| Leg 2 partial control | **FAIL** — `is_native` coef −0.0014, p=0.9244 |
+| Leg 2 secondary (stages 2–4) | FAIL — advantage +0.0118, p=0.3083 |
+
+### The manipulation DID work correlationally — this is the real finding
+
+The identical comparison that failed **0/5** in H2 passes **5/5** here:
+
+| | vs CFOP stage (raw) | vs its own shuffled null | stage>G1 |
+|---|---|---|---|
+| H2, `cross_len=(4,8)` | 0.0009 | **at null** (1–2% vs 1–2%) | 0/5 |
+| H2b, `cross_len=(0,25)` | 0.0974 | **2.4x above null** (9.7% vs 3.8%) | **5/5** |
+
+Also `native expert per stage` is **4/4 distinct in all 5 seeds** (H2: 3–4/4). So decorrelating position
+from the label changed what the router encodes. **The ceiling itself moved, 0.0657 -> 1.0000**, which is
+not a bug but the manipulation's signature: in H2 stage was so position-determined that within most
+position strata the label barely varied, leaving nothing for conditional MI to see. Therefore compare
+each run **against its own shuffled null**, never H2's "% of ceiling" against H2b's.
+
+### But there is no causal evidence the stage assignment is USED
+
+`L_native` 0.1104 vs `L_median` 0.1198 over 20 cells, p=0.27. After partialling out the already-routed
+fraction, `is_native` is **−0.0014, p=0.92** — indistinguishable from zero.
+
+**The artifact control earned its place again:** `already_routed_frac` is itself significant
+(coef −0.0555 p=0.052 primary; **−0.1163 p=0.0078** secondary). Tokens already routed to an expert are
+cheaper to force there. That is what produced H2's spurious 7/20 signal and it is operating here too.
+
+### Two caveats that must travel with this verdict
+
+1. **The null is UNDERPOWERED and this was pre-declared.** Observed +0.0094 vs MDE **0.0239** — about
+   40% of what n=20 can detect. "REJECTED" means **failed to demonstrate**, NOT demonstrated absent.
+2. **The causal readout is the weak link, and that is a design error of mine, not a property of the
+   data.** H1 used **G1-legal probability mass** — a signature only the phase-1 expert should damage —
+   with `median_other` ~0.001, so the effect stood out ~270x. H2b used **raw per-stage accuracy**, where
+   `median_other` ~0.12: forcing any single expert in a top-2 MoE removes half the computation for those
+   tokens, so diversity-collapse swamps identity. A proper analogue **exists and was not used**: stages
+   3 and 4 use only **7 and 9 of 18 moves**, so a stage-characteristic move-mass readout is well
+   defined. **This does NOT rescue the verdict** — H_pos is rejected as pre-registered and that stands.
+   It is a named limitation requiring its own pre-registered test, not a re-analysis of this one.
+
+### Where the project's claim now stands
+
+- **H1 (G1/Kociemba): CONFIRMED**, correlationally and causally, at two scales. Unaffected.
+- **H2 (CFOP stages, position-confounded): REJECTED.**
+- **H2b (CFOP stages, position-decorrelated): routing alignment appears (5/5) but no causal use shown.**
+
+So: position-decorrelation is **sufficient to make routing ALIGN with a decomposition**, and is **not
+shown sufficient to make routing causally IMPLEMENT it**. The general claim "MoE routers recover the
+decomposition latent in their training data" remains **unsupported**; the one demonstrated instance of
+causal recovery is still G1 alone.
+
+Artefacts: `out/h2b_2x2.json`, `out/h2b_causal.json`, `out/h2b_verdict.json`, `src/h2b_report.py`,
+`src/h2b_train.sh`, `out/h2b_train.log`, `out/h2b_analysis.log`.
+
+## 14. BUG: off-by-one in `extract.py` — attenuated every correlational number (2026-09-26)
+
+`build_seq` puts the target for move *t* at index **53+t**, so the residual/routing that PREDICTS move
+*t* lives at 53+t. `extract.py` read **54+t** — the position predicting move *t+1* — while labelling it
+with move *t*'s phase/stage. Because phase/stage is piecewise constant along a solve, this mislabelled
+exactly the **segment-boundary** tokens, which carry the most decomposition information, and it
+included a final position whose target is −100.
+
+**Direction is ATTENUATION only** — it can hide alignment, never manufacture it:
+
+| model | metric | OLD (54+t) | FIXED (53+t) |
+|---|---|---|---|
+| `moe_mixed_s20` (H1) | vs G1 | 0.1957 (38% of ceiling) | **0.2617 (50%)** |
+| `moe_cfop_s40` (H2) | vs stage | 0.0007 (1%) | 0.0004 (1%, still null) |
+
+**No verdict changes.** But `confirm.py` imports the same `extract_seq`, so **H1's correlational legs
+(L2, L3) in both the confirmatory run and the scale replication were reported CONSERVATIVELY** — H1 is
+stronger than published. The causal legs never used this path (`confirm.py:causal_seq` and
+`h2_causal.py` both index 53+t), so the ~270x headline is untouched. `EXTRACT_OFF1=1` reproduces the old
+behaviour for audit.
+
+**UNRESOLVED:** the 0.1957 -> 0.2617 figure is ONE seed at 200 solves. H1's correlational legs should be
+re-run across seeds before any revised H1 magnitude is quoted. Do not restate H1's numbers until then.
