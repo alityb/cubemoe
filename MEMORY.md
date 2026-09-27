@@ -439,6 +439,32 @@ Conditioned, position-only → 0.000, shuffled → 0.001, dense twin > MoE at ev
 
 **Nobody has tested MoE routing against a known ground-truth decomposition of an algorithmic task.**
 
+### 9b. Novelty re-check, 2026-09-27 (after H2b/H2c) — "alignment is not use" is NOT new
+
+- **Salomone, Gandhi & Asaria (`2606.25092`, Jun 2026)** — *pre-registered* causal test on Command A+
+  (218B MoE): routing-defined expert families ablated vs a size-matched random-expert null, positive
+  control on Qwen3-30B-A3B. Only 1/6 families (Arabic, a surface/script property) is a robust module;
+  capability axes (math, code) entangle. "Routing mass predicts neither causal importance nor
+  selectivity." **Same methodology stance as ours (prereg + random null + positive control), at frontier
+  scale.**
+- **Engmann, Adriano & Giese (`2606.10703`, ICML'26 PhilML workshop)** — token-level ablation audit on
+  OLMoE / Qwen1.5-MoE / DeepSeek-V2-Lite: no observational routing metric predicts causal expert
+  importance (all |d| < 0.23).
+- **PA-MoE (`2602.17038`)** — *engineered* phase-level router for RL agents, checked against human phase
+  annotations (87%). Not emergent, not exact ground truth; argues token-level routing *fragments* phases
+  (our Kociemba result is a counterexample in a clean setting).
+- Exa search for MoE-on-algorithmic-task-with-known-decomposition: still nothing.
+
+**What remains new:** (1) exact algorithmic ground truth (frontier studies can't know the true
+modules); (2) a clean *positive* causal module on an algorithm phase; (3) the controlled position
+manipulation (one data knob moves stage alignment 0.8x -> 2.6x shuffled as position-availability goes
+86% -> 57%); (4) minor: the already-routed load confound in *forced*-routing interventions.
+**Adversarial caveat on (2):** G1 phase coincides with a hard output-vocabulary restriction (phase 2
+uses only 10 moves) and our readout IS that restriction, so a critic can call it an output-surface axis
+like Salomone's Arabic rather than a "computational" one.
+**Blog implication:** do not headline alignment != use as our contribution; cite 2606.25092 and
+2606.10703 and present H2b/H2c as a ground-truth confirmation of their frontier-scale finding.
+
 ---
 
 ## 10. Repo layout
