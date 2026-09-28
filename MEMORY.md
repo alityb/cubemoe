@@ -1239,3 +1239,26 @@ models, they have some specialists). Effective #moves per expert KO (phase 1): m
   confirmation". Under one consistent criterion it is 1/5. The honest statement: the two sub-goals are
   carried by PARTLY separate experts in most models and fully separated in a few; the held-out
   state-only models show the same partial pattern, not a clean confirmation.
+
+### 19b. CFOP state-only, all 5 seeds (s60-64) — RESULT (2026-09-28)
+
+Accuracy 0.897-0.902 (vs 0.672-0.674 for CFOP history models on the SAME held-out solves; cross moves
+31% vs 6%). The history models are much worse at the task — likely poor cube-state tracking from long
+move sequences (hypothesis, untested; note they DO linearly encode phase at 97-99.8%).
+
+**Experts (effective # target moves damaged per single-expert KO, OLL/PLL tokens):**
+CFOP history 2.1 (n=27) -> **CFOP state-only 3.4 (n=36)**, p=7.3e-5; vs **Kociemba state-only 7.4
+(n=22)**, p=9.1e-8. **This is the clean task comparison:** same size (4L), same input (state only),
+only the task differs — CFOP experts own ~3 moves, Kociemba experts ~7. Replaces the §18 comparison
+that mixed 4L CFOP with 6L Kociemba.
+
+**Routing at fixed move number, history (5) -> state-only (5), Mann-Whitney (0.008 = all 5 on one side):**
+stage 1.8 -> 2.4% (p=0.22, unchanged); which algorithm 5.9 -> 10.3% (p=0.008, up); target move 47.1 ->
+31.6% (p=0.008, down); previous move 61.6 -> 24.7% (p=0.008, down); position inside algorithm 18.4 ->
+17.8% (p=1.0, unchanged); # F2L slots solved 9.7 -> 15.0% (p=0.016, up).
+
+**Reading:** removing the history shifts the router from tokens to cube-level progress (which algorithm,
+slots solved) and broadens experts somewhat, but **stage routing never appears** and experts stay far
+narrower than Kociemba's. So "the token shortcut is why CFOP ignored stages" is ruled out, and the
+"removing the script turns CFOP experts into goal-owners" prediction is NOT supported. Consistent with:
+routers track whatever best predicts the next move (in CFOP: which algorithm + step; stage adds nothing).

@@ -1,0 +1,36 @@
+=== state_cfop seed 60 20:45:23
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=550387 test=61160
+  ep1/3 loss=0.5053 test_acc=0.8295 tok/s=11377
+  ep2/3 loss=0.3729 test_acc=0.8896 tok/s=15432
+  ep3/3 loss=0.2404 test_acc=0.9023 tok/s=17691
+DONE state_cfop_s60: test_acc=0.9023 majority=0.1731 tok/s=17691 wall=5129s
+=== state_cfop seed 61 22:10:54
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=550387 test=61160
+  ep1/3 loss=0.4873 test_acc=0.8284 tok/s=24451
+  ep2/3 loss=0.3420 test_acc=0.8874 tok/s=26736
+  ep3/3 loss=0.3208 test_acc=0.9005 tok/s=28236
+DONE state_cfop_s61: test_acc=0.9005 majority=0.1731 tok/s=28236 wall=3213s
+=== state_cfop seed 62 23:04:30
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=550387 test=61160
+  ep1/3 loss=0.5608 test_acc=0.8229 tok/s=31440
+  ep2/3 loss=0.4415 test_acc=0.8856 tok/s=31673
+  ep3/3 loss=0.2985 test_acc=0.8969 tok/s=31734
+DONE state_cfop_s62: test_acc=0.8969 majority=0.1731 tok/s=31734 wall=2859s
+=== state_cfop seed 63 23:52:11
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=550387 test=61160
+  ep1/3 loss=0.5851 test_acc=0.8265 tok/s=19265
+  ep2/3 loss=0.3315 test_acc=0.8817 tok/s=20313
+  ep3/3 loss=0.3132 test_acc=0.8981 tok/s=21193
+DONE state_cfop_s63: test_acc=0.8981 majority=0.1731 tok/s=21193 wall=4281s
+=== state_cfop seed 64 01:03:34
+device=mps  -> d=128 layers=4  [REDUCED: no CUDA available]
+model=state params=4.50M  train=550387 test=61160
+  ep1/3 loss=0.6101 test_acc=0.8177 tok/s=23146
+  ep2/3 loss=0.3691 test_acc=0.8861 tok/s=23142
+  ep3/3 loss=0.2785 test_acc=0.9018 tok/s=23119
+DONE state_cfop_s64: test_acc=0.9018 majority=0.1731 tok/s=23119 wall=3925s
+=== CFOP STATE TRAINING DONE 02:09:01
