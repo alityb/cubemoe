@@ -1,0 +1,97 @@
+{
+ "tag": "moe_mixed_s24",
+ "n": {
+  "ph1: correct move is F/B (edge flip)": 780,
+  "ph1: correct move is R/L (corner twist)": 816,
+  "ph1: correct move is a G1 move": 1325,
+  "phase 2": 5494
+ },
+ "base": {
+  "ph1: correct move is F/B (edge flip)": 0.5152974368501768,
+  "ph1: correct move is R/L (corner twist)": 0.5474822959503417,
+  "ph1: correct move is a G1 move": 0.37377160771949247,
+  "phase 2": 0.1840686324558662
+ },
+ "drop": {
+  "0": {
+   "ph1: correct move is F/B (edge flip)": -4.727948600283036e-06,
+   "ph1: correct move is R/L (corner twist)": 4.238899861115451e-05,
+   "ph1: correct move is a G1 move": -9.74846529370209e-10,
+   "phase 2": 0.004442861405196901,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.0,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.0,
+   "acc_drop ph1: correct move is a G1 move": 0.0,
+   "acc_drop phase 2": 0.011103021477975983
+  },
+  "1": {
+   "ph1: correct move is F/B (edge flip)": 0.002977806569124835,
+   "ph1: correct move is R/L (corner twist)": 5.011504068605456e-05,
+   "ph1: correct move is a G1 move": 0.0006344744396167543,
+   "phase 2": 0.00010430609922558422,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.002564102564102555,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.0,
+   "acc_drop ph1: correct move is a G1 move": 0.0,
+   "acc_drop phase 2": 0.0003640334910811893
+  },
+  "2": {
+   "ph1: correct move is F/B (edge flip)": 0.004905297856879397,
+   "ph1: correct move is R/L (corner twist)": -0.00014128266789781513,
+   "ph1: correct move is a G1 move": 0.000787055872302208,
+   "phase 2": 0.00019894699803028868,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.0012820512820512775,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.001225490196078427,
+   "acc_drop ph1: correct move is a G1 move": 0.0,
+   "acc_drop phase 2": 0.0014561339643247295
+  },
+  "3": {
+   "ph1: correct move is F/B (edge flip)": 0.04481428979181601,
+   "ph1: correct move is R/L (corner twist)": 0.09027968696439832,
+   "ph1: correct move is a G1 move": 0.11535908007522455,
+   "phase 2": -2.5976966445418675e-05,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.0641025641025641,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.11397058823529416,
+   "acc_drop ph1: correct move is a G1 move": 0.14867924528301885,
+   "acc_drop phase 2": -0.00018201674554058078
+  },
+  "4": {
+   "ph1: correct move is F/B (edge flip)": 0.045943921053549275,
+   "ph1: correct move is R/L (corner twist)": 0.013463388509276853,
+   "ph1: correct move is a G1 move": 0.013278015897189759,
+   "phase 2": 8.140763680943571e-06,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.053846153846153766,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.014705882352941235,
+   "acc_drop ph1: correct move is a G1 move": 0.010566037735849076,
+   "acc_drop phase 2": 0.0003640334910811893
+  },
+  "5": {
+   "ph1: correct move is F/B (edge flip)": -3.248569555580616e-07,
+   "ph1: correct move is R/L (corner twist)": 2.3747419974967544e-05,
+   "ph1: correct move is a G1 move": -1.8799944664351644e-05,
+   "phase 2": -0.0009737258320965232,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.0,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.0,
+   "acc_drop ph1: correct move is a G1 move": 0.0,
+   "acc_drop phase 2": 0.005096468875136512
+  },
+  "6": {
+   "ph1: correct move is F/B (edge flip)": 1.1967748212508666e-05,
+   "ph1: correct move is R/L (corner twist)": 0.0003130540631793659,
+   "ph1: correct move is a G1 move": -0.00021821860153720064,
+   "phase 2": 0.0011112455926152874,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.0,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.001225490196078427,
+   "acc_drop ph1: correct move is a G1 move": 0.0,
+   "acc_drop phase 2": 0.006188569348380052
+  },
+  "7": {
+   "ph1: correct move is F/B (edge flip)": 0.002781918411925196,
+   "ph1: correct move is R/L (corner twist)": 0.007412185977348902,
+   "ph1: correct move is a G1 move": -0.001664848690665819,
+   "phase 2": -1.0722647384827883e-05,
+   "acc_drop ph1: correct move is F/B (edge flip)": 0.0064102564102563875,
+   "acc_drop ph1: correct move is R/L (corner twist)": 0.002450980392156854,
+   "acc_drop ph1: correct move is a G1 move": -0.00452830188679243,
+   "acc_drop phase 2": -0.00018201674554058078
+  }
+ }
+}
