@@ -1,0 +1,156 @@
+{
+ "tag": "moe_mixed_s13",
+ "k1": 3,
+ "res": {
+  "phase 2 (in G1)": {
+   "n": 5423,
+   "base": {
+    "F/B quarter (flip edges)": 0.009208050556480885,
+    "R/L quarter (twist, no flip)": 0.010381817817687988,
+    "G1 moves": 0.9804101586341858
+   },
+   "delta": {
+    "0": {
+     "F/B quarter (flip edges)": 0.0031823720782995224,
+     "R/L quarter (twist, no flip)": 0.0021103117614984512,
+     "G1 moves": -0.005292713642120361
+    },
+    "1": {
+     "F/B quarter (flip edges)": 0.00105354655534029,
+     "R/L quarter (twist, no flip)": 0.0006914976984262466,
+     "G1 moves": -0.0017450451850891113
+    },
+    "2": {
+     "F/B quarter (flip edges)": 0.0049025677144527435,
+     "R/L quarter (twist, no flip)": 0.0021589482203125954,
+     "G1 moves": -0.007061481475830078
+    },
+    "3": {
+     "F/B quarter (flip edges)": 0.02660574298352003,
+     "R/L quarter (twist, no flip)": 0.03396828472614288,
+     "G1 moves": -0.0605739951133728
+    },
+    "4": {
+     "F/B quarter (flip edges)": 0.0012577781453728676,
+     "R/L quarter (twist, no flip)": 0.0007680067792534828,
+     "G1 moves": -0.002025783061981201
+    },
+    "5": {
+     "F/B quarter (flip edges)": 0.006510674022138119,
+     "R/L quarter (twist, no flip)": 0.004200044088065624,
+     "G1 moves": -0.010710716247558594
+    },
+    "6": {
+     "F/B quarter (flip edges)": 0.002895618788897991,
+     "R/L quarter (twist, no flip)": 0.002338091842830181,
+     "G1 moves": -0.005233705043792725
+    },
+    "7": {
+     "F/B quarter (flip edges)": 0.002491655759513378,
+     "R/L quarter (twist, no flip)": 0.0021134670823812485,
+     "G1 moves": -0.0046051740646362305
+    }
+   }
+  },
+  "phase 1, edges ORIENTED": {
+   "n": 397,
+   "base": {
+    "F/B quarter (flip edges)": 0.12605850398540497,
+    "R/L quarter (twist, no flip)": 0.404036283493042,
+    "G1 moves": 0.469905287027359
+   },
+   "delta": {
+    "0": {
+     "F/B quarter (flip edges)": 0.0325985848903656,
+     "R/L quarter (twist, no flip)": 0.1080942153930664,
+     "G1 moves": -0.14069288969039917
+    },
+    "1": {
+     "F/B quarter (flip edges)": 0.055640920996665955,
+     "R/L quarter (twist, no flip)": 0.055596500635147095,
+     "G1 moves": -0.11123740673065186
+    },
+    "2": {
+     "F/B quarter (flip edges)": 0.009435370564460754,
+     "R/L quarter (twist, no flip)": 0.1062154769897461,
+     "G1 moves": -0.11565092206001282
+    },
+    "3": {
+     "F/B quarter (flip edges)": -0.0018910616636276245,
+     "R/L quarter (twist, no flip)": 0.011710107326507568,
+     "G1 moves": -0.009819120168685913
+    },
+    "4": {
+     "F/B quarter (flip edges)": 0.010341212153434753,
+     "R/L quarter (twist, no flip)": 0.11829143762588501,
+     "G1 moves": -0.12863275408744812
+    },
+    "5": {
+     "F/B quarter (flip edges)": 0.017810657620429993,
+     "R/L quarter (twist, no flip)": 0.08875179290771484,
+     "G1 moves": -0.1065625548362732
+    },
+    "6": {
+     "F/B quarter (flip edges)": 0.03053012490272522,
+     "R/L quarter (twist, no flip)": 0.16525381803512573,
+     "G1 moves": -0.1957840621471405
+    },
+    "7": {
+     "F/B quarter (flip edges)": 0.00724773108959198,
+     "R/L quarter (twist, no flip)": 0.0723092257976532,
+     "G1 moves": -0.07955697178840637
+    }
+   }
+  },
+  "phase 1, edges NOT oriented": {
+   "n": 2463,
+   "base": {
+    "F/B quarter (flip edges)": 0.27743425965309143,
+    "R/L quarter (twist, no flip)": 0.23095038533210754,
+    "G1 moves": 0.491615355014801
+   },
+   "delta": {
+    "0": {
+     "F/B quarter (flip edges)": 0.17965176701545715,
+     "R/L quarter (twist, no flip)": 0.13540402054786682,
+     "G1 moves": -0.3150557577610016
+    },
+    "1": {
+     "F/B quarter (flip edges)": 0.2544756233692169,
+     "R/L quarter (twist, no flip)": 0.07013952732086182,
+     "G1 moves": -0.32461513578891754
+    },
+    "2": {
+     "F/B quarter (flip edges)": 0.08851408958435059,
+     "R/L quarter (twist, no flip)": 0.20285731554031372,
+     "G1 moves": -0.2913713753223419
+    },
+    "3": {
+     "F/B quarter (flip edges)": -0.003166794776916504,
+     "R/L quarter (twist, no flip)": 0.00035794079303741455,
+     "G1 moves": 0.002808868885040283
+    },
+    "4": {
+     "F/B quarter (flip edges)": 0.09753218293190002,
+     "R/L quarter (twist, no flip)": 0.19898483157157898,
+     "G1 moves": -0.2965170294046402
+    },
+    "5": {
+     "F/B quarter (flip edges)": 0.10882610082626343,
+     "R/L quarter (twist, no flip)": 0.1580493450164795,
+     "G1 moves": -0.26687538623809814
+    },
+    "6": {
+     "F/B quarter (flip edges)": 0.15061333775520325,
+     "R/L quarter (twist, no flip)": 0.1990703046321869,
+     "G1 moves": -0.34968361258506775
+    },
+    "7": {
+     "F/B quarter (flip edges)": 0.10526224970817566,
+     "R/L quarter (twist, no flip)": 0.15343782305717468,
+     "G1 moves": -0.25870008766651154
+    }
+   }
+  }
+ }
+}
