@@ -1262,3 +1262,31 @@ slots solved) and broadens experts somewhat, but **stage routing never appears**
 narrower than Kociemba's. So "the token shortcut is why CFOP ignored stages" is ruled out, and the
 "removing the script turns CFOP experts into goal-owners" prediction is NOT supported. Consistent with:
 routers track whatever best predicts the next move (in CFOP: which algorithm + step; stage adds nothing).
+
+## 20. REAL-LLM PILOT (Granite-3.1-1B-A400M, local MPS) — exploratory (2026-09-28)
+
+Goal: test the cube principle on a real MoE LM. Machine: M4, 24 GB. Code `llm/harness.py` (per-router
+`_record` / `_knockout`; validated: bit-identical logits when off, knocked-out expert never selected),
+`llm/corpus.py` (WikiText-2 test prose = Engmann et al.'s corpus; Python stdlib code; 219 license texts
+from site-packages = likely memorized), `llm/pilot.py`. 40 chunks x 512 tokens (16 prose, 16 code, 8
+license). Qwen1.5-MoE (28.6 GB) does not fit; OLMoE-1B-7B (13.8 GB, the model Engmann used) does.
+
+Token groups (cube analog: Kociemba phase 1 vs 2): among tokens with p_full > 0.5, **needs-context** =
+p(next | last 2 tokens only) < 0.1 (n=7655, mean p_full 0.90); **local** = p_2tok > 0.5 (n=1148, 0.95).
+
+**A. Routing follows the current token LESS on needs-context tokens — holds.** Chance-corrected share
+of top-1 routing explained by the current token, equal-n subsamples: lower for needs-context in 18/19
+layers from layer 5 on (e.g. L22 13.9% vs 26.1%); early layers route by token for everything. (Layer 1
+returned NaN — excluded.)
+
+**B. Experts specialist for needs-context tokens beyond fragility — mostly NO.** Single-expert KO hurts
+needs-context tokens 4-9x more (0.004-0.008 vs 0.0006-0.0019 nats) BUT a size-matched random-noise
+control (per-token noise norm = the KO-induced change in that layer's MoE output, same tokens) also
+hurts them far more — fragility. Expert-specific effect (KO/noise): needs-context 0.79-1.71x vs local
+0.43-1.53x; larger for needs-context in only 4/6 layers, small margins.
+
+**C (unexpected). Memorized text carries the expert-specific effect.** KO/noise on needs-context tokens
+by domain: license 1.25-2.29x in every layer; at the LAST layer license 2.29x vs prose 0.54x, code
+0.57x. Candidate analog of CFOP's output-owning experts. Absolute effects tiny (~0.004 nats) — 8 of 32
+experts active per token = heavy redundancy, consistent with Engmann et al.
+Timing: ~20 min per layer for 32 experts x (KO + noise), batch 4 x 512.
