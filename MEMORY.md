@@ -1181,3 +1181,38 @@ move — subgoal progress in a search-like task, position-in-script in a recall-
 
 Not done: causal test of the position-in-algorithm experts; separating position-in-algorithm from the
 upcoming move (conditioning on both leaves strata too sparse at 400 solves).
+
+## 18. EXPLORATORY: expert KNOCKOUT (router masking) (2026-09-27)
+
+Hook: `MoEFFN._knockout` (list of expert ids; their router logits -> -inf before top-k, tokens reroute
+to next-best). Verified: unset == bit-identical outputs; knocked-out expert never selected.
+Code `src/explore_knockout.py` (Kociemba 6L, by move class), `src/explore_knockout_generic.py` (any
+model, by label and by target move). Last layer only, 400 held-out solves. Metric: drop in p(correct
+next move).
+
+**1. Partial double dissociation of the edge/corner sub-goal experts (Kociemba 6L).** Clean in s22
+(e3 KO: F/B -6.0 pts, R/L -0.5; e2 KO: R/L -5.4, F/B 0.0) and s21 (e5 KO: F/B only, small; e4 KO: R/L
+-5.3, F/B +0.2); corner-only KO in s20 (e1); edge-leaning KO in s24 (e4); none in s23. Detection lean vs
+KO selectivity across 15 phase-1 experts: rho +0.53, p=0.04 (weaker than forcing's +0.94).
+
+**2. Phase-1 experts are specialists, phase-2 experts are interchangeable (5/5 at 6L).** Largest
+single-expert KO loss: phase-1 moves 5.5-24 pts (15-62% relative), phase-2 moves <=0.7 pts (<=4% of a
+0.184 baseline). Sanity: KO of phase-1 experts never hurts phase 2. 4L Kociemba: ALL experts
+interchangeable (<=1.3 pts, <=8% relative) — the small models have no specialists.
+
+**3. CFOP experts are OUTPUT-MOVE specialists (4L, 5/5).** Single KO costs up to 4-15 pts on OLL and
+8-19 pts on PLL (5-22% relative); ~0 on cross (cross moves are unpredictable anyway: p(correct) 6.4%
+~ chance — our "cross" is undoing random moves). Per KO, damage concentrates on 1-2 target moves:
+top-2 share 0.90 vs uniform 0.22; some experts own a single move (s40 e3: 97% on B2), others a face
+(s41 e1: U,U'; s43 e3: R,R2).
+- An earlier hypothesis "token-driven routing => interchangeable experts" was WRONG: CFOP routing is
+  mostly token-driven yet its experts are not interchangeable.
+
+**4. Sub-goal experts (Kociemba) vs move experts (CFOP).** Effective number of target moves damaged by
+one KO (exp of damage entropy; vocabulary-size fair): CFOP median **2.1** (27 experts, of 9 moves) vs
+Kociemba phase-1 median **10.2** (14 experts, of 17); the major Kociemba phase-1 experts 10.8-15.6.
+Mann-Whitney p=4.5e-7. Consistent with §17's routing decomposition (Kociemba routing adds cube progress,
+CFOP routing adds the upcoming move). Plain version: *in the search-like task experts own a sub-goal
+and help with almost every move; in the recall-like task experts own specific moves of the script.*
+Caveats: model sizes differ (CFOP 4L, Kociemba 6L; 4L Kociemba has no specialists to compare);
+effective-count metric is ours; exploratory, not confirmed on fresh seeds.

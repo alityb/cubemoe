@@ -22,6 +22,7 @@ class MoEFFN(nn.Module):
         if router == 'hash':
             self.register_buffer('hash_tab', torch.randint(0, n_exp, (4096,)))
         self._override = None   # (N,) long, -1 = leave alone, else force this expert into slot 0
+        self._knockout = None   # list of expert ids the router may not select (router masking)
 
     def forward(self, x, tok_ids=None):
         B, T, d = x.shape
@@ -33,6 +34,8 @@ class MoEFFN(nn.Module):
             topv = torch.ones_like(topv) / self.k
         else:
             logits = self.gate(flat)
+            if self._knockout:
+                logits = logits.clone(); logits[:, list(self._knockout)] = float('-inf')
             probs = F.softmax(logits, -1)
             topv, topi = probs.topk(self.k, -1)
             topv = topv / topv.sum(-1, keepdim=True)
