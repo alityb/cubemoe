@@ -1098,3 +1098,44 @@ nulls are suggestive, not decisive.
 
 Artefacts: `out/h2c.json`, `out/h2c_poscontrol.json`, `out/h2c_verdict.json`, `out/h2c_msets_*.json`,
 `src/h2c_readout.py`, `out/h2c.log`, `out/h2c_poscontrol.log`.
+
+## 16. EXPLORATORY (not pre-registered): what the Kociemba router actually tracks (2026-09-27)
+
+Code: `src/explore_g1.py` (routing + per-token cube features -> `out/explore/g1_<tag>.npz`),
+`src/explore_force.py` (force each expert, record which MOVE CLASS gains probability ->
+`out/explore/force_<tag>.json`). Discovered on 6L seeds 20-24; the 4L seeds 10-14 were held out and
+looked at only after. **Everything here is exploratory. Only A is confirmed on every model.**
+
+Setup facts: phase 1 is optimal in our data (distance-to-G1 == moves-to-boundary on 1024/1024 states),
+so Figure 1's x-axis is literally distance to G1. In our cube model only **F/F'/B/B' flip edges**; the
+edge-preserving group is <U,D,R,L,F2,B2> = Thistlethwaite's first subgroup (axis-rotated), and
+Kociemba's G1 = <U,D,R2,L2,F2,B2> = Thistlethwaite's second. So Kociemba phase 1 = Thistlethwaite
+stages 1+2.
+
+**A. The router reads the cube, not the previous token — 10/10 models.** Holding the previous move
+fixed to a G1 move (legal in both phases), the phase-1 expert gets 0.16-0.84 of phase-1 tokens and
+<=0.008 of phase-2 tokens. Answers the "it's just lexical" objection.
+
+**B. Graded progress, not a binary phase — 5/5 at 6L, ~1/5 at 4L.** Within phase 1, routing to the main
+phase-1 expert tracks distance to G1 (AUC 0.81-0.89) better than move number (0.69-0.82), and still does
+at a FIXED move number (0.71-0.81). At 4L the fixed-move-number AUC is 0.49-0.65 (only s13 shows it).
+
+**C. At 6L, phase 1 splits into sub-goals, and detection predicts action.** Edge-orientation experts in
+3/5 seeds (s20 e5 AUC 0.94; s21 e0 0.80; s22 e3 0.95; none in s23/s24); s22 also has an "edges done,
+still phase 1" expert (e2: 67% vs 3%). Forcing an expert into phase 2: edge experts push **F/B quarter
+turns** (the only edge-flipping moves: +47%, +38%, +8%); corner-leaning experts push **R/L quarter turns**
+(twist corners WITHOUT flipping edges: +27%, +42%, +32%, +6%) — Thistlethwaite's stage-1/stage-2 logic.
+Across the 15 phase-1 experts, Spearman(edge-vs-corner detection, F/B-vs-R/L output) = **+0.939,
+p<0.0001**.
+- **NOT confirmed on held-out 4L models:** rho = +0.24, p = 0.31 (4/5 seeds in the right direction, but
+  effects <=0.036). The 4L models never develop edge/corner experts (no AUC above 0.69), so the test
+  has nothing to measure. The finding rests on the 5 discovery models only. **Confirming it needs fresh
+  6L/d256/250k seeds, which need a GPU** (MPS training defaults to 4L/d128).
+- The first claim I made from seed 20 alone ("the router found Thistlethwaite stage 1") did NOT
+  replicate as stated: in s22/s23 the top phase-1 expert is corner-leaning, not edge-specific. Only the
+  expert-level mapping across all experts is consistent.
+- Unexplained: on phase-1 tokens where the edge expert IS normally used (s20), forcing OTHER experts
+  also raises F/B mass (+0.28). Does not fit a simple "edge expert = flip edges" story.
+
+Also relevant to the output-vocabulary objection (§9b): the edge/corner split is defined on the cube
+STATE (orientation computed from stickers), not on the output vocabulary.
