@@ -1139,3 +1139,45 @@ p<0.0001**.
 
 Also relevant to the output-vocabulary objection (§9b): the edge/corner split is defined on the cube
 STATE (orientation computed from stickers), not on the output vocabulary.
+
+## 17. EXPLORATORY: what CFOP routers track (2026-09-27)
+
+Code: `src/explore_cfop_meta.py` (regenerates every CFOP solve from its seed to recover per-token F2L
+slot, algorithm case, and position inside the algorithm — **0 move mismatches over 611,547 + 677,580
+tokens**), `src/explore_cfop.py` (features + routing, 400 held-out solves), `src/explore_cfop_analyze.py`
+(metric). Results `out/explore/cfop_whattracks.json`.
+
+**Metric:** share of the router's choice (top-1, last layer) explained by a variable at a fixed move
+number, `I(E;V|pos)/H(E|pos)`, chance-corrected by permuting the router within strata. "Beyond prev"
+= `I(E;V|pos,prev)/H(E|pos)`, still normalized by the TOTAL router entropy. **Validated first:** a
+router that IS the stage label scores 99.7% on stage; a random router 0.0% everywhere; the real hash
+router 93% on previous move and exactly 0.0% on everything beyond it. Variables are nested (stage-label
+router scores 58% on "which algorithm"), so rows are not additive.
+
+| share of router choice | Koc 4L | Koc 6L | CFOP orig 4L | CFOP decorr 4L |
+|---|---|---|---|---|
+| previous move | 78.1% | 58.5% | 61.5% | 58.3% |
+| beyond prev: phase / dist to G1 | 7.3 / 7.7% | 14.4 / 16.0% | — | — |
+| beyond prev: stage | — | — | 1.6% | 6.0% |
+| beyond prev: position inside algorithm | — | — | 10.9% | 8.5% |
+| beyond prev: # F2L slots solved | — | — | 7.8% | 6.6% |
+| beyond prev: which algorithm case | — | — | 3.7% | 1.9% |
+| beyond prev: upcoming (target) move | 2.7% | 6.4% | 18.0% | 12.9% |
+
+Seed spread is tight (e.g. CFOP-orig target 17.3–18.8 across 5 seeds). Hash routers: 92–93% prev,
+0.0% on every beyond-prev row.
+
+**Reading:** BOTH routers route mostly by the previous move (58–78%) — an earlier guess that
+"Kociemba reads the cube, CFOP follows tokens" was WRONG. The difference is the layer on top:
+Kociemba routers add **progress toward the subgoal** (distance to G1) and little about the next move;
+CFOP routers add **the upcoming move and position inside the current memorized algorithm**, but not
+**which** algorithm, and almost nothing about stage (orig). Plain version: *the Kociemba router tracks
+the cube; the CFOP router tracks its place in the script.*
+
+Data context: the next move is predictable from the previous move alone for 13.3% of its uncertainty
+in Kociemba vs 33.1% (CFOP orig) / 23.7% (CFOP decorr) — CFOP is a more sequence-driven task.
+Candidate unifying story (UNTESTED): routers carry whatever beyond the current token predicts the next
+move — subgoal progress in a search-like task, position-in-script in a recall-like task.
+
+Not done: causal test of the position-in-algorithm experts; separating position-in-algorithm from the
+upcoming move (conditioning on both leaves strata too sparse at 400 solves).
