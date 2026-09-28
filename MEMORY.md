@@ -1216,3 +1216,26 @@ CFOP routing adds the upcoming move). Plain version: *in the search-like task ex
 and help with almost every move; in the recall-like task experts own specific moves of the script.*
 Caveats: model sizes differ (CFOP 4L, Kociemba 6L; 4L Kociemba has no specialists to compare);
 effective-count metric is ours; exploratory, not confirmed on fresh seeds.
+
+## 19. EXPLORATORY: state-only models (no history, no position) — Kociemba reference + CFOP (2026-09-27)
+
+Code `src/explore_state.py` (routing of the CLS/prediction token + single-expert knockout at the last
+layer; reuses the §16/§17 feature files, same token order asserted). CFOP state-only models
+`state_cfop_s60..64` training via `src/cfop_state_train.sh` (same recipe as Kociemba arm C:
+`--model state --epochs 3`), ~45-50 min each on MPS.
+
+**Kociemba state-only 4L (`state_mixed_s10..14`), never examined for this before:** acc 0.534-0.542;
+single-expert KO costs up to 13-21% rel. on phase-1 moves, 5-12% on phase-2 (so, unlike 4L SEQUENCE
+models, they have some specialists). Effective #moves per expert KO (phase 1): median 7.4 (range
+3.4-13.7, n=22) — goal-owner-like.
+
+**Edge/corner sub-goal split, threshold-free check** (KO selectivity index (FB-RL)/(FB+RL) per expert;
++1 = removing it breaks only edge flips, -1 = only corner twists; experts with FB+RL >= 0.03):
+- strict pair (an expert > +0.8 AND one < -0.8 in the same model): **1/5 sequence-6L (s22), 1/5
+  state-4L (s10)**.
+- at least one strongly one-sided expert (|index| > 0.8): **7/10** models (s20,s21,s22,s10,s12,s14 +
+  s22 counted once; not s23,s24,s11,s13 — see table in transcript).
+- CORRECTION: I first eyeballed the state-only table as "clean double dissociation in 3/5, the held-out
+  confirmation". Under one consistent criterion it is 1/5. The honest statement: the two sub-goals are
+  carried by PARTLY separate experts in most models and fully separated in a few; the held-out
+  state-only models show the same partial pattern, not a clean confirmation.
