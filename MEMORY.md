@@ -1290,3 +1290,14 @@ by domain: license 1.25-2.29x in every layer; at the LAST layer license 2.29x vs
 0.57x. Candidate analog of CFOP's output-owning experts. Absolute effects tiny (~0.004 nats) — 8 of 32
 experts active per token = heavy redundancy, consistent with Engmann et al.
 Timing: ~20 min per layer for 32 experts x (KO + noise), batch 4 x 512.
+
+## 21. OLMoE (pre-registered, llm/PREREG_LLM.md `b38d0d9a`, filed 2026-09-28T21:41Z before loading)
+
+OLMoE-1B-7B-0924 (64 experts, top-8, 16 layers, norm_topk_prob=False) runs locally: loads in 46 s in
+24 GB, 1.46 s per 512-token forward; harness validated (bit-identical when off; KO never selected).
+Groups: needs-context n=8361 (mean p_full 0.90), local n=1084 (0.94).
+
+**A — PASS (8/8 of layers 8-15; rule >= 6/8).** Token-explained share of top-1 routing lower on
+needs-context tokens in every late layer, margins 1-6.5 pts (e.g. L14 14.4% vs 20.9%, L11 16.0 vs 21.5).
+B and C pending the knockout run (4 layers x 64 experts x KO+noise, ~7 h, `llm/olmoe_run.log`);
+score with `llm/score_prereg.py`.
