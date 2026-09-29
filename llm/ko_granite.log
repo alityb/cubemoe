@@ -1,0 +1,7 @@
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4839.39it/s]
+  layer 3: 32 experts done in 1328s
+  layer 7: 32 experts done in 1146s
+  layer 11: 32 experts done in 1245s
+  layer 15: 32 experts done in 996s
+  layer 19: 32 experts done in 1105s
+  layer 23: 32 experts done in 1377s

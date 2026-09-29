@@ -1,0 +1,23 @@
+cfop features: 24456 tokens
+cfop_dec features: 27082 tokens
+moe_cfop_s40 routed 24456
+hash_cfop_s40 routed 24456
+moe_cfop_s41 routed 24456
+hash_cfop_s41 routed 24456
+moe_cfop_s42 routed 24456
+hash_cfop_s42 routed 24456
+moe_cfop_s43 routed 24456
+hash_cfop_s43 routed 24456
+moe_cfop_s44 routed 24456
+hash_cfop_s44 routed 24456
+moe_cfopdec_s50 routed 27082
+hash_cfopdec_s50 routed 27082
+moe_cfopdec_s51 routed 27082
+hash_cfopdec_s51 routed 27082
+moe_cfopdec_s52 routed 27082
+hash_cfopdec_s52 routed 27082
+moe_cfopdec_s53 routed 27082
+hash_cfopdec_s53 routed 27082
+moe_cfopdec_s54 routed 27082
+hash_cfopdec_s54 routed 27082
+CFOP_EXTRACT_DONE
