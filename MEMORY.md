@@ -1323,3 +1323,20 @@ Layer 3 (earliest tested) is the one miss for both B (needs-context 1.27x vs loc
 -> 7.93x — matching A (early layers route by token for everything). Specialization is a mid-to-late-
 layer phenomenon in OLMoE. Absolute single-expert KO damage on needs-context tokens 0.0013-0.0037 nats.
 Layer 3 took 71 min with prefix caching. Verdict file: llm/prereg_verdict_OLMoE-1B-7B-0924.json.
+
+## 22. WHERE THE ARTIFACTS ARE (2026-09-29)
+
+- **GitHub (alityb/cubemoe, PUBLIC):** all code, result JSON, logs, MEMORY.md, every pre-registration, the
+  LLM corpus (`llm/corpus.json` — machine-dependent, cannot be rebuilt identically elsewhere), and
+  **`ARTIFACTS.md`**: every heavy artifact with size, full sha256, the script that produced it, and the
+  cost of regenerating it.
+- **Heavy artifacts, 3.89 GB, 138 files — LOCAL ONLY (gitignored):** 86 checkpoints `out/*.pt`
+  (3.69 GB; the 6L/250k seeds 20-24 were trained on paid Modal GPUs), datasets `data/*.npz`, exploration
+  arrays `out/explore/*.npz`, LLM arrays `llm/*.npz` (OLMoE knockouts ~5 h of compute).
+- **Backup archive:** `~/cubemoe-backup/cubemoe-artifacts-20260929.tar.part-{aa,ab}` (split under 2 GB
+  each), `cubemoe-artifacts-20260929.sha256`, `RESTORE.txt`. Restore:
+  `cat cubemoe-artifacts-20260929.tar.part-* | tar -xf - -C <repo>`, then verify against ARTIFACTS.md.
+- **User chose "local only for now"** (offered: GitHub Release on the public repo, Hugging Face Hub,
+  private cloud/drive). The archive is on the SAME laptop: it protects against accidental deletion, not
+  against disk failure, loss or theft. Revisit off-machine backup before the blog post / any cleanup.
+- HF weights (re-downloadable): `allenai/OLMoE-1B-7B-0924`, `ibm-granite/granite-3.1-1b-a400m-base`.
