@@ -1301,3 +1301,18 @@ Groups: needs-context n=8361 (mean p_full 0.90), local n=1084 (0.94).
 needs-context tokens in every late layer, margins 1-6.5 pts (e.g. L14 14.4% vs 20.9%, L11 16.0 vs 21.5).
 B and C pending the knockout run (4 layers x 64 experts x KO+noise, ~7 h, `llm/olmoe_run.log`);
 score with `llm/score_prereg.py`.
+
+**OLMoE B and C — both PASS, decided on 3 of 4 layers (rule >= 3/4; 3/3 so far, so layer 3 cannot
+change either verdict).** Expert effect = KO damage / size-matched noise damage:
+| layer | B needs-context vs local | C license vs prose / code |
+|---|---|---|
+| 7  | 1.75x vs 1.08x | 3.64x vs 1.29x / 1.57x |
+| 11 | 1.92x vs 0.55x | 2.54x vs 2.06x / 1.40x |
+| 15 | 2.40x vs 1.34x | 7.93x vs 1.94x / 1.55x |
+Absolute single-expert KO damage on needs-context tokens is tiny: 0.0013-0.0037 nats (8 of 64 experts
+active per token). B was WEAK on the Granite pilot (4/6 layers, small margins) and is clear on OLMoE —
+parallel to the cube, where the larger (6L) models had specialists and the 4L sequence models did not.
+Run history: first OLMoE run thrashed (~450 MB/s swap; 0 layers in 4 h) — fixed with batch 2,
+target-only log-probs, per-expert empty_cache, and prefix caching (rerun layers L..end from the cached
+layer-L input; verified max |diff| = 0.0 vs a full forward). Laptop died at 1% battery during layer 3;
+layers 15/11/7 were saved; layer 3 relaunched under `caffeinate` (llm/olmoe_run2.log).
