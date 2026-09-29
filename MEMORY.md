@@ -1316,3 +1316,10 @@ Run history: first OLMoE run thrashed (~450 MB/s swap; 0 layers in 4 h) — fixe
 target-only log-probs, per-expert empty_cache, and prefix caching (rerun layers L..end from the cached
 layer-L input; verified max |diff| = 0.0 vs a full forward). Laptop died at 1% battery during layer 3;
 layers 15/11/7 were saved; layer 3 relaunched under `caffeinate` (llm/olmoe_run2.log).
+
+**OLMoE FINAL (all 4 layers, `llm/score_prereg.py`, 2026-09-29): A PASS 8/8, B PASS 3/4, C PASS 3/4.**
+Layer 3 (earliest tested) is the one miss for both B (needs-context 1.27x vs local 1.47x) and C
+(license 0.18x vs prose 1.31x / code 1.58x). Both effects grow with depth — C: 0.18x -> 3.64x -> 2.54x
+-> 7.93x — matching A (early layers route by token for everything). Specialization is a mid-to-late-
+layer phenomenon in OLMoE. Absolute single-expert KO damage on needs-context tokens 0.0013-0.0037 nats.
+Layer 3 took 71 min with prefix caching. Verdict file: llm/prereg_verdict_OLMoE-1B-7B-0924.json.
