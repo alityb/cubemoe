@@ -8,7 +8,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 R='/Users/alityb/projects/cubemoe/llm'
 ap=argparse.ArgumentParser(); ap.add_argument('--model',default='ibm-granite/granite-3.1-1b-a400m-base')
 ap.add_argument('--stage'); ap.add_argument('--layers',default=''); ap.add_argument('--n',type=int,default=16)
-ap.add_argument('--T',type=int,default=512); a=ap.parse_args()
+ap.add_argument('--T',type=int,default=512); ap.add_argument('--bs',type=int,default=4); a=ap.parse_args()
 short=a.model.split('/')[-1]; dev='mps'
 tok=AutoTokenizer.from_pretrained(a.model); m=AutoModelForCausalLM.from_pretrained(a.model,dtype=torch.bfloat16).to(dev).eval()
 Rs=harness.routers(m); NL=len(Rs)
@@ -55,9 +55,15 @@ if a.stage=='base':
         print(f"  {d:8s} predicted well (p>0.5): {ok[s].mean():.2f}   of those: needs-context {ctx[s].sum()/ok[s].sum():.2f}  local {lcl[s].sum()/ok[s].sum():.2f}")
     print(f"  groups: needs-context n={ctx.sum()} (mean p_full {pf[ctx].mean():.2f})   local n={lcl.sum()} (mean p_full {pf[lcl].mean():.2f})")
 elif a.stage=='ko':
+    import os
     B=dict(np.load(f'{R}/base_{short}.npz')); lp0=B['lp']
-    blocks=harness.moe_blocks(m); res={}
+    blocks=harness.moe_blocks(m); bs=a.bs
+    def tlogp(xb,tb):
+        lg=m(xb).logits[:,:-1]                                   # bf16, no float copy of the full tensor kept
+        out=(lg.gather(-1,tb).float()[...,0]-torch.logsumexp(lg.float(),-1)).cpu().numpy()
+        del lg; return out
     for L in [int(x) for x in a.layers.split(',')]:
+        if os.path.exists(f'{R}/ko_{short}_L{L}.npz'): print(f"  layer {L}: already done, skipping",flush=True); continue
         state={'mode':None}
         def hook(mod,inp,out):
             if state['mode']=='store': state['y']=out.detach()
@@ -68,16 +74,33 @@ elif a.stage=='ko':
             return None
         h=blocks[L].register_forward_hook(hook); E=Rs[L].num_experts; t0=time.time()
         dko=np.zeros((E,)+lp0.shape,np.float32); dno=np.zeros_like(dko)
-        for i in range(0,len(X),4):
-            xb=X[i:i+4].to(dev); tb=X[i:i+4,1:,None].to(dev)
-            with torch.no_grad():
-                state['mode']='store'; m(xb); y0=state['y']
-                for e in range(E):
-                    Rs[L]._knockout={e}; state['mode']='cmp'; state['y']=y0
-                    lg=m(xb).logits.float(); lk=torch.log_softmax(lg[:,:-1],-1).gather(-1,tb)[...,0].cpu().numpy()
-                    Rs[L]._knockout=set(); state['mode']='noise'; torch.manual_seed(e)
-                    lg=m(xb).logits.float(); ln=torch.log_softmax(lg[:,:-1],-1).gather(-1,tb)[...,0].cpu().numpy()
-                    dko[e,i:i+4]=lp0[i:i+4]-lk; dno[e,i:i+4]=lp0[i:i+4]-ln
+        Y0={}; PRE={}                    # per batch: unperturbed MoE output at L, and the exact inputs entering layer L
+        layers=m.model.layers
+        def grab(mod,args,kwargs): state['pre']=(args[0].detach(),{k:v for k,v in kwargs.items()}); return None
+        g=layers[L].register_forward_pre_hook(grab,with_kwargs=True)
+        for i in range(0,len(X),bs):
+            with torch.no_grad(): state['mode']='store'; Rs[L]._knockout=set(); m(X[i:i+bs].to(dev),use_cache=False); Y0[i]=state['y']; PRE[i]=state['pre']
+        g.remove()
+        def tlogp_from(i,tb):            # rerun only layers L..end from the cached layer-L input
+            h,kw=PRE[i]
+            for j in range(L,len(layers)): h=layers[j](h,**kw)
+            lg=m.lm_head(m.model.norm(h))[:,:-1]
+            out=(lg.gather(-1,tb).float()[...,0]-torch.logsumexp(lg.float(),-1)).cpu().numpy(); del lg,h; return out
+        with torch.no_grad():            # the shortcut must reproduce a full forward pass exactly
+            state['mode']=None; tb0=X[0:bs,1:,None].to(dev); full=tlogp(X[0:bs].to(dev),tb0); part=tlogp_from(0,tb0)
+        print(f"  layer {L}: shortcut vs full forward, max |diff| = {np.abs(full-part).max():.2e}",flush=True)
+        assert np.abs(full-part).max()<1e-3, 'prefix-cache shortcut does not reproduce the full forward'
+        for e in range(E):
+            for i in range(0,len(X),bs):
+                xb=X[i:i+bs].to(dev); tb=X[i:i+bs,1:,None].to(dev)
+                with torch.no_grad():
+                    y0=Y0[i]
+                    Rs[L]._knockout={e}; state['mode']='cmp'; state['y']=y0; lk=tlogp_from(i,tb)
+                    Rs[L]._knockout=set(); state['mode']='noise'; torch.manual_seed(e*1000+i); ln=tlogp_from(i,tb)
+                dko[e,i:i+bs]=lp0[i:i+bs]-lk; dno[e,i:i+bs]=lp0[i:i+bs]-ln
+            torch.mps.empty_cache()
+            el=time.time()-t0
+            if e%4==3 or e==E-1: print(f"    layer {L}: expert {e+1}/{E}  {el/60:.1f} min elapsed, ~{el/(e+1)*(E-e-1)/60:.0f} min left for this layer",flush=True)
         h.remove(); state['mode']=None
         np.savez_compressed(f'{R}/ko_{short}_L{L}.npz',dko=dko,dno=dno)
         print(f"  layer {L}: {E} experts done in {time.time()-t0:.0f}s",flush=True)
