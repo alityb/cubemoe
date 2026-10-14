@@ -1,0 +1,114 @@
+{
+ "cfg": {
+  "tag": "mixtral_6L256_s0",
+  "preset": "mixtral",
+  "d": 256,
+  "L": 6,
+  "nh": 4,
+  "bs": 1024,
+  "total_states": 60000000,
+  "lr": 0.001,
+  "seed": 0
+ },
+ "gates": [
+  {
+   "heldout_acc": 0.6006450057029724,
+   "greedy_solve_random": 0.0,
+   "beam256_solve_random": 0.1,
+   "beam256_avg_moves": 28.25,
+   "step": 5000,
+   "states_seen": 5120000
+  },
+  {
+   "heldout_acc": 0.6337449550628662,
+   "greedy_solve_random": 0.0,
+   "beam256_solve_random": 0.3,
+   "beam256_avg_moves": 26.333333333333332,
+   "step": 10000,
+   "states_seen": 10240000
+  },
+  {
+   "heldout_acc": 0.657664954662323,
+   "greedy_solve_random": 0.004999999888241291,
+   "beam256_solve_random": 0.7,
+   "beam256_avg_moves": 26.071428571428573,
+   "step": 15000,
+   "states_seen": 15360000
+  },
+  {
+   "heldout_acc": 0.6675849556922913,
+   "greedy_solve_random": 0.014999999664723873,
+   "beam256_solve_random": 0.7,
+   "beam256_avg_moves": 26.857142857142858,
+   "step": 20000,
+   "states_seen": 20480000
+  },
+  {
+   "heldout_acc": 0.6838849782943726,
+   "greedy_solve_random": 0.0,
+   "beam256_solve_random": 0.9,
+   "beam256_avg_moves": 26.194444444444443,
+   "step": 25000,
+   "states_seen": 25600000
+  },
+  {
+   "heldout_acc": 0.68572998046875,
+   "greedy_solve_random": 0.0,
+   "beam256_solve_random": 0.95,
+   "beam256_avg_moves": 25.13157894736842,
+   "step": 30000,
+   "states_seen": 30720000
+  },
+  {
+   "heldout_acc": 0.6928550004959106,
+   "greedy_solve_random": 0.014999999664723873,
+   "beam256_solve_random": 1.0,
+   "beam256_avg_moves": 24.85,
+   "step": 35000,
+   "states_seen": 35840000
+  },
+  {
+   "heldout_acc": 0.7071700096130371,
+   "greedy_solve_random": 0.019999999552965164,
+   "beam256_solve_random": 1.0,
+   "beam256_avg_moves": 24.85,
+   "step": 40000,
+   "states_seen": 40960000
+  },
+  {
+   "heldout_acc": 0.7118200063705444,
+   "greedy_solve_random": 0.03999999910593033,
+   "beam256_solve_random": 1.0,
+   "beam256_avg_moves": 24.975,
+   "step": 45000,
+   "states_seen": 46080000
+  },
+  {
+   "heldout_acc": 0.7201899886131287,
+   "greedy_solve_random": 0.019999999552965164,
+   "beam256_solve_random": 1.0,
+   "beam256_avg_moves": 24.3,
+   "step": 50000,
+   "states_seen": 51200000
+  },
+  {
+   "heldout_acc": 0.7238499522209167,
+   "greedy_solve_random": 0.04999999701976776,
+   "beam256_solve_random": 1.0,
+   "beam256_avg_moves": 24.55,
+   "step": 55000,
+   "states_seen": 56320000
+  },
+  {
+   "heldout_acc": 0.7296949625015259,
+   "greedy_solve_random": 0.03999999910593033,
+   "beam256_solve_random": 1.0,
+   "beam256_avg_moves": 24.025,
+   "beam1024_solve_random": 1.0,
+   "beam1024_avg_moves": 23.05,
+   "step": 58593,
+   "states_seen": 59999232
+  }
+ ],
+ "_start": 1791941925.0532506
+}

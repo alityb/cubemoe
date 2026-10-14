@@ -148,3 +148,20 @@ def probe_l40s(preset: str = "olmoe", d: int = 256, L: int = 6, bs: int = 1024, 
 def probe():
     calls = [probe_a10g.spawn(), probe_l40s.spawn(), probe_a10g.spawn(preset="mixtral"), probe_l40s.spawn(preset="mixtral")]
     for c in calls: print(c.get())
+
+@app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=7200)
+def evaluate(tag: str, n: int = 500, widths: str = "64,256,1024", seed: int = 2026, budget: int = 40):
+    """Large solve test on FRESH random cubes (seed differs from the training gate's seed 123)."""
+    import torch, numpy as np, time, json
+    _setup()
+    from model_prod import ProdStateModel
+    from solve_fast import beam_solve
+    s = torch.load(f"/vol/out/prod/{tag}.pt", map_location="cuda", weights_only=False); c = s["log"]["cfg"]
+    m = ProdStateModel(d=c["d"], L=c["L"], nh=c["nh"], preset=c["preset"]).cuda(); m.load_state_dict(s["sd"]); m.eval()
+    cubes = random_cubes(n, seed, "cuda"); out = {"tag": tag, "n": n, "seed": seed, "budget": budget}
+    for w in [int(x) for x in widths.split(",")]:
+        t0 = time.time(); r = [beam_solve(m, cb, w, budget, "cuda") for cb in cubes]; ok = [x for x in r if x is not None]
+        out[f"beam{w}"] = dict(solved=len(ok), rate=len(ok) / n, avg_moves=float(np.mean(ok)) if ok else None,
+                               max_moves=int(max(ok)) if ok else None, sec_per_cube=(time.time() - t0) / n)
+        print(f"{tag} beam {w}: solved {len(ok)}/{n}, avg {out[f'beam{w}']['avg_moves']:.2f} moves, {out[f'beam{w}']['sec_per_cube']:.2f} s/cube", flush=True)
+    json.dump(out, open(f"/vol/out/prod/{tag}_eval.json", "w"), indent=1); vol.commit(); return out
