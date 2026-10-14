@@ -1421,3 +1421,25 @@ moves-to-solved are not (raw 0.73 / 0.57) and middle layers beat raw (0.89 / 0.8
 evidence. Forcing ANY expert onto the decision token destroys ~1/3 of legal mass (confound), so the
 knockout version of the phase test is the one to read (smoke: KO phase-1 expert -9.1 pts phase 1, 0.0
 phase 2; typical other 0/0). Decision-token routing entropy is flagged where too low to interpret.
+
+## 26. OVERNIGHT RESULTS — production-style, 5 seeds (finished 2026-10-14 09:09, pushed)
+
+**Solving (500 fresh random cubes each):** beam 256 **500/500 in all 5 seeds** (23.5-24.0 moves); beam 1024
+500/500 all (22.4-22.7); beam 64 479-499/500; greedy 3-9.5%; next-move acc 72.0-73.7%.
+
+**Seed 0 only (stages A-D):** no-model beam-1024 0/30, untrained beam-256 0/30, trained 60/60, greedy 1/60;
+86.3% of solution-path moves = model's 1st choice (7.8% 2nd, 2.9% 3rd); 0/500 eval cubes in 26.9M training
+positions. Attention off: acc 73 -> 9%, solve 0%; uniform: 3%, 0%; attention removed in layer 0 alone: 7%.
+Decision token does NOT down-weight the 6 centre stickers (9-11.6% vs even 10.9%). Probes: orientation
+counts and in-G1 are linear in raw stickers (0.99-1.0) — not evidence; moves-to-G1 raw 0.85 -> layer 4 0.95,
+moves-to-solved raw 0.77 -> layer 4 0.92 — the model computes a distance-to-goal estimate. Sticker-token
+routing by own (position,colour) 92.6% (L0) -> 45.2% (L5); decision-token routing at L4-5 explained by
+phase 63-72% / moves-to-G1 71-77% vs best single sticker 36-37%.
+
+**THE BIG PICTURE, 5/5 seeds:** last-layer single-expert knockouts split cleanly into phase-1 experts and
+phase-2 experts; **no expert matters for both phases in any seed** (phase-1 KO losses 2.7-14.7 pts, phase-2
+8.1-30.2 pts; typical other expert 0.0/0.0). Main phase-1 expert handles 58-81% of phase-1 positions and
+0.0-0.4% of phase-2. Phase explains 17.8-27.1% of decision routing at fixed moves-to-solved (shuffled 0.0%).
+The FORCE test is confounded in this model (forcing any expert is destructive) — use the knockout test.
+Not pre-registered, but stage-E code was frozen before seeds 1-4 finished and ran on them unchanged
+(held-out replication of a fixed analysis).
