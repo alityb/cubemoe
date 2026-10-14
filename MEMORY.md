@@ -1403,3 +1403,21 @@ First model in the project that solves fully random cubes. Checkpoint: Modal thi
 phasesplit-vol /out/prod/mixtral_6L256_s0.pt (+ .json log); local copy out/prod/mixtral_6L256_s0.pt
 (416 MB incl. optimizer state, sha256 36848faf77800e1e...). Large eval: `modal/prod.py::evaluate`
 (500 fresh random cubes, seed 2026, widths 64/256/1024) -> /vol/out/prod/mixtral_6L256_s0_eval.json.
+
+## 25. OVERNIGHT PIPELINE (started 2026-10-14 04:03, independent of the Claude session)
+
+`nohup caffeinate -ims bash src/overnight.sh` -> progress `out/prod/overnight.log`, result
+**`out/prod/OVERNIGHT_REPORT.md`** (committed + pushed at the end). Steps: seed 0 stage A (model vs
+search: no-model / untrained-model beam baselines, rank of each move on solution paths, memorisation
+check against 26.9M training positions incl. rotations) -> stages B-E (src/prod_stages.py: attention
+ablations + centre-sticker attention; linear probes per layer vs raw stickers; expert routing = sticker
+(position,colour) vs abstract features, + knockouts at layers 3 and 5; phase split + causal force AND
+knockout tests) -> waits for seeds 1-4 (Modal: s1,s2 thisaccisfortheschool; s3,s4 ali-moh-islam-1),
+downloads, 500-cube Modal eval, stage E each.
+Seed 0 500-cube eval: beam 64 492/500 (25.8 mv), beam 256 500/500 (23.8), beam 1024 500/500 (22.6).
+Smoke-test lessons (tiny sample, for interpretation): edge/corner/slice orientation counts are LINEARLY
+decodable from raw stickers (R^2 0.97-1.0) so they are NOT evidence of reasoning; distance-to-G1 and
+moves-to-solved are not (raw 0.73 / 0.57) and middle layers beat raw (0.89 / 0.87) — that is the real
+evidence. Forcing ANY expert onto the decision token destroys ~1/3 of legal mass (confound), so the
+knockout version of the phase test is the one to read (smoke: KO phase-1 expert -9.1 pts phase 1, 0.0
+phase 2; typical other 0/0). Decision-token routing entropy is flagged where too low to interpret.
