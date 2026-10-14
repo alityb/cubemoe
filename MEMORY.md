@@ -1340,3 +1340,33 @@ Layer 3 took 71 min with prefix caching. Verdict file: llm/prereg_verdict_OLMoE-
   private cloud/drive). The archive is on the SAME laptop: it protects against accidental deletion, not
   against disk failure, loss or theft. Revisit off-machine backup before the blog post / any cleanup.
 - HF weights (re-downloadable): `allenai/OLMoE-1B-7B-0924`, `ibm-granite/granite-3.1-1b-a400m-base`.
+
+## 23. DO THE MODELS SOLVE THE CUBE? NO. + production-style MoE (2026-10-13)
+
+`src/solve_eval.py`: closed-loop rollouts (model picks a move, it is applied to a real cube, the new state
+is fed back). Pipeline verified: decoding 200/200, encoding 200/200, stored moves solve the cube 200/200;
+the rollout code path reproduces trained next-move accuracy (0.333 vs logged 0.343).
+| model | 1-move | 3-move | 5-move | 8-move | held-out scrambles | random cubes |
+|---|---|---|---|---|---|---|
+| sequence models (Kociemba 4L/6L, CFOP) | ~20% | ~20% | 6% | — | 0% | 0% |
+| Kociemba state-only 4L | 100% | 91% | 49% | 2% | 0% | 0% |
+| CFOP state-only | — | — | — | — | 0.3% | — |
+| state-only + beam search (width 256) | — | — | — | 60% (24/40) | 1/40 | — |
+Teacher-forced accuracy one move from solved: sequence 6L 20% (!), state-only 100%. **The sequence models
+predict the solver's next move largely from move-sequence statistics, not by reading the cube** (they would
+have to replay ~20 moves from the start state; small transformers are poor at that). **No model solves real
+scrambles.** All routing findings are about models that IMITATE the solver's next move. The blog's
+"rediscovered Kociemba's algorithm" framing must say the models do not solve.
+
+**Do the models use attention? Yes** — every block is pre-norm self-attention (4 heads) then the MoE FFN;
+the router is a linear layer, which is also standard in production (Mixtral/DeepSeek/OLMoE).
+
+**`src/model_prod.py` — production-style MoE, modelled on OLMoE:** RMSNorm, RoPE, QK-norm, SwiGLU experts,
+64 experts top-8 (presets: `olmoe`, `mixtral` 8/top-2 renormalised, `deepseek` 64/top-6 + shared expert),
+linear router softmax->top-k, load-balance 0.01 + router z-loss 0.001, dropless sparse dispatch (sort by
+expert, one host sync per layer, contiguous slices). Keeps `_override`/`_knockout` hooks; forward returns
+(logits, info, aux). Verified: dispatch vs dense reference max |diff| <= 3.6e-7 for all presets; causal
+mask correct; knockout/override correct. (A padded batched-bmm dispatch was exact but OOMed at 30 GB under
+unbalanced init routing; a per-expert nonzero() loop was exact but ran at 20 states/s.)
+Local MPS training speed (batch 512 states): 6L/d256 olmoe 78 st/s (18 h per 5.1M-state epoch), mixtral 159
+(8.9 h); 4L/d128 olmoe 149 st/s (9.5 h; 56 min per 0.5M), mixtral 397 (3.6 h; 21 min per 0.5M).
