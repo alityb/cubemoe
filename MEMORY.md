@@ -1370,3 +1370,28 @@ mask correct; knockout/override correct. (A padded batched-bmm dispatch was exac
 unbalanced init routing; a per-expert nonzero() loop was exact but ran at 20 states/s.)
 Local MPS training speed (batch 512 states): 6L/d256 olmoe 78 st/s (18 h per 5.1M-state epoch), mixtral 159
 (8.9 h); 4L/d128 olmoe 149 st/s (9.5 h; 56 min per 0.5M), mixtral 397 (3.6 h; 21 min per 0.5M).
+
+## 24. TRAINING MODELS THAT ACTUALLY SOLVE — production-style, on Modal (2026-10-13)
+
+User: GPU, aim to really solve; **use any Modal workspace except `pandan`** (usable: thisaccisfortheschool,
+ali-moh-islam-1, dnfcubes; `overshoot` fails auth). All three have `phasesplit-vol` with data/mixed.npz =
+the 250k Kociemba set (sha256 80ea6303..., identical to local data/mixed250k.npz).
+
+New, all verified before spending:
+- `src/cube_fast.py`: 54-sticker vectorised cube engine (moves derived geometrically; match probe/cube.py
+  on 18/18 moves x 300 random cubes) + the 8 whole-cube rotations that keep the U-D axis. They keep the
+  solved cube solved (8/8), commute with every move (8/8), map the G1 move set to itself (8/8), preserve
+  G1 membership (800/800); rotated Kociemba solutions still solve the rotated cube with the phase boundary
+  at the SAME step (1600/1600). => 8x phase-preserving data augmentation.
+- `src/solve_fast.py`: vectorised beam search; identical to the pure-Python reference on 40/40 cubes
+  (24/40 solved at width 256 in both).
+- `modal/prod.py`: resumable training (checkpoint every 10 min + every gate; resumes from /vol/out/prod/),
+  periodic gate = held-out next-move acc + greedy solve rate on 200 random cubes + beam-256 solve rate on
+  40 random cubes (final gate also beam-1024). CLI quirk: Modal lowercases flags, so params are
+  `--layers`, not `--L`.
+- Probe (60 steps each, cents): OLMoE-style 64/top-8 573 st/s (A10) / 818 (L40S) = 20-29 h per 60M
+  states — the per-expert loop leaves the GPU idle (real OLMoE uses grouped-GEMM kernels). Mixtral-style
+  8/top-2 2,681 (A10) / **4,686 (L40S) = 3.6 h per 60M**. Chose Mixtral-style first (it IS a production
+  design: RMSNorm, RoPE, SwiGLU, 8 experts top-2, renormalised weights).
+- Run 1: `mixtral_6L256_s0`, L40S, 6L/d256, bs 1024, 60M states (~12 passes over the base data,
+  1.5 over the augmented), lr 1e-3 cosine, AdamW wd 0.1, bf16. ~4,690 st/s; ~$7. Log out/modal_mixtral_s0.log.

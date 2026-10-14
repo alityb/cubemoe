@@ -110,14 +110,14 @@ def _train(tag, preset, d, L, nh, bs, total_states, lr, seed, gate_every, max_ho
     save(); return log["gates"][-1] if log["gates"] else None
 
 @app.function(image=img, volumes={"/vol": vol}, gpu="A10G", timeout=86400)
-def train_a10g(tag: str, preset: str = "olmoe", d: int = 256, L: int = 6, nh: int = 4, bs: int = 1024,
+def train_a10g(tag: str, preset: str = "olmoe", d: int = 256, layers: int = 6, nh: int = 4, bs: int = 1024,
                total_states: int = 60_000_000, lr: float = 1e-3, seed: int = 0, gate_every: int = 5000, max_hours: float = 20.0):
-    return _train(tag, preset, d, L, nh, bs, total_states, lr, seed, gate_every, max_hours)
+    return _train(tag, preset, d, layers, nh, bs, total_states, lr, seed, gate_every, max_hours)
 
 @app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=86400)
-def train_l40s(tag: str, preset: str = "olmoe", d: int = 256, L: int = 6, nh: int = 4, bs: int = 1024,
+def train_l40s(tag: str, preset: str = "olmoe", d: int = 256, layers: int = 6, nh: int = 4, bs: int = 1024,
                total_states: int = 60_000_000, lr: float = 1e-3, seed: int = 0, gate_every: int = 5000, max_hours: float = 20.0):
-    return _train(tag, preset, d, L, nh, bs, total_states, lr, seed, gate_every, max_hours)
+    return _train(tag, preset, d, layers, nh, bs, total_states, lr, seed, gate_every, max_hours)
 
 def _probe(preset, d, L, bs, steps):
     import torch, torch.nn.functional as F
