@@ -1,0 +1,60 @@
+{
+ "moe_mixed_s10": {
+  "held-out scrambles": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 28
+  },
+  "fully random cubes": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 28
+  }
+ },
+ "moe_mixed_s20": {
+  "held-out scrambles": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 28
+  },
+  "fully random cubes": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 28
+  }
+ },
+ "state_mixed_s10": {
+  "held-out scrambles": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 40
+  },
+  "fully random cubes": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 40
+  }
+ },
+ "moe_cfop_s40": {
+  "held-out scrambles": {
+   "solve_rate": 0.0,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 75
+  }
+ },
+ "state_cfop_s60": {
+  "held-out scrambles": {
+   "solve_rate": 0.0033333333333333335,
+   "random_policy": 0.0,
+   "n": 300,
+   "budget": 40
+  }
+ }
+}
