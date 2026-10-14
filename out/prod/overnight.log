@@ -1,0 +1,190 @@
+[10-14 04:03] === overnight pipeline started
+✓ Finished downloading files to local!
+report written
+[10-14 04:03] seed 0: stage A (model vs search) ...
+attention readout diff 0.0
+no model {'width': 1024, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 29.610440969467163}
+untrained {'width': 256, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 1148.6710200309753}
+trained {'width': 256, 'n': 60, 'solved': 60, 'avg_moves': 23.8, 'seconds': 986.7070109844208}
+trained greedy {'width': 1, 'n': 60, 'solved': 1, 'avg_moves': 32.0, 'seconds': 200.57135701179504}
+path ranks {'1st': 0.8634453781512605, '2nd': 0.07773109243697479, '3rd': 0.028711484593837534, 'beyond': 0.03011204481792717, 'n_moves': 1428}
+memorisation {'eval_cubes': 500, 'found_in_training': 0, 'distinct_training_positions': 26891547}
+[10-14 04:45] seed 0: stage A done
+report written
+[10-14 04:45] seed 0: stages B-E (attention, features, experts, phase) ...
+
+=== stage B ===
+  attention normal  : next-move accuracy  72.7%   beam-256 solve 100.0%
+  attention zero    : next-move accuracy   9.0%   beam-256 solve   0.0%
+  attention uniform : next-move accuracy   2.9%   beam-256 solve   0.0%
+  accuracy with attention removed in ONE layer only: L0 7.3%  L1 23.5%  L2 48.9%  L3 57.4%  L4 60.6%  L5 66.6%
+  share of the decision token's attention going to centre / edge / corner stickers (if attention were spread evenly: 10.9% / 43.6% / 43.6%):
+    layer 0: centres  9.1%  edges 43.2%  corners 44.4%  (itself  3.2%)
+    layer 1: centres  8.9%  edges 44.2%  corners 45.6%  (itself  1.3%)
+    layer 2: centres  9.2%  edges 48.3%  corners 40.9%  (itself  1.6%)
+    layer 3: centres 10.9%  edges 42.7%  corners 44.2%  (itself  2.2%)
+    layer 4: centres 11.6%  edges 45.4%  corners 41.0%  (itself  2.1%)
+    layer 5: centres  9.0%  edges 46.0%  corners 42.5%  (itself  2.5%)
+
+=== stage C ===
+  in G1 (phase 2)              raw: 1.00  layer 0: 1.00  layer 1: 1.00  layer 2: 1.00  layer 3: 1.00  layer 4: 1.00  layer 5: 1.00
+  # misoriented edges          raw: 0.99  layer 0: 0.85  layer 1: 0.89  layer 2: 0.93  layer 3: 0.95  layer 4: 0.94  layer 5: 0.83
+  # misoriented corners        raw: 1.00  layer 0: 0.97  layer 1: 0.97  layer 2: 0.97  layer 3: 0.96  layer 4: 0.95  layer 5: 0.88
+  # slice edges out of slice   raw: 1.00  layer 0: 0.95  layer 1: 0.95  layer 2: 0.95  layer 3: 0.95  layer 4: 0.93  layer 5: 0.86
+  moves to reach G1            raw: 0.85  layer 0: 0.80  layer 1: 0.83  layer 2: 0.85  layer 3: 0.91  layer 4: 0.95  layer 5: 0.91
+  moves to solved              raw: 0.77  layer 0: 0.82  layer 1: 0.86  layer 2: 0.89  layer 3: 0.91  layer 4: 0.92  layer 5: 0.85
+
+=== stage D ===
+  layer 0: sticker tokens routed by their own (position, colour):  92.6%   |   decision token: best single sticker 47.5%, phase 98.0%, moves-to-G1 98.0%, bad edges 68.4%, bad corners 97.7%, next move 41.1%  [decision-routing entropy 0.94 bits]
+  layer 1: sticker tokens routed by their own (position, colour):  89.4%   |   decision token: best single sticker 18.2%, phase  7.1%, moves-to-G1  7.0%, bad edges  5.5%, bad corners  7.4%, next move  4.3%  [decision-routing entropy 0.14 bits -> TOO LOW, unreliable]
+  layer 2: sticker tokens routed by their own (position, colour):  72.1%   |   decision token: best single sticker 12.8%, phase 13.6%, moves-to-G1 13.5%, bad edges 10.9%, bad corners 13.5%, next move 11.6%  [decision-routing entropy 0.81 bits]
+  layer 3: sticker tokens routed by their own (position, colour):  64.2%   |   decision token: best single sticker 40.0%, phase 37.8%, moves-to-G1 37.7%, bad edges 28.5%, bad corners 37.7%, next move 20.1%  [decision-routing entropy 1.85 bits]
+  layer 4: sticker tokens routed by their own (position, colour):  59.9%   |   decision token: best single sticker 36.7%, phase 72.3%, moves-to-G1 77.3%, bad edges 54.3%, bad corners 73.2%, next move 36.2%  [decision-routing entropy 1.27 bits]
+  layer 5: sticker tokens routed by their own (position, colour):  45.2%   |   decision token: best single sticker 35.9%, phase 62.8%, moves-to-G1 71.0%, bad edges 54.3%, bad corners 65.8%, next move 31.4%  [decision-routing entropy 1.25 bits]
+  knockouts, layer 3 (drop in probability of the solver's move):
+    e0: phase1 +0.027  phase2 +0.003  | ph1 edge-flip moves +0.026  corner-twist moves +0.016  | effective #moves 15.4
+    e1: phase1 +0.000  phase2 +0.006  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 10.0
+    e2: phase1 +0.000  phase2 +0.019  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 10.4
+    e3: phase1 +0.000  phase2 +0.003  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 8.7
+    e4: phase1 +0.005  phase2 +0.002  | ph1 edge-flip moves +0.006  corner-twist moves +0.005  | effective #moves 13.5
+    e5: phase1 +0.000  phase2 +0.019  | ph1 edge-flip moves -0.000  corner-twist moves -0.000  | effective #moves 11.0
+    e6: phase1 +0.000  phase2 +0.001  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 9.4
+    e7: phase1 +0.012  phase2 +0.005  | ph1 edge-flip moves +0.009  corner-twist moves +0.008  | effective #moves 14.3
+  knockouts, layer 5 (drop in probability of the solver's move):
+    e0: phase1 +0.086  phase2 -0.000  | ph1 edge-flip moves +0.096  corner-twist moves +0.133  | effective #moves 8.8
+    e1: phase1 -0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 1.7
+    e2: phase1 +0.000  phase2 +0.302  | ph1 edge-flip moves -0.000  corner-twist moves +0.001  | effective #moves 8.1
+    e3: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 1.4
+    e4: phase1 -0.000  phase2 +0.000  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 2.4
+    e5: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 2.0
+    e6: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 1.0
+    e7: phase1 +0.099  phase2 +0.000  | ph1 edge-flip moves +0.191  corner-twist moves +0.103  | effective #moves 5.3
+
+=== stage E ===
+  last-layer routing of the decision token explained by PHASE (at fixed moves-to-solved): 18.6% (shuffled router 0.0%)
+  phase-1 expert: e0 (handles 62.1% of phase-1 positions, 0.0% of phase-2)
+  CAUSAL: forcing phase-2 positions through the phase-1 expert destroys 19.4% of legal-move probability; a typical other expert destroys 34.53%  (baseline legal mass 100.0%)
+  KNOCKOUT: removing the phase-1 expert costs phase-1 positions +8.6 pts and phase-2 positions -0.0 pts (typical other expert: +0.0 / +0.0)
+[10-14 06:01] seed 0: stages B-E done
+report written
+[10-14 07:12] seed 1: training finished; downloading checkpoint
+✓ Finished downloading files to local!
+[10-14 07:12] seed 1: 500-cube solve test on Modal (thisaccisfortheschool), attempt 1
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-nOmGiaOmwYlQFuMRYxnWsI
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+mixtral_6L256_s1 beam 64: solved 497/500, avg 25.47 moves, 0.54 s/cube
+mixtral_6L256_s1 beam 256: solved 500/500, avg 23.66 moves, 0.49 s/cube
+mixtral_6L256_s1 beam 1024: solved 500/500, avg 22.62 moves, 1.03 s/cube
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-nOmGiaOmwYlQFuMRYxnWsI
+✓ Finished downloading files to local!
+[10-14 07:29] seed 1: phase analysis (stage E) ...
+
+=== stage E ===
+  last-layer routing of the decision token explained by PHASE (at fixed moves-to-solved): 21.2% (shuffled router 0.0%)
+  phase-1 expert: e6 (handles 80.6% of phase-1 positions, 0.4% of phase-2)
+  CAUSAL: forcing phase-2 positions through the phase-1 expert destroys 7.5% of legal-move probability; a typical other expert destroys 7.23%  (baseline legal mass 100.0%)
+  KNOCKOUT: removing the phase-1 expert costs phase-1 positions +12.4 pts and phase-2 positions -0.2 pts (typical other expert: +0.0 / +0.0)
+[10-14 07:42] seed 1: stage E done
+report written
+[10-14 07:42] seed 2: training finished; downloading checkpoint
+✓ Finished downloading files to local!
+[10-14 07:42] seed 2: 500-cube solve test on Modal (thisaccisfortheschool), attempt 1
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-VbHCFM9shMmmwQTP3yFlcK
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+mixtral_6L256_s2 beam 64: solved 479/500, avg 25.81 moves, 0.52 s/cube
+mixtral_6L256_s2 beam 256: solved 500/500, avg 24.01 moves, 0.48 s/cube
+mixtral_6L256_s2 beam 1024: solved 500/500, avg 22.67 moves, 1.02 s/cube
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-VbHCFM9shMmmwQTP3yFlcK
+✓ Finished downloading files to local!
+[10-14 07:59] seed 2: phase analysis (stage E) ...
+
+=== stage E ===
+  last-layer routing of the decision token explained by PHASE (at fixed moves-to-solved): 27.1% (shuffled router -0.0%)
+  phase-1 expert: e1 (handles 58.0% of phase-1 positions, 0.0% of phase-2)
+  CAUSAL: forcing phase-2 positions through the phase-1 expert destroys 26.2% of legal-move probability; a typical other expert destroys 21.12%  (baseline legal mass 100.0%)
+  KNOCKOUT: removing the phase-1 expert costs phase-1 positions +12.4 pts and phase-2 positions +0.0 pts (typical other expert: +0.0 / +0.0)
+[10-14 08:11] seed 2: stage E done
+report written
+[10-14 08:11] seed 3: training finished; downloading checkpoint
+✓ Finished downloading files to local!
+[10-14 08:11] seed 3: 500-cube solve test on Modal (ali-moh-islam-1), attempt 1
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-XIkM1OXFnVmm0wdSRNeCoc
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+mixtral_6L256_s3 beam 64: solved 483/500, avg 25.70 moves, 0.50 s/cube
+mixtral_6L256_s3 beam 256: solved 500/500, avg 23.82 moves, 0.47 s/cube
+mixtral_6L256_s3 beam 1024: solved 500/500, avg 22.69 moves, 1.01 s/cube
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-XIkM1OXFnVmm0wdSRNeCoc
+✓ Finished downloading files to local!
+[10-14 08:28] seed 3: phase analysis (stage E) ...
+
+=== stage E ===
+  last-layer routing of the decision token explained by PHASE (at fixed moves-to-solved): 17.8% (shuffled router 0.0%)
+  phase-1 expert: e6 (handles 71.8% of phase-1 positions, 0.0% of phase-2)
+  CAUSAL: forcing phase-2 positions through the phase-1 expert destroys 14.1% of legal-move probability; a typical other expert destroys 4.40%  (baseline legal mass 100.0%)
+  KNOCKOUT: removing the phase-1 expert costs phase-1 positions +11.7 pts and phase-2 positions +0.0 pts (typical other expert: +0.0 / +0.0)
+[10-14 08:40] seed 3: stage E done
+report written
+[10-14 08:40] seed 4: training finished; downloading checkpoint
+✓ Finished downloading files to local!
+[10-14 08:41] seed 4: 500-cube solve test on Modal (ali-moh-islam-1), attempt 1
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-OWygXjiYsorX94LIDPPHSC
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+mixtral_6L256_s4 beam 64: solved 499/500, avg 24.94 moves, 0.49 s/cube
+mixtral_6L256_s4 beam 256: solved 500/500, avg 23.47 moves, 0.48 s/cube
+mixtral_6L256_s4 beam 1024: solved 500/500, avg 22.41 moves, 1.00 s/cube
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-OWygXjiYsorX94LIDPPHSC
+✓ Finished downloading files to local!
+[10-14 08:57] seed 4: phase analysis (stage E) ...
+
+=== stage E ===
+  last-layer routing of the decision token explained by PHASE (at fixed moves-to-solved): 24.9% (shuffled router 0.0%)
+  phase-1 expert: e1 (handles 78.1% of phase-1 positions, 0.0% of phase-2)
+  CAUSAL: forcing phase-2 positions through the phase-1 expert destroys 11.4% of legal-move probability; a typical other expert destroys 9.78%  (baseline legal mass 100.0%)
+  KNOCKOUT: removing the phase-1 expert costs phase-1 positions +14.7 pts and phase-2 positions +0.0 pts (typical other expert: +0.0 / +0.0)
+[10-14 09:09] seed 4: stage E done
+report written
+report written
