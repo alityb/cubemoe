@@ -1395,3 +1395,11 @@ New, all verified before spending:
   design: RMSNorm, RoPE, SwiGLU, 8 experts top-2, renormalised weights).
 - Run 1: `mixtral_6L256_s0`, L40S, 6L/d256, bs 1024, 60M states (~12 passes over the base data,
   1.5 over the augmented), lr 1e-3 cosine, AdamW wd 0.1, bf16. ~4,690 st/s; ~$7. Log out/modal_mixtral_s0.log.
+
+**Run 1 FINAL (`mixtral_6L256_s0`, 60M states, ~3.6 h L40S):** held-out next-move acc 73.0%; greedy solve on
+random cubes 4%; **beam-256 100% (40/40), avg 24.0 moves; beam-1024 100% (40/40), avg 23.1 moves**. Gate
+history (beam-256 on random cubes): 10% @5M, 30% @10M, 70% @15-20M, 90% @26M, 95% @31M, 100% from 36M on.
+First model in the project that solves fully random cubes. Checkpoint: Modal thisaccisfortheschool
+phasesplit-vol /out/prod/mixtral_6L256_s0.pt (+ .json log); local copy out/prod/mixtral_6L256_s0.pt
+(416 MB incl. optimizer state, sha256 36848faf77800e1e...). Large eval: `modal/prod.py::evaluate`
+(500 fresh random cubes, seed 2026, widths 64/256/1024) -> /vol/out/prod/mixtral_6L256_s0_eval.json.
