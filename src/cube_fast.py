@@ -128,3 +128,7 @@ def self_test(n=300, seed=0):
 
 if __name__ == '__main__':
     self_test()
+
+# Rotations that keep the D face on the bottom (the 4 turns about the U-D axis). CFOP builds its cross on D,
+# so only these preserve CFOP's stage structure; the x2/z2 flips in ROTATIONS would move the cross to U.
+KEEP_D = [i for i, M in enumerate(ROTATIONS) if tuple(int(x) for x in M @ np.array([0, -1, 0])) == (0, -1, 0)]

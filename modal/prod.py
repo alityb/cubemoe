@@ -23,22 +23,23 @@ def _setup():
     import sys; sys.path[:0] = ["/repo/src", "/repo/probe"]
 
 class Data:
-    def __init__(self, dev):
+    def __init__(self, dev, data="mixed", rot="all"):
         import numpy as np, torch, cube_fast as C
-        d = dict(np.load("/vol/data/mixed.npz"))
+        d = dict(np.load(f"/vol/data/{data}.npz")); self.data = data
         n = len(d["sol_len"]); perm = np.random.RandomState(0).permutation(n); ntr = int(n * 0.9)
         off = np.concatenate([[0], np.cumsum(d["sol_len"].astype(np.int64))])
         def rows(ids): return np.concatenate([np.arange(off[i], off[i + 1]) for i in ids])
         tr, te = rows(perm[:ntr]), rows(perm[ntr:])
         self.Xtr = torch.from_numpy(d["states"][tr].astype(np.int64)).to(dev); self.Ytr = torch.from_numpy(d["moves"][tr].astype(np.int64)).to(dev)
         self.Xte = torch.from_numpy(d["states"][te].astype(np.int64)).to(dev); self.Yte = torch.from_numpy(d["moves"][te].astype(np.int64)).to(dev)
-        self.held_init = d["init_state"][perm[ntr:]][:400]
+        self.held_init = d["init_state"][perm[ntr:]][:600]
+        self.rots = list(range(8)) if rot == "all" else list(C.KEEP_D)   # CFOP: only rotations keeping D on the bottom
         self.RP = torch.from_numpy(C.ROT_PERM).to(dev); self.RC = torch.from_numpy(C.ROT_RECOLOR.astype(np.int64)).to(dev)
         self.RM = torch.from_numpy(C.ROT_MOVE).to(dev)
     def batch(self, bs, gen):
         import torch
         i = torch.randint(0, len(self.Xtr), (bs,), device=self.Xtr.device, generator=gen)
-        r = torch.randint(0, 8, (bs,), device=self.Xtr.device, generator=gen)
+        r = torch.tensor(self.rots, device=self.Xtr.device)[torch.randint(0, len(self.rots), (bs,), device=self.Xtr.device, generator=gen)]
         x = self.Xtr[i]; y = self.Ytr[i]
         x = self.RC[r[:, None], x.gather(1, self.RP[r])]       # rotate stickers, relabel colours
         return x, self.RM[r, y]
@@ -61,29 +62,31 @@ def gate(model, D, dev, n_greedy=200, n_beam=40, widths=(256,), budget=40):
         out["heldout_acc"] = float(torch.cat(acc).mean())
     import cube_fast as C
     MP = torch.from_numpy(C.MOVE_PERM).to(dev); SOLVED = torch.from_numpy(C.SOLVED.astype("int64")).to(dev)
-    cubes = random_cubes(n_greedy, 123, dev); cur = cubes.clone(); done = torch.zeros(len(cur), dtype=torch.bool, device=dev)
+    if "cfop" in D.data: cubes = torch.from_numpy(D.held_init[:n_greedy].astype("int64")).to(dev)   # CFOP: held-out CFOP scrambles
+    else: cubes = random_cubes(n_greedy, 123, dev)
+    cur = cubes.clone(); done = torch.zeros(len(cur), dtype=torch.bool, device=dev)
     for t in range(budget):
         with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16):
             a = model(cur)[0].argmax(-1)
         cur = torch.where(done[:, None], cur, cur.gather(1, MP[a])); done |= (cur == SOLVED).all(-1)
-    out["greedy_solve_random"] = float(done.float().mean())
+    out["greedy_solve_random" if "cfop" not in D.data else "greedy_solve_heldout"] = float(done.float().mean())
     from solve_fast import beam_solve
     for w in widths:
         r = [beam_solve(model, c, w, budget, dev) for c in cubes[:n_beam]]
         ok = [x for x in r if x is not None]
-        out[f"beam{w}_solve_random"] = len(ok) / n_beam; out[f"beam{w}_avg_moves"] = float(np.mean(ok)) if ok else None
+        out[f"beam{w}_solve_random" if "cfop" not in D.data else f"beam{w}_solve_heldout"] = len(ok) / n_beam; out[f"beam{w}_avg_moves"] = float(np.mean(ok)) if ok else None
     model.train(); return out
 
-def _train(tag, preset, d, L, nh, bs, total_states, lr, seed, gate_every, max_hours):
+def _train(tag, preset, d, L, nh, bs, total_states, lr, seed, gate_every, max_hours, data="mixed", rot="all", budget=40):
     import os, json, math, torch, torch.nn.functional as F
     _setup()
     from model_prod import ProdStateModel
     dev = "cuda"; torch.manual_seed(seed); os.makedirs("/vol/out/prod", exist_ok=True)
-    D = Data(dev); model = ProdStateModel(d=d, L=L, nh=nh, preset=preset).to(dev)
+    D = Data(dev, data, rot); model = ProdStateModel(d=d, L=L, nh=nh, preset=preset).to(dev)
     opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.1, betas=(0.9, 0.95))
     steps = total_states // bs; warm = min(1000, steps // 20)
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1, (s + 1) / warm) * (0.1 + 0.9 * 0.5 * (1 + math.cos(math.pi * min(s, steps) / steps))))
-    ck = f"/vol/out/prod/{tag}.pt"; logf = f"/vol/out/prod/{tag}.json"; step = 0; log = dict(cfg=dict(tag=tag, preset=preset, d=d, L=L, nh=nh, bs=bs, total_states=total_states, lr=lr, seed=seed), gates=[])
+    ck = f"/vol/out/prod/{tag}.pt"; logf = f"/vol/out/prod/{tag}.json"; step = 0; log = dict(cfg=dict(tag=tag, preset=preset, d=d, L=L, nh=nh, bs=bs, total_states=total_states, lr=lr, seed=seed, data=data, rot=rot, budget=budget), gates=[])
     if os.path.exists(ck):
         s = torch.load(ck, map_location=dev, weights_only=False)
         model.load_state_dict(s["sd"]); opt.load_state_dict(s["opt"]); sched.load_state_dict(s["sched"]); step = s["step"]; log = s["log"]
@@ -103,7 +106,7 @@ def _train(tag, preset, d, L, nh, bs, total_states, lr, seed, gate_every, max_ho
             el = time.time() - t0
             print(f"{tag} step {step}/{steps} loss {loss.item():.4f} {bs*200/max(el,1e-9):,.0f} states/s", flush=True); t0 = time.time()
         if step % gate_every == 0 or step == steps:
-            g = gate(model, D, dev, widths=(256,) if step < steps else (256, 1024)); g["step"] = step; g["states_seen"] = step * bs
+            g = gate(model, D, dev, widths=(256,) if step < steps else (256, 1024), budget=budget); g["step"] = step; g["states_seen"] = step * bs
             log["gates"].append(g); print(f"GATE {tag} {g}", flush=True); save(); last_save = time.time()
         elif time.time() - last_save > 600: save(); last_save = time.time()
         if (time.time() - log.setdefault("_start", time.time())) / 3600 > max_hours: print("time budget reached; saving and exiting", flush=True); break
@@ -116,8 +119,9 @@ def train_a10g(tag: str, preset: str = "olmoe", d: int = 256, layers: int = 6, n
 
 @app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=86400)
 def train_l40s(tag: str, preset: str = "olmoe", d: int = 256, layers: int = 6, nh: int = 4, bs: int = 1024,
-               total_states: int = 60_000_000, lr: float = 1e-3, seed: int = 0, gate_every: int = 5000, max_hours: float = 20.0):
-    return _train(tag, preset, d, layers, nh, bs, total_states, lr, seed, gate_every, max_hours)
+               total_states: int = 60_000_000, lr: float = 1e-3, seed: int = 0, gate_every: int = 5000, max_hours: float = 20.0,
+               data: str = "mixed", rot: str = "all", budget: int = 40):
+    return _train(tag, preset, d, layers, nh, bs, total_states, lr, seed, gate_every, max_hours, data, rot, budget)
 
 def _probe(preset, d, L, bs, steps):
     import torch, torch.nn.functional as F
@@ -150,7 +154,7 @@ def probe():
     for c in calls: print(c.get())
 
 @app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=7200)
-def evaluate(tag: str, n: int = 500, widths: str = "64,256,1024", seed: int = 2026, budget: int = 40):
+def evaluate(tag: str, n: int = 500, widths: str = "64,256,1024", seed: int = 2026, budget: int = 40, data: str = "mixed"):
     """Large solve test on FRESH random cubes (seed differs from the training gate's seed 123)."""
     import torch, numpy as np, time, json
     _setup()
@@ -158,7 +162,10 @@ def evaluate(tag: str, n: int = 500, widths: str = "64,256,1024", seed: int = 20
     from solve_fast import beam_solve
     s = torch.load(f"/vol/out/prod/{tag}.pt", map_location="cuda", weights_only=False); c = s["log"]["cfg"]
     m = ProdStateModel(d=c["d"], L=c["L"], nh=c["nh"], preset=c["preset"]).cuda(); m.load_state_dict(s["sd"]); m.eval()
-    cubes = random_cubes(n, seed, "cuda"); out = {"tag": tag, "n": n, "seed": seed, "budget": budget}
+    if "cfop" in data:
+        D = Data("cuda", data, "keepD"); cubes = torch.from_numpy(D.held_init[:n].astype("int64")).cuda()
+    else: cubes = random_cubes(n, seed, "cuda")
+    out = {"tag": tag, "n": n, "seed": seed, "budget": budget, "data": data, "test_set": "held-out CFOP scrambles" if "cfop" in data else "random cubes"}
     for w in [int(x) for x in widths.split(",")]:
         t0 = time.time(); r = [beam_solve(m, cb, w, budget, "cuda") for cb in cubes]; ok = [x for x in r if x is not None]
         out[f"beam{w}"] = dict(solved=len(ok), rate=len(ok) / n, avg_moves=float(np.mean(ok)) if ok else None,
