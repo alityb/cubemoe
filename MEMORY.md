@@ -1443,3 +1443,25 @@ phase-2 experts; **no expert matters for both phases in any seed** (phase-1 KO l
 The FORCE test is confounded in this model (forcing any expert is destructive) — use the knockout test.
 Not pre-registered, but stage-E code was frozen before seeds 1-4 finished and ran on them unchanged
 (held-out replication of a fixed analysis).
+
+## 27. WRITE-UP DECISIONS + CFOP RERUN (2026-10-14)
+
+User chose: **single paper-quality BLOG post** (no separate paper), modeled on the standard of Papadopoulos,
+Shah et al., "Mind Viruses" (arXiv 2608.10218, Anthropic Fellows): calibrated bottom line, precise
+definitions + positioning vs prior work, confounds stated next to claims, concrete worked examples,
+itemized limitations, hedged plain prose, code released. Reference homepages (rasoolfa.github.io,
+alexisfox.dev) are minimal: venues + code links carry credibility. Remove from the draft: bold thesis,
+rhetorical questions ("Makes sense, right?"), meta-commentary, overclaims ("rediscovered"), and every claim
+that rests on the old NON-SOLVING models without saying so.
+
+**CFOP rerun with the production setup, on Modal `dnfcubes`** (user: "use another modal account"):
+- `data/cfop250k.npz`: 250k solves, original generator (cross_len 4-8), 15M states, sha256 c8a74dc8...;
+  all 9 CFOP QA gates PASS; stage shares 9.8/29.0/23.3/37.9% (same as the 10k set). Known flaw kept and to be
+  stated: the "cross" segment is undoing random moves, not a real cross solve.
+- Augmentation: only the 4 rotations that keep D on the bottom (`cube_fast.KEEP_D` = [0,2,4,6]); verified
+  rotated CFOP solutions solve the rotated cube AND all four stage boundaries hold (1200/1200 each).
+- `modal/prod.py` now takes `--data cfop250k --rot keepD --budget 90` (CFOP solutions avg ~61 moves, max 74;
+  the default 40-move budget would fail by construction). CFOP solve tests use held-out CFOP scrambles.
+- Smoke run (200 steps): held-out acc 65%, gates run. Seeds `cfop_mixtral_6L256_s0..s4` launched, 60M
+  states each, ~4,700 st/s, ~3.6 h, ~$35. Logs out/modal_cfop_s*.log.
+- Meanwhile `src/replicate_seeds.sh` runs stages A-D on Kociemba seeds 1-4 locally (log out/prod/replicate.log).
