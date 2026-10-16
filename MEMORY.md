@@ -1465,3 +1465,18 @@ that rests on the old NON-SOLVING models without saying so.
 - Smoke run (200 steps): held-out acc 65%, gates run. Seeds `cfop_mixtral_6L256_s0..s4` launched, 60M
   states each, ~4,700 st/s, ~3.6 h, ~$35. Logs out/modal_cfop_s*.log.
 - Meanwhile `src/replicate_seeds.sh` runs stages A-D on Kociemba seeds 1-4 locally (log out/prod/replicate.log).
+
+## 28. MODAL `dnfcubes` HIT ITS $40 LIMIT (2026-10-15 ~23:00) — workspace disabled
+
+Spent there: 5 CFOP trainings (~$35) + smoke + the start of the 500-scramble solve tests. The seed-0 test died
+mid-run ("workspace is disabled"); its log shows beam 64 = 486/500 (54.3 moves), beam 256 = 500/500 (48.5
+moves); beam 1024 not finished. Seeds 1-4 tests never started. All phasesplit apps on dnfcubes STOPPED
+(`modal app stop --yes`); nothing can run or charge. A disabled workspace's volume is still READABLE: all 5
+CFOP checkpoints + logs downloaded to out/prod/. CFOP solve evidence available without more spend: training
+gates (40 held-out CFOP scrambles per seed, beam 256 and beam 1024 both 100% in all 5; acc 87.4-87.9%; greedy
+7.0-10.5%; 48-50 moves vs ~61 in the training solutions) + seed 0's partial 500-scramble result. CFOP
+stage/expert analysis runs locally (`src/cfop_local.sh`). Kociemba seed replication (stages A-D, seeds 1-4)
+COMPLETE: every seed-0 finding replicates (86% of path moves = model's 1st choice in all 5 seeds; attention
+off -> 0% solve; moves-to-G1 0.85 -> 0.94-0.95 and moves-to-solved 0.77 -> 0.92 at layer 4 in all seeds).
+Budget lesson: the user cares about the per-workspace $40 cap; check remaining spend before launching
+parallel jobs, and prefer local (free) when the work fits.

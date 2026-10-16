@@ -1,0 +1,239 @@
+[10-14 19:40] seed 1: stage A
+attention readout diff 0.0
+no model {'width': 1024, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 17.521564960479736}
+untrained {'width': 256, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 987.4859449863434}
+trained {'width': 256, 'n': 60, 'solved': 60, 'avg_moves': 23.266666666666666, 'seconds': 1014.644376039505}
+trained greedy {'width': 1, 'n': 60, 'solved': 2, 'avg_moves': 23.5, 'seconds': 189.77745914459229}
+path ranks {'1st': 0.8646131805157593, '2nd': 0.07951289398280802, '3rd': 0.02865329512893983, 'beyond': 0.027220630372492838, 'n_moves': 1396}
+memorisation {'eval_cubes': 500, 'found_in_training': 0, 'distinct_training_positions': 26891547}
+[10-14 20:20] seed 1: A done
+[10-14 20:20] seed 1: stages B-D
+
+=== stage B ===
+  attention normal  : next-move accuracy  72.8%   beam-256 solve 100.0%
+  attention zero    : next-move accuracy  11.1%   beam-256 solve   0.0%
+  attention uniform : next-move accuracy   1.6%   beam-256 solve   0.0%
+  accuracy with attention removed in ONE layer only: L0 4.1%  L1 39.1%  L2 44.8%  L3 45.2%  L4 58.2%  L5 69.4%
+  share of the decision token's attention going to centre / edge / corner stickers (if attention were spread evenly: 10.9% / 43.6% / 43.6%):
+    layer 0: centres  8.7%  edges 43.8%  corners 45.2%  (itself  2.4%)
+    layer 1: centres  9.7%  edges 46.0%  corners 42.4%  (itself  1.9%)
+    layer 2: centres  8.6%  edges 43.2%  corners 45.4%  (itself  2.8%)
+    layer 3: centres 10.3%  edges 46.4%  corners 41.4%  (itself  2.0%)
+    layer 4: centres  6.9%  edges 49.9%  corners 41.2%  (itself  2.1%)
+    layer 5: centres  8.4%  edges 43.9%  corners 45.5%  (itself  2.3%)
+
+=== stage C ===
+  in G1 (phase 2)              raw: 1.00  layer 0: 1.00  layer 1: 1.00  layer 2: 1.00  layer 3: 1.00  layer 4: 1.00  layer 5: 1.00
+  # misoriented edges          raw: 0.99  layer 0: 0.84  layer 1: 0.86  layer 2: 0.92  layer 3: 0.95  layer 4: 0.93  layer 5: 0.81
+  # misoriented corners        raw: 1.00  layer 0: 0.95  layer 1: 0.96  layer 2: 0.97  layer 3: 0.96  layer 4: 0.94  layer 5: 0.80
+  # slice edges out of slice   raw: 1.00  layer 0: 0.93  layer 1: 0.94  layer 2: 0.95  layer 3: 0.96  layer 4: 0.94  layer 5: 0.79
+  moves to reach G1            raw: 0.85  layer 0: 0.77  layer 1: 0.80  layer 2: 0.85  layer 3: 0.92  layer 4: 0.94  layer 5: 0.87
+  moves to solved              raw: 0.77  layer 0: 0.82  layer 1: 0.85  layer 2: 0.89  layer 3: 0.91  layer 4: 0.92  layer 5: 0.79
+
+=== stage D ===
+  layer 0: sticker tokens routed by their own (position, colour):  91.6%   |   decision token: best single sticker 44.8%, phase 71.1%, moves-to-G1 76.2%, bad edges 72.5%, bad corners 80.1%, next move 29.8%  [decision-routing entropy 0.85 bits]
+  layer 1: sticker tokens routed by their own (position, colour):  92.9%   |   decision token: best single sticker 47.9%, phase 95.9%, moves-to-G1 95.9%, bad edges 68.4%, bad corners 95.7%, next move 41.1%  [decision-routing entropy 0.93 bits]
+  layer 2: sticker tokens routed by their own (position, colour):  71.0%   |   decision token: best single sticker 36.1%, phase 70.3%, moves-to-G1 70.3%, bad edges 51.3%, bad corners 70.2%, next move 34.7%  [decision-routing entropy 1.17 bits]
+  layer 3: sticker tokens routed by their own (position, colour):  66.5%   |   decision token: best single sticker 26.0%, phase 53.5%, moves-to-G1 54.2%, bad edges 37.6%, bad corners 53.6%, next move 22.8%  [decision-routing entropy 1.70 bits]
+  layer 4: sticker tokens routed by their own (position, colour):  49.6%   |   decision token: best single sticker 25.5%, phase 47.4%, moves-to-G1 57.6%, bad edges 42.1%, bad corners 51.2%, next move 24.7%  [decision-routing entropy 1.71 bits]
+  layer 5: sticker tokens routed by their own (position, colour):  42.6%   |   decision token: best single sticker 37.4%, phase 68.9%, moves-to-G1 70.2%, bad edges 60.9%, bad corners 69.7%, next move 32.3%  [decision-routing entropy 0.85 bits]
+  knockouts, layer 3 (drop in probability of the solver's move):
+    e0: phase1 +0.002  phase2 +0.003  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 11.3
+    e1: phase1 +0.000  phase2 +0.012  | ph1 edge-flip moves +0.000  corner-twist moves -0.001  | effective #moves 10.2
+    e2: phase1 +0.005  phase2 +0.000  | ph1 edge-flip moves +0.005  corner-twist moves +0.003  | effective #moves 11.2
+    e3: phase1 +0.002  phase2 +0.011  | ph1 edge-flip moves +0.002  corner-twist moves +0.003  | effective #moves 13.5
+    e4: phase1 +0.001  phase2 +0.038  | ph1 edge-flip moves +0.001  corner-twist moves +0.000  | effective #moves 10.4
+    e5: phase1 +0.000  phase2 +0.015  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 10.2
+    e6: phase1 +0.002  phase2 +0.002  | ph1 edge-flip moves +0.001  corner-twist moves +0.001  | effective #moves 11.7
+    e7: phase1 +0.029  phase2 +0.003  | ph1 edge-flip moves +0.023  corner-twist moves +0.032  | effective #moves 14.3
+  knockouts, layer 5 (drop in probability of the solver's move):
+    e0: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 5.0
+    e1: phase1 +0.018  phase2 +0.102  | ph1 edge-flip moves +0.006  corner-twist moves +0.035  | effective #moves 11.4
+    e2: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 4.7
+    e3: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 5.0
+    e4: phase1 -0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 4.7
+    e5: phase1 -0.000  phase2 +0.000  | ph1 edge-flip moves -0.000  corner-twist moves -0.000  | effective #moves 3.4
+    e6: phase1 +0.124  phase2 -0.002  | ph1 edge-flip moves +0.175  corner-twist moves +0.106  | effective #moves 10.9
+    e7: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 7.8
+[10-14 21:23] seed 1: B-D done
+[10-14 21:23] seed 2: stage A
+attention readout diff 0.0
+no model {'width': 1024, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 8.800477027893066}
+untrained {'width': 256, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 918.6439518928528}
+trained {'width': 256, 'n': 60, 'solved': 60, 'avg_moves': 23.75, 'seconds': 1082.7463512420654}
+trained greedy {'width': 1, 'n': 60, 'solved': 2, 'avg_moves': 29.0, 'seconds': 198.77938985824585}
+path ranks {'1st': 0.856140350877193, '2nd': 0.08771929824561403, '3rd': 0.028771929824561403, 'beyond': 0.02736842105263158, 'n_moves': 1425}
+memorisation {'eval_cubes': 500, 'found_in_training': 0, 'distinct_training_positions': 26891547}
+[10-14 22:03] seed 2: A done
+[10-14 22:03] seed 2: stages B-D
+
+=== stage B ===
+  attention normal  : next-move accuracy  72.1%   beam-256 solve 100.0%
+  attention zero    : next-move accuracy   3.2%   beam-256 solve   0.0%
+  attention uniform : next-move accuracy   6.4%   beam-256 solve   0.0%
+  accuracy with attention removed in ONE layer only: L0 3.9%  L1 33.0%  L2 49.9%  L3 54.5%  L4 58.1%  L5 66.9%
+  share of the decision token's attention going to centre / edge / corner stickers (if attention were spread evenly: 10.9% / 43.6% / 43.6%):
+    layer 0: centres  6.8%  edges 45.1%  corners 45.9%  (itself  2.2%)
+    layer 1: centres  9.9%  edges 43.3%  corners 45.4%  (itself  1.3%)
+    layer 2: centres  7.0%  edges 46.5%  corners 45.3%  (itself  1.2%)
+    layer 3: centres  7.3%  edges 46.7%  corners 44.5%  (itself  1.5%)
+    layer 4: centres  7.2%  edges 47.0%  corners 43.5%  (itself  2.3%)
+    layer 5: centres  7.4%  edges 45.6%  corners 44.6%  (itself  2.4%)
+
+=== stage C ===
+  in G1 (phase 2)              raw: 1.00  layer 0: 1.00  layer 1: 1.00  layer 2: 1.00  layer 3: 1.00  layer 4: 1.00  layer 5: 1.00
+  # misoriented edges          raw: 0.99  layer 0: 0.83  layer 1: 0.86  layer 2: 0.93  layer 3: 0.95  layer 4: 0.94  layer 5: 0.84
+  # misoriented corners        raw: 1.00  layer 0: 0.97  layer 1: 0.97  layer 2: 0.97  layer 3: 0.97  layer 4: 0.95  layer 5: 0.87
+  # slice edges out of slice   raw: 1.00  layer 0: 0.94  layer 1: 0.94  layer 2: 0.95  layer 3: 0.95  layer 4: 0.94  layer 5: 0.85
+  moves to reach G1            raw: 0.85  layer 0: 0.80  layer 1: 0.85  layer 2: 0.89  layer 3: 0.93  layer 4: 0.94  layer 5: 0.91
+  moves to solved              raw: 0.77  layer 0: 0.84  layer 1: 0.87  layer 2: 0.89  layer 3: 0.91  layer 4: 0.92  layer 5: 0.85
+
+=== stage D ===
+  layer 0: sticker tokens routed by their own (position, colour):  93.9%   |   decision token: best single sticker 46.5%, phase 93.9%, moves-to-G1 95.2%, bad edges 66.0%, bad corners 95.3%, next move 40.9%  [decision-routing entropy 0.98 bits]
+  layer 1: sticker tokens routed by their own (position, colour):  81.0%   |   decision token: best single sticker 58.1%, phase 24.2%, moves-to-G1 24.1%, bad edges 19.3%, bad corners 24.2%, next move 12.7%  [decision-routing entropy 0.86 bits]
+  layer 2: sticker tokens routed by their own (position, colour):  72.6%   |   decision token: best single sticker 37.4%, phase 14.7%, moves-to-G1 14.6%, bad edges 11.8%, bad corners 14.6%, next move 10.5%  [decision-routing entropy 0.81 bits]
+  layer 3: sticker tokens routed by their own (position, colour):  59.9%   |   decision token: best single sticker 24.6%, phase 45.5%, moves-to-G1 45.5%, bad edges 32.7%, bad corners 45.4%, next move 21.0%  [decision-routing entropy 1.83 bits]
+  layer 4: sticker tokens routed by their own (position, colour):  57.7%   |   decision token: best single sticker 26.3%, phase 49.0%, moves-to-G1 58.1%, bad edges 48.4%, bad corners 54.9%, next move 27.0%  [decision-routing entropy 1.72 bits]
+  layer 5: sticker tokens routed by their own (position, colour):  44.3%   |   decision token: best single sticker 35.9%, phase 73.1%, moves-to-G1 73.4%, bad edges 57.1%, bad corners 73.0%, next move 34.8%  [decision-routing entropy 1.27 bits]
+  knockouts, layer 3 (drop in probability of the solver's move):
+    e0: phase1 -0.000  phase2 +0.009  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 9.3
+    e1: phase1 +0.001  phase2 +0.008  | ph1 edge-flip moves +0.002  corner-twist moves +0.001  | effective #moves 13.1
+    e2: phase1 +0.000  phase2 +0.006  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 10.3
+    e3: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 7.6
+    e4: phase1 +0.021  phase2 +0.000  | ph1 edge-flip moves +0.022  corner-twist moves +0.016  | effective #moves 13.6
+    e5: phase1 +0.000  phase2 +0.017  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 10.5
+    e6: phase1 +0.000  phase2 +0.037  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 8.0
+    e7: phase1 +0.004  phase2 +0.005  | ph1 edge-flip moves +0.005  corner-twist moves +0.005  | effective #moves 14.6
+  knockouts, layer 5 (drop in probability of the solver's move):
+    e0: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 1.1
+    e1: phase1 +0.124  phase2 +0.000  | ph1 edge-flip moves +0.250  corner-twist moves +0.059  | effective #moves 7.6
+    e2: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 1.2
+    e3: phase1 -0.000  phase2 +0.299  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 9.7
+    e4: phase1 +0.093  phase2 +0.000  | ph1 edge-flip moves +0.021  corner-twist moves +0.176  | effective #moves 8.6
+    e5: phase1 -0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 0.0
+    e6: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 0.0
+    e7: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 3.0
+[10-14 23:16] seed 2: B-D done
+[10-14 23:16] seed 3: stage A
+attention readout diff 0.0
+no model {'width': 1024, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 9.25446081161499}
+untrained {'width': 256, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 973.1202690601349}
+trained {'width': 256, 'n': 60, 'solved': 60, 'avg_moves': 23.35, 'seconds': 1114.1628022193909}
+trained greedy {'width': 1, 'n': 60, 'solved': 1, 'avg_moves': 33.0, 'seconds': 200.95877385139465}
+path ranks {'1st': 0.8586723768736617, '2nd': 0.08137044967880086, '3rd': 0.02569593147751606, 'beyond': 0.034261241970021415, 'n_moves': 1401}
+memorisation {'eval_cubes': 500, 'found_in_training': 0, 'distinct_training_positions': 26891547}
+[10-14 23:57] seed 3: A done
+[10-14 23:57] seed 3: stages B-D
+
+=== stage B ===
+  attention normal  : next-move accuracy  72.4%   beam-256 solve 100.0%
+  attention zero    : next-move accuracy   6.3%   beam-256 solve   0.0%
+  attention uniform : next-move accuracy  10.4%   beam-256 solve   0.0%
+  accuracy with attention removed in ONE layer only: L0 4.0%  L1 29.1%  L2 52.0%  L3 58.7%  L4 61.7%  L5 70.0%
+  share of the decision token's attention going to centre / edge / corner stickers (if attention were spread evenly: 10.9% / 43.6% / 43.6%):
+    layer 0: centres  8.9%  edges 44.6%  corners 43.7%  (itself  2.8%)
+    layer 1: centres  7.6%  edges 43.4%  corners 46.8%  (itself  2.2%)
+    layer 2: centres  9.3%  edges 45.2%  corners 43.8%  (itself  1.7%)
+    layer 3: centres 10.2%  edges 45.5%  corners 42.1%  (itself  2.2%)
+    layer 4: centres 10.9%  edges 45.7%  corners 41.4%  (itself  2.0%)
+    layer 5: centres  9.8%  edges 45.2%  corners 42.5%  (itself  2.5%)
+
+=== stage C ===
+  in G1 (phase 2)              raw: 1.00  layer 0: 1.00  layer 1: 1.00  layer 2: 1.00  layer 3: 1.00  layer 4: 1.00  layer 5: 0.99
+  # misoriented edges          raw: 0.99  layer 0: 0.80  layer 1: 0.88  layer 2: 0.91  layer 3: 0.94  layer 4: 0.94  layer 5: 0.80
+  # misoriented corners        raw: 1.00  layer 0: 0.91  layer 1: 0.94  layer 2: 0.96  layer 3: 0.96  layer 4: 0.94  layer 5: 0.83
+  # slice edges out of slice   raw: 1.00  layer 0: 0.89  layer 1: 0.93  layer 2: 0.95  layer 3: 0.95  layer 4: 0.94  layer 5: 0.80
+  moves to reach G1            raw: 0.85  layer 0: 0.77  layer 1: 0.83  layer 2: 0.87  layer 3: 0.90  layer 4: 0.94  layer 5: 0.89
+  moves to solved              raw: 0.77  layer 0: 0.77  layer 1: 0.86  layer 2: 0.90  layer 3: 0.91  layer 4: 0.92  layer 5: 0.80
+
+=== stage D ===
+  layer 0: sticker tokens routed by their own (position, colour):  96.6%   |   decision token: best single sticker 20.5%, phase 15.3%, moves-to-G1 18.5%, bad edges 14.9%, bad corners 17.8%, next move  4.2%  [decision-routing entropy 0.03 bits -> TOO LOW, unreliable]
+  layer 1: sticker tokens routed by their own (position, colour):  92.3%   |   decision token: best single sticker 27.6%, phase 10.9%, moves-to-G1 19.2%, bad edges 17.5%, bad corners 13.0%, next move  7.3%  [decision-routing entropy 0.01 bits -> TOO LOW, unreliable]
+  layer 2: sticker tokens routed by their own (position, colour):  71.9%   |   decision token: best single sticker 45.9%, phase 94.4%, moves-to-G1 94.2%, bad edges 65.7%, bad corners 94.0%, next move 40.4%  [decision-routing entropy 0.98 bits]
+  layer 3: sticker tokens routed by their own (position, colour):  64.9%   |   decision token: best single sticker 10.5%, phase  0.4%, moves-to-G1  3.2%, bad edges  0.8%, bad corners  1.5%, next move  6.3%  [decision-routing entropy 1.27 bits]
+  layer 4: sticker tokens routed by their own (position, colour):  67.3%   |   decision token: best single sticker 31.2%, phase 55.3%, moves-to-G1 57.9%, bad edges 44.6%, bad corners 56.4%, next move 25.7%  [decision-routing entropy 1.47 bits]
+  layer 5: sticker tokens routed by their own (position, colour):  56.4%   |   decision token: best single sticker 29.0%, phase 51.4%, moves-to-G1 58.7%, bad edges 44.8%, bad corners 54.1%, next move 31.7%  [decision-routing entropy 1.52 bits]
+  knockouts, layer 3 (drop in probability of the solver's move):
+    e0: phase1 +0.003  phase2 +0.006  | ph1 edge-flip moves +0.003  corner-twist moves +0.004  | effective #moves 15.5
+    e1: phase1 +0.001  phase2 +0.002  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 10.4
+    e2: phase1 +0.000  phase2 +0.010  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 9.6
+    e3: phase1 +0.001  phase2 +0.006  | ph1 edge-flip moves +0.002  corner-twist moves +0.001  | effective #moves 13.8
+    e4: phase1 +0.000  phase2 +0.001  | ph1 edge-flip moves -0.000  corner-twist moves +0.000  | effective #moves 9.5
+    e5: phase1 +0.003  phase2 +0.004  | ph1 edge-flip moves +0.005  corner-twist moves +0.001  | effective #moves 13.7
+    e6: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 9.1
+    e7: phase1 +0.012  phase2 +0.030  | ph1 edge-flip moves +0.012  corner-twist moves +0.007  | effective #moves 14.8
+  knockouts, layer 5 (drop in probability of the solver's move):
+    e0: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 0.0
+    e1: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 1.4
+    e2: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves -0.000  corner-twist moves -0.000  | effective #moves 1.0
+    e3: phase1 +0.055  phase2 +0.006  | ph1 edge-flip moves +0.006  corner-twist moves +0.156  | effective #moves 4.2
+    e4: phase1 +0.051  phase2 +0.010  | ph1 edge-flip moves +0.113  corner-twist moves +0.070  | effective #moves 3.9
+    e5: phase1 -0.000  phase2 +0.081  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 9.0
+    e6: phase1 +0.117  phase2 +0.000  | ph1 edge-flip moves +0.232  corner-twist moves +0.119  | effective #moves 8.8
+    e7: phase1 -0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 1.8
+[10-15 01:07] seed 3: B-D done
+[10-15 01:07] seed 4: stage A
+attention readout diff 0.0
+no model {'width': 1024, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 8.626121282577515}
+untrained {'width': 256, 'n': 30, 'solved': 0, 'avg_moves': None, 'seconds': 931.0470509529114}
+trained {'width': 256, 'n': 60, 'solved': 60, 'avg_moves': 23.216666666666665, 'seconds': 1053.7868230342865}
+trained greedy {'width': 1, 'n': 60, 'solved': 4, 'avg_moves': 30.5, 'seconds': 196.77935886383057}
+path ranks {'1st': 0.8621679827709978, '2nd': 0.08183776022972003, '3rd': 0.022254127781765973, 'beyond': 0.03374012921751615, 'n_moves': 1393}
+memorisation {'eval_cubes': 500, 'found_in_training': 0, 'distinct_training_positions': 26891547}
+[10-15 01:47] seed 4: A done
+[10-15 01:47] seed 4: stages B-D
+
+=== stage B ===
+  attention normal  : next-move accuracy  73.5%   beam-256 solve 100.0%
+  attention zero    : next-move accuracy  11.5%   beam-256 solve   0.0%
+  attention uniform : next-move accuracy  10.6%   beam-256 solve   0.0%
+[10-15 22:28] seed 4: stages B-D (restart after power loss)
+
+=== stage B ===
+  attention normal  : next-move accuracy  73.5%   beam-256 solve 100.0%
+  attention zero    : next-move accuracy  11.5%   beam-256 solve   0.0%
+  attention uniform : next-move accuracy  10.6%   beam-256 solve   0.0%
+  accuracy with attention removed in ONE layer only: L0 3.3%  L1 33.9%  L2 51.2%  L3 61.9%  L4 63.2%  L5 63.1%
+  share of the decision token's attention going to centre / edge / corner stickers (if attention were spread evenly: 10.9% / 43.6% / 43.6%):
+    layer 0: centres  8.6%  edges 43.8%  corners 45.1%  (itself  2.4%)
+    layer 1: centres 10.8%  edges 46.2%  corners 40.4%  (itself  2.6%)
+    layer 2: centres 10.2%  edges 43.5%  corners 44.3%  (itself  2.0%)
+    layer 3: centres  9.2%  edges 45.0%  corners 43.6%  (itself  2.2%)
+    layer 4: centres  9.9%  edges 45.5%  corners 42.7%  (itself  1.9%)
+    layer 5: centres  8.3%  edges 48.9%  corners 40.9%  (itself  1.8%)
+
+=== stage C ===
+  in G1 (phase 2)              raw: 1.00  layer 0: 1.00  layer 1: 1.00  layer 2: 1.00  layer 3: 1.00  layer 4: 1.00  layer 5: 1.00
+  # misoriented edges          raw: 0.99  layer 0: 0.82  layer 1: 0.86  layer 2: 0.89  layer 3: 0.94  layer 4: 0.94  layer 5: 0.82
+  # misoriented corners        raw: 1.00  layer 0: 0.96  layer 1: 0.97  layer 2: 0.97  layer 3: 0.97  layer 4: 0.95  layer 5: 0.86
+  # slice edges out of slice   raw: 1.00  layer 0: 0.94  layer 1: 0.94  layer 2: 0.95  layer 3: 0.95  layer 4: 0.94  layer 5: 0.84
+  moves to reach G1            raw: 0.85  layer 0: 0.79  layer 1: 0.82  layer 2: 0.86  layer 3: 0.92  layer 4: 0.95  layer 5: 0.91
+  moves to solved              raw: 0.77  layer 0: 0.82  layer 1: 0.86  layer 2: 0.89  layer 3: 0.91  layer 4: 0.92  layer 5: 0.85
+
+=== stage D ===
+  layer 0: sticker tokens routed by their own (position, colour):  98.0%   |   decision token: best single sticker 48.4%, phase 99.2%, moves-to-G1 99.2%, bad edges 69.1%, bad corners 99.1%, next move 41.6%  [decision-routing entropy 0.92 bits]
+  layer 1: sticker tokens routed by their own (position, colour):  84.1%   |   decision token: best single sticker 24.3%, phase 18.7%, moves-to-G1 18.6%, bad edges 15.0%, bad corners 18.6%, next move 10.1%  [decision-routing entropy 0.71 bits]
+  layer 2: sticker tokens routed by their own (position, colour):  84.8%   |   decision token: best single sticker 28.8%, phase 59.4%, moves-to-G1 59.3%, bad edges 41.4%, bad corners 59.2%, next move 24.8%  [decision-routing entropy 1.56 bits]
+  layer 3: sticker tokens routed by their own (position, colour):  65.8%   |   decision token: best single sticker 26.1%, phase 40.7%, moves-to-G1 45.8%, bad edges 31.4%, bad corners 44.2%, next move 19.9%  [decision-routing entropy 1.84 bits]
+  layer 4: sticker tokens routed by their own (position, colour):  64.7%   |   decision token: best single sticker 25.9%, phase 48.2%, moves-to-G1 53.5%, bad edges 36.5%, bad corners 49.8%, next move 28.0%  [decision-routing entropy 1.68 bits]
+  layer 5: sticker tokens routed by their own (position, colour):  58.2%   |   decision token: best single sticker 29.7%, phase 56.9%, moves-to-G1 64.0%, bad edges 55.2%, bad corners 61.0%, next move 30.0%  [decision-routing entropy 1.37 bits]
+  knockouts, layer 3 (drop in probability of the solver's move):
+    e0: phase1 +0.000  phase2 +0.028  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 9.1
+    e1: phase1 +0.009  phase2 +0.001  | ph1 edge-flip moves +0.008  corner-twist moves +0.004  | effective #moves 12.6
+    e2: phase1 +0.005  phase2 +0.002  | ph1 edge-flip moves +0.005  corner-twist moves +0.004  | effective #moves 13.1
+    e3: phase1 +0.001  phase2 +0.010  | ph1 edge-flip moves +0.001  corner-twist moves +0.000  | effective #moves 11.5
+    e4: phase1 +0.031  phase2 +0.000  | ph1 edge-flip moves +0.028  corner-twist moves +0.029  | effective #moves 14.0
+    e5: phase1 -0.000  phase2 +0.002  | ph1 edge-flip moves -0.000  corner-twist moves -0.000  | effective #moves 7.7
+    e6: phase1 +0.006  phase2 +0.025  | ph1 edge-flip moves +0.003  corner-twist moves +0.009  | effective #moves 8.2
+    e7: phase1 +0.001  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 10.3
+  knockouts, layer 5 (drop in probability of the solver's move):
+    e0: phase1 +0.000  phase2 +0.001  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 8.9
+    e1: phase1 +0.147  phase2 +0.000  | ph1 edge-flip moves +0.284  corner-twist moves +0.125  | effective #moves 9.3
+    e2: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 1.9
+    e3: phase1 +0.000  phase2 +0.000  | ph1 edge-flip moves -0.000  corner-twist moves -0.000  | effective #moves 1.2
+    e4: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves +0.000  | effective #moves 3.2
+    e5: phase1 +0.027  phase2 +0.004  | ph1 edge-flip moves +0.002  corner-twist moves +0.062  | effective #moves 7.6
+    e6: phase1 +0.000  phase2 +0.124  | ph1 edge-flip moves +0.000  corner-twist moves -0.001  | effective #moves 9.6
+    e7: phase1 +0.000  phase2 -0.000  | ph1 edge-flip moves +0.000  corner-twist moves -0.000  | effective #moves 0.0
+[10-15 23:16] seed 4: B-D done
+[10-15 23:16] === REPLICATION DONE
