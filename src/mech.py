@@ -91,6 +91,49 @@ def exp2(m, X, lab, out):
           f"   (random direction: |cos| < {o['random_abs_cos_95pct']:.3f} in 95% of draws)")
     print(f"      share of the router's e{e2}-vs-e{e1} preference explained by the phase direction alone: R^2 = {r2:.2f}")
 
+def exp3(m, X, lab, out, n=6000):
+    """Steering along the phase direction at the last layer's router input (decision token only)."""
+    h, xf, L = collect(m, X); moe = m.blocks[L].ffn; ph = lab['phase']; Hn = h.numpy()
+    dmean = Hn[ph == 2].mean(0) - Hn[ph == 1].mean(0); scale = float(np.linalg.norm(dmean)); u = torch.tensor(dmean / scale, dtype=torch.float32)
+    with torch.no_grad(): top1 = moe.router(h.to(A.DEV)).argmax(-1).cpu().numpy()
+    e1 = max(range(moe.E), key=lambda e: (top1[ph == 1] == e).mean() - (top1[ph == 2] == e).mean())
+    e2 = max(range(moe.E), key=lambda e: (top1[ph == 2] == e).mean() - (top1[ph == 1] == e).mean())
+    rng = np.random.RandomState(0); r = torch.tensor(rng.randn(len(dmean)), dtype=torch.float32); r = r - (r @ u) * u; r = r / r.norm()
+    Y = torch.from_numpy(lab['move']); state = {'vec': None, 'mode': None}
+    def router_hook(mod, inp, o):
+        if state['mode'] != 'router' or state['vec'] is None: return None
+        o = o.clone(); B = o.shape[0] // 55; o[torch.arange(B, device=o.device) * 55] += (mod.weight @ state['vec'].to(o.device)).to(o.dtype); return o
+    def norm_hook(mod, inp, o):
+        if state['mode'] != 'full' or state['vec'] is None: return None
+        o = o.clone(); o[:, 0] += state['vec'].to(o.device).to(o.dtype); return o
+    h1 = moe.router.register_forward_hook(router_hook); h2 = m.blocks[L].n2.register_forward_hook(norm_hook)
+    def measure(sel, vec, mode):
+        state['vec'], state['mode'] = vec, mode; Xs = X[sel][:n]; ys = Y[sel][:n]; P = []; T = []
+        with torch.no_grad():
+            for i in range(0, len(Xs), 1024):
+                lg, info, _ = m(Xs[i:i + 1024].to(A.DEV), collect=True)
+                P.append(F.softmax(lg.float(), -1).cpu()); ti = info[L][1].reshape(-1, 55, moe.k)[:, 0].cpu(); T.append(ti)
+        state['vec'] = None; P = torch.cat(P); T = torch.cat(T)
+        return dict(ph2_expert_routed=float((T == e2).any(-1).float().mean()), ph1_expert_top1=float((T[:, 0] == e1).float().mean()),
+                    g1_mass=float(P[:, G1].sum(-1).mean()), p_correct=float(P[torch.arange(len(ys)), ys].mean()))
+    res = {}
+    for name, sel, sign in (('phase-1 positions, pushed toward phase 2', torch.from_numpy(ph == 1), +1),
+                            ('phase-2 positions, pushed toward phase 1', torch.from_numpy(ph == 2), -1)):
+        rows = {}
+        for a in (0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0):
+            for mode, vecdir in (('router', u), ('full', u), ('full_random', r)):
+                vec = sign * a * scale * vecdir if a > 0 else None
+                rows[f'{mode}@{a}'] = measure(sel, vec, 'full' if mode.startswith('full') else 'router')
+        res[name] = rows
+        print(f"\nEXP3  {name}  (strength in units of the phase-1/phase-2 mean difference; phase-1 expert e{e1}, phase-2 expert e{e2})")
+        print(f"      {'strength':>8} | {'ROUTER-ONLY: ph2 expert used / G1 mass / p(correct)':>52} | {'FULL: ph2 expert / G1 mass / p(correct)':>42} | RANDOM-dir full: G1 mass")
+        for a in (0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0):
+            ro, fu, ra = rows[f'router@{a}'], rows[f'full@{a}'], rows[f'full_random@{a}']
+            print(f"      {a:8.2f} | {ro['ph2_expert_routed']*100:14.0f}% / {ro['g1_mass']*100:5.1f}% / {ro['p_correct']*100:5.1f}%{'':13}"
+                  f" | {fu['ph2_expert_routed']*100:7.0f}% / {fu['g1_mass']*100:5.1f}% / {fu['p_correct']*100:5.1f}%{'':5} | {ra['g1_mass']*100:5.1f}%")
+    h1.remove(); h2.remove()
+    out['exp3'] = dict(phase1_expert=e1, phase2_expert=e2, scale=scale, results=res)
+
 if __name__ == '__main__':
     tag = sys.argv[1]; which = sys.argv[2] if len(sys.argv) > 2 else 'both'
     m, cfg = A.load(tag); X, lab = A.heldout(1200)
@@ -99,4 +142,5 @@ if __name__ == '__main__':
     except Exception: out = {}
     if which in ('exp1', 'both'): exp1(m, X, lab, out)
     if which in ('exp2', 'both'): exp2(m, X, lab, out)
+    if which == 'exp3': exp3(m, X, lab, out)
     json.dump(out, open(path, 'w'), indent=1, default=float)

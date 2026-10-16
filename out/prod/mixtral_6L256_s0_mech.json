@@ -250,5 +250,268 @@
   "cos_meandiff_probe": 0.9362214269097272,
   "random_abs_cos_95pct": 0.12050568794319737,
   "r2_gap_explained_by_phase_direction": 0.9289436936378479
+ },
+ "exp3": {
+  "phase1_expert": 0,
+  "phase2_expert": 2,
+  "scale": 3.1271958351135254,
+  "results": {
+   "phase-1 positions, pushed toward phase 2": {
+    "router@0": {
+     "ph2_expert_routed": 0.06750000268220901,
+     "ph1_expert_top1": 0.6243333220481873,
+     "g1_mass": 0.4516465961933136,
+     "p_correct": 0.6627190113067627
+    },
+    "full@0": {
+     "ph2_expert_routed": 0.06750000268220901,
+     "ph1_expert_top1": 0.6243333220481873,
+     "g1_mass": 0.4516465961933136,
+     "p_correct": 0.6627190113067627
+    },
+    "full_random@0": {
+     "ph2_expert_routed": 0.06750000268220901,
+     "ph1_expert_top1": 0.6243333220481873,
+     "g1_mass": 0.4516465961933136,
+     "p_correct": 0.6627190113067627
+    },
+    "router@0.25": {
+     "ph2_expert_routed": 0.40566667914390564,
+     "ph1_expert_top1": 0.5753333568572998,
+     "g1_mass": 0.4580484926700592,
+     "p_correct": 0.657696545124054
+    },
+    "full@0.25": {
+     "ph2_expert_routed": 0.40566667914390564,
+     "ph1_expert_top1": 0.5753333568572998,
+     "g1_mass": 0.4577747881412506,
+     "p_correct": 0.6592621803283691
+    },
+    "full_random@0.25": {
+     "ph2_expert_routed": 0.07266666740179062,
+     "ph1_expert_top1": 0.6171666383743286,
+     "g1_mass": 0.4510340690612793,
+     "p_correct": 0.6629593968391418
+    },
+    "router@0.5": {
+     "ph2_expert_routed": 0.9415000081062317,
+     "ph1_expert_top1": 0.2944999933242798,
+     "g1_mass": 0.5297085642814636,
+     "p_correct": 0.598197340965271
+    },
+    "full@0.5": {
+     "ph2_expert_routed": 0.9415000081062317,
+     "ph1_expert_top1": 0.2944999933242798,
+     "g1_mass": 0.5896305441856384,
+     "p_correct": 0.5875193476676941
+    },
+    "full_random@0.5": {
+     "ph2_expert_routed": 0.07733333110809326,
+     "ph1_expert_top1": 0.6131666898727417,
+     "g1_mass": 0.4498674273490906,
+     "p_correct": 0.6621320247650146
+    },
+    "router@0.75": {
+     "ph2_expert_routed": 0.9994999766349792,
+     "ph1_expert_top1": 0.023333333432674408,
+     "g1_mass": 0.6551282405853271,
+     "p_correct": 0.4645216464996338
+    },
+    "full@0.75": {
+     "ph2_expert_routed": 0.9994999766349792,
+     "ph1_expert_top1": 0.023333333432674408,
+     "g1_mass": 0.8362166285514832,
+     "p_correct": 0.3661835491657257
+    },
+    "full_random@0.75": {
+     "ph2_expert_routed": 0.08183333277702332,
+     "ph1_expert_top1": 0.6081666946411133,
+     "g1_mass": 0.448092520236969,
+     "p_correct": 0.6599782109260559
+    },
+    "router@1.0": {
+     "ph2_expert_routed": 1.0,
+     "ph1_expert_top1": 0.00016666666488163173,
+     "g1_mass": 0.7913967967033386,
+     "p_correct": 0.29978954792022705
+    },
+    "full@1.0": {
+     "ph2_expert_routed": 1.0,
+     "ph1_expert_top1": 0.00016666666488163173,
+     "g1_mass": 0.9798552393913269,
+     "p_correct": 0.18747206032276154
+    },
+    "full_random@1.0": {
+     "ph2_expert_routed": 0.08533333241939545,
+     "ph1_expert_top1": 0.6025000214576721,
+     "g1_mass": 0.44565483927726746,
+     "p_correct": 0.6565179228782654
+    },
+    "router@1.5": {
+     "ph2_expert_routed": 1.0,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.8475624322891235,
+     "p_correct": 0.2170807421207428
+    },
+    "full@1.5": {
+     "ph2_expert_routed": 1.0,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9995476007461548,
+     "p_correct": 0.10934074968099594
+    },
+    "full_random@1.5": {
+     "ph2_expert_routed": 0.09133332967758179,
+     "ph1_expert_top1": 0.5928333401679993,
+     "g1_mass": 0.43858790397644043,
+     "p_correct": 0.6445403099060059
+    },
+    "router@2.0": {
+     "ph2_expert_routed": 1.0,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.8519432544708252,
+     "p_correct": 0.20850229263305664
+    },
+    "full@2.0": {
+     "ph2_expert_routed": 1.0,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9997298121452332,
+     "p_correct": 0.08998557180166245
+    },
+    "full_random@2.0": {
+     "ph2_expert_routed": 0.09749999642372131,
+     "ph1_expert_top1": 0.5801666378974915,
+     "g1_mass": 0.4278475046157837,
+     "p_correct": 0.6227496862411499
+    }
+   },
+   "phase-2 positions, pushed toward phase 1": {
+    "router@0": {
+     "ph2_expert_routed": 0.9929999709129333,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998831152915955,
+     "p_correct": 0.661188006401062
+    },
+    "full@0": {
+     "ph2_expert_routed": 0.9929999709129333,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998831152915955,
+     "p_correct": 0.661188006401062
+    },
+    "full_random@0": {
+     "ph2_expert_routed": 0.9929999709129333,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998831152915955,
+     "p_correct": 0.661188006401062
+    },
+    "router@0.25": {
+     "ph2_expert_routed": 0.9348333477973938,
+     "ph1_expert_top1": 0.016333334147930145,
+     "g1_mass": 0.9987590909004211,
+     "p_correct": 0.6514654755592346
+    },
+    "full@0.25": {
+     "ph2_expert_routed": 0.9348333477973938,
+     "ph1_expert_top1": 0.016333334147930145,
+     "g1_mass": 0.9983473420143127,
+     "p_correct": 0.6600414514541626
+    },
+    "full_random@0.25": {
+     "ph2_expert_routed": 0.9886666536331177,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998841285705566,
+     "p_correct": 0.6616460084915161
+    },
+    "router@0.5": {
+     "ph2_expert_routed": 0.7695000171661377,
+     "ph1_expert_top1": 0.14550000429153442,
+     "g1_mass": 0.9684193730354309,
+     "p_correct": 0.5791117548942566
+    },
+    "full@0.5": {
+     "ph2_expert_routed": 0.7695000171661377,
+     "ph1_expert_top1": 0.14550000429153442,
+     "g1_mass": 0.9662714600563049,
+     "p_correct": 0.5895258188247681
+    },
+    "full_random@0.5": {
+     "ph2_expert_routed": 0.9886666536331177,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998831152915955,
+     "p_correct": 0.6614651679992676
+    },
+    "router@0.75": {
+     "ph2_expert_routed": 0.4390000104904175,
+     "ph1_expert_top1": 0.5063333511352539,
+     "g1_mass": 0.9262161254882812,
+     "p_correct": 0.45908427238464355
+    },
+    "full@0.75": {
+     "ph2_expert_routed": 0.4390000104904175,
+     "ph1_expert_top1": 0.5063333511352539,
+     "g1_mass": 0.9138646125793457,
+     "p_correct": 0.4579472541809082
+    },
+    "full_random@0.75": {
+     "ph2_expert_routed": 0.9886666536331177,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998797178268433,
+     "p_correct": 0.6605460047721863
+    },
+    "router@1.0": {
+     "ph2_expert_routed": 0.06949999928474426,
+     "ph1_expert_top1": 0.7745000123977661,
+     "g1_mass": 0.8834854960441589,
+     "p_correct": 0.36471447348594666
+    },
+    "full@1.0": {
+     "ph2_expert_routed": 0.06949999928474426,
+     "ph1_expert_top1": 0.7745000123977661,
+     "g1_mass": 0.8607600927352905,
+     "p_correct": 0.3433782458305359
+    },
+    "full_random@1.0": {
+     "ph2_expert_routed": 0.9886666536331177,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998734593391418,
+     "p_correct": 0.6588736772537231
+    },
+    "router@1.5": {
+     "ph2_expert_routed": 0.0,
+     "ph1_expert_top1": 0.8666666746139526,
+     "g1_mass": 0.8708786368370056,
+     "p_correct": 0.3511883020401001
+    },
+    "full@1.5": {
+     "ph2_expert_routed": 0.0,
+     "ph1_expert_top1": 0.8666666746139526,
+     "g1_mass": 0.8384796380996704,
+     "p_correct": 0.30606400966644287
+    },
+    "full_random@1.5": {
+     "ph2_expert_routed": 0.9883333444595337,
+     "ph1_expert_top1": 0.0,
+     "g1_mass": 0.9998387694358826,
+     "p_correct": 0.652866780757904
+    },
+    "router@2.0": {
+     "ph2_expert_routed": 0.0,
+     "ph1_expert_top1": 0.925166666507721,
+     "g1_mass": 0.8661011457443237,
+     "p_correct": 0.3481937646865845
+    },
+    "full@2.0": {
+     "ph2_expert_routed": 0.0,
+     "ph1_expert_top1": 0.925166666507721,
+     "g1_mass": 0.8265697956085205,
+     "p_correct": 0.27835702896118164
+    },
+    "full_random@2.0": {
+     "ph2_expert_routed": 0.9860000014305115,
+     "ph1_expert_top1": 0.00016666666488163173,
+     "g1_mass": 0.9997338652610779,
+     "p_correct": 0.6427950859069824
+    }
+   }
+  }
  }
 }
