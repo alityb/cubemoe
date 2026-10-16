@@ -23,3 +23,68 @@ Stopping app - uncaught exception raised locally: ConflictError('workspace ac-NT
 ╰──────────────────────────────────────────────────────────────────────────────╯
 [10-15 23:34] === CFOP local analysis started (Modal workspace dnfcubes hit its $40 limit; solve tests stopped)
 [10-15 23:34] cfop seed 0: stage/expert analysis
+cfop_mixtral_6L256_s0: last-layer decision routing explained by STAGE (fixed moves-remaining) 2.8% (shuffled 0.0%); segment 3.7%, position in algorithm 26.2%, which algorithm 45.6%, next move 33.3%
+  knockouts (drop in p(solver's move) by stage):
+    e0: cross  -0.0  F2L  -0.0  OLL  +1.6  PLL  +3.2  | effective #moves 3.7
+    e1: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  -0.0  | effective #moves 4.3
+    e2: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  -0.0  | effective #moves 1.3
+    e3: cross  +0.0  F2L  +0.6  OLL  +2.1  PLL  +0.0  | effective #moves 3.5
+    e4: cross  +0.8  F2L  +1.7  OLL  +0.4  PLL  +1.6  | effective #moves 8.8
+    e5: cross +10.0  F2L +14.9  OLL  +2.4  PLL  +6.5  | effective #moves 11.0
+    e6: cross  +0.0  F2L  +2.8  OLL  +0.3  PLL  +0.1  | effective #moves 10.4
+    e7: cross  +1.2  F2L  +3.9  OLL  +4.4  PLL  +2.4  | effective #moves 8.1
+  experts that matter (>2 pts) for MORE THAN ONE stage: [5, 7]
+[10-15 23:57] cfop seed 0: done
+[10-15 23:57] cfop seed 1: stage/expert analysis
+cfop_mixtral_6L256_s1: last-layer decision routing explained by STAGE (fixed moves-remaining) 5.6% (shuffled -0.0%); segment 10.7%, position in algorithm 21.1%, which algorithm 41.4%, next move 24.7%
+  knockouts (drop in p(solver's move) by stage):
+    e0: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  +0.0  | effective #moves 4.9
+    e1: cross  -0.2  F2L +11.8  OLL  +6.4  PLL +11.4  | effective #moves 12.8
+    e2: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  +0.0  | effective #moves 3.7
+    e3: cross  +0.5  F2L  +1.6  OLL  +0.1  PLL  +6.3  | effective #moves 2.5
+    e4: cross  +0.0  F2L  -0.0  OLL  -0.0  PLL  +0.0  | effective #moves 2.0
+    e5: cross +10.1  F2L +12.1  OLL  +2.0  PLL  +1.0  | effective #moves 12.0
+    e6: cross  +0.2  F2L  +1.8  OLL  -0.0  PLL  +0.0  | effective #moves 5.0
+    e7: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  +0.0  | effective #moves 3.9
+  experts that matter (>2 pts) for MORE THAN ONE stage: [1, 5]
+[10-16 00:35] cfop seed 1: done
+[10-16 00:35] cfop seed 2: stage/expert analysis
+cfop_mixtral_6L256_s2: last-layer decision routing explained by STAGE (fixed moves-remaining) 5.4% (shuffled -0.0%); segment 6.0%, position in algorithm 19.6%, which algorithm 44.3%, next move 32.0%
+  knockouts (drop in p(solver's move) by stage):
+    e0: cross  +0.0  F2L  +0.1  OLL  +0.0  PLL  -0.0  | effective #moves 1.2
+    e1: cross  -0.0  F2L  +0.0  OLL  +5.4  PLL  +4.4  | effective #moves 3.8
+    e2: cross  -0.0  F2L  +0.9  OLL  +2.1  PLL  +0.7  | effective #moves 6.9
+    e3: cross  +6.0  F2L +17.0  OLL  +0.3  PLL  +0.0  | effective #moves 15.8
+    e4: cross  +0.0  F2L  +0.1  OLL  +0.0  PLL  +0.0  | effective #moves 4.0
+    e5: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  +0.0  | effective #moves 7.6
+    e6: cross  +0.0  F2L  +0.0  OLL  +1.0  PLL  +0.0  | effective #moves 1.8
+    e7: cross +12.8  F2L  +8.8  OLL  -0.2  PLL  +2.1  | effective #moves 11.0
+  experts that matter (>2 pts) for MORE THAN ONE stage: [1, 3, 7]
+[10-16 01:18] cfop seed 2: done
+[10-16 01:18] cfop seed 3: stage/expert analysis
+cfop_mixtral_6L256_s3: last-layer decision routing explained by STAGE (fixed moves-remaining) 5.6% (shuffled 0.0%); segment 7.0%, position in algorithm 23.9%, which algorithm 42.2%, next move 39.2%
+  knockouts (drop in p(solver's move) by stage):
+    e0: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  +0.0  | effective #moves 4.9
+    e1: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  +0.0  | effective #moves 3.6
+    e2: cross  +0.0  F2L  +1.4  OLL  +9.7  PLL  +4.9  | effective #moves 9.7
+    e3: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  +0.0  | effective #moves 4.4
+    e4: cross  +3.2  F2L  +4.6  OLL  +0.0  PLL  -0.1  | effective #moves 10.3
+    e5: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  +0.0  | effective #moves 2.6
+    e6: cross  +0.0  F2L  +0.0  OLL  +4.0  PLL  +0.0  | effective #moves 2.0
+    e7: cross  +5.3  F2L +19.7  OLL  +9.6  PLL +12.4  | effective #moves 13.2
+  experts that matter (>2 pts) for MORE THAN ONE stage: [2, 4, 7]
+[10-16 01:55] cfop seed 3: done
+[10-16 01:55] cfop seed 4: stage/expert analysis
+cfop_mixtral_6L256_s4: last-layer decision routing explained by STAGE (fixed moves-remaining) 2.9% (shuffled 0.0%); segment 4.5%, position in algorithm 19.6%, which algorithm 47.1%, next move 31.8%
+  knockouts (drop in p(solver's move) by stage):
+    e0: cross  +0.0  F2L  +0.0  OLL  +0.1  PLL  +3.8  | effective #moves 1.8
+    e1: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  +0.2  | effective #moves 1.6
+    e2: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  -0.0  | effective #moves 7.2
+    e3: cross  +1.1  F2L  +8.2  OLL  +0.3  PLL  +0.3  | effective #moves 8.5
+    e4: cross  +0.0  F2L  +0.0  OLL  -0.0  PLL  -0.0  | effective #moves 2.3
+    e5: cross  +0.9  F2L  +5.4  OLL  +7.2  PLL +13.7  | effective #moves 9.2
+    e6: cross  +7.7  F2L +14.6  OLL  +8.4  PLL  +3.0  | effective #moves 15.3
+    e7: cross  +0.0  F2L  +0.0  OLL  +0.0  PLL  -0.0  | effective #moves 1.8
+  experts that matter (>2 pts) for MORE THAN ONE stage: [5, 6]
+[10-16 02:30] cfop seed 4: done
+[10-16 02:30] === CFOP LOCAL ANALYSIS DONE

@@ -1528,3 +1528,10 @@ Kociemba phase 0.124; CFOP stage 0.543, segment 0.955, position-in-alg 2.78, mov
 CFOP stage has ~4x MORE headroom than Kociemba phase, yet routing explains 3-6% of it vs 22% for phase => the low
 CFOP stage share is not a ceiling artifact. (which-algorithm's high share: permutation null corrects bias, but the
 label is high-cardinality/sparse; treat its exact value as noisier.)
+
+**CFOP production models, ALL 5 SEEDS (src/prod_cfop.py, out/prod/cfop_mixtral_6L256_s{0..4}_analysis.json):**
+last-layer decision-token routing share (fixed moves-remaining, chance-corrected, mean ± sd): which algorithm 44.1 ± 2.1%,
+next move 32.2 ± 4.6%, position in algorithm 22.1 ± 2.6%, best single sticker 20.9 ± 7.3%, segment 6.4 ± 2.5%,
+STAGE 4.5 ± 1.3% (shuffled 0.0). Knockouts: ~4 experts/seed matter (>2 pts), 2.4/seed matter for >1 stage; an
+important expert puts 62% of its damage on its main stage (25% = none). Contrast Kociemba: clean phase dissociation
+5/5, max cross-phase effect 1.8 pts. => CFOP routers organise around algorithms/moves, not stages.
