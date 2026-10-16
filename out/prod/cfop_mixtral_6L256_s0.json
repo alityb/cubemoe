@@ -1,0 +1,117 @@
+{
+ "cfg": {
+  "tag": "cfop_mixtral_6L256_s0",
+  "preset": "mixtral",
+  "d": 256,
+  "L": 6,
+  "nh": 4,
+  "bs": 1024,
+  "total_states": 60000000,
+  "lr": 0.001,
+  "seed": 0,
+  "data": "cfop250k",
+  "rot": "keepD",
+  "budget": 90
+ },
+ "gates": [
+  {
+   "heldout_acc": 0.8482999801635742,
+   "greedy_solve_heldout": 0.0,
+   "beam256_solve_heldout": 0.975,
+   "beam256_avg_moves": 55.48717948717949,
+   "step": 5000,
+   "states_seen": 5120000
+  },
+  {
+   "heldout_acc": 0.8584399819374084,
+   "greedy_solve_heldout": 0.019999999552965164,
+   "beam256_solve_heldout": 0.975,
+   "beam256_avg_moves": 52.794871794871796,
+   "step": 10000,
+   "states_seen": 10240000
+  },
+  {
+   "heldout_acc": 0.8614349961280823,
+   "greedy_solve_heldout": 0.05999999865889549,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 52.875,
+   "step": 15000,
+   "states_seen": 15360000
+  },
+  {
+   "heldout_acc": 0.8613049983978271,
+   "greedy_solve_heldout": 0.04999999701976776,
+   "beam256_solve_heldout": 0.975,
+   "beam256_avg_moves": 51.0,
+   "step": 20000,
+   "states_seen": 20480000
+  },
+  {
+   "heldout_acc": 0.8689699769020081,
+   "greedy_solve_heldout": 0.03500000014901161,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 51.275,
+   "step": 25000,
+   "states_seen": 25600000
+  },
+  {
+   "heldout_acc": 0.8734449744224548,
+   "greedy_solve_heldout": 0.054999999701976776,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 51.45,
+   "step": 30000,
+   "states_seen": 30720000
+  },
+  {
+   "heldout_acc": 0.8735599517822266,
+   "greedy_solve_heldout": 0.06499999761581421,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 50.375,
+   "step": 35000,
+   "states_seen": 35840000
+  },
+  {
+   "heldout_acc": 0.8784799575805664,
+   "greedy_solve_heldout": 0.03999999910593033,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 50.75,
+   "step": 40000,
+   "states_seen": 40960000
+  },
+  {
+   "heldout_acc": 0.8772850036621094,
+   "greedy_solve_heldout": 0.0949999988079071,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 50.625,
+   "step": 45000,
+   "states_seen": 46080000
+  },
+  {
+   "heldout_acc": 0.8783049583435059,
+   "greedy_solve_heldout": 0.06499999761581421,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 49.725,
+   "step": 50000,
+   "states_seen": 51200000
+  },
+  {
+   "heldout_acc": 0.8773349523544312,
+   "greedy_solve_heldout": 0.07499999552965164,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 47.85,
+   "step": 55000,
+   "states_seen": 56320000
+  },
+  {
+   "heldout_acc": 0.8760749697685242,
+   "greedy_solve_heldout": 0.07000000029802322,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 49.25,
+   "beam1024_solve_heldout": 1.0,
+   "beam1024_avg_moves": 44.7,
+   "step": 58593,
+   "states_seen": 59999232
+  }
+ ],
+ "_start": 1792022444.164079
+}

@@ -1,0 +1,25 @@
+[10-14 20:11] === CFOP pipeline started
+[10-15 22:28] === CFOP pipeline started
+[10-15 22:28] cfop seed 0: training finished; downloading
+✓ Finished downloading files to local!
+[10-15 22:28] cfop seed 0: 500-scramble solve test on Modal, attempt 1
+✓ Initialized. View run at 
+https://modal.com/apps/dnfcubes/main/ap-54M5tMpL9wH20PM0gzRESF
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+cfop_mixtral_6L256_s0 beam 64: solved 486/500, avg 54.25 moves, 0.66 s/cube
+cfop_mixtral_6L256_s0 beam 256: solved 500/500, avg 48.51 moves, 0.58 s/cube
+[10-15 22:45] === CFOP pipeline v2 (parallel solve tests) started
+Stopping app - uncaught exception raised locally: ConflictError('workspace ac-NTCexMXPk6b5JszJZir5Hu is disabled').
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ workspace ac-NTCexMXPk6b5JszJZir5Hu is disabled                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+[10-15 23:34] === CFOP local analysis started (Modal workspace dnfcubes hit its $40 limit; solve tests stopped)
+[10-15 23:34] cfop seed 0: stage/expert analysis
