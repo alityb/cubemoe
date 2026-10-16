@@ -1,0 +1,12 @@
+{
+ "exp2": {
+  "phase1_expert": 1,
+  "phase2_expert": 3,
+  "probe_acc": 1.0,
+  "cos_wdiff_meandiff": 0.8459187150001526,
+  "cos_wdiff_probe": 0.8591878426479794,
+  "cos_meandiff_probe": 0.9615922151981062,
+  "random_abs_cos_95pct": 0.1236317321255886,
+  "r2_gap_explained_by_phase_direction": 0.9196816682815552
+ }
+}
