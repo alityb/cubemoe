@@ -1512,3 +1512,13 @@ full: G1 mass 45% -> 43% (no effect). Phase-2 positions pushed toward phase 1: p
 100% -> 87% (router-only) / 83% (full), p(correct) 66% -> 35% / 28%; random: 100%. => expert identity alone moves
 behaviour (dose-response, direction-specific). Asymmetry: removing the ph2 expert does not restore phase-1-like
 mass (45%) — the G1 constraint is partly carried outside the routed expert (second slot / attention).
+
+**Mechanism replication, seeds 1-4 (out/prod/mixtral_6L256_s{1..4}_mech.json, out/prod/mech.log):**
+- Exp 1 replicates in 5/5: the phase-2 expert shifts logits -4.1 to -4.7 toward G1 moves on phase-2 tokens and
+  pushes the solver's move +5.2 to +6.6; phase-1 experts push the specific move +2.2 to +3.7 without shifting class.
+- Exp 3 router-only steering (phase-1 -> phase-2 at strength 2): G1 mass 45% -> 85/90/90/92% in seeds 0/2/3/4, but
+  only 46% -> 53% in SEED 1. Why: in seed 1 the ph2 expert e1 is already in the decision token's top-2 for 89% of
+  phase-1 positions (top-1 for few), so router-only steering mostly reorders slots and reweights rather than
+  swapping in a new expert. Full steering works in all 5 (G1 mass 77-98% at 1.0, 100% at 2.0); random direction
+  does nothing in all 5. Reverse (ph2 -> ph1): ph2 expert -> 0-1% in all 5, G1 mass 100% -> 79-95%.
+  => "routing alone moves behaviour" holds in 4/5 seeds; report seed 1 as the exception, not hide it.
