@@ -1480,3 +1480,26 @@ COMPLETE: every seed-0 finding replicates (86% of path moves = model's 1st choic
 off -> 0% solve; moves-to-G1 0.85 -> 0.94-0.95 and moves-to-solved 0.77 -> 0.92 at layer 4 in all seeds).
 Budget lesson: the user cares about the per-workspace $40 cap; check remaining spend before launching
 parallel jobs, and prefer local (free) when the work fits.
+
+## 29. CFOP SOLVE TESTS + MECHANISM EXPERIMENTS 1-2 (2026-10-16)
+
+**CFOP solve tests** (run on thisaccisfortheschool after dnfcubes was disabled; trimmed 139 MB checkpoints
+uploaded; ~$4): 500 held-out CFOP scrambles each, budget 90: beam 64 479-491/500 (53.9-55.0 moves); **beam 256
+500/500 all 5 (48.2-48.9 moves); beam 1024 500/500 all 5 (43.6-44.2)**, vs ~61 moves in the training solutions.
+thisaccisfortheschool spend before this: $24.56 this month. Billing check: `modal billing report --start YYYY-MM-01`.
+
+**CFOP routing, seed 0 (src/prod_cfop.py):** last-layer decision routing explained by which algorithm 45.6%,
+next move 33.3%, position in algorithm 26.2%, stage 2.8% (shuffled 0.0%), all at fixed moves-remaining.
+CAVEAT: in CFOP, moves-remaining nearly fixes the stage, so the stage share is ceiling-limited; compute
+H(stage|rem) vs H(phase|rem) before comparing to Kociemba. Knockouts are the fair test.
+
+**Mechanism (src/mech.py), Kociemba production models, final layer, decision token:**
+- Exp 2, router reads a phase direction — ALL 5 SEEDS: linear probe on router input 100% phase accuracy;
+  cos(router weight[ph2 expert] - weight[ph1 expert], mean-difference phase direction) 0.82-0.86 (probe direction
+  0.70-0.86) vs random |cos| < 0.13 (95%); the phase direction alone explains R^2 0.85-0.93 of the router's
+  ph2-vs-ph1 preference. Expert ids differ by seed; the mechanism does not.
+- Exp 1, what experts write (seed 0, DLA with frozen final-norm scale): phase-2 expert e2 shifts move logits
+  4.6 toward the 10 G1 moves on phase-2 tokens AND pushes the solver's specific move by +6.5; phase-1 experts
+  e0/e7 do not shift move CLASS (+0.03/+0.25) but push the solver's specific move by +2.5/+2.9 on phase-1 tokens
+  (~0/+0.8 on phase 2). Decision-token top-2 sets: phase 1 = {e0,e7}; phase 2 = {e2 + one of e0/e7}. e2 is the
+  expert that switches (7% of ph1 vs 99% of ph2). e1,e3-e6 are never used by the decision token.

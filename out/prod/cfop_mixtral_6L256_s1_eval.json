@@ -1,0 +1,29 @@
+{
+ "tag": "cfop_mixtral_6L256_s1",
+ "n": 500,
+ "seed": 2026,
+ "budget": 90,
+ "data": "cfop250k",
+ "test_set": "held-out CFOP scrambles",
+ "beam64": {
+  "solved": 491,
+  "rate": 0.982,
+  "avg_moves": 54.40122199592668,
+  "max_moves": 89,
+  "sec_per_cube": 0.5409179491996765
+ },
+ "beam256": {
+  "solved": 500,
+  "rate": 1.0,
+  "avg_moves": 48.596,
+  "max_moves": 67,
+  "sec_per_cube": 0.5079711947441101
+ },
+ "beam1024": {
+  "solved": 500,
+  "rate": 1.0,
+  "avg_moves": 43.846,
+  "max_moves": 56,
+  "sec_per_cube": 1.955358777999878
+ }
+}
