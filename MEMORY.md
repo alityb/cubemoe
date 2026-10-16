@@ -1522,3 +1522,9 @@ mass (45%) — the G1 constraint is partly carried outside the routed expert (se
   swapping in a new expert. Full steering works in all 5 (G1 mass 77-98% at 1.0, 100% at 2.0); random direction
   does nothing in all 5. Reverse (ph2 -> ph1): ph2 expert -> 0-1% in all 5, G1 mass 100% -> 79-95%.
   => "routing alone moves behaviour" holds in 4/5 seeds; report seed 1 as the exception, not hide it.
+
+**CFOP stage-share ceiling check (labels only, 1200 held-out solves each):** H(label | moves-remaining) in bits:
+Kociemba phase 0.124; CFOP stage 0.543, segment 0.955, position-in-alg 2.78, move 3.17, which-algorithm 6.78.
+CFOP stage has ~4x MORE headroom than Kociemba phase, yet routing explains 3-6% of it vs 22% for phase => the low
+CFOP stage share is not a ceiling artifact. (which-algorithm's high share: permutation null corrects bias, but the
+label is high-cardinality/sparse; treat its exact value as noisier.)
