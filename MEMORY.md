@@ -1503,3 +1503,12 @@ H(stage|rem) vs H(phase|rem) before comparing to Kociemba. Knockouts are the fai
   e0/e7 do not shift move CLASS (+0.03/+0.25) but push the solver's specific move by +2.5/+2.9 on phase-1 tokens
   (~0/+0.8 on phase 2). Decision-token top-2 sets: phase 1 = {e0,e7}; phase 2 = {e2 + one of e0/e7}. e2 is the
   expert that switches (7% of ph1 vs 99% of ph2). e1,e3-e6 are never used by the decision token.
+
+**Exp 3, steering (seed 0; src/mech.py exp3):** push along the phase direction (units of the ph1/ph2 mean-difference
+norm) at the last layer's router input, decision token only. ROUTER-ONLY (experts see the original input):
+phase-1 positions -> ph2 expert used 7% -> 94% (0.5) -> 100% (>=0.75); G1-move mass 45% -> 79% (1.0) -> 85% (2.0);
+p(correct) 66% -> 21%. FULL (router + expert input): G1 mass -> 98% (1.0), 100% (1.5). RANDOM direction, same norm,
+full: G1 mass 45% -> 43% (no effect). Phase-2 positions pushed toward phase 1: ph2 expert 99% -> 0% (1.5), G1 mass
+100% -> 87% (router-only) / 83% (full), p(correct) 66% -> 35% / 28%; random: 100%. => expert identity alone moves
+behaviour (dose-response, direction-specific). Asymmetry: removing the ph2 expert does not restore phase-1-like
+mass (45%) — the G1 constraint is partly carried outside the routed expert (second slot / attention).
