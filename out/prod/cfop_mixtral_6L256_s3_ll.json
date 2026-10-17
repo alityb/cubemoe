@@ -1,0 +1,68 @@
+{
+ "solver": {
+  "n": 60.48,
+  "pll_len": 23.54,
+  "oll_len": 13.45,
+  "ll_only_at_end": 0.0,
+  "edges_oriented_at_f2l": 0.54,
+  "corners_oriented_at_f2l": 0.04,
+  "oll_skip": 0.0,
+  "corners_perm_at_oll": 0.78,
+  "edges_perm_at_oll": 0.74,
+  "pll_skip": 0.01,
+  "pll_two_look": 0.66,
+  "pll_one_base_alg": 0.12,
+  "oll_one_base_alg": 0.1,
+  "pll_types": {
+   "edges only (EPLL)": {
+    "frac": 0.77,
+    "mean_len": 23.38961038961039
+   },
+   "corners only": {
+    "frac": 0.08,
+    "mean_len": 20.875
+   },
+   "corners+edges": {
+    "frac": 0.14,
+    "mean_len": 25.571428571428573
+   },
+   "skip": {
+    "frac": 0.01,
+    "mean_len": 28.0
+   }
+  }
+ },
+ "model": {
+  "n": 48.34,
+  "pll_len": 10.46,
+  "oll_len": 12.19,
+  "ll_only_at_end": 0.27,
+  "edges_oriented_at_f2l": 0.44,
+  "corners_oriented_at_f2l": 0.11,
+  "oll_skip": 0.11,
+  "corners_perm_at_oll": 0.87,
+  "edges_perm_at_oll": 0.88,
+  "pll_skip": 0.29,
+  "pll_two_look": 0.19,
+  "pll_one_base_alg": 0.1,
+  "oll_one_base_alg": 0.03,
+  "pll_types": {
+   "edges only (EPLL)": {
+    "frac": 0.58,
+    "mean_len": 14.637931034482758
+   },
+   "skip": {
+    "frac": 0.29,
+    "mean_len": 0.6896551724137931
+   },
+   "corners only": {
+    "frac": 0.09,
+    "mean_len": 12.666666666666666
+   },
+   "corners+edges": {
+    "frac": 0.04,
+    "mean_len": 15.75
+   }
+  }
+ }
+}

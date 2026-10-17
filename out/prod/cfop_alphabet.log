@@ -1,0 +1,37 @@
+solver: 3.78 algorithms per last layer (dist {3: 110, 4: 390}), mean alg length 9.1
+    19.3%  Sune
+    16.7%  Sune (inverse)
+    15.3%  Aa-perm (inverse)
+    14.3%  F R U R' U' F' (inverse)
+    13.8%  Ua-perm (inverse)
+    10.6%  J-perm (inverse)
+    10.1%  T-perm (inverse)
+model: 2.25 algorithms per last layer (dist {0: 5, 1: 86, 2: 210, 3: 176, 4: 23}), mean alg length 9.4
+    15.9%  not a base alg
+    13.4%  Aa-perm (inverse) [other side]
+    11.2%  Sune [other side]
+    10.5%  Sune (inverse) [other side]
+     9.6%  Ua-perm (inverse) [other side]
+     8.8%  F R U R' U' F' (inverse) [other side]
+     5.4%  F R U R' U' F' (inverse)
+     5.2%  Sune (inverse)
+     4.4%  Aa-perm (inverse)
+     3.7%  Sune
+     3.6%  Ua-perm (inverse)
+     3.4%  J-perm (inverse) [other side]
+     2.6%  T-perm (inverse) [other side]
+     1.7%  J-perm (inverse)
+     0.7%  T-perm (inverse)
+most common model sequences that are not a base algorithm from any side:
+     14x  R U B U' B' U2 R' U' R U' R'
+     10x  B U B' U B U2 U B2 R' B U B U' B' R B U' B'
+      9x  L U F U' F' U F U' F' L'
+      9x  L U L' U L U2 F U' F' U F U F2 L' F U F U' F'
+      9x  F U R U' R' U F' U F U2 F'
+      8x  F U R U' R' U2 F' U' F U' F'
+      8x  R U R' U R U2 U B U' B' R'
+      8x  F U F' U F U2 U F2 L' F U F U' F' L F U' F'
+      6x  L U F U' F' U L2 B' L U L U' L' B L U' L'
+      6x  R U B U' B' U R' U R U2 R'
+      6x  B U L U' L' U2 B' U' B U' B'
+      5x  F U2 F' U' F F2 L' F U F U' F' L F U' F'

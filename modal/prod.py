@@ -172,3 +172,27 @@ def evaluate(tag: str, n: int = 500, widths: str = "64,256,1024", seed: int = 20
                                max_moves=int(max(ok)) if ok else None, sec_per_cube=(time.time() - t0) / n)
         print(f"{tag} beam {w}: solved {len(ok)}/{n}, avg {out[f'beam{w}']['avg_moves']:.2f} moves, {out[f'beam{w}']['sec_per_cube']:.2f} s/cube", flush=True)
     json.dump(out, open(f"/vol/out/prod/{tag}_eval.json", "w"), indent=1); vol.commit(); return out
+
+@app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=3600)
+def solve_paths(tag: str, starts: list, width: int = 256, budget: int = 90):
+    """Beam-search solution paths (move lists) for given start states; same search as src/cfop_paths.py."""
+    import torch
+    _setup(); import prod_analysis as A; A.DEV = "cuda"
+    from model_prod import ProdStateModel
+    s = torch.load(f"/vol/out/prod/{tag}.pt", map_location="cuda", weights_only=False); c = s["log"]["cfg"]
+    m = ProdStateModel(d=c["d"], L=c["L"], nh=c["nh"], preset=c["preset"]).cuda(); m.load_state_dict(s["sd"]); m.eval()
+    return [A.beam_solve_path(m, torch.tensor(x), width, budget) for x in starts]
+
+@app.local_entrypoint()
+def cfop_paths(tags: str = "cfop_mixtral_6L256_s1,cfop_mixtral_6L256_s2,cfop_mixtral_6L256_s3,cfop_mixtral_6L256_s4", n: int = 100):
+    """Same scrambles and output format as src/cfop_paths.py -> out/prod/<tag>_paths.json (local)."""
+    import numpy as np, json
+    d = dict(np.load(ROOT / "data/cfop250k.npz")); N = len(d["sol_len"])
+    te = np.random.RandomState(0).permutation(N)[int(N * 0.9):][:n]; off = np.concatenate([[0], np.cumsum(d["sol_len"].astype(np.int64))])
+    starts = [d["init_state"][i].astype(int).tolist() for i in te]
+    calls = {t: solve_paths.spawn(t, starts) for t in tags.split(",")}
+    for t, call in calls.items():
+        P = call.get()
+        out = [dict(solve=int(i), start=s, model=p, solver=[int(x) for x in d["moves"][off[i]:off[i + 1]]]) for i, s, p in zip(te, starts, P)]
+        json.dump(out, open(ROOT / f"out/prod/{t}_paths.json", "w"))
+        print(t, "solved", sum(p is not None for p in P), "/", len(P), "mean len", np.mean([len(p) for p in P if p]))

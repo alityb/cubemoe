@@ -1,0 +1,17 @@
+cfop_mixtral_6L256_s3: 100 solves (model solution vs the training solver's solution of the same scramble)
+                                                                   solver    model
+  solution length                                                    60.5     48.3
+  OLL segment length                                                 13.4     12.2
+  PLL segment length                                                 23.5     10.5
+  ZBLL/1LLL-like: LL oriented only at the very end                    0.0     27.0%
+  edge control: LL edges oriented when F2L done (chance 1/8)         54.0     44.0%
+  LL corners oriented when F2L done (chance 1/27)                     4.0     11.0%
+  OLL skip                                                            0.0     11.0%
+  OLLCP: LL corners permuted at OLL-done (chance 1/6)                78.0     87.0%
+  LL edges permuted at OLL-done (chance 1/6)                         74.0     88.0%
+  PLL skip (AUF only)                                                 1.0     29.0%
+  2-look PLL: passes corners-xor-edges permuted                      66.0     19.0%
+  OLL = one base alg (+AUF)                                          10.0      3.0%
+  PLL = one base alg (+AUF)                                          12.0     10.0%
+  solver PLL cases: corners only 8% (20.9 mv), corners+edges 14% (25.6 mv), edges only (EPLL) 77% (23.4 mv), skip 1% (28.0 mv)
+  model PLL cases: corners only 9% (12.7 mv), corners+edges 4% (15.8 mv), edges only (EPLL) 58% (14.6 mv), skip 29% (0.7 mv)
