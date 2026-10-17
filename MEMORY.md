@@ -1571,3 +1571,14 @@ NOT ZBLL/1LLL (only the 7 algs it saw). Sub-goal fingerprints (cfop_method.py) s
 conflate multi-alg-without-progress with one-look -> do not cite its '1LLL 25%'.
 Caveats: KEEP_D rotation augmentation showed it every alg from all 4 sides — the variants are not invented; the
 per-case CHOICE of side is the model's. Beam search (shortest-first) may drive the choice; greedy test not done.
+
+**Policy vs search, generalization (CFOP models):**
+- Side choice is the POLICY's (src/cfop_side_choice.py): at the first move of an other-side base alg on the beam path,
+  policy top-1 = played move 91-95% (5 seeds); p(played) ~0.52 vs p(R-side first move) ~0.04; 98-99% of all
+  last-layer moves on beam paths are policy top-1.
+- Uniformly random cubes (prod_analysis.random_cubes(.., 2026)), beam 256, seed 0: 200/200 solved, 51.8 moves; cross/
+  F2L/OLL first at 15/57/80%; 2.38 algs per LL; 86% base algs, 74% from another side -> method generalizes.
+  (Modal run stopped early to protect the $40 cap on thisaccisfortheschool; seeds 1-4 at 50 cubes running locally.)
+- Greedy (policy alone, src/cfop_greedy_stages.py, 500 cubes x 5 seeds): reaches cross 98-100%; F2L 11-12% held-out /
+  3-5% random; solved 8-11% held-out / 2-3% random; 100% of failures are LOOPS. => policy alone does cross and LL;
+  F2L is where it loops and the beam rescues it.

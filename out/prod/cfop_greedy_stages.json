@@ -1,0 +1,82 @@
+{
+ "cfop_mixtral_6L256_s0 held-out scrambles": {
+  "solved": 0.108,
+  "cross": 0.994,
+  "f2l": 0.122,
+  "oll": 0.11,
+  "loops_among_unsolved": 1.0,
+  "moves": 55.81481481481482
+ },
+ "cfop_mixtral_6L256_s0 random cubes": {
+  "solved": 0.022,
+  "cross": 0.99,
+  "f2l": 0.03,
+  "oll": 0.022,
+  "loops_among_unsolved": 1.0,
+  "moves": 71.0909090909091
+ },
+ "cfop_mixtral_6L256_s1 held-out scrambles": {
+  "solved": 0.082,
+  "cross": 1.0,
+  "f2l": 0.11,
+  "oll": 0.086,
+  "loops_among_unsolved": 1.0,
+  "moves": 55.97560975609756
+ },
+ "cfop_mixtral_6L256_s1 random cubes": {
+  "solved": 0.022,
+  "cross": 0.994,
+  "f2l": 0.05,
+  "oll": 0.022,
+  "loops_among_unsolved": 1.0,
+  "moves": 63.90909090909091
+ },
+ "cfop_mixtral_6L256_s2 held-out scrambles": {
+  "solved": 0.092,
+  "cross": 0.994,
+  "f2l": 0.11,
+  "oll": 0.096,
+  "loops_among_unsolved": 1.0,
+  "moves": 56.67391304347826
+ },
+ "cfop_mixtral_6L256_s2 random cubes": {
+  "solved": 0.028,
+  "cross": 0.99,
+  "f2l": 0.042,
+  "oll": 0.028,
+  "loops_among_unsolved": 1.0,
+  "moves": 66.07142857142857
+ },
+ "cfop_mixtral_6L256_s3 held-out scrambles": {
+  "solved": 0.106,
+  "cross": 1.0,
+  "f2l": 0.122,
+  "oll": 0.11,
+  "loops_among_unsolved": 0.9977628635346756,
+  "moves": 56.867924528301884
+ },
+ "cfop_mixtral_6L256_s3 random cubes": {
+  "solved": 0.028,
+  "cross": 0.984,
+  "f2l": 0.032,
+  "oll": 0.028,
+  "loops_among_unsolved": 1.0,
+  "moves": 70.5
+ },
+ "cfop_mixtral_6L256_s4 held-out scrambles": {
+  "solved": 0.088,
+  "cross": 1.0,
+  "f2l": 0.112,
+  "oll": 0.094,
+  "loops_among_unsolved": 1.0,
+  "moves": 55.54545454545455
+ },
+ "cfop_mixtral_6L256_s4 random cubes": {
+  "solved": 0.02,
+  "cross": 0.994,
+  "f2l": 0.038,
+  "oll": 0.022,
+  "loops_among_unsolved": 1.0,
+  "moves": 65.5
+ }
+}
