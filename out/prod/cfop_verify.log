@@ -1,0 +1,17 @@
+training OLL sequences 37, PLL sequences 716 (from 50k training solves)
+cfop_mixtral_6L256_s0 {'n': 48.83, 'cross': 0.11, 'f2l': 0.542, 'oll': 0.803, 'oll_len': 12.84, 'pll_len': 9.79, 'oll_known': 0.08, 'pll_known': 0.14, 'count': 100, 'unsolved': 0}
+cfop_mixtral_6L256_s1 {'n': 48.06, 'cross': 0.107, 'f2l': 0.548, 'oll': 0.786, 'oll_len': 11.45, 'pll_len': 10.53, 'oll_known': 0.07, 'pll_known': 0.16, 'count': 100, 'unsolved': 0}
+cfop_mixtral_6L256_s2 {'n': 47.68, 'cross': 0.11, 'f2l': 0.558, 'oll': 0.788, 'oll_len': 10.95, 'pll_len': 10.3, 'oll_known': 0.07, 'pll_known': 0.18, 'count': 100, 'unsolved': 0}
+cfop_mixtral_6L256_s3 {'n': 48.34, 'cross': 0.109, 'f2l': 0.537, 'oll': 0.789, 'oll_len': 12.19, 'pll_len': 10.46, 'oll_known': 0.08, 'pll_known': 0.12, 'count': 100, 'unsolved': 0}
+cfop_mixtral_6L256_s4 {'n': 47.18, 'cross': 0.114, 'f2l': 0.555, 'oll': 0.801, 'oll_len': 11.74, 'pll_len': 9.58, 'oll_known': 0.08, 'pll_known': 0.18, 'count': 100, 'unsolved': 0}
+mixtral_6L256_s0 {'n': 23.27, 'cross': 0.987, 'f2l': 0.991, 'oll': 0.991, 'oll_len': 0.0, 'pll_len': 0.21, 'oll_known': 0.0, 'pll_known': 0.0, 'count': 100, 'unsolved': 0}
+
+  (stage milestones = first time reached, as a fraction of the solution)
+                           moves | cross at | F2L at | OLL at | OLL seg len | PLL seg len | known OLL alg | known PLL alg
+  cfop_solver               60.5 |       9% |    39% |    61% |        13.4 |        23.5 |          100% |          100%
+  cfop_mixtral_6L256_s0     48.8 |      11% |    54% |    80% |        12.8 |         9.8 |            8% |           14%
+  cfop_mixtral_6L256_s1     48.1 |      11% |    55% |    79% |        11.4 |        10.5 |            7% |           16%
+  cfop_mixtral_6L256_s2     47.7 |      11% |    56% |    79% |        10.9 |        10.3 |            7% |           18%
+  cfop_mixtral_6L256_s3     48.3 |      11% |    54% |    79% |        12.2 |        10.5 |            8% |           12%
+  cfop_mixtral_6L256_s4     47.2 |      11% |    55% |    80% |        11.7 |         9.6 |            8% |           18%
+  mixtral_6L256_s0          23.3 |      99% |    99% |    99% |         0.0 |         0.2 |            0% |            0%

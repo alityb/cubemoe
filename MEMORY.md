@@ -1535,3 +1535,25 @@ next move 32.2 ± 4.6%, position in algorithm 22.1 ± 2.6%, best single sticker 
 STAGE 4.5 ± 1.3% (shuffled 0.0). Knockouts: ~4 experts/seed matter (>2 pts), 2.4/seed matter for >1 stage; an
 important expert puts 62% of its damage on its main stage (25% = none). Contrast Kociemba: clean phase dissociation
 5/5, max cross-phase effect 1.8 pts. => CFOP routers organise around algorithms/moves, not stages.
+
+**Does the CFOP policy solve the CFOP way? (src/cfop_verify.py; out/prod/cfop_verify.json/.log; 100 held-out scrambles, beam 256)**
+Stage milestones = FIRST time reached (CFOP algorithms break cross/F2L mid-algorithm, so "stays done" is useless; the
+sticker tests agree 100% with probe/cfop.py on 20k states). Fraction of solution: cross / F2L / OLL reached at
+  CFOP solver 9% / 39% / 61% (60.5 moves); CFOP models (5 seeds) 11% / 54-56% / 79-80% (47-49 moves);
+  Kociemba model control 99% / 99% / 99% (23.3 moves).
+In moves: cross ~5.3 (solver 5.4), F2L ~26 (solver 24), OLL ~38 (solver 37), PLL segment 9.6-10.5 (solver 23.5).
+=> models clearly follow CFOP's stage order; the savings come almost entirely from a much shorter PLL.
+Exact match to a training sequence: OLL 7-8%, PLL 12-18% (solver's own held-out: 100%/100%; 37 OLL / 716 PLL
+sequences in 50k training solves). => NOT the solver's algorithm library verbatim. Open: boundary/AUF effects vs new
+algorithms vs beam shortcuts — paths for seed 0 being saved by src/cfop_paths.py for diagnosis.
+
+**Exp 4, where the phase direction is built (src/mech4.py; seed 0 1200 solves, seeds 1-4 400 solves; out/prod/mech4.log):**
+- a: phase is 100% LINEARLY readable from raw one-hot stickers -> probe accuracy at layers is NOT evidence. d' peaks
+  early (L0-MoE/L1, 15-26) and declines to ~6-8 at the final router input (seed 3 builds it at L1, d' 3.6 at L0).
+- b: exact direct router attribution (recon err ~1e-6): MoE layers write most of the router's phase gap. L4 MoE 24-36%
+  in all 5 seeds; L0 MoE 6-26%; attention total ~25-45%, of which L5 (the router's own layer) 5-15%.
+- c: mean-ablating ONE layer-0 head (L0H0 seeds 0-2, L0H1 seeds 3-4) removes most of the gap (-3% to 40% retained) BUT
+  also drops accuracy to 23-45% -> not phase-specific (first sticker mixing). Ablating attention of any of layers 1-4
+  INCREASES the gap (110-127%) except seed 3 L1 (53%). => phase is computed early, then carried/rewritten by MoE layers.
+- d: phase-1 positions meeting 1 of the 3 G1 conditions sit 18-44% of the way toward phase-2 router input (0/3:
+  -3 to -9%); 2/3 too rare (<20) to test AND vs additive. Confound: 1/3 positions are also nearer G1 in moves.
