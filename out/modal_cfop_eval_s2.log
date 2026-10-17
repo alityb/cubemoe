@@ -1,0 +1,17 @@
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-TfDdtiMi76jccUyz3ytWCx
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+cfop_mixtral_6L256_s2 beam 64: solved 479/500, avg 53.93 moves, 1.04 s/cube
+cfop_mixtral_6L256_s2 beam 256: solved 500/500, avg 48.91 moves, 0.96 s/cube
+cfop_mixtral_6L256_s2 beam 1024: solved 500/500, avg 44.15 moves, 2.13 s/cube
+[modal-client] 2026-10-16T00:12:47-0400 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-TfDdtiMi76jccUyz3ytWCx

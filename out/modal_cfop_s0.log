@@ -1,0 +1,61 @@
+✓ Initialized. View run at 
+https://modal.com/apps/dnfcubes/main/ap-hqO40Sn118ICsR5r9jUfV9
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+cfop_mixtral_6L256_s0 step 200/58593 loss 1.4016 4,619 states/s
+cfop_mixtral_6L256_s0 step 400/58593 loss 1.1600 4,700 states/s
+cfop_mixtral_6L256_s0 step 600/58593 loss 0.9936 4,699 states/s
+cfop_mixtral_6L256_s0 step 800/58593 loss 0.9542 4,714 states/s
+cfop_mixtral_6L256_s0 step 1000/58593 loss 0.9151 4,713 states/s
+cfop_mixtral_6L256_s0 step 1200/58593 loss 0.8148 4,718 states/s
+cfop_mixtral_6L256_s0 step 1400/58593 loss 0.7052 4,719 states/s
+cfop_mixtral_6L256_s0 step 1600/58593 loss 0.6410 4,728 states/s
+cfop_mixtral_6L256_s0 step 1800/58593 loss 0.6078 4,746 states/s
+cfop_mixtral_6L256_s0 step 2000/58593 loss 0.6364 4,723 states/s
+cfop_mixtral_6L256_s0 step 2200/58593 loss 0.6727 4,712 states/s
+cfop_mixtral_6L256_s0 step 2400/58593 loss 0.6600 4,724 states/s
+cfop_mixtral_6L256_s0 step 2600/58593 loss 0.5838 4,730 states/s
+cfop_mixtral_6L256_s0 step 2800/58593 loss 0.5821 3,991 states/s
+cfop_mixtral_6L256_s0 step 3000/58593 loss 0.6079 4,717 states/s
+cfop_mixtral_6L256_s0 step 3200/58593 loss 0.5741 4,731 states/s
+cfop_mixtral_6L256_s0 step 3400/58593 loss 0.5934 4,727 states/s
+cfop_mixtral_6L256_s0 step 3600/58593 loss 0.5176 4,727 states/s
+cfop_mixtral_6L256_s0 step 3800/58593 loss 0.5738 4,732 states/s
+cfop_mixtral_6L256_s0 step 4000/58593 loss 0.5318 4,729 states/s
+cfop_mixtral_6L256_s0 step 4200/58593 loss 0.5385 4,725 states/s
+cfop_mixtral_6L256_s0 step 4400/58593 loss 0.5763 4,734 states/s
+cfop_mixtral_6L256_s0 step 4600/58593 loss 0.5066 4,732 states/s
+cfop_mixtral_6L256_s0 step 4800/58593 loss 0.5700 4,721 states/s
+cfop_mixtral_6L256_s0 step 5000/58593 loss 0.5130 4,726 states/s
+GATE cfop_mixtral_6L256_s0 {'heldout_acc': 0.8482999801635742, 'greedy_solve_heldout': 0.0, 'beam256_solve_heldout': 0.975, 'beam256_avg_moves': 55.48717948717949, 'step': 5000, 'states_seen': 5120000}
+cfop_mixtral_6L256_s0 step 5200/58593 loss 0.5124 2,350 states/s
+cfop_mixtral_6L256_s0 step 5400/58593 loss 0.4796 4,696 states/s
+cfop_mixtral_6L256_s0 step 5600/58593 loss 0.5313 4,649 states/s
+cfop_mixtral_6L256_s0 step 5800/58593 loss 0.5266 4,646 states/s
+cfop_mixtral_6L256_s0 step 6000/58593 loss 0.4816 4,644 states/s
+cfop_mixtral_6L256_s0 step 6200/58593 loss 0.4737 4,619 states/s
+cfop_mixtral_6L256_s0 step 6400/58593 loss 0.4956 4,652 states/s
+cfop_mixtral_6L256_s0 step 6600/58593 loss 0.4642 4,611 states/s
+cfop_mixtral_6L256_s0 step 6800/58593 loss 0.4874 4,625 states/s
+cfop_mixtral_6L256_s0 step 7000/58593 loss 0.5344 4,634 states/s
+cfop_mixtral_6L256_s0 step 7200/58593 loss 0.4891 4,655 states/s
+cfop_mixtral_6L256_s0 step 7400/58593 loss 0.4945 4,628 states/s
+cfop_mixtral_6L256_s0 step 7600/58593 loss 0.5066 4,648 states/s
+cfop_mixtral_6L256_s0 step 7800/58593 loss 0.4868 4,087 states/s
+cfop_mixtral_6L256_s0 step 8000/58593 loss 0.4622 4,619 states/s
+cfop_mixtral_6L256_s0 step 8200/58593 loss 0.4960 4,637 states/s
+cfop_mixtral_6L256_s0 step 8400/58593 loss 0.4815 4,624 states/s
+cfop_mixtral_6L256_s0 step 8600/58593 loss 0.4507 4,693 states/s
+cfop_mixtral_6L256_s0 step 8800/58593 loss 0.5441 4,735 states/s
+cfop_mixtral_6L256_s0 step 9000/58593 loss 0.4801 4,731 states/s
+cfop_mixtral_6L256_s0 step 9200/58593 loss 0.5104 4,744 states/s
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ 'Connection' object has no attribute '_transport'                            │
+╰──────────────────────────────────────────────────────────────────────────────╯
