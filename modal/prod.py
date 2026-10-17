@@ -216,3 +216,20 @@ def cfop_random_greedy(n_random: int = 200, n_held: int = 100):
         json.dump([dict(start=s, model=p, solver=q) for s, p, q in zip(S, P, sol)], open(ROOT / f"out/prod/{t}_{r}_paths.json", "w"))
         ok = [len(p) for p in P if p]
         print(f"{t} {r}: solved {len(ok)}/{len(P)}, mean {np.mean(ok) if ok else float('nan'):.1f} moves", flush=True)
+
+@app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=3600)
+def solve_paths_multi(tags: list, starts: list, width: int = 256, budget: int = 120):
+    """One container, several checkpoints in turn (cheaper than one container per seed)."""
+    return {t: solve_paths.local(t, starts, width, budget) for t in tags}
+
+@app.local_entrypoint()
+def cfop_random_one(seeds: str = "1,2,3,4", n: int = 200):
+    """Random-cube beam-256 paths for several CFOP seeds on ONE GPU -> out/prod/<tag>_random_w256_paths.json"""
+    import json, sys, numpy as np
+    sys.path[:0] = [str(ROOT / "src"), str(ROOT / "probe")]
+    from prod_analysis import random_cubes
+    S = random_cubes(200, 2026).tolist()[:n]; tags = [f"cfop_mixtral_6L256_s{k}" for k in seeds.split(",")]
+    res = solve_paths_multi.remote(tags, S)
+    for t, P in res.items():
+        json.dump([dict(start=a, model=p, solver=None) for a, p in zip(S, P)], open(ROOT / f"out/prod/{t}_random_w256_paths.json", "w"))
+        ok = [len(p) for p in P if p]; print(f"{t} random_w256: solved {len(ok)}/{len(P)}, mean {np.mean(ok):.1f} moves", flush=True)
