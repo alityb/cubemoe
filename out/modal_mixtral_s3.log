@@ -1,0 +1,426 @@
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-ZugobotrsUEvgPPxpZiTri
+Building image im-XhkXAnesRWAQtn1P8VGkti
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install numpy torch==2.6.0
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting numpy
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting torch==2.6.0
+  Downloading http://pypi-mirror.modal.local:5555/simple/torch/torch-2.6.0-cp311-cp311-manylinux1_x86_64.whl.metadata (28 kB)
+Collecting filelock (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-4.1.1-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting networkx (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/networkx/networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/jinja2/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-nvrtc-cu12/nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-runtime-cu12/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-cupti-cu12/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cudnn-cu12/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.4.5.8 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cublas-cu12/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.2.1.3 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cufft-cu12/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.5.147 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-curand-cu12/nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.6.1.9 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusolver-cu12/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.3.1.170 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparse-cu12/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparselt-cu12==0.6.2 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparselt-cu12/nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting nvidia-nccl-cu12==2.21.5 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nccl-cu12/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvtx-cu12/nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-nvjitlink-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvjitlink-cu12/nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting triton==3.2.0 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/triton/triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.4 kB)
+Collecting sympy==1.13.1 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/sympy/sympy-1.13.1-py3-none-any.whl.metadata (12 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/mpmath/mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/torch/torch-2.6.0-cp311-cp311-manylinux1_x86_64.whl (766.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 766.7/766.7 MB 846.6 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cublas-cu12/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl (363.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 363.4/363.4 MB 836.8 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-cupti-cu12/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (13.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.8/13.8 MB 822.5 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-nvrtc-cu12/nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (24.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.6/24.6 MB 869.7 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-runtime-cu12/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (883 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 883.7/883.7 kB 785.2 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cudnn-cu12/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 664.8/664.8 MB 842.8 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cufft-cu12/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl (211.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 211.5/211.5 MB 466.3 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-curand-cu12/nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl (56.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.3/56.3 MB 524.3 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusolver-cu12/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl (127.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 127.9/127.9 MB 550.6 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparse-cu12/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl (207.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 207.5/207.5 MB 550.0 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparselt-cu12/nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl (150.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 150.1/150.1 MB 858.5 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nccl-cu12/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl (188.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.7/188.7 MB 836.6 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvjitlink-cu12/nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (21.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.1/21.1 MB 807.6 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvtx-cu12/nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (99 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/sympy/sympy-1.13.1-py3-none-any.whl (6.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 769.8 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/triton/triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (253.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 253.2/253.2 MB 816.0 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/mpmath/mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 869.9 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 790.8 MB/s  0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-4.1.1-py3-none-any.whl (132 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/jinja2/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/networkx/networkx-3.6.1-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 792.9 MB/s  0:00:00
+Installing collected packages: triton, nvidia-cusparselt-cu12, mpmath, typing-extensions, sympy, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, fsspec, filelock, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, nvidia-cusolver-cu12, torch
+
+Successfully installed MarkupSafe-3.0.4 filelock-4.1.1 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.4.6 nvidia-cublas-cu12-12.4.5.8 nvidia-cuda-cupti-cu12-12.4.127 nvidia-cuda-nvrtc-cu12-12.4.127 nvidia-cuda-runtime-cu12-12.4.127 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.2.1.3 nvidia-curand-cu12-10.3.5.147 nvidia-cusolver-cu12-11.6.1.9 nvidia-cusparse-cu12-12.3.1.170 nvidia-cusparselt-cu12-0.6.2 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.4.127 sympy-1.13.1 torch-2.6.0 triton-3.2.0 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 25.2 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 7.46s
+
+Built image im-XhkXAnesRWAQtn1P8VGkti in 50.80s
+
+
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+mixtral_6L256_s3 step 200/58593 loss 2.1504 4,539 states/s
+mixtral_6L256_s3 step 400/58593 loss 1.8391 4,624 states/s
+mixtral_6L256_s3 step 600/58593 loss 1.7044 4,651 states/s
+mixtral_6L256_s3 step 800/58593 loss 1.7071 4,689 states/s
+mixtral_6L256_s3 step 1000/58593 loss 1.6952 4,674 states/s
+mixtral_6L256_s3 step 1200/58593 loss 1.5885 4,674 states/s
+mixtral_6L256_s3 step 1400/58593 loss 1.5174 4,686 states/s
+mixtral_6L256_s3 step 1600/58593 loss 1.4890 4,653 states/s
+mixtral_6L256_s3 step 1800/58593 loss 1.5159 4,632 states/s
+mixtral_6L256_s3 step 2000/58593 loss 1.4225 4,586 states/s
+mixtral_6L256_s3 step 2200/58593 loss 1.3889 4,615 states/s
+mixtral_6L256_s3 step 2400/58593 loss 1.3964 4,622 states/s
+mixtral_6L256_s3 step 2600/58593 loss 1.3502 4,675 states/s
+mixtral_6L256_s3 step 2800/58593 loss 1.3484 4,264 states/s
+mixtral_6L256_s3 step 3000/58593 loss 1.4226 4,688 states/s
+mixtral_6L256_s3 step 3200/58593 loss 1.3242 4,682 states/s
+mixtral_6L256_s3 step 3400/58593 loss 1.4107 4,689 states/s
+mixtral_6L256_s3 step 3600/58593 loss 1.3855 4,677 states/s
+mixtral_6L256_s3 step 3800/58593 loss 1.2751 4,693 states/s
+mixtral_6L256_s3 step 4000/58593 loss 1.3312 4,689 states/s
+mixtral_6L256_s3 step 4200/58593 loss 1.2609 4,687 states/s
+mixtral_6L256_s3 step 4400/58593 loss 1.2188 4,679 states/s
+mixtral_6L256_s3 step 4600/58593 loss 1.2657 4,686 states/s
+mixtral_6L256_s3 step 4800/58593 loss 1.2286 4,682 states/s
+mixtral_6L256_s3 step 5000/58593 loss 1.2871 4,667 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.5976999998092651, 'greedy_solve_random': 0.0, 'beam256_solve_random': 0.1, 'beam256_avg_moves': 25.5, 'step': 5000, 'states_seen': 5120000}
+mixtral_6L256_s3 step 5200/58593 loss 1.2604 2,238 states/s
+mixtral_6L256_s3 step 5400/58593 loss 1.1705 4,686 states/s
+mixtral_6L256_s3 step 5600/58593 loss 1.2198 4,684 states/s
+mixtral_6L256_s3 step 5800/58593 loss 1.1736 4,662 states/s
+mixtral_6L256_s3 step 6000/58593 loss 1.2163 4,691 states/s
+mixtral_6L256_s3 step 6200/58593 loss 1.2408 4,678 states/s
+mixtral_6L256_s3 step 6400/58593 loss 1.2342 4,676 states/s
+mixtral_6L256_s3 step 6600/58593 loss 1.1769 4,677 states/s
+mixtral_6L256_s3 step 6800/58593 loss 1.1992 4,703 states/s
+mixtral_6L256_s3 step 7000/58593 loss 1.2080 4,686 states/s
+mixtral_6L256_s3 step 7200/58593 loss 1.1758 4,675 states/s
+mixtral_6L256_s3 step 7400/58593 loss 1.1396 4,692 states/s
+mixtral_6L256_s3 step 7600/58593 loss 1.1895 4,682 states/s
+mixtral_6L256_s3 step 7800/58593 loss 1.2285 4,107 states/s
+mixtral_6L256_s3 step 8000/58593 loss 1.2081 4,694 states/s
+mixtral_6L256_s3 step 8200/58593 loss 1.1143 4,691 states/s
+mixtral_6L256_s3 step 8400/58593 loss 1.2205 4,697 states/s
+mixtral_6L256_s3 step 8600/58593 loss 1.1099 4,700 states/s
+mixtral_6L256_s3 step 8800/58593 loss 1.2045 4,699 states/s
+mixtral_6L256_s3 step 9000/58593 loss 1.2227 4,690 states/s
+mixtral_6L256_s3 step 9200/58593 loss 1.2011 4,675 states/s
+mixtral_6L256_s3 step 9400/58593 loss 1.1430 4,696 states/s
+mixtral_6L256_s3 step 9600/58593 loss 1.1978 4,698 states/s
+mixtral_6L256_s3 step 9800/58593 loss 1.2204 4,663 states/s
+mixtral_6L256_s3 step 10000/58593 loss 1.1390 4,696 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.6355199813842773, 'greedy_solve_random': 0.004999999888241291, 'beam256_solve_random': 0.325, 'beam256_avg_moves': 28.307692307692307, 'step': 10000, 'states_seen': 10240000}
+mixtral_6L256_s3 step 10200/58593 loss 1.1555 2,212 states/s
+mixtral_6L256_s3 step 10400/58593 loss 1.1424 4,696 states/s
+mixtral_6L256_s3 step 10600/58593 loss 1.1056 4,690 states/s
+mixtral_6L256_s3 step 10800/58593 loss 1.1138 4,689 states/s
+mixtral_6L256_s3 step 11000/58593 loss 1.1844 4,706 states/s
+mixtral_6L256_s3 step 11200/58593 loss 1.1008 4,710 states/s
+mixtral_6L256_s3 step 11400/58593 loss 1.1218 4,707 states/s
+mixtral_6L256_s3 step 11600/58593 loss 1.1124 4,701 states/s
+mixtral_6L256_s3 step 11800/58593 loss 1.1135 4,702 states/s
+mixtral_6L256_s3 step 12000/58593 loss 1.0602 4,692 states/s
+mixtral_6L256_s3 step 12200/58593 loss 1.1429 4,683 states/s
+mixtral_6L256_s3 step 12400/58593 loss 1.1327 4,686 states/s
+mixtral_6L256_s3 step 12600/58593 loss 1.0754 4,677 states/s
+mixtral_6L256_s3 step 12800/58593 loss 1.1179 4,163 states/s
+mixtral_6L256_s3 step 13000/58593 loss 1.1155 4,689 states/s
+mixtral_6L256_s3 step 13200/58593 loss 1.0834 4,691 states/s
+mixtral_6L256_s3 step 13400/58593 loss 1.1456 4,701 states/s
+mixtral_6L256_s3 step 13600/58593 loss 1.0873 4,682 states/s
+mixtral_6L256_s3 step 13800/58593 loss 1.0797 4,695 states/s
+mixtral_6L256_s3 step 14000/58593 loss 1.1074 4,703 states/s
+mixtral_6L256_s3 step 14200/58593 loss 1.1048 4,665 states/s
+mixtral_6L256_s3 step 14400/58593 loss 1.0986 4,696 states/s
+mixtral_6L256_s3 step 14600/58593 loss 1.0702 4,692 states/s
+mixtral_6L256_s3 step 14800/58593 loss 1.0821 4,703 states/s
+mixtral_6L256_s3 step 15000/58593 loss 1.0703 4,695 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.6559500098228455, 'greedy_solve_random': 0.004999999888241291, 'beam256_solve_random': 0.425, 'beam256_avg_moves': 26.58823529411765, 'step': 15000, 'states_seen': 15360000}
+mixtral_6L256_s3 step 15200/58593 loss 1.0717 2,310 states/s
+mixtral_6L256_s3 step 15400/58593 loss 1.1395 4,702 states/s
+mixtral_6L256_s3 step 15600/58593 loss 1.0867 4,598 states/s
+mixtral_6L256_s3 step 15800/58593 loss 1.0541 4,704 states/s
+mixtral_6L256_s3 step 16000/58593 loss 1.0478 4,712 states/s
+mixtral_6L256_s3 step 16200/58593 loss 1.0230 4,707 states/s
+mixtral_6L256_s3 step 16400/58593 loss 1.0169 4,690 states/s
+mixtral_6L256_s3 step 16600/58593 loss 1.1264 4,703 states/s
+mixtral_6L256_s3 step 16800/58593 loss 1.0020 4,699 states/s
+mixtral_6L256_s3 step 17000/58593 loss 1.0740 4,697 states/s
+mixtral_6L256_s3 step 17200/58593 loss 1.1234 4,685 states/s
+mixtral_6L256_s3 step 17400/58593 loss 1.0776 4,682 states/s
+mixtral_6L256_s3 step 17600/58593 loss 1.0679 4,690 states/s
+mixtral_6L256_s3 step 17800/58593 loss 1.0443 4,166 states/s
+mixtral_6L256_s3 step 18000/58593 loss 1.0497 4,706 states/s
+mixtral_6L256_s3 step 18200/58593 loss 1.0068 4,654 states/s
+mixtral_6L256_s3 step 18400/58593 loss 1.0210 4,686 states/s
+mixtral_6L256_s3 step 18600/58593 loss 1.0260 4,669 states/s
+mixtral_6L256_s3 step 18800/58593 loss 1.0521 4,615 states/s
+mixtral_6L256_s3 step 19000/58593 loss 1.0019 4,536 states/s
+mixtral_6L256_s3 step 19200/58593 loss 1.0260 4,509 states/s
+mixtral_6L256_s3 step 19400/58593 loss 1.0326 4,596 states/s
+mixtral_6L256_s3 step 19600/58593 loss 1.0251 4,680 states/s
+mixtral_6L256_s3 step 19800/58593 loss 1.0683 4,682 states/s
+mixtral_6L256_s3 step 20000/58593 loss 1.0354 4,704 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.6640799641609192, 'greedy_solve_random': 0.0, 'beam256_solve_random': 0.775, 'beam256_avg_moves': 26.258064516129032, 'step': 20000, 'states_seen': 20480000}
+mixtral_6L256_s3 step 20200/58593 loss 1.0923 2,416 states/s
+mixtral_6L256_s3 step 20400/58593 loss 1.0483 4,696 states/s
+mixtral_6L256_s3 step 20600/58593 loss 1.0424 4,689 states/s
+mixtral_6L256_s3 step 20800/58593 loss 1.1068 4,707 states/s
+mixtral_6L256_s3 step 21000/58593 loss 1.0237 4,706 states/s
+mixtral_6L256_s3 step 21200/58593 loss 1.0897 4,706 states/s
+mixtral_6L256_s3 step 21400/58593 loss 0.9925 4,710 states/s
+mixtral_6L256_s3 step 21600/58593 loss 1.0511 4,707 states/s
+mixtral_6L256_s3 step 21800/58593 loss 1.0479 4,711 states/s
+mixtral_6L256_s3 step 22000/58593 loss 1.0420 4,704 states/s
+mixtral_6L256_s3 step 22200/58593 loss 1.0349 4,708 states/s
+mixtral_6L256_s3 step 22400/58593 loss 1.0915 4,711 states/s
+mixtral_6L256_s3 step 22600/58593 loss 1.0431 4,700 states/s
+mixtral_6L256_s3 step 22800/58593 loss 1.0190 4,251 states/s
+mixtral_6L256_s3 step 23000/58593 loss 1.0199 4,693 states/s
+mixtral_6L256_s3 step 23200/58593 loss 1.0176 4,674 states/s
+mixtral_6L256_s3 step 23400/58593 loss 1.0396 4,682 states/s
+mixtral_6L256_s3 step 23600/58593 loss 1.0598 4,695 states/s
+mixtral_6L256_s3 step 23800/58593 loss 1.0411 4,664 states/s
+mixtral_6L256_s3 step 24000/58593 loss 1.0493 4,626 states/s
+mixtral_6L256_s3 step 24200/58593 loss 1.0484 4,698 states/s
+mixtral_6L256_s3 step 24400/58593 loss 0.9941 4,713 states/s
+mixtral_6L256_s3 step 24600/58593 loss 1.0121 4,684 states/s
+mixtral_6L256_s3 step 24800/58593 loss 1.0799 4,694 states/s
+mixtral_6L256_s3 step 25000/58593 loss 1.0608 4,707 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.6786800026893616, 'greedy_solve_random': 0.014999999664723873, 'beam256_solve_random': 0.95, 'beam256_avg_moves': 27.263157894736842, 'step': 25000, 'states_seen': 25600000}
+mixtral_6L256_s3 step 25200/58593 loss 1.0375 2,457 states/s
+mixtral_6L256_s3 step 25400/58593 loss 1.0660 4,689 states/s
+mixtral_6L256_s3 step 25600/58593 loss 0.8972 4,689 states/s
+mixtral_6L256_s3 step 25800/58593 loss 1.0022 4,688 states/s
+mixtral_6L256_s3 step 26000/58593 loss 1.0596 4,698 states/s
+mixtral_6L256_s3 step 26200/58593 loss 0.9941 4,686 states/s
+mixtral_6L256_s3 step 26400/58593 loss 1.0198 4,712 states/s
+mixtral_6L256_s3 step 26600/58593 loss 0.9941 4,700 states/s
+mixtral_6L256_s3 step 26800/58593 loss 0.9819 4,690 states/s
+mixtral_6L256_s3 step 27000/58593 loss 1.0413 4,668 states/s
+mixtral_6L256_s3 step 27200/58593 loss 0.9869 4,661 states/s
+mixtral_6L256_s3 step 27400/58593 loss 1.0159 4,704 states/s
+mixtral_6L256_s3 step 27600/58593 loss 0.9833 4,703 states/s
+mixtral_6L256_s3 step 27800/58593 loss 1.0385 4,023 states/s
+mixtral_6L256_s3 step 28000/58593 loss 1.0272 4,695 states/s
+mixtral_6L256_s3 step 28200/58593 loss 1.0428 4,710 states/s
+mixtral_6L256_s3 step 28400/58593 loss 1.0085 4,711 states/s
+mixtral_6L256_s3 step 28600/58593 loss 0.9989 4,719 states/s
+mixtral_6L256_s3 step 28800/58593 loss 1.0315 4,716 states/s
+mixtral_6L256_s3 step 29000/58593 loss 0.9946 4,718 states/s
+mixtral_6L256_s3 step 29200/58593 loss 1.0309 4,700 states/s
+mixtral_6L256_s3 step 29400/58593 loss 0.9560 4,694 states/s
+mixtral_6L256_s3 step 29600/58593 loss 0.8972 4,691 states/s
+mixtral_6L256_s3 step 29800/58593 loss 1.0302 4,710 states/s
+mixtral_6L256_s3 step 30000/58593 loss 0.9433 4,703 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.6880399584770203, 'greedy_solve_random': 0.009999999776482582, 'beam256_solve_random': 0.875, 'beam256_avg_moves': 25.4, 'step': 30000, 'states_seen': 30720000}
+mixtral_6L256_s3 step 30200/58593 loss 1.0586 2,411 states/s
+mixtral_6L256_s3 step 30400/58593 loss 0.9615 4,706 states/s
+mixtral_6L256_s3 step 30600/58593 loss 0.9395 4,712 states/s
+mixtral_6L256_s3 step 30800/58593 loss 1.0020 4,717 states/s
+mixtral_6L256_s3 step 31000/58593 loss 0.9914 4,697 states/s
+mixtral_6L256_s3 step 31200/58593 loss 1.0644 4,679 states/s
+mixtral_6L256_s3 step 31400/58593 loss 0.9832 4,711 states/s
+mixtral_6L256_s3 step 31600/58593 loss 1.0065 4,715 states/s
+mixtral_6L256_s3 step 31800/58593 loss 1.0273 4,717 states/s
+mixtral_6L256_s3 step 32000/58593 loss 0.9360 4,718 states/s
+mixtral_6L256_s3 step 32200/58593 loss 0.9388 4,718 states/s
+mixtral_6L256_s3 step 32400/58593 loss 0.9193 4,714 states/s
+mixtral_6L256_s3 step 32600/58593 loss 0.8970 4,715 states/s
+mixtral_6L256_s3 step 32800/58593 loss 0.9456 4,213 states/s
+mixtral_6L256_s3 step 33000/58593 loss 0.9746 4,696 states/s
+mixtral_6L256_s3 step 33200/58593 loss 1.0562 4,701 states/s
+mixtral_6L256_s3 step 33400/58593 loss 0.9369 4,709 states/s
+mixtral_6L256_s3 step 33600/58593 loss 0.9252 4,717 states/s
+mixtral_6L256_s3 step 33800/58593 loss 0.9670 4,722 states/s
+mixtral_6L256_s3 step 34000/58593 loss 0.9570 4,708 states/s
+mixtral_6L256_s3 step 34200/58593 loss 0.9243 4,712 states/s
+mixtral_6L256_s3 step 34400/58593 loss 0.9689 4,708 states/s
+mixtral_6L256_s3 step 34600/58593 loss 0.9223 4,710 states/s
+mixtral_6L256_s3 step 34800/58593 loss 0.9841 4,665 states/s
+mixtral_6L256_s3 step 35000/58593 loss 0.9241 4,700 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.6972749829292297, 'greedy_solve_random': 0.0, 'beam256_solve_random': 1.0, 'beam256_avg_moves': 25.475, 'step': 35000, 'states_seen': 35840000}
+mixtral_6L256_s3 step 35200/58593 loss 0.9077 2,439 states/s
+mixtral_6L256_s3 step 35400/58593 loss 0.9272 4,693 states/s
+mixtral_6L256_s3 step 35600/58593 loss 0.9905 4,711 states/s
+mixtral_6L256_s3 step 35800/58593 loss 0.9367 4,708 states/s
+mixtral_6L256_s3 step 36000/58593 loss 0.9130 4,704 states/s
+mixtral_6L256_s3 step 36200/58593 loss 0.9365 4,705 states/s
+mixtral_6L256_s3 step 36400/58593 loss 0.9696 4,713 states/s
+mixtral_6L256_s3 step 36600/58593 loss 0.9749 4,700 states/s
+mixtral_6L256_s3 step 36800/58593 loss 0.9139 4,683 states/s
+mixtral_6L256_s3 step 37000/58593 loss 0.9725 4,710 states/s
+mixtral_6L256_s3 step 37200/58593 loss 0.8577 4,707 states/s
+mixtral_6L256_s3 step 37400/58593 loss 0.9148 4,717 states/s
+mixtral_6L256_s3 step 37600/58593 loss 0.9731 4,708 states/s
+mixtral_6L256_s3 step 37800/58593 loss 0.9308 4,301 states/s
+mixtral_6L256_s3 step 38000/58593 loss 0.9277 4,698 states/s
+mixtral_6L256_s3 step 38200/58593 loss 0.8786 4,716 states/s
+mixtral_6L256_s3 step 38400/58593 loss 0.8931 4,704 states/s
+mixtral_6L256_s3 step 38600/58593 loss 0.9036 4,693 states/s
+mixtral_6L256_s3 step 38800/58593 loss 0.8732 4,642 states/s
+mixtral_6L256_s3 step 39000/58593 loss 0.9492 4,703 states/s
+mixtral_6L256_s3 step 39200/58593 loss 0.8962 4,654 states/s
+mixtral_6L256_s3 step 39400/58593 loss 0.8622 4,593 states/s
+mixtral_6L256_s3 step 39600/58593 loss 0.9273 4,682 states/s
+mixtral_6L256_s3 step 39800/58593 loss 0.9108 4,672 states/s
+mixtral_6L256_s3 step 40000/58593 loss 0.8535 4,685 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.7083349823951721, 'greedy_solve_random': 0.029999999329447746, 'beam256_solve_random': 1.0, 'beam256_avg_moves': 24.45, 'step': 40000, 'states_seen': 40960000}
+mixtral_6L256_s3 step 40200/58593 loss 0.9004 2,545 states/s
+mixtral_6L256_s3 step 40400/58593 loss 0.9143 4,715 states/s
+mixtral_6L256_s3 step 40600/58593 loss 0.8407 4,624 states/s
+mixtral_6L256_s3 step 40800/58593 loss 0.9412 4,687 states/s
+mixtral_6L256_s3 step 41000/58593 loss 0.8972 4,699 states/s
+mixtral_6L256_s3 step 41200/58593 loss 0.9150 4,689 states/s
+mixtral_6L256_s3 step 41400/58593 loss 0.9272 4,722 states/s
+mixtral_6L256_s3 step 41600/58593 loss 0.8908 4,716 states/s
+mixtral_6L256_s3 step 41800/58593 loss 0.8788 4,721 states/s
+mixtral_6L256_s3 step 42000/58593 loss 0.8913 4,712 states/s
+mixtral_6L256_s3 step 42200/58593 loss 0.8759 4,707 states/s
+mixtral_6L256_s3 step 42400/58593 loss 0.8357 4,691 states/s
+mixtral_6L256_s3 step 42600/58593 loss 0.8812 4,724 states/s
+mixtral_6L256_s3 step 42800/58593 loss 0.9398 4,132 states/s
+mixtral_6L256_s3 step 43000/58593 loss 0.9195 4,697 states/s
+mixtral_6L256_s3 step 43200/58593 loss 0.8735 4,664 states/s
+mixtral_6L256_s3 step 43400/58593 loss 0.8624 4,693 states/s
+mixtral_6L256_s3 step 43600/58593 loss 0.8486 4,696 states/s
+mixtral_6L256_s3 step 43800/58593 loss 0.8958 4,701 states/s
+mixtral_6L256_s3 step 44000/58593 loss 0.8672 4,703 states/s
+mixtral_6L256_s3 step 44200/58593 loss 0.8734 4,700 states/s
+mixtral_6L256_s3 step 44400/58593 loss 0.8589 4,706 states/s
+mixtral_6L256_s3 step 44600/58593 loss 0.8976 4,698 states/s
+mixtral_6L256_s3 step 44800/58593 loss 0.8341 4,694 states/s
+mixtral_6L256_s3 step 45000/58593 loss 0.8166 4,700 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.7158249616622925, 'greedy_solve_random': 0.02499999850988388, 'beam256_solve_random': 1.0, 'beam256_avg_moves': 24.4, 'step': 45000, 'states_seen': 46080000}
+mixtral_6L256_s3 step 45200/58593 loss 0.9124 2,502 states/s
+mixtral_6L256_s3 step 45400/58593 loss 0.8512 4,713 states/s
+mixtral_6L256_s3 step 45600/58593 loss 0.8624 4,713 states/s
+mixtral_6L256_s3 step 45800/58593 loss 0.8745 4,705 states/s
+mixtral_6L256_s3 step 46000/58593 loss 0.8795 4,714 states/s
+mixtral_6L256_s3 step 46200/58593 loss 0.8929 4,712 states/s
+mixtral_6L256_s3 step 46400/58593 loss 0.9584 4,707 states/s
+mixtral_6L256_s3 step 46600/58593 loss 0.8982 4,708 states/s
+mixtral_6L256_s3 step 46800/58593 loss 0.8732 4,723 states/s
+mixtral_6L256_s3 step 47000/58593 loss 0.8786 4,699 states/s
+mixtral_6L256_s3 step 47200/58593 loss 0.9284 4,715 states/s
+mixtral_6L256_s3 step 47400/58593 loss 0.8320 4,712 states/s
+mixtral_6L256_s3 step 47600/58593 loss 0.9210 4,681 states/s
+mixtral_6L256_s3 step 47800/58593 loss 0.8808 4,021 states/s
+mixtral_6L256_s3 step 48000/58593 loss 0.8320 4,602 states/s
+mixtral_6L256_s3 step 48200/58593 loss 0.8743 4,630 states/s
+mixtral_6L256_s3 step 48400/58593 loss 0.8643 4,614 states/s
+mixtral_6L256_s3 step 48600/58593 loss 0.8492 4,630 states/s
+mixtral_6L256_s3 step 48800/58593 loss 0.8901 4,604 states/s
+mixtral_6L256_s3 step 49000/58593 loss 0.9104 4,630 states/s
+mixtral_6L256_s3 step 49200/58593 loss 0.8688 4,635 states/s
+mixtral_6L256_s3 step 49400/58593 loss 0.9205 4,703 states/s
+mixtral_6L256_s3 step 49600/58593 loss 0.8181 4,715 states/s
+mixtral_6L256_s3 step 49800/58593 loss 0.8790 4,716 states/s
+mixtral_6L256_s3 step 50000/58593 loss 0.8617 4,715 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.7237299680709839, 'greedy_solve_random': 0.06499999761581421, 'beam256_solve_random': 1.0, 'beam256_avg_moves': 23.75, 'step': 50000, 'states_seen': 51200000}
+mixtral_6L256_s3 step 50200/58593 loss 0.8409 2,567 states/s
+mixtral_6L256_s3 step 50400/58593 loss 0.8869 4,704 states/s
+mixtral_6L256_s3 step 50600/58593 loss 0.9003 4,721 states/s
+mixtral_6L256_s3 step 50800/58593 loss 0.8360 4,701 states/s
+mixtral_6L256_s3 step 51000/58593 loss 0.8186 4,706 states/s
+mixtral_6L256_s3 step 51200/58593 loss 0.8493 4,701 states/s
+mixtral_6L256_s3 step 51400/58593 loss 0.8628 4,705 states/s
+mixtral_6L256_s3 step 51600/58593 loss 0.8955 4,714 states/s
+mixtral_6L256_s3 step 51800/58593 loss 0.8229 4,611 states/s
+mixtral_6L256_s3 step 52000/58593 loss 0.8897 4,700 states/s
+mixtral_6L256_s3 step 52200/58593 loss 0.8453 4,687 states/s
+mixtral_6L256_s3 step 52400/58593 loss 0.8519 4,689 states/s
+mixtral_6L256_s3 step 52600/58593 loss 0.8343 4,692 states/s
+mixtral_6L256_s3 step 52800/58593 loss 0.9330 4,129 states/s
+mixtral_6L256_s3 step 53000/58593 loss 0.8784 4,691 states/s
+mixtral_6L256_s3 step 53200/58593 loss 0.8608 4,711 states/s
+mixtral_6L256_s3 step 53400/58593 loss 0.8716 4,709 states/s
+mixtral_6L256_s3 step 53600/58593 loss 0.8788 4,723 states/s
+mixtral_6L256_s3 step 53800/58593 loss 0.7901 4,727 states/s
+mixtral_6L256_s3 step 54000/58593 loss 0.8580 4,727 states/s
+mixtral_6L256_s3 step 54200/58593 loss 0.8166 4,729 states/s
+mixtral_6L256_s3 step 54400/58593 loss 0.8531 4,709 states/s
+mixtral_6L256_s3 step 54600/58593 loss 0.8051 4,715 states/s
+mixtral_6L256_s3 step 54800/58593 loss 0.8757 4,711 states/s
+mixtral_6L256_s3 step 55000/58593 loss 0.9060 4,724 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.7228599786758423, 'greedy_solve_random': 0.04999999701976776, 'beam256_solve_random': 1.0, 'beam256_avg_moves': 24.0, 'step': 55000, 'states_seen': 56320000}
+mixtral_6L256_s3 step 55200/58593 loss 0.8591 2,537 states/s
+mixtral_6L256_s3 step 55400/58593 loss 0.8730 4,723 states/s
+mixtral_6L256_s3 step 55600/58593 loss 0.7487 4,724 states/s
+mixtral_6L256_s3 step 55800/58593 loss 0.8214 4,721 states/s
+mixtral_6L256_s3 step 56000/58593 loss 0.8900 4,715 states/s
+mixtral_6L256_s3 step 56200/58593 loss 0.8990 4,707 states/s
+mixtral_6L256_s3 step 56400/58593 loss 0.8831 4,713 states/s
+mixtral_6L256_s3 step 56600/58593 loss 0.8276 4,701 states/s
+mixtral_6L256_s3 step 56800/58593 loss 0.8178 4,704 states/s
+mixtral_6L256_s3 step 57000/58593 loss 0.8658 4,713 states/s
+mixtral_6L256_s3 step 57200/58593 loss 0.8299 4,722 states/s
+mixtral_6L256_s3 step 57400/58593 loss 0.8427 4,695 states/s
+mixtral_6L256_s3 step 57600/58593 loss 0.9093 4,700 states/s
+mixtral_6L256_s3 step 57800/58593 loss 0.7656 4,080 states/s
+mixtral_6L256_s3 step 58000/58593 loss 0.7926 4,714 states/s
+mixtral_6L256_s3 step 58200/58593 loss 0.8854 4,694 states/s
+mixtral_6L256_s3 step 58400/58593 loss 0.8043 4,700 states/s
+GATE mixtral_6L256_s3 {'heldout_acc': 0.726099967956543, 'greedy_solve_random': 0.029999999329447746, 'beam256_solve_random': 1.0, 'beam256_avg_moves': 24.175, 'beam1024_solve_random': 1.0, 'beam1024_avg_moves': 23.0, 'step': 58593, 'states_seen': 59999232}
+[modal-client] 2026-10-14T07:12:23-0400 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-ZugobotrsUEvgPPxpZiTri

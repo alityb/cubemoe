@@ -1,0 +1,70 @@
+✓ Initialized. View run at 
+https://modal.com/apps/dnfcubes/main/ap-eAwAQ00BlyHowKUT7MSnps
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+└── 🔨 Created function evaluate.
+cfop_mixtral_6L256_s4 step 200/58593 loss 1.3745 4,569 states/s
+cfop_mixtral_6L256_s4 step 400/58593 loss 1.1443 4,683 states/s
+cfop_mixtral_6L256_s4 step 600/58593 loss 0.9949 4,663 states/s
+cfop_mixtral_6L256_s4 step 800/58593 loss 0.9181 4,678 states/s
+cfop_mixtral_6L256_s4 step 1000/58593 loss 0.7864 4,624 states/s
+cfop_mixtral_6L256_s4 step 1200/58593 loss 0.7834 4,667 states/s
+cfop_mixtral_6L256_s4 step 1400/58593 loss 0.8074 4,688 states/s
+cfop_mixtral_6L256_s4 step 1600/58593 loss 0.6993 4,694 states/s
+cfop_mixtral_6L256_s4 step 1800/58593 loss 0.6685 4,693 states/s
+cfop_mixtral_6L256_s4 step 2000/58593 loss 0.6401 4,661 states/s
+cfop_mixtral_6L256_s4 step 2200/58593 loss 0.6009 4,691 states/s
+cfop_mixtral_6L256_s4 step 2400/58593 loss 0.6347 4,695 states/s
+cfop_mixtral_6L256_s4 step 2600/58593 loss 0.5863 4,703 states/s
+cfop_mixtral_6L256_s4 step 2800/58593 loss 0.6067 4,271 states/s
+cfop_mixtral_6L256_s4 step 3000/58593 loss 0.6222 4,699 states/s
+cfop_mixtral_6L256_s4 step 3200/58593 loss 0.6054 4,706 states/s
+cfop_mixtral_6L256_s4 step 3400/58593 loss 0.5691 4,679 states/s
+cfop_mixtral_6L256_s4 step 3600/58593 loss 0.5375 4,709 states/s
+cfop_mixtral_6L256_s4 step 3800/58593 loss 0.5623 4,698 states/s
+cfop_mixtral_6L256_s4 step 4000/58593 loss 0.5480 4,700 states/s
+cfop_mixtral_6L256_s4 step 4200/58593 loss 0.6092 4,700 states/s
+cfop_mixtral_6L256_s4 step 4400/58593 loss 0.5462 4,692 states/s
+cfop_mixtral_6L256_s4 step 4600/58593 loss 0.5820 4,548 states/s
+cfop_mixtral_6L256_s4 step 4800/58593 loss 0.4844 4,460 states/s
+cfop_mixtral_6L256_s4 step 5000/58593 loss 0.5294 4,492 states/s
+GATE cfop_mixtral_6L256_s4 {'heldout_acc': 0.84409499168396, 'greedy_solve_heldout': 0.009999999776482582, 'beam256_solve_heldout': 1.0, 'beam256_avg_moves': 55.6, 'step': 5000, 'states_seen': 5120000}
+cfop_mixtral_6L256_s4 step 5200/58593 loss 0.5944 1,708 states/s
+cfop_mixtral_6L256_s4 step 5400/58593 loss 0.5240 4,560 states/s
+cfop_mixtral_6L256_s4 step 5600/58593 loss 0.5165 4,523 states/s
+cfop_mixtral_6L256_s4 step 5800/58593 loss 0.5513 4,544 states/s
+cfop_mixtral_6L256_s4 step 6000/58593 loss 0.5136 4,606 states/s
+cfop_mixtral_6L256_s4 step 6200/58593 loss 0.4959 4,560 states/s
+cfop_mixtral_6L256_s4 step 6400/58593 loss 0.4781 4,546 states/s
+cfop_mixtral_6L256_s4 step 6600/58593 loss 0.5297 4,521 states/s
+cfop_mixtral_6L256_s4 step 6800/58593 loss 0.4486 4,577 states/s
+cfop_mixtral_6L256_s4 step 7000/58593 loss 0.4779 4,584 states/s
+cfop_mixtral_6L256_s4 step 7200/58593 loss 0.5022 4,607 states/s
+cfop_mixtral_6L256_s4 step 7400/58593 loss 0.4804 4,598 states/s
+cfop_mixtral_6L256_s4 step 7600/58593 loss 0.5554 4,569 states/s
+cfop_mixtral_6L256_s4 step 7800/58593 loss 0.5071 3,787 states/s
+cfop_mixtral_6L256_s4 step 8000/58593 loss 0.4997 4,546 states/s
+cfop_mixtral_6L256_s4 step 8200/58593 loss 0.5267 4,588 states/s
+cfop_mixtral_6L256_s4 step 8400/58593 loss 0.5070 4,568 states/s
+cfop_mixtral_6L256_s4 step 8600/58593 loss 0.5109 4,605 states/s
+cfop_mixtral_6L256_s4 step 8800/58593 loss 0.4475 4,577 states/s
+cfop_mixtral_6L256_s4 step 9000/58593 loss 0.5046 4,550 states/s
+cfop_mixtral_6L256_s4 step 9200/58593 loss 0.4970 4,603 states/s
+cfop_mixtral_6L256_s4 step 9400/58593 loss 0.5309 4,591 states/s
+cfop_mixtral_6L256_s4 step 9600/58593 loss 0.4801 4,558 states/s
+cfop_mixtral_6L256_s4 step 9800/58593 loss 0.5118 4,611 states/s
+❕ Connection lost!
+The detached App will keep running. You can track its progress on the Dashboard:
+https://modal.com/apps/dnfcubes/main/ap-eAwAQ00BlyHowKUT7MSnps
+
+Stream App logs:
+modal app logs ap-eAwAQ00BlyHowKUT7MSnps
+
+Stop the App:
+modal app stop ap-eAwAQ00BlyHowKUT7MSnps
