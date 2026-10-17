@@ -2,7 +2,7 @@
 
 **Ali Tayeb** · October 2026 · [code, data and checkpoints](https://github.com/alityb/cubemoe)
 
-> **Summary.** I trained small Mixtral-style mixture-of-experts (MoE) transformers to imitate a two-phase Rubik's cube solver, without ever showing them which phase a position belongs to. With beam search, all five models solve 500 out of 500 uniformly random cubes, in solutions about as long as the solver they imitate. In all five, the experts in the final layer that matter divide cleanly by phase: removing a phase-1 expert costs 3–15 points of accuracy on phase-1 positions and at most 1.8 on phase-2 positions, and the reverse holds for phase-2 experts. The same models show that this kind of evidence is easy to get wrong: earlier versions of this project produced convincing routing results from models that could not solve the cube at all. A pre-registered test on OLMoE-1B-7B, a 7B-parameter MoE language model, finds routing patterns consistent with the cube results, but the absolute effects there are small. ⟨PENDING: one sentence on CFOP once the rerun is analysed.⟩ I read this as evidence that MoE routers can recover a decomposition that is latent in their training data, in a setting where the decomposition is known exactly, and not as evidence about what experts in large language models specialise in.
+> **Summary.** I trained small Mixtral-style mixture-of-experts (MoE) transformers to imitate a two-phase Rubik's cube solver, without ever showing them which phase a position belongs to. With beam search, all five models solve 500 out of 500 uniformly random cubes, in solutions about as long as the solver they imitate. In all five, the experts in the final layer that matter divide cleanly by phase: removing a phase-1 expert costs 3–15 points of accuracy on phase-1 positions and at most 1.8 on phase-2 positions, and the reverse holds for phase-2 experts. The same models show that this kind of evidence is easy to get wrong: earlier versions of this project produced convincing routing results from models that could not solve the cube at all. A pre-registered test on OLMoE-1B-7B, a 7B-parameter MoE language model, finds routing patterns consistent with the cube results, but the absolute effects there are small. Models trained the same way on CFOP solutions also solve every random cube tested and demonstrably follow CFOP's stage order, but their experts do not divide by stage: routing tracks which algorithm is being executed, and two pre-registered attempts to explain the difference failed. I read this as evidence that MoE routers can recover a decomposition that is latent in their training data, in a setting where the decomposition is known exactly, and not as evidence about what experts in large language models specialise in.
 
 ---
 
@@ -22,6 +22,7 @@ the positions solvable with only those moves, and phase 2 finishes inside $G_1$.
 
 - A test bed with exact ground truth for MoE specialisation: cube-solving data with a known two-phase decomposition, released with code and 10 trained checkpoints.
 - Evidence that production-style MoE models which genuinely solve the cube divide their final-layer experts along the phase boundary, replicated across 5 training seeds, with causal (knockout) evidence and controls for the main confounds.
+- A matched negative: models trained on CFOP solve the cube and follow CFOP's stages, but their experts track which algorithm is running, not the stage. Two pre-registered explanations of the difference failed.
 - A record of how this kind of evidence goes wrong, including a full set of earlier results that came from models that could not solve the cube.
 - A pre-registered test of three routing predictions on OLMoE-1B-7B.
 
@@ -52,11 +53,13 @@ Every dataset passes automated checks before training: solutions replay to solve
 
 The model needs search: on its own it solves only about 5% of cubes. To check that the search is not doing the solving, I ran the same beam search with no model (all moves equally likely, width 1,024) and with an untrained model of the same architecture (width 256). Neither solved any of 30 random cubes; the trained model solved 60 of 60. Along the trained model's solutions, the move taken was its own first choice 86% of the time, its second choice 8%, and its third 3%. The search mostly recovers from occasional mistakes. None of the 500 test cubes appears among the 26.9M distinct training positions, counting rotations.
 
-Attention matters. Removing it from every layer drops next-move accuracy from 73% to 9% and the solve rate to 0%. Replacing it with a uniform average over all stickers drops accuracy to 3%. Removing it from the first layer alone drops accuracy to 7%. ⟨PENDING: these are seed 0; seeds 1–4 running.⟩
+Attention matters, in every seed. Removing it from every layer drops next-move accuracy from 72–74% to 3–12% and the solve rate to 0%. Replacing it with a uniform average over all stickers drops accuracy to 2–11%. Removing it from the first layer alone drops accuracy to 3–7%.
 
 ## 4. Experts in the final layer divide by phase
 
-*Figure 1. ⟨PENDING: one random cube solved by seed 0, move by move: which expert the decision token uses at each step, with the step where the cube enters $G_1$ marked.⟩*
+![Figure 1](figures/prod_fig1_routing.png)
+
+*Figure 1. (a) One random cube solved by seed 0 with beam 256, in 24 moves. Each dot is the final-layer expert the decision token is sent to first, at each move; the dashed line marks where the cube enters $G_1$. Phase 1 uses e0 and e7. From the first $G_1$ position on, every move goes to e2, and every move the model plays there is a $G_1$ move. (b) Share of decision tokens sent to each seed's phase-2 expert, by distance from entering $G_1$, over 600 held-out solver solves. After entry it is 93–100% in every seed. Before entry it is about 0% in seeds 2–4; seed 0 reaches 25% only on the last step before entry, and seed 1 sends 12–35% of late phase-1 positions to its phase-2 expert.*
 
 **Routing.** At the final layer, the expert chosen for the decision token carries information about the phase even among positions the same number of moves from solved. Phase explains 21.9% ± 4.0 of the router's choice (range 17.8–27.1%), against 0.0% for a router with its choices shuffled within the same distance. In every seed one expert takes most phase-1 positions (58–81%) and almost no phase-2 positions (0.0–0.4%).
 
@@ -72,25 +75,65 @@ Attention matters. Removing it from every layer drops next-move accuracy from 73
 
 Every expert whose removal costs more than 2 points is dominated by one phase. The largest effect on the other phase is 1.8 points (seed 1, e1), against 2.7–30.2 on its own phase. Each seed has exactly one phase-2 expert and one to three phase-1 experts. Removing any of the remaining experts costs nothing measurable in either phase.
 
-*Figure 2. ⟨PENDING: knockout dissociation, all seeds: loss on phase 1 vs loss on phase 2 for every final-layer expert.⟩*
+![Figure 2](figures/prod_fig2_knockout.png)
+
+*Figure 2. Every final-layer expert in all five seeds (40 experts), removed one at a time: drop in the probability of the solver's move on phase-1 positions against the drop on phase-2 positions. Experts that matter sit on one axis or the other; none sits near the diagonal.*
 
 A second causal test, forcing phase-2 positions through the phase-1 expert, does not work in these models. Forcing the phase-1 expert removes 7.5–26% of the probability on legal moves, depending on the seed, but forcing a typical *other* expert removes 4–35%. Forcing any single expert onto the decision token is disruptive on its own, so this test cannot isolate expert identity. I report knockouts instead. The forcing test worked in the earlier, non-solving models (Section 7), and the contrast is a useful warning.
 
-The phase split is not the only structure. ⟨PENDING after replication: do phase-1 experts split further into edge-orientation and corner experts, as some earlier models did (Thistlethwaite's first two stages)? In seed 0, removing e7 hurts edge-flipping moves about twice as much as corner-twisting moves, and e0 the reverse.⟩
+The phase split is not the only structure. Kociemba's phase 1 is itself two of Thistlethwaite's stages: orient the edges, then orient the corners and gather the middle-layer edges. In the four seeds with more than one phase-1 expert, the phase-1 experts divide along that line. Removing one mainly hurts F and B quarter turns, the only moves that flip edges in this convention; removing the other mainly hurts R and L quarter turns, which twist corners without flipping edges. On a scale from −1 (only corner-twisting moves hurt) to +1 (only edge-flipping moves hurt), the phase-1 experts score −0.16 and +0.30 in seed 0, −0.79 and +0.62 in seed 2, −0.92, +0.24 and +0.32 in seed 3, and −0.93 and +0.39 in seed 4. Seed 1 has a single phase-1 expert (+0.25). This analysis is exploratory, and the split is weak in seed 0.
 
 ## 5. What the experts respond to
 
 A common worry is that experts are pattern matchers keyed to surface features of the input. Here the answer depends on the layer.
 
-**Experts that process individual stickers start as pattern matchers.** In layer 0, a sticker token's own position and colour explain 93% of which expert it goes to. By layer 5 this is 45%. ⟨PENDING: seeds 1–4.⟩
+**Experts that process individual stickers start as pattern matchers.** In layer 0, a sticker token's own position and colour explain 92–98% of which expert it goes to, across the five seeds. By layer 5 this is 43–58%.
 
-**The decision token's routing tracks abstract progress, not single stickers.** In the last two layers, its expert choice is explained by phase (63–72%) and by the number of moves to reach $G_1$ (71–77%) about twice as well as by the most informative single sticker (36–37%). Layers whose routing barely varies are excluded from this comparison, because a share of almost no variation is not meaningful.
+**The decision token's routing tracks abstract progress, not single stickers.** In the last two layers, its expert choice is explained by phase (47–73% across seeds and layers) and by the number of moves to reach $G_1$ (53–77%), 1.8–2.3 times as well as by the most informative single sticker (25–37%) in every seed. Layers whose routing barely varies are excluded from this comparison, because a share of almost no variation is not meaningful.
 
-**The model represents distance to the goal beyond what the stickers state.** A linear readout of the raw stickers recovers several cube properties perfectly: whether the cube is in $G_1$, and how many edges or corners are misoriented (accuracy or $R^2$ 0.99–1.00). These are effectively counts over individual stickers, so finding them inside the model is not evidence of computation. Two properties are not linear in the stickers: the number of moves to reach $G_1$ ($R^2$ 0.85 from raw stickers) and the number of moves to solve ($R^2$ 0.77). Both are read out better from the model's middle layers, reaching 0.95 and 0.92 at layer 4. ⟨PENDING: seeds 1–4.⟩ Linear probes show the information is present, not that the model uses it.
+**The model represents distance to the goal beyond what the stickers state.** A linear readout of the raw stickers recovers several cube properties perfectly: whether the cube is in $G_1$, and how many edges or corners are misoriented (accuracy or $R^2$ 0.99–1.00). These are effectively counts over individual stickers, so finding them inside the model is not evidence of computation. Two properties are not linear in the stickers: the number of moves to reach $G_1$ ($R^2$ 0.85 from raw stickers) and the number of moves to solve ($R^2$ 0.77). Both are read out better from the model's middle layers, peaking at layer 4 in every seed, at 0.94–0.95 and 0.92. Linear probes show the information is present, not that the model uses it.
 
 ## 6. A second decomposition: CFOP
 
-⟨PENDING: results from 5 production-style CFOP models. Planned content: solve rate on held-out CFOP scrambles; whether final-layer experts divide by CFOP stage under knockouts the way they divide by Kociemba phase; whether they instead own specific moves of memorised algorithms, as earlier non-solving CFOP models did; with the stated limitation that the generator's "cross" stage is not a real cross solve.⟩
+CFOP, the method most human speedcubers use, solves the cube in four stages: a cross of four edges on the bottom face, the first two layers (F2L, four corner–edge pairs), orienting the last layer (OLL) and permuting it (PLL). I trained five models exactly as in Section 2, on 250,000 CFOP solves (15.3M positions, 61.2 moves on average). The only difference is the augmentation: four rotations that keep the cross face on the bottom.
+
+The CFOP data comes from my own generator, and it is simpler than real CFOP. Each scramble is built backwards from a solved cube: a last-layer case, four F2L pairs and a 4–8-move cross disturbance. The last layer uses only 7 algorithms (Sune, Anti-Sune, F R U R′ U′ F′ for OLL; the T, Ua, Aa and J permutations for PLL). Two of them are chained when one is not enough, and the generator can turn the top layer before an algorithm but never after one.
+
+**The models solve, and they solve the CFOP way.** Next-move accuracy is 87.4–87.9%. With beam 256 every seed solves 500 of 500 held-out scrambles (48.2–48.9 moves). On 200 uniformly random cubes, which the generator never produces, every seed solves 200 of 200 (51.4–52.0 moves). To check the method and not just the result, I measured when each stage is first completed along the model's own solutions:
+
+| | moves | cross done | F2L done | OLL done | PLL length |
+|---|---|---|---|---|---|
+| CFOP generator (teacher) | 60.5 | 9% | 39% | 61% | 23.5 |
+| CFOP models, 5 seeds | 47–49 | 11% | 54–56% | 79–80% | 9.6–10.5 |
+| Kociemba model (control) | 23.3 | 99% | 99% | 99% | – |
+
+*Percentages are the point in the solution where each stage is first complete, on 100 held-out scrambles. "First" matters: CFOP algorithms break the cross in the middle and restore it.*
+
+Counted in moves, the models finish the cross, F2L and OLL at about the same points as their teacher (about 5, 26 and 38 moves against 5, 24 and 37). The Kociemba-trained model completes all three only in its last move or two, so the measure separates the two methods.
+
+**But the experts do not divide by stage.** At the final layer, CFOP stage explains 4.5% ± 1.3 of the decision token's routing among positions the same distance from solved (shuffled router: 0.0%), against 21.9% for Kociemba phase. A low ceiling does not explain this. Given the distance from solved, stage carries 0.54 bits against 0.12 for Kociemba phase, so routing had more room to track stage and tracked it less. Routing instead follows the move-level structure:
+
+| what the routing tracks (5 seeds) | share explained |
+|---|---|
+| which algorithm is being executed | 44.1% ± 2.1 |
+| the next move | 32.2% ± 4.6 |
+| position within the algorithm | 22.1% ± 2.6 |
+| the most informative single sticker | 20.9% ± 7.3 |
+| F2L slot / segment | 6.4% ± 2.5 |
+| **CFOP stage** | **4.5% ± 1.3** |
+
+Knockouts agree. About four final-layer experts per seed matter (more than 2 points), and 2.4 per seed matter for more than one stage. An important expert puts on average 62% of its damage on its main stage, where 25% would mean no preference. In the Kociemba models the largest cross-phase effect was 1.8 points.
+
+**What the models do instead.** The last layer shows what they learned. On held-out scrambles, 82–87% of the models' last-layer algorithms are among the teacher's 7, but 67–72% of those are performed from a different side of the cube (for example Sune as B U B′ U B U2 B′), which the teacher never does. Performing an algorithm that preserves the first two layers from another side has the same effect as turning the top layer before it and back after it. That supplies the turn-after that the teacher's tables lack, so one algorithm often does what took the teacher two. The models use 2.2–2.3 algorithms per last layer against 3.8. They finish the whole last layer with a single algorithm 14–20% of the time and skip PLL 27–33% of the time (teacher: 1%). This is not ZBLL or any other large algorithm set: the models use only the 7 algorithms they saw. The other-side versions were in the training data through rotation augmentation; the choice of side for each case is the model's.
+
+That choice comes from the model, not the search. At the first move of an other-side algorithm, the model's own top choice is the move the beam played 91–95% of the time. It gives that move a probability of about 0.52, against 0.04 for the first move of the same algorithm from the teacher's side. Over the whole last layer, 98–99% of the moves on the beam's solutions are the model's top choice. Without search the picture splits by stage. The model alone completes the cross on 98–100% of cubes but F2L on only 11–12% of held-out scrambles (3–5% of random cubes), and every failure is a loop. The models have learned the cross and their last-layer algorithms; they cannot plan F2L without search.
+
+**Why the difference? Two failed explanations.** Both models follow their solver's decomposition, but only the Kociemba routers divide along it. I tested two explanations, each pre-registered (predictions committed before running) on the same 10 (solver, variable) pairs.
+
+1. *Routing follows what changes the output:* how much a variable determines the next move should predict how much routing tracks it. Spearman ρ = 0.18; the bar was 0.5. Kociemba phase also determines the next move *less* than CFOP stage (2.3% against 3.5%).
+2. *Routing follows the plan:* the same with the next ten moves, and a persistence measure. ρ = 0.14, and persistence pointed the wrong way (ρ = −0.77). Kociemba phase's information about the solver's moves is gone within about three moves.
+
+What decides whether routing recovers a decomposition remains open. One lesson came after the fact. Both tests held distance-to-solved fixed, a quantity the model never sees, and under that conditioning phase looks nearly irrelevant to the output. Yet removing the phase-2 expert, or steering the router, shows it causally constrains the moves. Label statistics measured under a confound control can misstate what a model uses.
 
 ## 7. How this goes wrong
 
@@ -137,11 +180,12 @@ The absolute effects are small. Removing one of OLMoE's 64 experts changes the c
 - **The analyses in Sections 4–5 were not pre-registered.** The knockout analysis was written after looking at seed 0 and frozen before seeds 1–4 finished training, then run on them unchanged. The OLMoE test in Section 8 was pre-registered.
 - **Knockouts test necessity at one layer.** Middle-layer experts are largely redundant: removing any one costs at most a few points.
 - **Probes are linear.** They show information is linearly present, not used.
-- ⟨PENDING: CFOP-specific limitation (synthetic cross stage).⟩
+- **The CFOP data is a simplified CFOP.** The generator's cross is a 4–8-move disturbance, not a real cross solve; its last layer uses 7 algorithms with no turn after an algorithm; and its scrambles come from its own case tables. The models do solve uniformly random cubes, but the comparison with human CFOP is loose.
+- **CFOP stage and Kociemba phase differ in more than one way** (number of stages, how sharply they constrain the moves, how long they last). Two pre-registered explanations of the routing difference failed, and with two solvers I cannot isolate the cause.
 
 ## 11. Conclusion
 
-In a setting where the right answer is known, a production-style MoE that genuinely solves the cube divides its final-layer experts along the phase boundary of the algorithm it learned from, and the division is causally used. The result replicates across five seeds. It also took several wrong turns to establish, and the most important control was the simplest: checking that the model can do the task before interpreting how it does it.
+In a setting where the right answer is known, a production-style MoE that genuinely solves the cube divides its final-layer experts along the phase boundary of the algorithm it learned from, and the division is causally used. The result replicates across five seeds. It is not automatic: models trained the same way on CFOP follow its stages without their experts dividing along them, and I could not explain the difference with either of two pre-registered tests. It also took several wrong turns to establish, and the most important control was the simplest: checking that the model can do the task before interpreting how it does it.
 
 Code, data generators, checkpoints, pre-registration files and every result file are at [github.com/alityb/cubemoe](https://github.com/alityb/cubemoe).
 
@@ -149,8 +193,33 @@ Code, data generators, checkpoints, pre-registration files and every result file
 
 ### Appendix A. Earlier models
 
-⟨To write: the pre-registered results from the earlier sequence models (confirmatory run, 10× scale replication, routing sweep, CFOP H2/H2b/H2c), clearly labelled as coming from models that could not solve the cube, including the top-1 routing result: with top-1 instead of top-2 routing, the phase specialisation disappeared while the task was still learned.⟩
+Before the models in this post, I studied sequence models: decoder-only MoE transformers that read the starting cube followed by the moves made so far and predict the next move. Their results were pre-registered (`prereg/`) and passed, but **these models could not solve the cube**. They solved 0% of random scrambles, and one move from solved they picked the correct move 20% of the time (Section 7). I report them because the pre-registered tests passed anyway, which is the warning.
+
+| programme | models | verdict |
+|---|---|---|
+| H1: routing recovers the Kociemba phase split (confirmatory) | 4 layers, d=128, 25k solves, 5 seeds | Confirmed |
+| H1 scale replication | 6 layers, d=256, 250k solves, 5 seeds | Confirmed. Forcing phase-2 tokens through the phase-1 expert cost 0.290 against 0.0011 for other experts (about 270×), 5/5 seeds |
+| Routing sweep: does routing slack drive specialisation? | 6 layers, d=256, 5 seeds per arm | Rejected. With top-1 instead of top-2 routing, phase specialisation fell to 9% of its ceiling while the task was still learned |
+| H2: routing recovers CFOP stages | 5 seeds | Rejected. The predicted inequality reversed in 5/5 seeds (paired t, p = 0.0005); CFOP stage was 86% determined by token position, which the network gets for free |
+| H2b: decorrelate stage from position | 5 seeds | Rejected on the causal leg. Routing alignment with stage appeared (2.4× its null, 5/5 seeds), but there was no causal evidence of use (p = 0.92), and the test was underpowered (observed effect 0.0094 against a detectable 0.0239) |
+| H2c: stage-specific causal readout | 5 seeds | No effect, but the test missed its own pre-declared resolution bar |
+
+The full record, including retracted claims, is in `docs/LAB_NOTEBOOK.md`.
 
 ### Appendix B. Training and evaluation details
 
-⟨To write: full hyperparameters, data-quality checks, beam search details, knockout and probe protocols, and cost (about $70 of GPU time for the production models).⟩
+**Model.** `src/model_prod.py`, preset `mixtral`: 6 layers, width 256, 4 heads, 8 SwiGLU experts per layer (hidden width 896), top-2 routing with renormalised weights, RMSNorm, RoPE, QK-norm. Input: a decision token plus 54 sticker tokens, bidirectional attention; the decision token's final state predicts one of 18 moves. Auxiliary losses: load balancing 0.01 · E · Σ f·P, router z-loss 0.001.
+
+**Training.** `modal/prod.py::train_l40s`: 60M examples (58,593 steps of 1,024), AdamW (lr 1e-3, betas 0.9/0.95, weight decay 0.1), linear warm-up over 1,000 steps then cosine decay to 10% of the peak, gradient clipping at 1.0, bfloat16 autocast, one L40S GPU. Kociemba models use all 8 axis-preserving rotations; CFOP models use the 4 that keep the cross face down.
+
+**Data checks.** Before training, each dataset must pass automated gates: every solution replays to solved, stage labels match a recomputation from the cube state, there are no duplicate scrambles, and solver move choices show no repetitive prefixes. The CFOP dataset passes all 9 gates (sha256 `c8a74dc8…`).
+
+**Solving.** `src/solve_fast.py`: beam search over summed log-probabilities. Duplicate positions are merged by hash, keeping the best score, and the search stops at the first solved cube. Move budget: 40 for Kociemba; 90 for CFOP held-out scrambles and 120 for CFOP random cubes. Random cubes are uniform over reachable states (`prod_analysis.random_cubes`, seed 2026).
+
+**Routing shares.** The share of the final-layer decision token's top-1 expert explained by a variable V, among positions with the same number of moves remaining S: [I(E;V|S) − mean over 5 permutations of E within S] / H(E|S). A shuffled router gives 0.0 in every case reported.
+
+**Knockouts.** Set one final-layer expert's router logit to −∞, so tokens fall to their next-best experts, and measure the drop in the probability of the solver's move. Kociemba: 1,200 held-out solves, about 25k positions. CFOP: 1,200 held-out solves, about 73k positions.
+
+**Probes.** Logistic regression (C = 1) or ridge regression (α = 10) on standardised activations of the decision token, 70/30 split by solve.
+
+**Cost.** About $95 of Modal GPU time in October 2026 across three workspaces, covering training, evaluation and path saving for all ten models. All analyses ran on a laptop (Apple M-series, MPS).
