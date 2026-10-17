@@ -1,10 +1,15 @@
-# PhaseSplit — project memory
+# PhaseSplit — lab notebook
 
-Everything learned, decided, measured, and corrected. Written 2026-09-17.
+Everything learned, decided, measured, and corrected, in the order it happened (written from 2026-09-17;
+this file was `MEMORY.md` at the repo root until 2026-10-16). Earlier entries are kept as written, including ones later
+corrected; corrections are recorded where they were made. Paths to pre-registrations in older entries refer to the
+repo root; those files now live in `prereg/`. For a summary of where the project stands, see `README.md`.
 
 **Question.** Do MoE routers recover the decomposition latent in their training data?
 Case study: Kociemba two-phase Rubik's cube solutions, where the phase boundary (entry into
 G1 = `<U, D, R2, L2, F2, B2>`) is a *theorem*, not a heuristic label.
+
+**Status (2026-10-16).** Production-style models solve the cube (Kociemba 500/500, CFOP 200/200 random cubes, 5 seeds each). Kociemba routers recover the phase split with a causal mechanism (§§26, 30, 33); CFOP routers do not recover stages and track the executing algorithm instead (§31), although the model follows CFOP stage order (§32). Two pre-registered explanations of the difference failed (§35).
 
 **Status (2026-09-26).** **H1 confirmed at two scales; H_slack REJECTED (§11); H2/CFOP REJECTED (§12);
 H2b/position-decorrelation REJECTED on its causal leg (§13); H2c/stage-specific readout finds nothing but
@@ -1493,6 +1498,8 @@ next move 33.3%, position in algorithm 26.2%, stage 2.8% (shuffled 0.0%), all at
 CAVEAT: in CFOP, moves-remaining nearly fixes the stage, so the stage share is ceiling-limited; compute
 H(stage|rem) vs H(phase|rem) before comparing to Kociemba. Knockouts are the fair test.
 
+## 30. MECHANISM EXPERIMENTS 1-3 + SEED REPLICATION (2026-10-16)
+
 **Mechanism (src/mech.py), Kociemba production models, final layer, decision token:**
 - Exp 2, router reads a phase direction — ALL 5 SEEDS: linear probe on router input 100% phase accuracy;
   cos(router weight[ph2 expert] - weight[ph1 expert], mean-difference phase direction) 0.82-0.86 (probe direction
@@ -1523,6 +1530,8 @@ mass (45%) — the G1 constraint is partly carried outside the routed expert (se
   does nothing in all 5. Reverse (ph2 -> ph1): ph2 expert -> 0-1% in all 5, G1 mass 100% -> 79-95%.
   => "routing alone moves behaviour" holds in 4/5 seeds; report seed 1 as the exception, not hide it.
 
+## 31. CFOP ANALYSIS, ALL 5 SEEDS + STAGE CEILING CHECK (2026-10-16)
+
 **CFOP stage-share ceiling check (labels only, 1200 held-out solves each):** H(label | moves-remaining) in bits:
 Kociemba phase 0.124; CFOP stage 0.543, segment 0.955, position-in-alg 2.78, move 3.17, which-algorithm 6.78.
 CFOP stage has ~4x MORE headroom than Kociemba phase, yet routing explains 3-6% of it vs 22% for phase => the low
@@ -1536,6 +1545,8 @@ STAGE 4.5 ± 1.3% (shuffled 0.0). Knockouts: ~4 experts/seed matter (>2 pts), 2.
 important expert puts 62% of its damage on its main stage (25% = none). Contrast Kociemba: clean phase dissociation
 5/5, max cross-phase effect 1.8 pts. => CFOP routers organise around algorithms/moves, not stages.
 
+## 32. DOES THE CFOP MODEL SOLVE THE CFOP WAY? (2026-10-16)
+
 **Does the CFOP policy solve the CFOP way? (src/cfop_verify.py; out/prod/cfop_verify.json/.log; 100 held-out scrambles, beam 256)**
 Stage milestones = FIRST time reached (CFOP algorithms break cross/F2L mid-algorithm, so "stays done" is useless; the
 sticker tests agree 100% with probe/cfop.py on 20k states). Fraction of solution: cross / F2L / OLL reached at
@@ -1547,6 +1558,8 @@ Exact match to a training sequence: OLL 7-8%, PLL 12-18% (solver's own held-out:
 sequences in 50k training solves). => NOT the solver's algorithm library verbatim. Open: boundary/AUF effects vs new
 algorithms vs beam shortcuts — paths for seed 0 being saved by src/cfop_paths.py for diagnosis.
 
+## 33. MECHANISM EXPERIMENT 4: WHERE THE PHASE DIRECTION IS BUILT (2026-10-16)
+
 **Exp 4, where the phase direction is built (src/mech4.py; seed 0 1200 solves, seeds 1-4 400 solves; out/prod/mech4.log):**
 - a: phase is 100% LINEARLY readable from raw one-hot stickers -> probe accuracy at layers is NOT evidence. d' peaks
   early (L0-MoE/L1, 15-26) and declines to ~6-8 at the final router input (seed 3 builds it at L1, d' 3.6 at L0).
@@ -1557,6 +1570,8 @@ algorithms vs beam shortcuts — paths for seed 0 being saved by src/cfop_paths.
   INCREASES the gap (110-127%) except seed 3 L1 (53%). => phase is computed early, then carried/rewritten by MoE layers.
 - d: phase-1 positions meeting 1 of the 3 G1 conditions sit 18-44% of the way toward phase-2 router input (0/3:
   -3 to -9%); 2/3 too rare (<20) to test AND vs additive. Confound: 1/3 positions are also nearer G1 in moves.
+
+## 34. LAST-LAYER TECHNIQUE, POLICY VS SEARCH, RANDOM CUBES (2026-10-16)
 
 **Which last-layer technique? (paths: modal/prod.py::cfop_paths -> out/prod/cfop_mixtral_6L256_s*_paths.json; analyses
 src/cfop_ll.py, src/cfop_method.py, src/cfop_alphabet.py; logs out/prod/cfop_{ll,method}_s*.log, cfop_alphabet.log)**
@@ -1588,6 +1603,11 @@ per-case CHOICE of side is the model's. Beam search (shortest-first) may drive t
   other side -> side choice also present with NO search (small n).
 - Modal accounts 2026-10-16: dnfcubes $40.34 (blocked, "exceeded its spend limit"); thisaccisfortheschool reported
   $29.68 but est. ~$37-38 after unreported runs -> don't use until Nov; ali-moh-islam-1 $16.09 before this run.
+
+## 35. TWO PRE-REGISTERED EXPLANATIONS OF THE KOCIEMBA/CFOP DIFFERENCE: BOTH FAILED (2026-10-16)
+
+Also filed as prereg/PREREG_ROUTING_VS_ACTION.md and prereg/PREREG_ROUTING_VS_PLAN.md.
+
 
 **PRE-REGISTERED (2026-10-16 ~23:00, before running src/routing_vs_action.py): "routing follows what changes the output"**
 Points = (solver, latent variable): Kociemba {phase, moves-to-G1, twisted corners, flipped edges, slice edges out};

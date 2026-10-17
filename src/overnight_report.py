@@ -44,5 +44,5 @@ for s in range(5):
     if e: L.append(f"| {s} | {e['phase_share']*100:.1f}% | {e['shuffled']*100:.1f}% | e{e['phase1_expert']}: {e['phase1_share']*100:.0f}% / {e['phase2_share_of_e1']*100:.1f}% | "
                    f"{e['ko_e1_phase1']*100:+.1f} / {e['ko_e1_phase2']*100:+.1f} pts | {e['ko_other_phase1']*100:+.1f} / {e['ko_other_phase2']*100:+.1f} pts | {e['loss_e1']*100:.1f}% / {e['median_other']*100:.1f}% |")
     else: L.append(f'| {s} | (not run) | | | | | |')
-L.append('\n---\nGenerated automatically by src/overnight.sh. Exploratory: interpret with the caveats in MEMORY.md.')
+L.append('\n---\nGenerated automatically by src/overnight.sh. Exploratory: interpret with the caveats in docs/LAB_NOTEBOOK.md.')
 open(f'{R}/OVERNIGHT_REPORT.md', 'w').write('\n'.join(L) + '\n'); print('report written')

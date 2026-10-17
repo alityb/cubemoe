@@ -1,4 +1,4 @@
-"""CONFIRMATORY analysis — implements PREREGISTRATION.md exactly.
+"""CONFIRMATORY analysis — implements prereg/PREREGISTRATION.md exactly.
 LAST LAYER ONLY. No selection anywhere. Fresh seeds only."""
 import sys, os, json, argparse
 import numpy as np, torch, torch.nn.functional as F

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Re-run H1 arm-A correlational legs with the FIXED 53+t extraction (MEMORY.md §14).
+# Re-run H1 arm-A correlational legs with the FIXED 53+t extraction (docs/LAB_NOTEBOOK.md §14).
 # Writes to confirm_fixed/ and confirm_scale_fixed/ so the published numbers stay auditable.
 cd /Users/alityb/projects/cubemoe
 for s in 10 11 12 13 14; do

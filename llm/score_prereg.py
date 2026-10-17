@@ -1,4 +1,4 @@
-"""Applies llm/PREREG_LLM.md rules mechanically to the OLMoE run."""
+"""Applies prereg/PREREG_LLM.md rules mechanically to the OLMoE run."""
 import sys, os, json, numpy as np
 sys.path.insert(0,'/Users/alityb/projects/cubemoe/src')
 from explore_cfop_analyze import corrected, cent
