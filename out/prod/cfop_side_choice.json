@@ -1,0 +1,47 @@
+{
+ "cfop_mixtral_6L256_s0": {
+  "n_algs": 187,
+  "other_side": 0.6684491978609626,
+  "top1_at_alg_start_other_side": 0.952,
+  "top1_at_alg_start_R_side": 0.8225806451612904,
+  "p_played_other": 0.512214183807373,
+  "p_Rside_first_move_other": 0.03862714767456055,
+  "ll_moves_top1": 0.9858594785682722
+ },
+ "cfop_mixtral_6L256_s1": {
+  "n_algs": 188,
+  "other_side": 0.7127659574468085,
+  "top1_at_alg_start_other_side": 0.9104477611940298,
+  "top1_at_alg_start_R_side": 0.7962962962962963,
+  "p_played_other": 0.5212848782539368,
+  "p_Rside_first_move_other": 0.03711412847042084,
+  "ll_moves_top1": 0.9822565969062784
+ },
+ "cfop_mixtral_6L256_s2": {
+  "n_algs": 193,
+  "other_side": 0.7202072538860104,
+  "top1_at_alg_start_other_side": 0.920863309352518,
+  "top1_at_alg_start_R_side": 0.7222222222222222,
+  "p_played_other": 0.540763795375824,
+  "p_Rside_first_move_other": 0.029320765286684036,
+  "ll_moves_top1": 0.9811764705882353
+ },
+ "cfop_mixtral_6L256_s3": {
+  "n_algs": 200,
+  "other_side": 0.715,
+  "top1_at_alg_start_other_side": 0.9090909090909091,
+  "top1_at_alg_start_R_side": 0.8771929824561403,
+  "p_played_other": 0.5380628108978271,
+  "p_Rside_first_move_other": 0.03696069121360779,
+  "ll_moves_top1": 0.9823399558498896
+ },
+ "cfop_mixtral_6L256_s4": {
+  "n_algs": 179,
+  "other_side": 0.7150837988826816,
+  "top1_at_alg_start_other_side": 0.953125,
+  "top1_at_alg_start_R_side": 0.8431372549019608,
+  "p_played_other": 0.5250973701477051,
+  "p_Rside_first_move_other": 0.03500748798251152,
+  "ll_moves_top1": 0.9812382739212008
+ }
+}
