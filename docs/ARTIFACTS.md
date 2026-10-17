@@ -147,6 +147,34 @@ Not in this list but needed: Hugging Face model weights (re-downloadable): `alle
 | `llm/ko_granite-3.1-1b-a400m-base_L3.npz` | 4.6 | `2944d0faedb8390c…` | llm/pilot.py (base / ko stages) | **costly: up to ~5 h compute** |
 | `llm/ko_granite-3.1-1b-a400m-base_L7.npz` | 4.6 | `a524931793b22992…` | llm/pilot.py (base / ko stages) | **costly: up to ~5 h compute** |
 
+
+## Production-style models and data (added 2026-10-16)
+
+Checkpoints for the production-style MoE policies (src/model_prod.py, Mixtral-style 8 experts top-2, 6 layers, d=256), which are the models behind every result from notebook §24 onward. The 416 MB files include optimizer state; the 139 MB `evalckpt/` copies are weights only and load identically for analysis. Copies also sit on the Modal volume `phasesplit-vol` in the dnfcubes (CFOP training), thisaccisfortheschool and ali-moh-islam-1 (CFOP seeds 1-4) workspaces.
+
+| file | MB | sha256 | produced by | git |
+|---|---|---|---|---|
+| `data/cfop250k.npz` | 206.0 | `c8a74dc8f148ef6d…` | src/gen_cfop.py (250k CFOP solves); also /vol/data on Modal | gitignored |
+| `data/cfop_canon.pkl` | 0.1 | `3239e9fca2fd2df5…` | probe/cfop_canon.py | in git |
+| `data/cfop_extlib.pkl` | 0.0 | `8b1cca336fd84168…` | probe/cfop extraction library | in git |
+| `out/prod/cfop_mixtral_6L256_s0.pt` | 415.6 | `f194f2a98d19a876…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/cfop_mixtral_6L256_s1.pt` | 415.6 | `68c3b4b977b3666e…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/cfop_mixtral_6L256_s2.pt` | 415.6 | `d19ac7fd585e9e92…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/cfop_mixtral_6L256_s3.pt` | 415.6 | `ecce72cb12ce1d0b…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/cfop_mixtral_6L256_s4.pt` | 415.6 | `5ae4a2671c3bf1ac…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/cfop_smoke.pt` | 415.6 | `732c175a5db66291…` | smoke test of modal/prod.py (not used in results) | gitignored |
+| `out/prod/evalckpt/cfop_mixtral_6L256_s0.pt` | 138.5 | `c3ada65bf460efda…` | trimmed copy of the matching out/prod checkpoint (weights + log only, used for Modal evals); also on Modal volumes | gitignored |
+| `out/prod/evalckpt/cfop_mixtral_6L256_s1.pt` | 138.5 | `1100cc763d2aec78…` | trimmed copy of the matching out/prod checkpoint (weights + log only, used for Modal evals); also on Modal volumes | gitignored |
+| `out/prod/evalckpt/cfop_mixtral_6L256_s2.pt` | 138.5 | `d3bb0eba4456c1c0…` | trimmed copy of the matching out/prod checkpoint (weights + log only, used for Modal evals); also on Modal volumes | gitignored |
+| `out/prod/evalckpt/cfop_mixtral_6L256_s3.pt` | 138.5 | `f72709dcabd9e7c9…` | trimmed copy of the matching out/prod checkpoint (weights + log only, used for Modal evals); also on Modal volumes | gitignored |
+| `out/prod/evalckpt/cfop_mixtral_6L256_s4.pt` | 138.5 | `ca733a3c47da0bf5…` | trimmed copy of the matching out/prod checkpoint (weights + log only, used for Modal evals); also on Modal volumes | gitignored |
+| `out/prod/mixtral_6L256_s0.pt` | 415.6 | `36848faf77800e1e…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/mixtral_6L256_s1.pt` | 415.6 | `7c268c0847f2ffbf…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/mixtral_6L256_s2.pt` | 415.6 | `f3894923d4135075…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/mixtral_6L256_s3.pt` | 415.6 | `aee1da47beb13293…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/prod/mixtral_6L256_s4.pt` | 415.6 | `52cd553b7b5f5bbc…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
+| `out/explore/cfopmeta_cfop250k.npz` | 7.8 | `b2860e19d7ceaf84…` | src/gen_cfop.py (250k CFOP solves); also /vol/data on Modal | gitignored |
+
 ## Full sha256 list
 
 ```

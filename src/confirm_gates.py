@@ -1,4 +1,4 @@
-"""Apply the PREREGISTRATION.md pass criteria. No discretion."""
+"""Apply the prereg/PREREGISTRATION.md pass criteria. No discretion."""
 import json, os, glob
 import numpy as np
 from scipy import stats

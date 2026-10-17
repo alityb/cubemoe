@@ -1,4 +1,4 @@
-"""Pre-registered test (MEMORY.md, commit d3a003b): does routing follow what changes the output?
+"""Pre-registered test (prereg/PREREG_ROUTING_VS_ACTION.md, commit d3a003b): does routing follow what changes the output?
 For every (solver, latent variable V): x = I(V; next move | S)/H(move | S), y = I(V; expert | S)/H(expert | S),
 S = moves remaining, last-layer decision-token top-1 expert, permutation-corrected, 1200 held-out solves, 5 seeds.
 Usage: python src/routing_vs_action.py  -> out/prod/routing_vs_action.json"""

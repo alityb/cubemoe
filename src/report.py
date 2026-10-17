@@ -327,7 +327,7 @@ A("\n(ratio against that set's `majority|(phase,pos)` = 0.1153.) A fixed token-i
 
 # ================= PART II — CONFIRMATORY =================
 A("\n\n---\n\n# PART II — CONFIRMATORY\n")
-_pre=f'{ROOT}/PREREGISTRATION.md'
+_pre=f'{ROOT}/prereg/PREREGISTRATION.md'
 if os.path.exists(_pre):
     import hashlib as _h
     _raw=open(_pre,'rb').read()
@@ -497,7 +497,7 @@ if os.path.exists(_sg):
 _sv=f'{ROOT}/out/sweep_V6_top1_e8_large.json'; _s1=f'{ROOT}/out/sweep_h_slack.json'
 if os.path.exists(_sv):
     A("\n\n---\n\n# PART IV — ROUTING SWEEP: H_slack REJECTED\n")
-    A("Pre-registered in `PREREGISTRATION_SWEEP.md` (`c1b023f4`) + `PREREG_SWEEP_AMENDMENT_4.md` "
+    A("Pre-registered in `prereg/PREREGISTRATION_SWEEP.md` (`c1b023f4`) + `prereg/PREREG_SWEEP_AMENDMENT_4.md` "
       "(`2f9add95`), both filed before the relevant models trained. 6L/d256, 250k, seeds 30-34, "
       "last layer, same L1-L4.\n")
     A("\n**H_slack was:** top-2 + LBL creates *slack* letting one expert monopolise phase-1 slot 0; "

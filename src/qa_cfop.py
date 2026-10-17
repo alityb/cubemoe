@@ -1,5 +1,5 @@
 """CFOP data QA. Replaces the G1-monotonicity gate with segment-boundary verification,
-per PREREGISTRATION_H2.md section 3."""
+per prereg/PREREGISTRATION_H2.md section 3."""
 import sys, json, hashlib, collections
 import numpy as np
 sys.path.insert(0,'/Users/alityb/projects/cubemoe/probe'); sys.path.insert(0,'/Users/alityb/projects/cubemoe/src')
