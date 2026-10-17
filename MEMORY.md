@@ -1598,3 +1598,11 @@ out solves, conditioning S = moves remaining, permutation-corrected conditional 
   y = I(V; expert | S) / H(expert | S)           (routing share)
 Prediction: Spearman rho(x, y) > 0.5 across the 10 points, and Kociemba phase above CFOP stage on BOTH axes.
 Secondary (exploratory): x2 = I(V; move | S) / H(V | S). If rho <= 0.5 the thesis is not supported; report as such.
+RESULT (out/prod/routing_vs_action.{json,log}): PRE-REGISTERED PREDICTION FAILED. Spearman rho(x, y) = 0.18 (p=0.63)
+over 10 points (needed > 0.5); phase NOT above stage on x (2.3% vs 3.5%; y 21.9% vs 4.5%). Exploratory rho(x2,y) -0.45.
+Exploratory observations (NOT pre-registered): within CFOP, x and y have the same rank order (which-alg 30/44, pos-in-alg
+18.5/22, segment 5.6/6.4, first/mid/last 4.5/6.1, stage 3.5/4.5); within Kociemba, all five phase-family variables have
+x 2-4% but y 20-25% -> Kociemba routing tracks the G1-distance latent far beyond its move information given moves-
+remaining. Caveat for any follow-up: conditioning on moves-remaining removes most of phase's information (H(phase|rem)
+0.12 bits) and the model never sees moves-remaining; an unconditioned version would be post hoc.
+=> The thesis "routing follows what changes the output" is NOT supported; do not use it as the paper's claim.
