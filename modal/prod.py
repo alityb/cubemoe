@@ -196,3 +196,23 @@ def cfop_paths(tags: str = "cfop_mixtral_6L256_s1,cfop_mixtral_6L256_s2,cfop_mix
         out = [dict(solve=int(i), start=s, model=p, solver=[int(x) for x in d["moves"][off[i]:off[i + 1]]]) for i, s, p in zip(te, starts, P)]
         json.dump(out, open(ROOT / f"out/prod/{t}_paths.json", "w"))
         print(t, "solved", sum(p is not None for p in P), "/", len(P), "mean len", np.mean([len(p) for p in P if p]))
+
+@app.local_entrypoint()
+def cfop_random_greedy(n_random: int = 200, n_held: int = 100):
+    """CFOP policies on UNIFORMLY RANDOM cubes (beam 256/1024, greedy) and greedy on held-out CFOP scrambles.
+    -> out/prod/<tag>_{random_w256,random_w1024,random_greedy,held_greedy}_paths.json (local)"""
+    import numpy as np, json, sys
+    sys.path[:0] = [str(ROOT / "src"), str(ROOT / "probe")]
+    from prod_analysis import random_cubes
+    rnd = random_cubes(n_random, 2026).tolist()
+    d = dict(np.load(ROOT / "data/cfop250k.npz")); N = len(d["sol_len"])
+    te = np.random.RandomState(0).permutation(N)[int(N * 0.9):][:n_held]; off = np.concatenate([[0], np.cumsum(d["sol_len"].astype(np.int64))])
+    held = [d["init_state"][i].astype(int).tolist() for i in te]
+    runs = {"random_w256": (rnd, 256, 120), "random_w1024": (rnd, 1024, 120), "random_greedy": (rnd, 1, 120), "held_greedy": (held, 1, 90)}
+    calls = {(t, r): solve_paths.spawn(t, s, w, b) for t in [f"cfop_mixtral_6L256_s{k}" for k in range(5)] for r, (s, w, b) in runs.items()}
+    for (t, r), call in calls.items():
+        P = call.get(); S = runs[r][0]
+        sol = [[int(x) for x in d["moves"][off[i]:off[i + 1]]] for i in te] if r.startswith("held") else [None] * len(S)
+        json.dump([dict(start=s, model=p, solver=q) for s, p, q in zip(S, P, sol)], open(ROOT / f"out/prod/{t}_{r}_paths.json", "w"))
+        ok = [len(p) for p in P if p]
+        print(f"{t} {r}: solved {len(ok)}/{len(P)}, mean {np.mean(ok) if ok else float('nan'):.1f} moves", flush=True)
