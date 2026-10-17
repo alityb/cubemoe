@@ -1,0 +1,28 @@
+mixtral_6L256_s0: phase 18.6%, d1 25.1%, tw 21.1%, fl 15.4%, so 21.2%, move 36.1%
+mixtral_6L256_s1: phase 21.2%, d1 21.7%, tw 21.7%, fl 19.7%, so 21.5%, move 36.8%
+mixtral_6L256_s2: phase 27.1%, d1 27.2%, tw 27.4%, fl 28.6%, so 27.3%, move 33.8%
+mixtral_6L256_s3: phase 17.8%, d1 20.7%, tw 19.3%, fl 13.0%, so 18.9%, move 48.0%
+mixtral_6L256_s4: phase 24.9%, d1 28.5%, tw 28.7%, fl 25.2%, so 27.4%, move 49.9%
+cfop_mixtral_6L256_s0: stage 2.8%, seg 3.8%, segpos 26.1%, firstmidlast 7.5%, case 45.5%, move 33.3%
+cfop_mixtral_6L256_s1: stage 5.6%, seg 10.7%, segpos 21.1%, firstmidlast 5.7%, case 41.1%, move 24.8%
+cfop_mixtral_6L256_s2: stage 5.4%, seg 5.9%, segpos 19.6%, firstmidlast 6.0%, case 44.2%, move 32.0%
+cfop_mixtral_6L256_s3: stage 5.6%, seg 7.0%, segpos 24.0%, firstmidlast 7.0%, case 42.3%, move 39.2%
+cfop_mixtral_6L256_s4: stage 3.0%, seg 4.5%, segpos 19.6%, firstmidlast 4.2%, case 46.9%, move 31.7%
+
+point                     x = V explains move       x2    y = routing share
+kociemba:move                          100.0%    95.8%          40.9 ± 6.7%
+cfop:move                              100.0%    95.9%          32.2 ± 4.6%
+cfop:case                               30.2%    14.1%          44.0 ± 2.1%
+cfop:segpos                             18.5%    21.1%          22.1 ± 2.6%
+cfop:seg                                 5.6%    18.7%           6.4 ± 2.4%
+cfop:firstmidlast                        4.5%    17.7%           6.1 ± 1.2%
+kociemba:d1                              3.8%    17.9%          24.7 ± 3.0%
+cfop:stage                               3.5%    20.5%           4.5 ± 1.3%
+kociemba:tw                              3.2%    13.4%          23.6 ± 3.7%
+kociemba:so                              2.9%    15.6%          23.3 ± 3.5%
+kociemba:fl                              2.7%    15.3%          20.4 ± 5.8%
+kociemba:phase                           2.3%    65.2%          21.9 ± 3.6%
+
+PRIMARY: Spearman rho(x, y) over 10 points = 0.18 (p=0.627); prediction rho > 0.5
+phase vs stage: x 2.3% vs 3.5%, y 21.9% vs 4.5%
+exploratory: Spearman rho(x2, y) = -0.45 (p=0.187)
