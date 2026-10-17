@@ -1617,3 +1617,13 @@ same estimator. For horizon j, use positions with moves remaining > j; m_{t+j} =
   S1 (secondary, scale-free): persistence = mean_{j=1..9} I(V; m_{t+j} | S) / I(V; m_t | S).
       Prediction: every Kociemba point's persistence > every CFOP point's, AND rho(persistence, y/x) > 0.5.
 If P1 and S1 both fail, the plan thesis is not supported -> write the modest paper.
+RESULT (out/prod/routing_vs_plan.{json,log}): BOTH FAIL. P1 rho(x_plan, y) = 0.14, phase x_plan 0.34% < stage 2.65%.
+S1: Kociemba persistence is the LOWEST (phase 0.05, fl/tw/so 0.10-0.19; d1 0.96 the exception) vs CFOP 0.69-0.87;
+rho(persistence, y/x) = -0.77 (opposite sign). Given moves-remaining, phase's information about the solver's moves
+vanishes within ~3 moves, yet routing tracks it at 22%.
+=> Neither "routing follows the output" nor "routing follows the plan" (as label-level conditional MI) explains the
+Kociemba/CFOP difference. Two pre-registered negatives; report both. Write the MODEST paper: Kociemba phases recovered
+(with causal mechanism), CFOP stages not (despite behaviourally following them); what decides it is OPEN.
+Methodological lesson (post hoc, flag as such): conditioning on moves-remaining — which the model never sees — makes
+phase look output-irrelevant, while the mechanism shows the phase-2 expert causally constrains moves (-4.1 to -4.7
+logits on non-G1 moves). Label-level MI given a confound-control variable can misstate what the model uses.
