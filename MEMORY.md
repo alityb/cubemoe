@@ -1606,3 +1606,14 @@ x 2-4% but y 20-25% -> Kociemba routing tracks the G1-distance latent far beyond
 remaining. Caveat for any follow-up: conditioning on moves-remaining removes most of phase's information (H(phase|rem)
 0.12 bits) and the model never sees moves-remaining; an unconditioned version would be post hoc.
 => The thesis "routing follows what changes the output" is NOT supported; do not use it as the paper's claim.
+
+**PRE-REGISTERED (2026-10-16 ~23:25, before running src/routing_vs_plan.py): "routing follows the plan"**
+Motivated by the failed test above (so the hypothesis is post hoc; the TEST is fixed here before computing).
+Same 10 points, same y (routing share, already saved in out/prod/routing_vs_action.json), same S = moves remaining,
+same estimator. For horizon j, use positions with moves remaining > j; m_{t+j} = the solver's move j steps later.
+  P1 (primary): x_plan = mean_{j=0..9} I(V; m_{t+j} | S) / H(m_{t+j} | S).
+      Prediction: Spearman rho(x_plan, y) > 0.5 over 10 points AND Kociemba phase > CFOP stage on x_plan.
+      Known handicap: I(phase; . | S) <= H(phase|S) = 0.12 bits vs stage 0.54 -> P1 is structurally hard for phase.
+  S1 (secondary, scale-free): persistence = mean_{j=1..9} I(V; m_{t+j} | S) / I(V; m_t | S).
+      Prediction: every Kociemba point's persistence > every CFOP point's, AND rho(persistence, y/x) > 0.5.
+If P1 and S1 both fail, the plan thesis is not supported -> write the modest paper.
