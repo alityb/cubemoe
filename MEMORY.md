@@ -1588,3 +1588,13 @@ per-case CHOICE of side is the model's. Beam search (shortest-first) may drive t
   other side -> side choice also present with NO search (small n).
 - Modal accounts 2026-10-16: dnfcubes $40.34 (blocked, "exceeded its spend limit"); thisaccisfortheschool reported
   $29.68 but est. ~$37-38 after unreported runs -> don't use until Nov; ali-moh-islam-1 $16.09 before this run.
+
+**PRE-REGISTERED (2026-10-16 ~23:00, before running src/routing_vs_action.py): "routing follows what changes the output"**
+Points = (solver, latent variable): Kociemba {phase, moves-to-G1, twisted corners, flipped edges, slice edges out};
+CFOP {stage, segment, position-in-algorithm, first/mid/last, which algorithm}. Next move itself reported but EXCLUDED
+from the test (x = 1 by definition). For each, mean over 5 seeds, last-layer decision-token top-1 routing, 1200 held-
+out solves, conditioning S = moves remaining, permutation-corrected conditional MI (same estimator as before):
+  x = I(V; next move | S) / H(next move | S)     (how much V determines the output)   PRIMARY predictor
+  y = I(V; expert | S) / H(expert | S)           (routing share)
+Prediction: Spearman rho(x, y) > 0.5 across the 10 points, and Kociemba phase above CFOP stage on BOTH axes.
+Secondary (exploratory): x2 = I(V; move | S) / H(V | S). If rho <= 0.5 the thesis is not supported; report as such.
