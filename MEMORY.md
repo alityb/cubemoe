@@ -1582,3 +1582,9 @@ per-case CHOICE of side is the model's. Beam search (shortest-first) may drive t
 - Greedy (policy alone, src/cfop_greedy_stages.py, 500 cubes x 5 seeds): reaches cross 98-100%; F2L 11-12% held-out /
   3-5% random; solved 8-11% held-out / 2-3% random; 100% of failures are LOOPS. => policy alone does cross and LL;
   F2L is where it loops and the beam rescues it.
+- Random cubes, ALL 5 SEEDS (seeds 1-4 on Modal ali-moh-islam-1, one L40S, ~12 min; CFOP ckpts uploaded to its volume):
+  200/200 solved in every seed, 51.4-52.0 moves; cross/F2L/OLL first at 14/58/80%; 2.32 algs per LL; 86% base algs,
+  74% from another side (out/prod/cfop_random_greedy.json). Greedy's 9 solved held-out cubes: 97% base algs, 71%
+  other side -> side choice also present with NO search (small n).
+- Modal accounts 2026-10-16: dnfcubes $40.34 (blocked, "exceeded its spend limit"); thisaccisfortheschool reported
+  $29.68 but est. ~$37-38 after unreported runs -> don't use until Nov; ali-moh-islam-1 $16.09 before this run.
