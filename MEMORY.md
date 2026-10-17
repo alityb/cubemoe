@@ -1557,3 +1557,17 @@ algorithms vs beam shortcuts — paths for seed 0 being saved by src/cfop_paths.
   INCREASES the gap (110-127%) except seed 3 L1 (53%). => phase is computed early, then carried/rewritten by MoE layers.
 - d: phase-1 positions meeting 1 of the 3 G1 conditions sit 18-44% of the way toward phase-2 router input (0/3:
   -3 to -9%); 2/3 too rare (<20) to test AND vs additive. Confound: 1/3 positions are also nearer G1 in moves.
+
+**Which last-layer technique? (paths: modal/prod.py::cfop_paths -> out/prod/cfop_mixtral_6L256_s*_paths.json; analyses
+src/cfop_ll.py, src/cfop_method.py, src/cfop_alphabet.py; logs out/prod/cfop_{ll,method}_s*.log, cfop_alphabet.log)**
+Training solver's LL is a toy: compositions of <=2 of 7 base algs (Sune, Anti-Sune, F R U R' U' F'; T, Ua, Aa, J),
+AUF only BEFORE each alg, always executed from the R side -> 3.78 algs per last layer, PLL 23.5 moves.
+Models, ALL 5 SEEDS: 2.18-2.34 algs per last layer; 14-20% of last layers in ONE alg; PLL 9.6-10.5 moves; PLL skip
+27-33% (solver 1%). 82-87% of the model's LL algorithms ARE base algs, and 67-72% of those are executed FROM ANOTHER
+SIDE (B/L/F versions; solver 0%). Executing an F2L-preserving alg from another side = AUF before + alg + AUF after, so
+side choice supplies the post-alg AUF the solver's tables lack -> one alg where the solver needed two. Remaining
+13-18%: two base algs merged with move cancellation at the seam (occasionally un-merged 'U2 U').
+NOT ZBLL/1LLL (only the 7 algs it saw). Sub-goal fingerprints (cfop_method.py) show no dominant named method and
+conflate multi-alg-without-progress with one-look -> do not cite its '1LLL 25%'.
+Caveats: KEEP_D rotation augmentation showed it every alg from all 4 sides — the variants are not invented; the
+per-case CHOICE of side is the model's. Beam search (shortest-first) may drive the choice; greedy test not done.

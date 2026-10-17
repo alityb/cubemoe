@@ -1,0 +1,73 @@
+
+cfop_mixtral_6L256_s3 — solver: last layer 37.0 moves after F2L; closest named method:
+    17.0%  1-look OLL, 2-look PLL (edges first)
+    16.0%  standard CFOP (1-look OLL, 1-look PLL) / 2-look OLL, 1-look PLL
+    16.0%  1-look OLL, 2-look PLL (corners first) / beginner 4-look last layer
+    13.0%  standard CFOP (1-look OLL, 1-look PLL)
+    10.0%  2-look OLL, 1-look PLL
+     6.0%  standard CFOP (1-look OLL, 1-look PLL) / 2-look OLL, 1-look PLL / 1-look OLL, 2-look PLL (corners first) / 1-look OLL, 2-look PLL (edges first) / beginner 4-look last layer / OLLCP + EPLL / COLL + EPLL (after edge control)
+     5.0%  1-look OLL, 2-look PLL (corners first)
+     4.0%  other: given EO | CO+EP > CP
+     4.0%  OLLCP + EPLL
+     3.0%  other: EO > CO > EP > CP
+     3.0%  beginner 4-look last layer
+     2.0%  other: EO+CO+EP > CP
+     1.0%  other: EO+CP > CO > EP
+   share of solves CONSISTENT with each method (overlapping):
+    35.0%  standard CFOP (1-look OLL, 1-look PLL)
+    32.0%  2-look OLL, 1-look PLL
+    27.0%  1-look OLL, 2-look PLL (corners first)
+    25.0%  beginner 4-look last layer
+    23.0%  1-look OLL, 2-look PLL (edges first)
+    10.0%  OLLCP + EPLL
+     6.0%  COLL + EPLL (after edge control)
+     4.0%  other: given EO | CO+EP > CP
+     3.0%  other: EO > CO > EP > CP
+     2.0%  other: EO+CO+EP > CP
+     1.0%  other: EO+CP > CO > EP
+   fingerprints: given EO | CO > CP+EP 16; given EO | CO > CP > EP 16; EO+CO > CP+EP 13; given EO | CO > EP > CP 12; EO > CO > CP+EP 10; given EO+CP | CO > EP 6; EO+CO > EP > CP 5; EO+CO > CP > EP 5
+
+cfop_mixtral_6L256_s3 — model: last layer 22.6 moves after F2L; closest named method:
+    10.0%  standard CFOP (1-look OLL, 1-look PLL) / 2-look OLL, 1-look PLL
+     9.0%  standard CFOP (1-look OLL, 1-look PLL) / 2-look OLL, 1-look PLL / 1-look OLL, 2-look PLL (corners first) / 1-look OLL, 2-look PLL (edges first) / beginner 4-look last layer / OLLCP + EPLL / COLL + EPLL (after edge control) / ZBLL (after edge control) / 1LLL (whole last layer in one look)
+     9.0%  ZBLL (after edge control) / 1LLL (whole last layer in one look)
+     9.0%  other: given EO | CO+EP > CP
+     8.0%  1LLL (whole last layer in one look)
+     7.0%  other: EO+CP > CO+EP
+     7.0%  OLLCP + EPLL
+     6.0%  1-look OLL, 2-look PLL (edges first)
+     5.0%  2-look OLL, 1-look PLL
+     5.0%  other: EO+CO+EP > CP
+     4.0%  1-look OLL, 2-look PLL (corners first)
+     4.0%  other: EO+CP > CO > EP
+     4.0%  other: EO > CO+EP > CP
+     3.0%  standard CFOP (1-look OLL, 1-look PLL) / 2-look OLL, 1-look PLL / 1-look OLL, 2-look PLL (corners first) / 1-look OLL, 2-look PLL (edges first) / beginner 4-look last layer / OLLCP + EPLL / COLL + EPLL (after edge control)
+     2.0%  standard CFOP (1-look OLL, 1-look PLL)
+     1.0%  other: EO > EP > CO+CP
+     1.0%  standard CFOP (1-look OLL, 1-look PLL) / 1-look OLL, 2-look PLL (corners first) / 1-look OLL, 2-look PLL (edges first)
+     1.0%  beginner 4-look last layer
+     1.0%  other: EO > CO+CP+EP
+     1.0%  other: EP > EO+CO > CP
+     1.0%  OLLCP + EPLL / 1LLL (whole last layer in one look)
+     1.0%  1-look OLL, 2-look PLL (corners first) / beginner 4-look last layer / OLLCP + EPLL / COLL + EPLL (after edge control)
+     1.0%  other: EO > CO > EP > CP
+   share of solves CONSISTENT with each method (overlapping):
+    27.0%  2-look OLL, 1-look PLL
+    27.0%  1LLL (whole last layer in one look)
+    25.0%  standard CFOP (1-look OLL, 1-look PLL)
+    21.0%  OLLCP + EPLL
+    19.0%  1-look OLL, 2-look PLL (edges first)
+    18.0%  1-look OLL, 2-look PLL (corners first)
+    18.0%  ZBLL (after edge control)
+    14.0%  beginner 4-look last layer
+    13.0%  COLL + EPLL (after edge control)
+     9.0%  other: given EO | CO+EP > CP
+     7.0%  other: EO+CP > CO+EP
+     5.0%  other: EO+CO+EP > CP
+     4.0%  other: EO+CP > CO > EP
+     4.0%  other: EO > CO+EP > CP
+     1.0%  other: EO > EP > CO+CP
+     1.0%  other: EO > CO+CP+EP
+     1.0%  other: EP > EO+CO > CP
+     1.0%  other: EO > CO > EP > CP
+   fingerprints: given EO | CO > CP+EP 10; given EO | CO+EP > CP 9; EO+CO+CP+EP 8; EO+CP > CO+EP 7; EO+CO+CP > EP 7; EO > CO > CP+EP 5; EO+CO+EP > CP 5; given EO | CO+CP+EP 5
