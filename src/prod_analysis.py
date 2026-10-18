@@ -16,7 +16,7 @@ sys.path[:0] = ['/Users/alityb/projects/cubemoe/src', '/Users/alityb/projects/cu
 import model_prod as MP
 from model_prod import ProdStateModel, rope
 R = '/Users/alityb/projects/cubemoe'
-DEV = 'mps' if torch.backends.mps.is_available() else 'cpu'
+DEV = 'cuda' if torch.cuda.is_available() else ('mps' if torch.backends.mps.is_available() else 'cpu')
 
 def load(tag):
     s = torch.load(f'{R}/out/prod/{tag}.pt', map_location='cpu', weights_only=False); c = s['log']['cfg']

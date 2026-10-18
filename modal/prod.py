@@ -233,3 +233,19 @@ def cfop_random_one(seeds: str = "1,2,3,4", n: int = 200):
     for t, P in res.items():
         json.dump([dict(start=a, model=p, solver=None) for a, p in zip(S, P)], open(ROOT / f"out/prod/{t}_random_w256_paths.json", "w"))
         ok = [len(p) for p in P if p]; print(f"{t} random_w256: solved {len(ok)}/{len(P)}, mean {np.mean(ok):.1f} moves", flush=True)
+
+@app.function(image=img, volumes={"/vol": vol}, gpu="L40S", timeout=6 * 3600)
+def run_script(args: list):
+    """Run a repo script on the GPU with the local repo layout mirrored: src/probe from the image, data/out from the
+    volume, so scripts that use /Users/alityb/projects/cubemoe paths run unchanged. Outputs land on the volume."""
+    import os, subprocess, sys
+    root = "/Users/alityb/projects/cubemoe"; os.makedirs(root, exist_ok=True)
+    for name, target in (("src", "/repo/src"), ("probe", "/repo/probe"), ("data", "/vol/data"), ("out", "/vol/out")):
+        if not os.path.exists(f"{root}/{name}"): os.symlink(target, f"{root}/{name}")
+    p = subprocess.run([sys.executable, "-W", "ignore", f"{root}/src/{args[0]}"] + args[1:], cwd=root, capture_output=True, text=True)
+    vol.commit(); return p.stdout[-20000:] + ("\nSTDERR:\n" + p.stderr[-5000:] if p.returncode else "")
+
+@app.local_entrypoint()
+def script(args: str):
+    """modal run modal/prod.py::script --args "rl_pilot.py cfop_mixtral_6L256_s4" """
+    print(run_script.remote(args.split()))
