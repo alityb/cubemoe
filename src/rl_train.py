@@ -51,10 +51,10 @@ def train(tag, arm, lr, steps=300, seed=0, B=64, G=8, temp=1.0, budget=90, eval_
         opt.zero_grad(set_to_none=True); used = int(use.sum())
         if used:
             S, Aa, W = r['states'][use], r['actions'][use], ep_adv[use]
-            for i in range(0, used, 4096):
-                with amp(DEV): lg = m(S[i:i + 4096].to(DEV))[0].float()
-                lp = F.log_softmax(lg, -1).gather(1, Aa[i:i + 4096].to(DEV)[:, None]).squeeze(1)
-                (-(W[i:i + 4096].to(DEV) * lp).sum() / nsteps).backward()
+            for i in range(0, used, 1024):   # chunked backward; gradients summed, so chunk size does not change the update
+                with amp(DEV): lg = m(S[i:i + 1024].to(DEV))[0].float()
+                lp = F.log_softmax(lg, -1).gather(1, Aa[i:i + 1024].to(DEV)[:, None]).squeeze(1)
+                (-(W[i:i + 1024].to(DEV) * lp).sum() / nsteps).backward()
             torch.nn.utils.clip_grad_norm_(params, 1.0); opt.step()
         row = dict(step=it, reward=float(rew.mean()), mixed_groups=float(((rew.sum(1) > 0) & (rew.sum(1) < G)).float().mean()),
                    steps_used=used, sec=time.time() - t0)
