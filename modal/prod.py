@@ -249,3 +249,9 @@ def run_script(args: list):
 def script(args: str):
     """modal run modal/prod.py::script --args "rl_pilot.py cfop_mixtral_6L256_s4" """
     print(run_script.remote(args.split()))
+
+@app.local_entrypoint()
+def scripts(jobs: str):
+    """Run several repo scripts in parallel containers: jobs separated by ';'."""
+    calls = [run_script.spawn(j.split()) for j in jobs.split(";") if j.strip()]
+    for j, c in zip(jobs.split(";"), calls): print(f"=== {j.strip()}\n{c.get()}", flush=True)
