@@ -1,0 +1,242 @@
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-zP6GLAdjlKZhRNLGgpxZ24
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_train.py cfop_mixtral_6L256_s4 router 1e-3 100 0
+cfop_mixtral_6L256_s4_router_lr0.001_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.115 mixed 0.50 62s
+  [20] reward 0.088 mixed 0.41 123s
+  [30] reward 0.111 mixed 0.45 181s
+  [40] reward 0.113 mixed 0.58 241s
+  [50] reward 0.068 mixed 0.36 300s eval {'greedy': 0.0859375, 'sampled': 0.10546875}
+  [60] reward 0.088 mixed 0.38 364s
+  [70] reward 0.094 mixed 0.52 429s
+  [80] reward 0.098 mixed 0.42 489s
+  [90] reward 0.066 mixed 0.44 549s
+  [100] reward 0.104 mixed 0.52 610s eval {'greedy': 0.08203125, 'sampled': 0.1142578125}
+
+=== rl_train.py cfop_mixtral_6L256_s4 router 3e-3 100 0
+cfop_mixtral_6L256_s4_router_lr0.003_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.109 mixed 0.48 62s
+  [20] reward 0.086 mixed 0.41 124s
+  [30] reward 0.100 mixed 0.39 184s
+  [40] reward 0.094 mixed 0.50 244s
+  [50] reward 0.057 mixed 0.38 304s eval {'greedy': 0.09765625, 'sampled': 0.12109375}
+  [60] reward 0.105 mixed 0.50 373s
+  [70] reward 0.082 mixed 0.47 434s
+  [80] reward 0.076 mixed 0.39 489s
+  [90] reward 0.055 mixed 0.42 547s
+  [100] reward 0.094 mixed 0.50 604s eval {'greedy': 0.06640625, 'sampled': 0.080078125}
+
+=== rl_train.py cfop_mixtral_6L256_s4 router 1e-2 100 0
+cfop_mixtral_6L256_s4_router_lr0.01_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.012 mixed 0.08 40s
+  [20] reward 0.000 mixed 0.00 61s
+  [30] reward 0.000 mixed 0.00 81s
+  [40] reward 0.000 mixed 0.00 102s
+  [50] reward 0.000 mixed 0.00 122s eval {'greedy': 0.0, 'sampled': 0.001953125}
+  [60] reward 0.002 mixed 0.02 149s
+  [70] reward 0.000 mixed 0.00 169s
+  [80] reward 0.000 mixed 0.00 190s
+  [90] reward 0.000 mixed 0.00 210s
+  [100] reward 0.000 mixed 0.00 230s eval {'greedy': 0.0, 'sampled': 0.0}
+
+=== rl_train.py cfop_mixtral_6L256_s4 lora 3e-4 100 0
+cfop_mixtral_6L256_s4_lora_lr0.0003_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.115 mixed 0.50 66s
+  [20] reward 0.082 mixed 0.39 131s
+  [30] reward 0.121 mixed 0.52 193s
+  [40] reward 0.096 mixed 0.41 257s
+  [50] reward 0.061 mixed 0.36 324s eval {'greedy': 0.09765625, 'sampled': 0.08984375}
+  [60] reward 0.082 mixed 0.41 395s
+  [70] reward 0.094 mixed 0.47 462s
+  [80] reward 0.100 mixed 0.45 526s
+  [90] reward 0.068 mixed 0.44 590s
+  [100] reward 0.115 mixed 0.59 652s eval {'greedy': 0.08203125, 'sampled': 0.119140625}
+
+=== rl_train.py cfop_mixtral_6L256_s4 lora 1e-3 100 0
+cfop_mixtral_6L256_s4_lora_lr0.001_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.115 mixed 0.50 65s
+  [20] reward 0.090 mixed 0.45 129s
+  [30] reward 0.104 mixed 0.45 194s
+  [40] reward 0.102 mixed 0.48 257s
+  [50] reward 0.072 mixed 0.45 326s eval {'greedy': 0.0859375, 'sampled': 0.1064453125}
+  [60] reward 0.119 mixed 0.56 401s
+  [70] reward 0.107 mixed 0.52 469s
+  [80] reward 0.145 mixed 0.59 540s
+  [90] reward 0.102 mixed 0.55 613s
+  [100] reward 0.148 mixed 0.64 685s eval {'greedy': 0.1015625, 'sampled': 0.146484375}
+
+=== rl_train.py cfop_mixtral_6L256_s4 lora 3e-3 100 0
+cfop_mixtral_6L256_s4_lora_lr0.003_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.121 mixed 0.52 64s
+  [20] reward 0.100 mixed 0.47 127s
+  [30] reward 0.131 mixed 0.58 191s
+  [40] reward 0.117 mixed 0.56 259s
+  [50] reward 0.090 mixed 0.52 329s eval {'greedy': 0.09765625, 'sampled': 0.13671875}
+  [60] reward 0.137 mixed 0.64 405s
+  [70] reward 0.143 mixed 0.66 478s
+  [80] reward 0.141 mixed 0.66 552s
+  [90] reward 0.125 mixed 0.67 630s
+  [100] reward 0.172 mixed 0.72 705s eval {'greedy': 0.12890625, 'sampled': 0.162109375}
+
+=== rl_train.py cfop_mixtral_6L256_s4 experts 1e-5 100 0
+cfop_mixtral_6L256_s4_experts_lr1e-05_s0: 33030144 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.117 mixed 0.52 63s
+  [20] reward 0.096 mixed 0.45 125s
+  [30] reward 0.113 mixed 0.45 186s
+  [40] reward 0.094 mixed 0.44 248s
+  [50] reward 0.066 mixed 0.41 314s eval {'greedy': 0.0859375, 'sampled': 0.095703125}
+  [60] reward 0.111 mixed 0.50 386s
+  [70] reward 0.104 mixed 0.55 455s
+  [80] reward 0.135 mixed 0.58 521s
+  [90] reward 0.074 mixed 0.47 589s
+  [100] reward 0.125 mixed 0.59 656s eval {'greedy': 0.10546875, 'sampled': 0.12109375}
+
+=== rl_train.py cfop_mixtral_6L256_s4 experts 3e-5 100 0
+cfop_mixtral_6L256_s4_experts_lr3e-05_s0: 33030144 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.125 mixed 0.53 64s
+  [20] reward 0.105 mixed 0.47 128s
+  [30] reward 0.133 mixed 0.52 195s
+  [40] reward 0.139 mixed 0.70 263s
+  [50] reward 0.084 mixed 0.45 333s eval {'greedy': 0.08984375, 'sampled': 0.1318359375}
+  [60] reward 0.141 mixed 0.67 412s
+  [70] reward 0.139 mixed 0.64 487s
+  [80] reward 0.158 mixed 0.70 563s
+  [90] reward 0.127 mixed 0.64 642s
+  [100] reward 0.203 mixed 0.72 720s eval {'greedy': 0.125, 'sampled': 0.18359375}
+
+=== rl_train.py cfop_mixtral_6L256_s4 experts 1e-4 100 0
+cfop_mixtral_6L256_s4_experts_lr0.0001_s0: 33030144 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.143 mixed 0.66 69s
+  [20] reward 0.115 mixed 0.58 137s
+  [30] reward 0.127 mixed 0.52 209s
+  [40] reward 0.164 mixed 0.70 284s
+  [50] reward 0.162 mixed 0.77 364s eval {'greedy': 0.15234375, 'sampled': 0.1845703125}
+  [60] reward 0.193 mixed 0.80 457s
+  [70] reward 0.197 mixed 0.75 548s
+  [80] reward 0.230 mixed 0.80 641s
+  [90] reward 0.248 mixed 0.83 737s
+  [100] reward 0.279 mixed 0.83 834s eval {'greedy': 0.20703125, 'sampled': 0.3154296875}
+
+=== rl_train.py cfop_mixtral_6L256_s4 full 1e-5 100 0
+cfop_mixtral_6L256_s4_full_lr1e-05_s0: 34628096 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.119 mixed 0.52 73s
+  [20] reward 0.094 mixed 0.47 147s
+  [30] reward 0.113 mixed 0.44 216s
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_train.py", line 71, in <module>
+    a = sys.argv; train(a[1], a[2], float(a[3]), int(a[4]) if len(a) > 4 else 300, int(a[5]) if len(a) > 5 else 0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_train.py", line 57, in train
+    (-(W[i:i + 4096].to(DEV) * lp).sum() / nsteps).backward()
+  File "/usr/local/lib/python3.11/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.11/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.11/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 440.00 MiB. GPU 0 has a total capacity of 44.42 GiB of which 184.19 MiB is free. Process 1 has 44.23 GiB memory in use. Of the allocated memory 40.77 GiB is allocated by PyTorch, and 2.95 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== rl_train.py cfop_mixtral_6L256_s4 full 3e-5 100 0
+cfop_mixtral_6L256_s4_full_lr3e-05_s0: 34628096 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_train.py", line 71, in <module>
+    a = sys.argv; train(a[1], a[2], float(a[3]), int(a[4]) if len(a) > 4 else 300, int(a[5]) if len(a) > 5 else 0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_train.py", line 55, in train
+    with amp(DEV): lg = m(S[i:i + 4096].to(DEV))[0].float()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/model_prod.py", line 148, in forward
+    x, probs, topi, a = b(x); aux = aux + a
+                        ^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/model_prod.py", line 133, in forward
+    y, probs, topi, aux = self.ffn(self.n2(x), None if pad_mask is None else ~pad_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/model_prod.py", line 95, in forward
+    out = self.dispatch(flat, topi, topv)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/model_prod.py", line 124, in dispatch
+    return flat.new_zeros(N, d).index_add_(0, tok_s, y * w_s[:, None])
+                                                     ~~^~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 440.00 MiB. GPU 0 has a total capacity of 44.42 GiB of which 310.19 MiB is free. Process 1 has 44.11 GiB memory in use. Of the allocated memory 40.77 GiB is allocated by PyTorch, and 2.83 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== rl_train.py cfop_mixtral_6L256_s4 full 1e-4 100 0
+cfop_mixtral_6L256_s4_full_lr0.0001_s0: 34628096 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_train.py", line 71, in <module>
+    a = sys.argv; train(a[1], a[2], float(a[3]), int(a[4]) if len(a) > 4 else 300, int(a[5]) if len(a) > 5 else 0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_train.py", line 57, in train
+    (-(W[i:i + 4096].to(DEV) * lp).sum() / nsteps).backward()
+  File "/usr/local/lib/python3.11/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.11/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.11/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 440.00 MiB. GPU 0 has a total capacity of 44.42 GiB of which 340.19 MiB is free. Process 1 has 44.08 GiB memory in use. Of the allocated memory 40.77 GiB is allocated by PyTorch, and 2.80 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== rl_eval.py bins cfop_mixtral_6L256_s0
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_eval.py", line 66, in <module>
+    if sys.argv[1] == 'bins': bins(sys.argv[2])
+                              ^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_eval.py", line 31, in bins
+    m, _ = A.load(tag); res = {}
+           ^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/prod_analysis.py", line 22, in load
+    s = torch.load(f'{R}/out/prod/{tag}.pt', map_location='cpu', weights_only=False); c = s['log']['cfg']
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/serialization.py", line 1425, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/serialization.py", line 751, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/serialization.py", line 732, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alityb/projects/cubemoe/out/prod/cfop_mixtral_6L256_s0.pt'
+
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-zP6GLAdjlKZhRNLGgpxZ24

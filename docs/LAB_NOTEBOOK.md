@@ -1647,3 +1647,21 @@ Kociemba/CFOP difference. Two pre-registered negatives; report both. Write the M
 Methodological lesson (post hoc, flag as such): conditioning on moves-remaining — which the model never sees — makes
 phase look output-irrelevant, while the mechanism shows the phase-2 expert causally constrains moves (-4.1 to -4.7
 logits on non-G1 moves). Label-level MI given a confound-control variable can misstate what the model uses.
+
+## 36. RL ROUTING STUDY: PILOT AND LEARNING-RATE SWEEP (2026-10-18)
+
+Pre-registered in `prereg/PREREG_RL_ROUTING.md` (commit `f778327`, before any RL run). Question: when RL improves an
+MoE policy, is the gain routing (router-only) or expert computation (experts-only)? Arms: router (12,288 params),
+lora (rank-4 on attention output, 12,288, matched control), experts (33.0M), full (34.6M). CFOP models; seed 4 tunes,
+seeds 0-2 confirm (seed 0 in Oct, seeds 1-2 after Nov 1 for budget). Runs on Modal ali-moh-islam-1 via
+`modal/prod.py::run_script` (mirrors the repo layout; laptop MPS rollouts were ~360 positions/s, L40S ~15k/s).
+
+Pilot (base seed 4, out/rl/pilot_cfop_mixtral_6L256_s4.json): greedy 8.5%; sampled pass@1 9.9% (T=1), 12.0% (T=0.7);
+96% of held-out scrambles solved at least once in 64 samples -> the base model nearly always CAN solve; failures are
+default-behaviour loops. Hence random cubes added as a harder evaluation set. Mixed GRPO groups: 47% (G=8), 69% (G=16).
+
+LR sweep on seed 4 (100 updates, mean training reward over updates 81-100; start ~0.10):
+router 1e-3 0.097 | 3e-3 0.084 | 1e-2 0.000 (collapse: solving goes to 0%) ; lora 3e-4 0.098 | 1e-3 0.126 | 3e-3 0.145 ;
+experts 1e-5 0.112 | 3e-5 0.151 | 1e-4 0.257. Full arm ran out of GPU memory (backward in chunks of 4,096 states);
+fixed by chunks of 1,024 (gradients summed, update unchanged) and rerun. Grid edges extended per the prereg rule:
+router 3e-4, lora 1e-2, experts 3e-4. TUNING SEED ONLY — not evidence for or against H.
