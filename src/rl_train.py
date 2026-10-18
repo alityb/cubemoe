@@ -32,7 +32,7 @@ def setup(m, arm):
             p.requires_grad_(True)
     return [p for p in m.parameters() if p.requires_grad]
 
-def train(tag, arm, lr, steps=300, seed=0, B=128, G=16, temp=1.0, budget=90, eval_every=50, out_dir=f'{R}/out/rl', log_every=10):
+def train(tag, arm, lr, steps=300, seed=0, B=64, G=8, temp=1.0, budget=90, eval_every=50, out_dir=f'{R}/out/rl', log_every=10):
     torch.manual_seed(seed); np.random.seed(seed)
     m, cfg = A.load(tag); m.eval(); params = setup(m, arm); npar = sum(p.numel() for p in params)
     opt = torch.optim.AdamW(params, lr=lr, weight_decay=0.0, betas=(0.9, 0.99))
