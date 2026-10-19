@@ -1665,3 +1665,9 @@ router 1e-3 0.097 | 3e-3 0.084 | 1e-2 0.000 (collapse: solving goes to 0%) ; lor
 experts 1e-5 0.112 | 3e-5 0.151 | 1e-4 0.257. Full arm ran out of GPU memory (backward in chunks of 4,096 states);
 fixed by chunks of 1,024 (gradients summed, update unchanged) and rerun. Grid edges extended per the prereg rule:
 router 3e-4, lora 1e-2, experts 3e-4. TUNING SEED ONLY — not evidence for or against H.
+
+Sweep round 2 (2026-10-18 evening; session ended mid-run, 5 of 7 jobs finished and were recovered from the volume):
+full 1e-5 0.122 | 3e-5 0.170 ; router 3e-4 0.098 ; lora 1e-2 0.071 (worse; 3e-3 stays) ; experts 3e-4 0.229 (worse; 1e-4
+stays). Router: 3e-4 (0.098) vs 1e-3 (0.097), effectively tied, 3e-4 picked (higher and smaller); extension already
+used once, so the grid stops. Router-only RL shows NO training-reward gain at any rate on the tuning seed. Full 1e-4 and
+seed-0 bins rerun 2026-10-19 with `modal run --detach` so a dropped session cannot kill them.
