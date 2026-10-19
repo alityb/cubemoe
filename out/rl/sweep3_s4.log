@@ -1,0 +1,34 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-1I5vi10R1M2jnNgcoJpMGS
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_train.py cfop_mixtral_6L256_s4 full 1e-4 100 0
+cfop_mixtral_6L256_s4_full_lr0.0001_s0: 34628096 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.115 mixed 0.59 65s
+  [20] reward 0.102 mixed 0.53 140s
+  [30] reward 0.137 mixed 0.59 214s
+  [40] reward 0.176 mixed 0.72 290s
+  [50] reward 0.158 mixed 0.75 373s eval {'greedy': 0.12109375, 'sampled': 0.16796875}
+  [60] reward 0.201 mixed 0.83 466s
+  [70] reward 0.221 mixed 0.75 555s
+  [80] reward 0.250 mixed 0.83 646s
+  [90] reward 0.248 mixed 0.88 741s
+  [100] reward 0.270 mixed 0.83 836s eval {'greedy': 0.1953125, 'sampled': 0.3056640625}
+
+=== rl_eval.py bins cfop_mixtral_6L256_s0
+cfop_mixtral_6L256_s0 held: base pass rate 10.2% | bins {'EASY': 494, 'MID': 1308, 'HARD': 198}
+cfop_mixtral_6L256_s0 random: base pass rate 13.6% | bins {'EASY': 626, 'MID': 373, 'HARD': 1}
+
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-1I5vi10R1M2jnNgcoJpMGS
