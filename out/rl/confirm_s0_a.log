@@ -1,0 +1,187 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-10DZeIpYUBm4T55RatC5TY
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_train.py cfop_mixtral_6L256_s4 full 3e-4 100 0
+cfop_mixtral_6L256_s4_full_lr0.0003_s0: 34628096 trainable params | start {'greedy': 0.09375, 'sampled': 0.1005859375}
+  [10] reward 0.055 mixed 0.28 57s
+  [20] reward 0.047 mixed 0.27 106s
+  [30] reward 0.057 mixed 0.25 153s
+  [40] reward 0.045 mixed 0.25 193s
+  [50] reward 0.029 mixed 0.22 234s eval {'greedy': 0.01171875, 'sampled': 0.0361328125}
+  [60] reward 0.047 mixed 0.30 287s
+  [70] reward 0.047 mixed 0.27 334s
+  [80] reward 0.057 mixed 0.33 384s
+  [90] reward 0.057 mixed 0.31 433s
+  [100] reward 0.006 mixed 0.03 469s eval {'greedy': 0.00390625, 'sampled': 0.0068359375}
+
+=== rl_confirm.py cfop_mixtral_6L256_s0 router 3e-4 0
+cfop_mixtral_6L256_s0_router_lr0.0003_s0: 12288 trainable params | start {'greedy': 0.08984375, 'sampled': 0.0966796875}
+  [10] reward 0.174 mixed 0.67 50s
+  [20] reward 0.088 mixed 0.39 100s
+  [30] reward 0.104 mixed 0.52 152s
+  [40] reward 0.090 mixed 0.42 203s
+  [50] reward 0.064 mixed 0.36 251s eval {'greedy': 0.08984375, 'sampled': 0.0986328125}
+  [60] reward 0.082 mixed 0.39 307s
+  [70] reward 0.115 mixed 0.52 357s
+  [80] reward 0.131 mixed 0.52 404s
+  [90] reward 0.096 mixed 0.56 457s
+  [100] reward 0.092 mixed 0.48 509s eval {'greedy': 0.09375, 'sampled': 0.125}
+  [110] reward 0.072 mixed 0.41 565s
+  [120] reward 0.119 mixed 0.48 613s
+  [130] reward 0.117 mixed 0.62 665s
+  [140] reward 0.105 mixed 0.50 715s
+  [150] reward 0.133 mixed 0.58 766s eval {'greedy': 0.09765625, 'sampled': 0.0986328125}
+  [160] reward 0.096 mixed 0.41 820s
+  [170] reward 0.098 mixed 0.48 873s
+  [180] reward 0.104 mixed 0.55 925s
+  [190] reward 0.125 mixed 0.61 977s
+  [200] reward 0.109 mixed 0.44 1027s eval {'greedy': 0.109375, 'sampled': 0.1083984375}
+  [210] reward 0.098 mixed 0.45 1084s
+  [220] reward 0.096 mixed 0.48 1135s
+  [230] reward 0.096 mixed 0.52 1185s
+  [240] reward 0.104 mixed 0.50 1238s
+  [250] reward 0.088 mixed 0.44 1287s eval {'greedy': 0.1015625, 'sampled': 0.09765625}
+  [260] reward 0.098 mixed 0.50 1345s
+  [270] reward 0.113 mixed 0.56 1396s
+  [280] reward 0.121 mixed 0.50 1447s
+  [290] reward 0.146 mixed 0.62 1500s
+  [300] reward 0.096 mixed 0.52 1552s eval {'greedy': 0.1015625, 'sampled': 0.107421875}
+cfop_mixtral_6L256_s0_router_lr0.0003_s0 held: EASY n=494 sampled 23.1% greedy 36.2% | MID n=1308 sampled 7.1% greedy 2.6% | HARD n=198 sampled 5.5% greedy 0.5% | ALL n=2000 sampled 10.9% greedy 10.7%
+cfop_mixtral_6L256_s0_router_lr0.0003_s0 random: EASY n=626 sampled 15.8% greedy 2.6% | MID n=373 sampled 14.5% greedy 1.3% | HARD n=1 sampled 12.5% greedy 0.0% | ALL n=1000 sampled 15.3% greedy 2.1%
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_confirm.py", line 11, in <module>
+    evaluate(tag, run); rl_mech.main(tag, [run])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_mech.py", line 36, in main
+    X, _ = heldout_cfop(n_solves); m0 = load_run(tag, 'base'); H0, T0 = collect(m0, X)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/prod_cfop.py", line 19, in heldout_cfop
+    d = dict(np.load(f'{R}/data/{data}.npz')); meta = dict(np.load(f'{R}/out/explore/cfopmeta_{data}.npz'))
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alityb/projects/cubemoe/out/explore/cfopmeta_cfop250k.npz'
+
+=== rl_confirm.py cfop_mixtral_6L256_s0 lora 3e-3 0
+cfop_mixtral_6L256_s0_lora_lr0.003_s0: 12288 trainable params | start {'greedy': 0.08984375, 'sampled': 0.0966796875}
+  [10] reward 0.148 mixed 0.61 55s
+  [20] reward 0.082 mixed 0.44 114s
+  [30] reward 0.104 mixed 0.56 175s
+  [40] reward 0.102 mixed 0.45 233s
+  [50] reward 0.080 mixed 0.44 291s eval {'greedy': 0.08203125, 'sampled': 0.1220703125}
+  [60] reward 0.119 mixed 0.53 355s
+  [70] reward 0.127 mixed 0.55 421s
+  [80] reward 0.166 mixed 0.70 486s
+  [90] reward 0.154 mixed 0.64 554s
+  [100] reward 0.127 mixed 0.56 619s eval {'greedy': 0.09765625, 'sampled': 0.1513671875}
+  [110] reward 0.107 mixed 0.53 694s
+  [120] reward 0.160 mixed 0.69 763s
+  [130] reward 0.131 mixed 0.62 834s
+  [140] reward 0.158 mixed 0.64 905s
+  [150] reward 0.166 mixed 0.69 976s eval {'greedy': 0.10546875, 'sampled': 0.1533203125}
+  [160] reward 0.145 mixed 0.66 1050s
+  [170] reward 0.158 mixed 0.70 1122s
+  [180] reward 0.180 mixed 0.78 1195s
+  [190] reward 0.184 mixed 0.67 1270s
+  [200] reward 0.127 mixed 0.55 1341s eval {'greedy': 0.13671875, 'sampled': 0.15625}
+  [210] reward 0.168 mixed 0.69 1420s
+  [220] reward 0.162 mixed 0.73 1494s
+  [230] reward 0.137 mixed 0.59 1570s
+  [240] reward 0.195 mixed 0.69 1646s
+  [250] reward 0.174 mixed 0.73 1723s eval {'greedy': 0.12890625, 'sampled': 0.189453125}
+  [260] reward 0.215 mixed 0.86 1807s
+  [270] reward 0.215 mixed 0.81 1882s
+  [280] reward 0.203 mixed 0.80 1958s
+  [290] reward 0.174 mixed 0.73 2034s
+  [300] reward 0.180 mixed 0.80 2113s eval {'greedy': 0.12890625, 'sampled': 0.1806640625}
+cfop_mixtral_6L256_s0_lora_lr0.003_s0 held: EASY n=494 sampled 30.3% greedy 35.6% | MID n=1308 sampled 16.7% greedy 8.0% | HARD n=198 sampled 15.3% greedy 5.6% | ALL n=2000 sampled 19.9% greedy 14.6%
+cfop_mixtral_6L256_s0_lora_lr0.003_s0 random: EASY n=626 sampled 39.3% greedy 9.9% | MID n=373 sampled 37.6% greedy 6.4% | HARD n=1 sampled 25.0% greedy 0.0% | ALL n=1000 sampled 38.6% greedy 8.6%
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_confirm.py", line 11, in <module>
+    evaluate(tag, run); rl_mech.main(tag, [run])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_mech.py", line 36, in main
+    X, _ = heldout_cfop(n_solves); m0 = load_run(tag, 'base'); H0, T0 = collect(m0, X)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/prod_cfop.py", line 19, in heldout_cfop
+    d = dict(np.load(f'{R}/data/{data}.npz')); meta = dict(np.load(f'{R}/out/explore/cfopmeta_{data}.npz'))
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alityb/projects/cubemoe/out/explore/cfopmeta_cfop250k.npz'
+
+=== rl_confirm.py cfop_mixtral_6L256_s0 experts 1e-4 0
+cfop_mixtral_6L256_s0_experts_lr0.0001_s0: 33030144 trainable params | start {'greedy': 0.08984375, 'sampled': 0.0966796875}
+  [10] reward 0.160 mixed 0.56 55s
+  [20] reward 0.113 mixed 0.53 116s
+  [30] reward 0.133 mixed 0.56 182s
+  [40] reward 0.146 mixed 0.59 250s
+  [50] reward 0.141 mixed 0.62 320s eval {'greedy': 0.12109375, 'sampled': 0.15625}
+  [60] reward 0.160 mixed 0.66 398s
+  [70] reward 0.215 mixed 0.81 472s
+  [80] reward 0.207 mixed 0.78 548s
+  [90] reward 0.195 mixed 0.80 629s
+  [100] reward 0.225 mixed 0.89 712s eval {'greedy': 0.14453125, 'sampled': 0.2421875}
+  [110] reward 0.268 mixed 0.84 799s
+  [120] reward 0.277 mixed 0.91 884s
+  [130] reward 0.285 mixed 0.92 971s
+  [140] reward 0.301 mixed 0.89 1058s
+  [150] reward 0.312 mixed 0.86 1145s eval {'greedy': 0.203125, 'sampled': 0.3486328125}
+  [160] reward 0.318 mixed 0.94 1239s
+  [170] reward 0.309 mixed 0.92 1329s
+  [180] reward 0.395 mixed 0.94 1418s
+  [190] reward 0.432 mixed 0.94 1507s
+  [200] reward 0.389 mixed 0.97 1598s eval {'greedy': 0.27734375, 'sampled': 0.37890625}
+  [210] reward 0.428 mixed 0.98 1695s
+  [220] reward 0.451 mixed 0.97 1785s
+  [230] reward 0.432 mixed 0.98 1877s
+  [240] reward 0.455 mixed 0.98 1967s
+  [250] reward 0.465 mixed 0.98 2058s eval {'greedy': 0.38671875, 'sampled': 0.49609375}
+  [260] reward 0.541 mixed 0.94 2154s
+  [270] reward 0.508 mixed 1.00 2246s
+  [280] reward 0.566 mixed 0.95 2337s
+  [290] reward 0.553 mixed 0.97 2427s
+  [300] reward 0.514 mixed 0.97 2518s eval {'greedy': 0.359375, 'sampled': 0.53125}
+cfop_mixtral_6L256_s0_experts_lr0.0001_s0 held: EASY n=494 sampled 63.6% greedy 54.0% | MID n=1308 sampled 51.6% greedy 34.7% | HARD n=198 sampled 48.8% greedy 33.3% | ALL n=2000 sampled 54.3% greedy 39.4%
+cfop_mixtral_6L256_s0_experts_lr0.0001_s0 random: EASY n=626 sampled 80.9% greedy 32.6% | MID n=373 sampled 80.1% greedy 32.2% | HARD n=1 sampled 100.0% greedy 0.0% | ALL n=1000 sampled 80.6% greedy 32.4%
+
+STDERR:
+Traceback (most recent call last):
+  File "/Users/alityb/projects/cubemoe/src/rl_confirm.py", line 11, in <module>
+    evaluate(tag, run); rl_mech.main(tag, [run])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/rl_mech.py", line 36, in main
+    X, _ = heldout_cfop(n_solves); m0 = load_run(tag, 'base'); H0, T0 = collect(m0, X)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alityb/projects/cubemoe/src/prod_cfop.py", line 19, in heldout_cfop
+    d = dict(np.load(f'{R}/data/{data}.npz')); meta = dict(np.load(f'{R}/out/explore/cfopmeta_{data}.npz'))
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alityb/projects/cubemoe/out/explore/cfopmeta_cfop250k.npz'
+
+=== rl_eval.py eval cfop_mixtral_6L256_s0 base
+base held: EASY n=494 sampled 21.6% greedy 36.8% | MID n=1308 sampled 6.6% greedy 1.9% | HARD n=198 sampled 4.7% greedy 0.5% | ALL n=2000 sampled 10.1% greedy 10.4%
+base random: EASY n=626 sampled 13.8% greedy 3.0% | MID n=373 sampled 12.5% greedy 1.3% | HARD n=1 sampled 6.2% greedy 0.0% | ALL n=1000 sampled 13.3% greedy 2.4%
+
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-10DZeIpYUBm4T55RatC5TY

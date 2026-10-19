@@ -1675,3 +1675,13 @@ Full arm: 1e-5 0.122 | 3e-5 0.170 | 1e-4 0.263 | 3e-4 (edge extension) 0.043 -> 
 rule as pre-registered): router 3e-4, lora 3e-3, experts 1e-4, full 1e-4 (out/rl/chosen_lr.json).
 Seed-0 bins (base, 64 samples): held-out EASY 494 / MID 1308 / HARD 198 (primary HARD set has >= 50, so it is used);
 random cubes EASY 626 / MID 373 / HARD 1 (budget 120 makes random cubes easier under sampling than held-out at 90).
+
+**Seed 0 confirmatory, 3 of 4 arms (2026-10-19; PRELIMINARY, full arm pending, no verdict until seeds 1-2).** Gains in
+sampled pass rate vs the re-evaluated base (held-out; base EASY/MID/HARD/ALL = 21.6/6.6/4.7/10.1%):
+  router  (3e-4): EASY +1.5  MID +0.6  HARD +0.8  ALL +0.8 | greedy +0.3 | random cubes +2.0 | greedy reaches F2L 12->13%
+  lora    (3e-3): EASY +8.7  MID +10.2 HARD +10.6 ALL +9.8 | greedy +4.2 | random cubes +25.3 | F2L 12->20%
+  experts (1e-4): EASY +42.0 MID +45.0 HARD +44.1 ALL +44.2 | greedy +29.0 | random cubes +67.3 | F2L 12->46%
+Router-only RL changes almost nothing; the parameter-matched LoRA does better, so it is not just "12k parameters is too
+few". Gains are NOT difficulty-dependent (experts +42/+45/+44 across bins). Experts-only RL fixes the F2L loops (greedy
+reaching F2L 12% -> 46%), i.e. it adds competence exactly where the base model was known to lack it.
+Mechanism step failed in all three (out/explore/cfopmeta_cfop250k.npz missing on the ali-moh volume); uploaded and rerun.
