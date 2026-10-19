@@ -1671,3 +1671,7 @@ full 1e-5 0.122 | 3e-5 0.170 ; router 3e-4 0.098 ; lora 1e-2 0.071 (worse; 3e-3 
 stays). Router: 3e-4 (0.098) vs 1e-3 (0.097), effectively tied, 3e-4 picked (higher and smaller); extension already
 used once, so the grid stops. Router-only RL shows NO training-reward gain at any rate on the tuning seed. Full 1e-4 and
 seed-0 bins rerun 2026-10-19 with `modal run --detach` so a dropped session cannot kill them.
+Full arm: 1e-5 0.122 | 3e-5 0.170 | 1e-4 0.263 | 3e-4 (edge extension) 0.043 -> 1e-4. FINAL chosen rates (seed 4,
+rule as pre-registered): router 3e-4, lora 3e-3, experts 1e-4, full 1e-4 (out/rl/chosen_lr.json).
+Seed-0 bins (base, 64 samples): held-out EASY 494 / MID 1308 / HARD 198 (primary HARD set has >= 50, so it is used);
+random cubes EASY 626 / MID 373 / HARD 1 (budget 120 makes random cubes easier under sampling than held-out at 90).
