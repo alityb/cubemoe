@@ -1,0 +1,41 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-VkaxRzieKvNC6PqABSTzkY
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_mech.py cfop_mixtral_6L256_s0 cfop_mixtral_6L256_s0_router_lr0.0003_s0 cfop_mixtral_6L256_s0_lora_lr0.003_s0 cfop_mixtral_6L256_s0_experts_lr0.0001_s0
+cfop_mixtral_6L256_s0_router_lr0.0003_s0
+  L0: routing changed in place   0.7% (decision)   0.2% (all) | by router weights alone   0.2% | expert output change   0.0%
+  L1: routing changed in place   2.7% (decision)   3.6% (all) | by router weights alone   3.5% | expert output change   0.0%
+  L2: routing changed in place   0.2% (decision)   5.5% (all) | by router weights alone   5.3% | expert output change   0.0%
+  L3: routing changed in place   3.7% (decision)   9.4% (all) | by router weights alone   8.4% | expert output change   0.0%
+  L4: routing changed in place   4.9% (decision)  12.5% (all) | by router weights alone  10.5% | expert output change   0.0%
+  L5: routing changed in place   4.8% (decision)  21.9% (all) | by router weights alone  18.7% | expert output change   0.0%
+cfop_mixtral_6L256_s0_lora_lr0.003_s0
+  L0: routing changed in place   2.0% (decision)   0.1% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L1: routing changed in place   6.1% (decision)   1.2% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L2: routing changed in place   0.9% (decision)   3.5% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L3: routing changed in place   7.1% (decision)   6.2% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L4: routing changed in place  12.8% (decision)   9.2% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L5: routing changed in place  10.3% (decision)  14.2% (all) | by router weights alone   0.0% | expert output change   0.0%
+cfop_mixtral_6L256_s0_experts_lr0.0001_s0
+  L0: routing changed in place   0.0% (decision)   0.0% (all) | by router weights alone   0.0% | expert output change   8.1%
+  L1: routing changed in place   3.0% (decision)   1.2% (all) | by router weights alone   0.0% | expert output change   8.8%
+  L2: routing changed in place   0.8% (decision)   3.0% (all) | by router weights alone   0.0% | expert output change  12.2%
+  L3: routing changed in place   4.0% (decision)   5.8% (all) | by router weights alone   0.0% | expert output change  14.4%
+  L4: routing changed in place  13.7% (decision)   8.5% (all) | by router weights alone   0.0% | expert output change  15.3%
+  L5: routing changed in place  11.9% (decision)  12.3% (all) | by router weights alone   0.0% | expert output change  15.0%
+
+[modal-client] 2026-10-19T10:51:16-0400 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-VkaxRzieKvNC6PqABSTzkY

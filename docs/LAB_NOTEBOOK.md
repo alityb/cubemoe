@@ -1685,3 +1685,16 @@ Router-only RL changes almost nothing; the parameter-matched LoRA does better, s
 few". Gains are NOT difficulty-dependent (experts +42/+45/+44 across bins). Experts-only RL fixes the F2L loops (greedy
 reaching F2L 12% -> 46%), i.e. it adds competence exactly where the base model was known to lack it.
 Mechanism step failed in all three (out/explore/cfopmeta_cfop250k.npz missing on the ali-moh volume); uploaded and rerun.
+Full arm (1e-4), seed 0: EASY +43.1 MID +47.2 HARD +45.9 ALL +46.0 | greedy +30.1 | random +69.8.
+rl_report.py seed 0 (preliminary): H1 FALSE (router +1.5 vs 0.7 x 43.1), H2 FALSE (router < lora), H3 TRUE (router
++0.8 <= 0.5 x 45.9 — trivially, since router-only gains nothing anywhere). Experts-only ~= full everywhere.
+Mechanism (out/rl/mech_*_s0.json; top-1 change vs base, last layer, all tokens / decision token; expert-output change):
+  router : routing changes A LOT (L5 21.9% all, 18.7% from router weights alone) but performance does not move.
+  lora   : routing changes in place (L5 14.2%) with routers untouched; experts untouched.
+  experts: routing changes in place despite FROZEN routers (L4 13.7% decision) — frozen router != frozen routing;
+           expert outputs change 8-15%.
+  full   : router weights barely move (<= 3.9% top-1 change from weights alone); in-place routing change up to 15.6%
+           (driven by changed inputs); expert outputs change 6-14%. When everything is trainable, RL puts its change
+           into the experts.
+The full arm's mechanism step first failed (a running Modal container does not see volume files added after it
+started; the metadata file was uploaded mid-run) and was rerun separately.

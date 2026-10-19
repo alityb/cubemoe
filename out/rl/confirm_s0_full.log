@@ -1,0 +1,72 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-wEJkjcfjwQo7gdFpp8xlDa
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/alityb/projects/cubemoe/modal/prod.py:257 in scripts                  │
+│                                                                              │
+│   256 │   calls = [run_script.spawn(j.split()) for j in jobs.split(";") if j │
+│ ❱ 257 │   for j, c in zip(jobs.split(";"), calls): print(f"=== {j.strip()}\n │
+│   258                                                                        │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_object.py:45 in wrapped                                           │
+│                                                                              │
+│    44 │   │   await self.hydrate()                                           │
+│ ❱  45 │   │   return await method(self, *args, **kwargs)                     │
+│    46                                                                        │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_functions.py:2016 in get                                          │
+│                                                                              │
+│   2015 │   │   """                                                           │
+│ ❱ 2016 │   │   return await self._invocation().poll_function(timeout=timeout │
+│   2017                                                                       │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_functions.py:319 in poll_function                                 │
+│                                                                              │
+│    318 │   │   """                                                           │
+│ ❱  319 │   │   response: api_pb2.FunctionGetOutputsResponse = await self.pop │
+│    320 │   │   │   index=index,                                              │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_functions.py:245 in pop_function_call_outputs                     │
+│                                                                              │
+│    244 │   │   │   )                                                         │
+│ ❱  245 │   │   │   response: api_pb2.FunctionGetOutputsResponse = await self │
+│    246 │   │   │   │   request,                                              │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_grpc_client.py:129 in __call__                                    │
+│                                                                              │
+│   128 │   │   │   with grpc_error_converter():                               │
+│ ❱ 129 │   │   │   │   return await _retry_transient_errors(                  │
+│   130 │   │   │   │   │   self,  # type: ignore                              │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/grpc_utils.py:604 in _retry_transient_errors                │
+│                                                                              │
+│   603 │   │   │   with suppress_tb_frame():                                  │
+│ ❱ 604 │   │   │   │   process_exception_before_retry(                        │
+│   605 │   │   │   │   │   exc,                                               │
+│                                                                              │
+│ /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packa │
+│ ges/modal/_utils/grpc_utils.py:450 in process_exception_before_retry         │
+│                                                                              │
+│   449 │   │   │   elif isinstance(exc, asyncio.TimeoutError):                │
+│ ❱ 450 │   │   │   │   raise ConnectionError(str(exc))                        │
+│   451 │   │   │   else:                                                      │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ConnectionError: Deadline exceeded
