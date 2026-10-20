@@ -2,7 +2,7 @@
 
 **Ali Tayeb** · October 2026 · [code, data and checkpoints](https://github.com/alityb/cubemoe)
 
-> **Summary.** I trained small Mixtral-style mixture-of-experts (MoE) transformers to imitate a two-phase Rubik's cube solver, without ever showing them which phase a position belongs to. With beam search, all five models solve 500 out of 500 uniformly random cubes, in solutions about as long as the solver they imitate. In all five, the experts in the final layer that matter divide cleanly by phase: removing a phase-1 expert costs 3–15 points of accuracy on phase-1 positions and at most 1.8 on phase-2 positions, and the reverse holds for phase-2 experts. The same models show that this kind of evidence is easy to get wrong: earlier versions of this project produced convincing routing results from models that could not solve the cube at all. A pre-registered test on OLMoE-1B-7B, a 7B-parameter MoE language model, finds routing patterns consistent with the cube results, but the absolute effects there are small. Models trained the same way on CFOP solutions also solve every random cube tested and demonstrably follow CFOP's stage order, but their experts do not divide by stage: routing tracks which algorithm is being executed, and two pre-registered attempts to explain the difference failed. I read this as evidence that MoE routers can recover a decomposition that is latent in their training data, in a setting where the decomposition is known exactly, and not as evidence about what experts in large language models specialise in.
+> **Summary.** I trained small Mixtral-style mixture-of-experts (MoE) transformers to imitate a two-phase Rubik's cube solver, without ever showing them which phase a position belongs to. With beam search, all five models solve 500 out of 500 uniformly random cubes, in solutions about as long as the solver they imitate. In all five, the experts in the final layer that matter divide cleanly by phase: removing a phase-1 expert costs 3–15 points of accuracy on phase-1 positions and at most 1.8 on phase-2 positions, and the reverse holds for phase-2 experts. The router reads the phase along a single linear direction, and steering its input along that direction moves the model onto phase-2 moves in four of five seeds (a random direction does nothing). The same models show that this kind of evidence is easy to get wrong: earlier versions of this project produced convincing routing results from models that could not solve the cube at all. A pre-registered test on OLMoE-1B-7B, a 7B-parameter MoE language model, finds routing patterns consistent with the cube results, but the absolute effects there are small. Models trained the same way on CFOP solutions also solve every random cube tested and demonstrably follow CFOP's stage order, but their experts do not divide by stage: routing tracks which algorithm is being executed, and two pre-registered attempts to explain the difference failed. I read this as evidence that MoE routers can recover a decomposition that is latent in their training data, in a setting where the decomposition is known exactly, and not as evidence about what experts in large language models specialise in.
 
 ---
 
@@ -22,6 +22,7 @@ the positions solvable with only those moves, and phase 2 finishes inside $G_1$.
 
 - A test bed with exact ground truth for MoE specialisation: cube-solving data with a known two-phase decomposition, released with code and 10 trained checkpoints.
 - Evidence that production-style MoE models which genuinely solve the cube divide their final-layer experts along the phase boundary, replicated across 5 training seeds, with causal (knockout) evidence and controls for the main confounds.
+- A mechanism, in all five seeds: the router reads the phase along one linear direction, the phase-2 expert enforces phase 2's move set, and steering the router along that direction changes the moves.
 - A matched negative: models trained on CFOP solve the cube and follow CFOP's stages, but their experts track which algorithm is running, not the stage. Two pre-registered explanations of the difference failed.
 - A record of how this kind of evidence goes wrong, including a full set of earlier results that came from models that could not solve the cube.
 - A pre-registered test of three routing predictions on OLMoE-1B-7B.
@@ -79,7 +80,7 @@ Every expert whose removal costs more than 2 points is dominated by one phase. T
 
 *Figure 2. Every final-layer expert in all five seeds (40 experts), removed one at a time: drop in the probability of the solver's move on phase-1 positions against the drop on phase-2 positions. Experts that matter sit on one axis or the other; none sits near the diagonal.*
 
-A second causal test, forcing phase-2 positions through the phase-1 expert, does not work in these models. Forcing the phase-1 expert removes 7.5–26% of the probability on legal moves, depending on the seed, but forcing a typical *other* expert removes 4–35%. Forcing any single expert onto the decision token is disruptive on its own, so this test cannot isolate expert identity. I report knockouts instead. The forcing test worked in the earlier, non-solving models (Section 7), and the contrast is a useful warning.
+A second causal test, forcing phase-2 positions through the phase-1 expert, does not work in these models. Forcing the phase-1 expert removes 7.5–26% of the probability on legal moves, depending on the seed, but forcing a typical *other* expert removes 4–35%. Forcing any single expert onto the decision token is disruptive on its own, so this test cannot isolate expert identity. I report knockouts instead. The forcing test worked in the earlier, non-solving models (Section 8), and the contrast is a useful warning.
 
 The phase split is not the only structure. Kociemba's phase 1 is itself two of Thistlethwaite's stages: orient the edges, then orient the corners and gather the middle-layer edges. In the four seeds with more than one phase-1 expert, the phase-1 experts divide along that line. Removing one mainly hurts F and B quarter turns, the only moves that flip edges in this convention; removing the other mainly hurts R and L quarter turns, which twist corners without flipping edges. On a scale from −1 (only corner-twisting moves hurt) to +1 (only edge-flipping moves hurt), the phase-1 experts score −0.16 and +0.30 in seed 0, −0.79 and +0.62 in seed 2, −0.92, +0.24 and +0.32 in seed 3, and −0.93 and +0.39 in seed 4. Seed 1 has a single phase-1 expert (+0.25). This analysis is exploratory, and the split is weak in seed 0.
 
@@ -93,7 +94,34 @@ A common worry is that experts are pattern matchers keyed to surface features of
 
 **The model represents distance to the goal beyond what the stickers state.** A linear readout of the raw stickers recovers several cube properties perfectly: whether the cube is in $G_1$, and how many edges or corners are misoriented (accuracy or $R^2$ 0.99–1.00). These are effectively counts over individual stickers, so finding them inside the model is not evidence of computation. Two properties are not linear in the stickers: the number of moves to reach $G_1$ ($R^2$ 0.85 from raw stickers) and the number of moves to solve ($R^2$ 0.77). Both are read out better from the model's middle layers, peaking at layer 4 in every seed, at 0.94–0.95 and 0.92. Linear probes show the information is present, not that the model uses it.
 
-## 6. A second decomposition: CFOP
+## 6. How the router reads the phase, and what the phase-2 expert does
+
+Sections 4 and 5 show that the final-layer router separates the phases and that the experts it picks matter. This section follows the mechanism from the router's input to the move. Everything here concerns the decision token at the final layer, in all five seeds.
+
+**The router reads one linear direction.** Take the router's input, the normalised residual stream, and compute the difference between its mean on phase-2 and on phase-1 positions. Call this the *phase direction*. A linear probe on the router input classifies the phase with 100% held-out accuracy in every seed. More to the point, the router's own preference between its phase-2 expert and its main phase-1 expert, the difference of their two rows of router weights, points along the phase direction: cosine 0.82–0.86 across seeds, against at most 0.13 for random directions (95th percentile). The phase direction alone explains 85–93% of the variance in the router's phase-2-versus-phase-1 preference across positions. The expert labels differ from seed to seed; the geometry does not.
+
+**What the phase-2 expert writes.** Projecting each expert's output through the final norm and the unembedding (direct logit attribution, with the norm's per-token scale held fixed) shows what it does to the move distribution. On phase-2 positions, the phase-2 expert shifts 4.1–4.7 logits from the eight quarter turns of R, L, F and B onto the ten moves that stay inside $G_1$, and raises the solver's actual move by 5.2–6.6 logits. Phase-1 experts barely shift the move class (0.03–0.25 logits). They raise the solver's specific move by 2.2–3.7 logits on phase-1 positions. So the phase-2 expert does two things at once: it enforces phase 2's restricted move set and it picks within it.
+
+**Steering the router changes the moves.** If the router reads the phase along one direction, adding that direction to the router's input on phase-1 positions should make the model behave as if it were in phase 2. I added the phase direction, scaled in units of the phase-1/phase-2 mean difference, to the decision token's router input. There are two versions: *router-only*, where the experts still see the original input, and *full*, where the experts see the shifted input too.
+
+| phase-1 positions pushed toward phase 2 | seed 0 | seed 1 | seed 2 | seed 3 | seed 4 |
+|---|---|---|---|---|---|
+| probability on $G_1$ moves, unsteered | 45% | 46% | 45% | 45% | 45% |
+| router-only, strength 2 | 85% | 53% | 90% | 90% | 92% |
+| full, strength 1 / 2 | 98 / 100% | 77 / 100% | 98 / 100% | 89 / 100% | 95 / 100% |
+| random direction of the same size, full, strength 2 | 43% | 42% | 46% | 47% | 47% |
+
+Changing only which experts the router picks moves the model's choice onto $G_1$ moves in four of five seeds. The fifth, seed 1, is the exception, and the routing explains why. In that seed the phase-2 expert is already one of the two experts chosen for 89% of phase-1 positions, so steering the router mostly reorders and reweights the experts already chosen rather than bringing in a new one. Full steering works in every seed, and a random direction does nothing in any. The effect runs the other way too. Pushing phase-2 positions toward phase 1 removes the phase-2 expert from the decision token in every seed (98–100% of positions → 0–1%) and drops the $G_1$ mass from 100% to 79–95% with router-only steering. It does not fall to the phase-1 level of 45%, so part of the $G_1$ constraint is carried outside the routed expert.
+
+**Where the phase is computed.** Because the phase is a linear function of the raw stickers (a probe on one-hot stickers is 100% accurate), finding it in the residual stream proves nothing on its own. Two measures are more informative.
+- *Separation.* The distance between the phase-1 and phase-2 means, in units of their spread, peaks right after the first layer (d′ 15–26 after the layer-0 MoE or layer-1 attention) and shrinks to 5–8 at the final router's input. Seed 3 builds it one layer later.
+- *Exact attribution.* The final router's phase-2-versus-phase-1 logit gap is an exact sum of what each attention head and each MoE layer writes to the decision token (reconstruction error about $10^{-6}$). MoE layers write most of it: the layer-4 MoE contributes 24–36% in every seed and the layer-0 MoE 6–26%. All attention heads together write 25–45%, of which the final layer's own attention contributes 5–15%.
+
+Mean-ablating a single layer-0 attention head removes most of the gap (−3% to 40% retained), but it also cuts next-move accuracy to 23–45%. That is the first point where stickers exchange information, and everything downstream depends on it, so this says little about the phase in particular. Ablating attention in any one of layers 1–4 *increases* the gap (110–127%), except layer 1 in seed 3 (53%). The phase is computed early, then carried forward and rewritten into the router's direction mostly by MoE layers.
+
+These analyses were exploratory. They were developed on seed 0 and then run unchanged on seeds 1–4 (Section 11). Section 7 shows that this clean picture is not what happens in CFOP.
+
+## 7. A second decomposition: CFOP
 
 CFOP, the method most human speedcubers use, solves the cube in four stages: a cross of four edges on the bottom face, the first two layers (F2L, four corner–edge pairs), orienting the last layer (OLL) and permuting it (PLL). I trained five models exactly as in Section 2, on 250,000 CFOP solves (15.3M positions, 61.2 moves on average). The only difference is the augmentation: four rotations that keep the cross face on the bottom.
 
@@ -135,11 +163,11 @@ That choice comes from the model, not the search. At the first move of an other-
 
 What decides whether routing recovers a decomposition remains open. One lesson came after the fact. Both tests held distance-to-solved fixed, a quantity the model never sees, and under that conditioning phase looks nearly irrelevant to the output. Yet removing the phase-2 expert, or steering the router, shows it causally constrains the moves. Label statistics measured under a confound control can misstate what a model uses.
 
-## 7. How this goes wrong
+## 8. How this goes wrong
 
 This project produced several results that looked right and were not. Each is a mistake other MoE interpretability work can make.
 
-**Interpreting a model that cannot do the task.** For most of the project I studied models that read the starting cube plus the moves made so far. Their next-move accuracy looked reasonable, and their routing showed a clean phase split that passed pre-registered tests. They could not solve a single random cube. One move from solved, where the correct move is fully determined, they picked it 20% of the time. They had learned statistics of the solver's move sequences, not the cube. I found this only when I checked whether the models solve. Every routing result in Sections 4–5 comes from the later models that do.
+**Interpreting a model that cannot do the task.** For most of the project I studied models that read the starting cube plus the moves made so far. Their next-move accuracy looked reasonable, and their routing showed a clean phase split that passed pre-registered tests. They could not solve a single random cube. One move from solved, where the correct move is fully determined, they picked it 20% of the time. They had learned statistics of the solver's move sequences, not the cube. I found this only when I checked whether the models solve. Every routing result in Sections 4–6 comes from the later models that do.
 
 **Position.** In sequence models, the phase is correlated with how far into the solve a token is. In those early models, a fake router that read only the step index scored inside the real router's range on the standard alignment metric. Every routing number there had to be measured among tokens at the same step.
 
@@ -151,7 +179,7 @@ This project produced several results that looked right and were not. Each is a 
 
 **An off-by-one.** For several weeks my analysis read each move's routing one position late. This could only hide alignment, never create it. Fixing it made the scale-replication alignment 31% stronger and changed no conclusions.
 
-## 8. Does this transfer to a language model?
+## 9. Does this transfer to a language model?
 
 The cube results suggest a simple account: routers follow the current token by default, and experts that matter appear where predicting the next output requires information the current token does not carry. I tested three consequences on OLMoE-1B-7B ([Muennighoff et al., 2024](https://arxiv.org/abs/2409.02060)), the model studied by Engmann et al. The predictions and pass rules were hashed and committed before the model was loaded. I split tokens into *needs-context* tokens, which the model predicts well with full context but not from the last two tokens alone (8,361 tokens), and *local* tokens, which the last two tokens already predict (1,084).
 
@@ -161,9 +189,9 @@ The cube results suggest a simple account: routers follow the current token by d
 
 The absolute effects are small. Removing one of OLMoE's 64 experts changes the correct token's log-probability by 0.001–0.004 nats on average, because 8 experts are active per token and they substitute for each other. The result concerns where experts matter relative to a matched control, not that any one expert is essential.
 
-## 9. Related work
+## 10. Related work
 
-**Routers and latent structure.** [Dikkala et al. (2023)](https://aclanthology.org/2023.emnlp-main.583/) show that routers recover latent cluster structure in synthetic mixture data. [Nandakumar et al. (2026)](https://arxiv.org/abs/2606.14398) find that on synthetic knowledge tasks, training with the standard losses gives diffuse routing, and clear task–expert alignment appears only with an explicit task-routing loss. Here the phase alignment appears with only the standard load-balancing and z-losses. The difference may come from how sharply phase changes the output (phase-2 solutions use 10 of 18 moves), but I have not tested that.
+**Routers and latent structure.** [Dikkala et al. (2023)](https://aclanthology.org/2023.emnlp-main.583/) show that routers recover latent cluster structure in synthetic mixture data. [Nandakumar et al. (2026)](https://arxiv.org/abs/2606.14398) find that on synthetic knowledge tasks, training with the standard losses gives diffuse routing, and clear task–expert alignment appears only with an explicit task-routing loss. Here the phase alignment appears with only the standard load-balancing and z-losses. An obvious explanation is that phase changes the output sharply (phase-2 solutions use 10 of 18 moves), but the two pre-registered tests of explanations of this kind failed (Section 7).
 
 **Expert specialisation in language models.** [Bershatsky & Oseledets (2025)](https://arxiv.org/abs/2504.04444) show that routers use token position. [Engmann et al. (2026)](https://arxiv.org/abs/2606.10703) find that observational routing statistics do not predict which experts matter when removed. [Salomone et al. (2026)](https://arxiv.org/abs/2606.25092) find that apparent modularity in a 218B MoE mostly dissolves under pre-registered causal tests, and their one surviving module (Arabic) concerns the output vocabulary. The cube setting complements these: it can say what the experts should specialise in, at the cost of being a small, synthetic task.
 
@@ -171,19 +199,19 @@ The absolute effects are small. Removing one of OLMoE's 64 experts changes the c
 
 **Algorithmic interpretability.** Probing for an internal world state follows [Othello-GPT (Li et al., 2023)](https://arxiv.org/abs/2210.13382). Thistlethwaite's four-stage algorithm, whose first two stages make up Kociemba's phase 1, gives a second known decomposition to check against.
 
-## 10. Limitations
+## 11. Limitations
 
 - **One task family, small models.** Six layers, width 256, 8 experts. Whether anything here holds in large models is untested apart from the OLMoE predictions, where the effects are small.
 - **Mixtral-style routing only.** I also implemented an OLMoE-style configuration (64 experts, 8 active), but on the available hardware it trained about 6× slower, so the cube models use 8 experts with 2 active.
 - **The models need search.** Without beam search they solve about 5% of random cubes.
 - **The decomposition is in the data by construction.** The models imitate a two-phase solver, so the phase structure is present in the training distribution. The claim is that routers recover it, not that they discover algorithms.
-- **The analyses in Sections 4–5 were not pre-registered.** The knockout analysis was written after looking at seed 0 and frozen before seeds 1–4 finished training, then run on them unchanged. The OLMoE test in Section 8 was pre-registered.
+- **The analyses in Sections 4–6 were not pre-registered.** The knockout analysis was written after looking at seed 0 and frozen before seeds 1–4 finished training, then run on them unchanged. The OLMoE test in Section 9 was pre-registered.
 - **Knockouts test necessity at one layer.** Middle-layer experts are largely redundant: removing any one costs at most a few points.
 - **Probes are linear.** They show information is linearly present, not used.
 - **The CFOP data is a simplified CFOP.** The generator's cross is a 4–8-move disturbance, not a real cross solve; its last layer uses 7 algorithms with no turn after an algorithm; and its scrambles come from its own case tables. The models do solve uniformly random cubes, but the comparison with human CFOP is loose.
 - **CFOP stage and Kociemba phase differ in more than one way** (number of stages, how sharply they constrain the moves, how long they last). Two pre-registered explanations of the routing difference failed, and with two solvers I cannot isolate the cause.
 
-## 11. Conclusion
+## 12. Conclusion
 
 In a setting where the right answer is known, a production-style MoE that genuinely solves the cube divides its final-layer experts along the phase boundary of the algorithm it learned from, and the division is causally used. The result replicates across five seeds. It is not automatic: models trained the same way on CFOP follow its stages without their experts dividing along them, and I could not explain the difference with either of two pre-registered tests. It also took several wrong turns to establish, and the most important control was the simplest: checking that the model can do the task before interpreting how it does it.
 
@@ -193,7 +221,7 @@ Code, data generators, checkpoints, pre-registration files and every result file
 
 ### Appendix A. Earlier models
 
-Before the models in this post, I studied sequence models: decoder-only MoE transformers that read the starting cube followed by the moves made so far and predict the next move. Their results were pre-registered (`prereg/`) and passed, but **these models could not solve the cube**. They solved 0% of random scrambles, and one move from solved they picked the correct move 20% of the time (Section 7). I report them because the pre-registered tests passed anyway, which is the warning.
+Before the models in this post, I studied sequence models: decoder-only MoE transformers that read the starting cube followed by the moves made so far and predict the next move. Their results were pre-registered (`prereg/`) and passed, but **these models could not solve the cube**. They solved 0% of random scrambles, and one move from solved they picked the correct move 20% of the time (Section 8). I report them because the pre-registered tests passed anyway, which is the warning.
 
 | programme | models | verdict |
 |---|---|---|
