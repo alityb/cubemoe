@@ -1,0 +1,23 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-RfsIRjmaK1FFmyGhvOXl5n
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_swap.py cfop_mixtral_6L256_s0 cfop_mixtral_6L256_s0_full_lr0.0001_s0 cfop_mixtral_6L256_s0_experts_lr0.0001_s0
+cfop_mixtral_6L256_s0_full_lr0.0001_s0: base 10.1% RL 56.1% | OPEN 13.4% (R=0.07, RL plays 6% of moves) | RAND 12.4% (R=0.05) | REV 48.2% (R=0.83)
+   C1 (R_open >= 0.5 and R_open - R_rand >= 0.2): False | C2 (R_rev >= 0.5): True
+cfop_mixtral_6L256_s0_experts_lr0.0001_s0: base 10.1% RL 54.3% | OPEN 13.2% (R=0.07, RL plays 6% of moves) | RAND 12.3% (R=0.05) | REV 46.4% (R=0.82)
+   C1 (R_open >= 0.5 and R_open - R_rand >= 0.2): False | C2 (R_rev >= 0.5): True
+
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-RfsIRjmaK1FFmyGhvOXl5n

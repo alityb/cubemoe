@@ -1713,3 +1713,9 @@ moves therefore concentrate where the base model fails, which inflates R(RAND). 
 leg conservative; it does not invalidate the test.
 For the 2-gen test (#9, not yet written): include one restricted stage whose allowed moves are the SAME under every
 training rotation and one whose allowed moves CHANGE with rotation, so rotation invariance is tested directly.
+Seed 0 results (out/rl/swap_*_s0.json; PRELIMINARY, 1 of 3 seeds), pass rate over all 2,000 held-out scrambles:
+  full    : base 10.1%, RL 56.1% | OPEN 13.4% (R=0.07; RL plays 5.6% of moves) | RAND 12.4% (R=0.05) | REV 48.2% (R=0.83)
+  experts : base 10.1%, RL 54.3% | OPEN 13.2% (R=0.07) | RAND 12.3% (R=0.05) | REV 46.4% (R=0.82)
+  Same pattern in every bin (OPEN 0.06-0.09, REV 0.81-0.85). C1 FAILS (on its first leg, 0.07 < 0.5, so the
+  conservative RAND asymmetry is irrelevant here; RAND's realised RL share matched OPEN at 5.6%), C2 HOLDS.
+  -> by the rules above: "execution" — RL changed how segments are carried out, not how they start.
