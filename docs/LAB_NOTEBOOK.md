@@ -1698,3 +1698,18 @@ Mechanism (out/rl/mech_*_s0.json; top-1 change vs base, last layer, all tokens /
            into the experts.
 The full arm's mechanism step first failed (a running Modal container does not see volume files added after it
 started; the metadata file was uploaded mid-run) and was rerun separately.
+
+## 37. OPENING SWAP (#8): READING RULES, WRITTEN BEFORE RESULTS (2026-10-29)
+
+Non-binding interpretation of each outcome combination for prereg/PREREG_OPENING_SWAP.md, fixed before the seed-0 swap
+results were seen:
+- C1 holds, C2 fails -> cue-like: the gain lives in the segment openings.
+- C1 fails, C2 holds -> execution: RL changed how segments are carried out (my stated expectation).
+- both hold -> RL openings and RL execution are each sufficient on their own (redundant fixes).
+- both fail -> the gain needs RL at both the openings and the execution; neither alone carries it.
+Known asymmetry, to be stated with the results: RAND hands each step to the RL model with probability q, so long
+(looping, failing) episodes receive MORE RL moves, while OPEN gives them FEWER (progress stalls in a loop). RAND's RL
+moves therefore concentrate where the base model fails, which inflates R(RAND). This makes C1's "beats random by 0.2"
+leg conservative; it does not invalidate the test.
+For the 2-gen test (#9, not yet written): include one restricted stage whose allowed moves are the SAME under every
+training rotation and one whose allowed moves CHANGE with rotation, so rotation invariance is tested directly.
