@@ -8,7 +8,14 @@ exact decomposition. The model is never given stage labels.
 
 The question is whether the experts divide the work along that decomposition.
 
-## Where things stand (2026-10-16)
+**TL;DR.** In cube solvers that genuinely solve the cube, the final-layer experts split cleanly along Kociemba's
+phase boundary in 5/5 seeds: each expert that matters hurts one phase only (figure below). The router finds the phase
+along a single linear direction, and steering that direction changes the moves. The same setup trained on CFOP does
+*not* split by stage, even though the model follows CFOP's stages; why is still open.
+
+![Removing one final-layer expert: every expert that matters hurts phase 1 or phase 2, not both](blog/figures/prod_fig2_knockout.png)
+
+## Where things stand (2026-10-29)
 
 The models are production-style MoE transformers (`src/model_prod.py`): Mixtral-style, 8 experts with top-2 routing,
 6 layers, d=256, RMSNorm, RoPE, QK-norm and SwiGLU experts. Each one reads the 54 stickers of the current cube and
@@ -24,7 +31,12 @@ predicts the next move. There are 5 seeds per solver.
 **Open question:** why does routing recover one decomposition and not the other? Two pre-registered explanations
 both failed: "routing follows what changes the output" and "routing follows the plan" (`prereg/README.md`).
 
-**Write-up:** `blog/phasesplit.md` (draft, in progress).
+**RL follow-up (preliminary, 1 of 3 pre-registered seeds):** when GRPO improves the CFOP policy, training only the
+routers changes routing (up to 22% of tokens switch expert) but not solving (+0.8 points); training only the experts
+gives +44, about as much as training everything. Seeds 1–2 run in November. `blog/rl_routing.md`,
+`prereg/PREREG_RL_ROUTING.md`.
+
+**Write-ups:** `blog/phasesplit.md` (cube paper, draft) and `blog/rl_routing.md` (RL study, draft).
 
 ## Repository layout
 
