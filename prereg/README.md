@@ -19,5 +19,6 @@ are identical, so hashes quoted elsewhere still verify). Details of each run are
 | 5 | `PREREG_ROUTING_VS_ACTION.md` | 2026-10-16 (`d3a003b`) | Production models: does routing follow what changes the output? | **Failed** (rho 0.18) |
 | 6 | `PREREG_ROUTING_VS_PLAN.md` | 2026-10-16 (`bc95fd7`) | Does routing follow the plan (future moves)? | **Failed** on both criteria |
 | 7 | `PREREG_RL_ROUTING.md` | 2026-10-18 | When RL improves an MoE policy, is the gain routing or expert computation? | Pending (seed 0 Oct; seeds 1–2 after Nov 1) |
+| 8 | `PREREG_OPENING_SWAP.md` | 2026-10-29 | Is the RL gain in the segment openings (cue-style swap)? | Pending |
 
 "Rejected" / "failed" means the pre-registered criterion was not met. It does not mean the effect was shown to be absent.
