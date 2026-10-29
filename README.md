@@ -33,10 +33,8 @@ both failed: "routing follows what changes the output" and "routing follows the 
 
 **RL follow-up (preliminary, 1 of 3 pre-registered seeds):** when GRPO improves the CFOP policy, training only the
 routers changes routing (up to 22% of tokens switch expert) but not solving (+0.8 points); training only the experts
-gives +44, about as much as training everything. Seeds 1–2 run in November. `blog/rl_routing.md`,
-`prereg/PREREG_RL_ROUTING.md`.
+gives +44, about as much as training everything. Seeds 1–2 run in November. `prereg/PREREG_RL_ROUTING.md`.
 
-**Write-ups:** `blog/phasesplit.md` (cube paper, draft) and `blog/rl_routing.md` (RL study, draft).
 
 ## Repository layout
 
@@ -50,7 +48,7 @@ gives +44, about as much as training everything. Seeds 1–2 run in November. `b
 | `docs/LAB_NOTEBOOK.md` | The full chronological record, including corrections and dead ends (§30–35 cover the latest work) |
 | `docs/ARTIFACTS.md` | Every gitignored checkpoint and dataset, with sha256, origin and how to regenerate it |
 | `out/` | Results (JSON) and logs. Checkpoints (`*.pt`) and datasets (`*.npz`) are gitignored |
-| `blog/` | The write-up and its figures. `blog/archive/` holds the superseded first draft |
+| `blog/` | Figures and the scripts that make them |
 
 ## Reproducing
 

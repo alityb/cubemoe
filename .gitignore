@@ -3,3 +3,7 @@
 *.npz
 __pycache__/
 *.pyc
+
+# write-ups are kept local only
+blog/*.md
+blog/archive/
