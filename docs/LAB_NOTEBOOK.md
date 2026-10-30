@@ -1650,7 +1650,7 @@ logits on non-G1 moves). Label-level MI given a confound-control variable can mi
 
 ## 36. RL ROUTING STUDY: PILOT AND LEARNING-RATE SWEEP (2026-10-18)
 
-Pre-registered in `prereg/PREREG_RL_ROUTING.md` (commit `f778327`, before any RL run). Question: when RL improves an
+Pre-registered in `prereg/PREREG_RL_ROUTING.md` (commit `4e3fd6c`, before any RL run). Question: when RL improves an
 MoE policy, is the gain routing (router-only) or expert computation (experts-only)? Arms: router (12,288 params),
 lora (rank-4 on attention output, 12,288, matched control), experts (33.0M), full (34.6M). CFOP models; seed 4 tunes,
 seeds 0-2 confirm (seed 0 in Oct, seeds 1-2 after Nov 1 for budget). Runs on Modal ali-moh-islam-1 via

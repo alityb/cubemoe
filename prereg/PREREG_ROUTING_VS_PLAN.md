@@ -1,6 +1,6 @@
 # PRE-REGISTRATION — does routing follow the plan (future moves)?
 
-Registered in commit `bc95fd7` (the test was committed before it was run); result in commit `bf2f652`.
+Registered in commit `3efba85` (the test was committed before it was run); result in commit `18fb1e9`.
 **Verdict: FAILED on both criteria.** Copied verbatim from the lab notebook (docs/LAB_NOTEBOOK.md), where it was first written.
 
 **PRE-REGISTERED (2026-10-16 ~23:25, before running src/routing_vs_plan.py): "routing follows the plan"**

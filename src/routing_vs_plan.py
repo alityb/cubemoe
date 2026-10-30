@@ -1,4 +1,4 @@
-"""Pre-registered test (prereg/PREREG_ROUTING_VS_PLAN.md, commit bc95fd7): does routing follow the plan (future moves), not just the next move?
+"""Pre-registered test (prereg/PREREG_ROUTING_VS_PLAN.md, commit 3efba85): does routing follow the plan (future moves), not just the next move?
 Labels only; y (routing share) from out/prod/routing_vs_action.json.
 Usage: python src/routing_vs_plan.py -> out/prod/routing_vs_plan.json"""
 import sys, json, numpy as np

@@ -1,6 +1,6 @@
 # PRE-REGISTRATION — does routing follow what changes the output?
 
-Registered in commit `d3a003b` (the test was committed before it was run); result in commit `b3a3d37`.
+Registered in commit `62522ed` (the test was committed before it was run); result in commit `713b65f`.
 **Verdict: FAILED (rho 0.18; phase not above stage).** Copied verbatim from the lab notebook (docs/LAB_NOTEBOOK.md), where it was first written.
 
 **PRE-REGISTERED (2026-10-16 ~23:00, before running src/routing_vs_action.py): "routing follows what changes the output"**
