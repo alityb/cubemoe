@@ -18,8 +18,8 @@ are identical, so hashes quoted elsewhere still verify). Details of each run are
 | 4 | `PREREG_LLM.md` | 2026-09-28 | Does the cube principle show up in OLMoE-1B-7B? | A 8/8, B 3/4, C 3/4 (small effects) |
 | 5 | `PREREG_ROUTING_VS_ACTION.md` | 2026-10-16 (`62522ed`) | Production models: does routing follow what changes the output? | **Failed** (rho 0.18) |
 | 6 | `PREREG_ROUTING_VS_PLAN.md` | 2026-10-16 (`3efba85`) | Does routing follow the plan (future moves)? | **Failed** on both criteria |
-| 7 | `PREREG_RL_ROUTING.md` | 2026-10-18 | When RL improves an MoE policy, is the gain routing or expert computation? | Pending (seed 0 Oct; seeds 1–2 after Nov 1) |
-| 8 | `PREREG_OPENING_SWAP.md` | 2026-10-29 | Is the RL gain in the segment openings (cue-style swap)? | Pending (seed 0: C1 fails, C2 holds) |
+| 7 | `PREREG_RL_ROUTING.md` | 2026-10-18 | When RL improves an MoE policy, is the gain routing or expert computation? | **Not supported**: H1 0/3, H2 0/3 (H3 3/3, trivially) |
+| 8 | `PREREG_OPENING_SWAP.md` | 2026-10-29 | Is the RL gain in the segment openings (cue-style swap)? | C1 (cue-like) **not supported** 0/3; C2 **supported** 3/3 |
 
 "Rejected" / "failed" means the pre-registered criterion was not met. It does not mean the effect was shown to be absent.
 

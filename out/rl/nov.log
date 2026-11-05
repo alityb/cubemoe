@@ -1,0 +1,423 @@
+[11-04 22:59] stage bins
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-YUfhhGn86ny2BRD4QqAOtv
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_eval.py bins cfop_mixtral_6L256_s1
+cfop_mixtral_6L256_s1 held: base pass rate 10.3% | bins {'EASY': 508, 'MID': 1281, 'HARD': 211}
+cfop_mixtral_6L256_s1 random: base pass rate 14.4% | bins {'EASY': 684, 'MID': 316, 'HARD': 0}
+
+=== rl_eval.py bins cfop_mixtral_6L256_s2
+cfop_mixtral_6L256_s2 held: base pass rate 10.1% | bins {'EASY': 497, 'MID': 1239, 'HARD': 264}
+cfop_mixtral_6L256_s2 random: base pass rate 12.4% | bins {'EASY': 518, 'MID': 477, 'HARD': 5}
+
+[modal-client] 2026-11-04T23:20:29-0500 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-YUfhhGn86ny2BRD4QqAOtv
+[11-04 23:20] stage bins done
+[11-04 23:20] stage train_eval
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-fa3m95pn5hteQxd2BHvokd
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_eval.py eval cfop_mixtral_6L256_s1 base
+base held: EASY n=508 sampled 21.9% greedy 29.5% | MID n=1281 sampled 6.7% greedy 2.3% | HARD n=211 sampled 4.7% greedy 0.5% | ALL n=2000 sampled 10.4% greedy 9.0%
+base random: EASY n=684 sampled 14.8% greedy 2.5% | MID n=316 sampled 13.4% greedy 0.3% | HARD n=0 sampled nan% greedy nan% | ALL n=1000 sampled 14.3% greedy 1.8%
+
+=== rl_confirm.py cfop_mixtral_6L256_s1 router 3e-4 0
+cfop_mixtral_6L256_s1_router_lr0.0003_s0: 12288 trainable params | start {'greedy': 0.078125, 'sampled': 0.0986328125}
+  [10] reward 0.123 mixed 0.53 53s
+  [20] reward 0.086 mixed 0.47 108s
+  [30] reward 0.105 mixed 0.52 163s
+  [40] reward 0.123 mixed 0.55 216s
+  [50] reward 0.084 mixed 0.53 271s eval {'greedy': 0.0859375, 'sampled': 0.099609375}
+  [60] reward 0.084 mixed 0.48 332s
+  [70] reward 0.102 mixed 0.42 385s
+  [80] reward 0.109 mixed 0.47 437s
+  [90] reward 0.080 mixed 0.47 493s
+  [100] reward 0.113 mixed 0.48 547s eval {'greedy': 0.08984375, 'sampled': 0.1171875}
+  [110] reward 0.094 mixed 0.39 608s
+  [120] reward 0.148 mixed 0.59 663s
+  [130] reward 0.135 mixed 0.55 717s
+  [140] reward 0.121 mixed 0.58 771s
+  [150] reward 0.143 mixed 0.56 831s eval {'greedy': 0.09375, 'sampled': 0.0908203125}
+  [160] reward 0.111 mixed 0.52 894s
+  [170] reward 0.105 mixed 0.52 950s
+  [180] reward 0.135 mixed 0.67 1006s
+  [190] reward 0.129 mixed 0.59 1063s
+  [200] reward 0.127 mixed 0.56 1118s eval {'greedy': 0.078125, 'sampled': 0.099609375}
+  [210] reward 0.104 mixed 0.48 1179s
+  [220] reward 0.119 mixed 0.55 1236s
+  [230] reward 0.113 mixed 0.56 1292s
+  [240] reward 0.121 mixed 0.55 1348s
+  [250] reward 0.113 mixed 0.55 1408s eval {'greedy': 0.09375, 'sampled': 0.123046875}
+  [260] reward 0.104 mixed 0.48 1469s
+  [270] reward 0.119 mixed 0.55 1527s
+  [280] reward 0.133 mixed 0.55 1582s
+  [290] reward 0.119 mixed 0.56 1638s
+  [300] reward 0.102 mixed 0.48 1692s eval {'greedy': 0.10546875, 'sampled': 0.0908203125}
+cfop_mixtral_6L256_s1_router_lr0.0003_s0 held: EASY n=508 sampled 22.7% greedy 33.5% | MID n=1281 sampled 7.7% greedy 3.4% | HARD n=211 sampled 5.4% greedy 0.5% | ALL n=2000 sampled 11.3% greedy 10.7%
+cfop_mixtral_6L256_s1_router_lr0.0003_s0 random: EASY n=684 sampled 16.6% greedy 3.9% | MID n=316 sampled 16.1% greedy 1.9% | HARD n=0 sampled nan% greedy nan% | ALL n=1000 sampled 16.4% greedy 3.3%
+cfop_mixtral_6L256_s1_router_lr0.0003_s0
+  L0: routing changed in place   3.3% (decision)   0.1% (all) | by router weights alone   0.1% | expert output change   0.0%
+  L1: routing changed in place   0.2% (decision)   0.9% (all) | by router weights alone   0.7% | expert output change   0.0%
+  L2: routing changed in place   1.0% (decision)  10.3% (all) | by router weights alone  10.1% | expert output change   0.0%
+  L3: routing changed in place   1.6% (decision)  13.4% (all) | by router weights alone  13.1% | expert output change   0.0%
+  L4: routing changed in place   4.8% (decision)  29.3% (all) | by router weights alone  30.2% | expert output change   0.0%
+  L5: routing changed in place   3.8% (decision)  31.6% (all) | by router weights alone  27.5% | expert output change   0.0%
+
+=== rl_confirm.py cfop_mixtral_6L256_s1 lora 3e-3 0
+cfop_mixtral_6L256_s1_lora_lr0.003_s0: 12288 trainable params | start {'greedy': 0.078125, 'sampled': 0.0986328125}
+  [10] reward 0.143 mixed 0.59 55s
+  [20] reward 0.098 mixed 0.53 113s
+  [30] reward 0.088 mixed 0.45 170s
+  [40] reward 0.117 mixed 0.42 231s
+  [50] reward 0.086 mixed 0.48 292s eval {'greedy': 0.10546875, 'sampled': 0.1259765625}
+  [60] reward 0.125 mixed 0.61 364s
+  [70] reward 0.105 mixed 0.50 427s
+  [80] reward 0.121 mixed 0.56 490s
+  [90] reward 0.123 mixed 0.61 555s
+  [100] reward 0.154 mixed 0.67 624s eval {'greedy': 0.109375, 'sampled': 0.1669921875}
+  [110] reward 0.166 mixed 0.67 698s
+  [120] reward 0.205 mixed 0.75 768s
+  [130] reward 0.180 mixed 0.73 841s
+  [140] reward 0.172 mixed 0.69 913s
+  [150] reward 0.193 mixed 0.73 988s eval {'greedy': 0.12109375, 'sampled': 0.16796875}
+  [160] reward 0.188 mixed 0.80 1069s
+  [170] reward 0.180 mixed 0.80 1146s
+  [180] reward 0.195 mixed 0.78 1223s
+  [190] reward 0.201 mixed 0.80 1301s
+  [200] reward 0.184 mixed 0.75 1378s eval {'greedy': 0.17578125, 'sampled': 0.21484375}
+  [210] reward 0.170 mixed 0.77 1463s
+  [220] reward 0.195 mixed 0.78 1543s
+  [230] reward 0.211 mixed 0.77 1622s
+  [240] reward 0.186 mixed 0.80 1701s
+  [250] reward 0.225 mixed 0.80 1779s eval {'greedy': 0.15625, 'sampled': 0.208984375}
+  [260] reward 0.205 mixed 0.81 1868s
+  [270] reward 0.219 mixed 0.86 1950s
+  [280] reward 0.244 mixed 0.81 2031s
+  [290] reward 0.223 mixed 0.81 2114s
+  [300] reward 0.180 mixed 0.77 2191s eval {'greedy': 0.1171875, 'sampled': 0.205078125}
+cfop_mixtral_6L256_s1_lora_lr0.003_s0 held: EASY n=508 sampled 30.4% greedy 30.7% | MID n=1281 sampled 18.1% greedy 8.6% | HARD n=211 sampled 15.7% greedy 7.6% | ALL n=2000 sampled 21.0% greedy 14.1%
+cfop_mixtral_6L256_s1_lora_lr0.003_s0 random: EASY n=684 sampled 41.3% greedy 7.2% | MID n=316 sampled 39.8% greedy 7.6% | HARD n=0 sampled nan% greedy nan% | ALL n=1000 sampled 40.8% greedy 7.3%
+cfop_mixtral_6L256_s1_lora_lr0.003_s0
+  L0: routing changed in place   2.4% (decision)   0.0% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L1: routing changed in place   0.7% (decision)   0.6% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L2: routing changed in place   2.5% (decision)   4.0% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L3: routing changed in place   3.6% (decision)   5.4% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L4: routing changed in place   7.2% (decision)   7.1% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L5: routing changed in place  13.9% (decision)  22.4% (all) | by router weights alone   0.0% | expert output change   0.0%
+
+=== rl_confirm.py cfop_mixtral_6L256_s1 experts 1e-4 0
+cfop_mixtral_6L256_s1_experts_lr0.0001_s0: 33030144 trainable params | start {'greedy': 0.078125, 'sampled': 0.0986328125}
+  [10] reward 0.143 mixed 0.67 60s
+  [20] reward 0.102 mixed 0.47 120s
+  [30] reward 0.133 mixed 0.67 185s
+  [40] reward 0.162 mixed 0.67 254s
+  [50] reward 0.166 mixed 0.80 325s eval {'greedy': 0.14453125, 'sampled': 0.16015625}
+  [60] reward 0.168 mixed 0.77 405s
+  [70] reward 0.215 mixed 0.73 483s
+  [80] reward 0.242 mixed 0.80 562s
+  [90] reward 0.260 mixed 0.84 644s
+  [100] reward 0.291 mixed 0.89 729s eval {'greedy': 0.21875, 'sampled': 0.2734375}
+  [110] reward 0.229 mixed 0.84 821s
+  [120] reward 0.318 mixed 0.94 909s
+  [130] reward 0.340 mixed 0.94 996s
+  [140] reward 0.350 mixed 0.89 1081s
+  [150] reward 0.396 mixed 0.98 1171s eval {'greedy': 0.25, 'sampled': 0.3310546875}
+  [160] reward 0.375 mixed 0.95 1266s
+  [170] reward 0.350 mixed 0.88 1355s
+  [180] reward 0.418 mixed 1.00 1446s
+  [190] reward 0.457 mixed 0.97 1536s
+  [200] reward 0.389 mixed 0.94 1627s eval {'greedy': 0.3828125, 'sampled': 0.39453125}
+  [210] reward 0.424 mixed 0.97 1724s
+  [220] reward 0.453 mixed 0.98 1814s
+  [230] reward 0.473 mixed 1.00 1905s
+  [240] reward 0.445 mixed 0.98 1997s
+  [250] reward 0.504 mixed 1.00 2088s eval {'greedy': 0.40234375, 'sampled': 0.4931640625}
+  [260] reward 0.514 mixed 1.00 2184s
+  [270] reward 0.512 mixed 1.00 2275s
+  [280] reward 0.572 mixed 0.95 2363s
+  [290] reward 0.570 mixed 0.95 2452s
+  [300] reward 0.539 mixed 0.94 2541s eval {'greedy': 0.48046875, 'sampled': 0.560546875}
+cfop_mixtral_6L256_s1_experts_lr0.0001_s0 held: EASY n=508 sampled 66.1% greedy 59.4% | MID n=1281 sampled 53.5% greedy 42.5% | HARD n=211 sampled 49.2% greedy 36.5% | ALL n=2000 sampled 56.2% greedy 46.2%
+cfop_mixtral_6L256_s1_experts_lr0.0001_s0 random: EASY n=684 sampled 83.1% greedy 43.0% | MID n=316 sampled 81.1% greedy 38.3% | HARD n=0 sampled nan% greedy nan% | ALL n=1000 sampled 82.5% greedy 41.5%
+cfop_mixtral_6L256_s1_experts_lr0.0001_s0
+  L0: routing changed in place   0.0% (decision)   0.0% (all) | by router weights alone   0.0% | expert output change   8.5%
+  L1: routing changed in place   0.5% (decision)   0.4% (all) | by router weights alone   0.0% | expert output change   6.4%
+  L2: routing changed in place   2.4% (decision)   4.2% (all) | by router weights alone   0.0% | expert output change   9.9%
+  L3: routing changed in place   3.1% (decision)   5.8% (all) | by router weights alone   0.0% | expert output change  12.0%
+  L4: routing changed in place   9.4% (decision)   7.6% (all) | by router weights alone   0.0% | expert output change  17.6%
+  L5: routing changed in place   8.4% (decision)  15.1% (all) | by router weights alone   0.0% | expert output change  10.2%
+
+=== rl_confirm.py cfop_mixtral_6L256_s1 full 1e-4 0
+cfop_mixtral_6L256_s1_full_lr0.0001_s0: 34628096 trainable params | start {'greedy': 0.078125, 'sampled': 0.0986328125}
+  [10] reward 0.109 mixed 0.61 65s
+  [20] reward 0.092 mixed 0.56 126s
+  [30] reward 0.135 mixed 0.56 198s
+  [40] reward 0.139 mixed 0.64 271s
+  [50] reward 0.135 mixed 0.73 349s eval {'greedy': 0.109375, 'sampled': 0.1669921875}
+  [60] reward 0.164 mixed 0.69 439s
+  [70] reward 0.209 mixed 0.77 526s
+  [80] reward 0.246 mixed 0.78 617s
+  [90] reward 0.291 mixed 0.95 714s
+  [100] reward 0.291 mixed 0.88 813s eval {'greedy': 0.1640625, 'sampled': 0.2861328125}
+  [110] reward 0.256 mixed 0.88 917s
+  [120] reward 0.361 mixed 0.94 1017s
+  [130] reward 0.328 mixed 0.92 1118s
+  [140] reward 0.391 mixed 0.94 1218s
+  [150] reward 0.416 mixed 0.95 1319s eval {'greedy': 0.21875, 'sampled': 0.36328125}
+  [160] reward 0.465 mixed 0.98 1429s
+  [170] reward 0.424 mixed 0.95 1532s
+  [180] reward 0.473 mixed 1.00 1635s
+  [190] reward 0.488 mixed 0.97 1738s
+  [200] reward 0.516 mixed 0.98 1841s eval {'greedy': 0.35546875, 'sampled': 0.533203125}
+  [210] reward 0.465 mixed 0.97 1950s
+  [220] reward 0.514 mixed 1.00 2051s
+  [230] reward 0.535 mixed 0.97 2153s
+  [240] reward 0.488 mixed 0.97 2255s
+  [250] reward 0.535 mixed 1.00 2357s eval {'greedy': 0.4453125, 'sampled': 0.552734375}
+  [260] reward 0.576 mixed 0.95 2463s
+  [270] reward 0.590 mixed 0.91 2562s
+  [280] reward 0.643 mixed 0.94 2660s
+  [290] reward 0.598 mixed 0.97 2758s
+  [300] reward 0.660 mixed 0.94 2856s eval {'greedy': 0.48046875, 'sampled': 0.6396484375}
+cfop_mixtral_6L256_s1_full_lr0.0001_s0 held: EASY n=508 sampled 72.4% greedy 60.8% | MID n=1281 sampled 60.5% greedy 42.5% | HARD n=211 sampled 57.2% greedy 40.8% | ALL n=2000 sampled 63.2% greedy 47.0%
+cfop_mixtral_6L256_s1_full_lr0.0001_s0 random: EASY n=684 sampled 87.8% greedy 43.9% | MID n=316 sampled 86.4% greedy 38.3% | HARD n=0 sampled nan% greedy nan% | ALL n=1000 sampled 87.4% greedy 42.1%
+cfop_mixtral_6L256_s1_full_lr0.0001_s0
+  L0: routing changed in place   1.5% (decision)   0.0% (all) | by router weights alone   0.0% | expert output change   6.6%
+  L1: routing changed in place   1.3% (decision)   1.1% (all) | by router weights alone   0.2% | expert output change   5.2%
+  L2: routing changed in place   3.0% (decision)   4.6% (all) | by router weights alone   1.7% | expert output change   8.0%
+  L3: routing changed in place   5.8% (decision)   7.2% (all) | by router weights alone   2.9% | expert output change  11.3%
+  L4: routing changed in place  11.8% (decision)  10.9% (all) | by router weights alone   3.3% | expert output change  16.0%
+  L5: routing changed in place  10.6% (decision)  18.5% (all) | by router weights alone   8.2% | expert output change   9.6%
+
+=== rl_eval.py eval cfop_mixtral_6L256_s2 base
+base held: EASY n=497 sampled 21.8% greedy 33.4% | MID n=1239 sampled 6.2% greedy 1.9% | HARD n=264 sampled 4.6% greedy 0.8% | ALL n=2000 sampled 9.9% greedy 9.6%
+base random: EASY n=518 sampled 13.0% greedy 3.1% | MID n=477 sampled 11.7% greedy 1.5% | HARD n=5 sampled 12.5% greedy 0.0% | ALL n=1000 sampled 12.3% greedy 2.3%
+
+=== rl_confirm.py cfop_mixtral_6L256_s2 router 3e-4 0
+cfop_mixtral_6L256_s2_router_lr0.0003_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.091796875}
+  [10] reward 0.100 mixed 0.52 50s
+  [20] reward 0.088 mixed 0.42 98s
+  [30] reward 0.105 mixed 0.47 147s
+  [40] reward 0.082 mixed 0.38 192s
+  [50] reward 0.088 mixed 0.44 240s eval {'greedy': 0.08984375, 'sampled': 0.0869140625}
+  [60] reward 0.078 mixed 0.41 294s
+  [70] reward 0.127 mixed 0.52 340s
+  [80] reward 0.113 mixed 0.50 388s
+  [90] reward 0.086 mixed 0.47 435s
+  [100] reward 0.102 mixed 0.53 483s eval {'greedy': 0.08984375, 'sampled': 0.1103515625}
+  [110] reward 0.076 mixed 0.41 534s
+  [120] reward 0.156 mixed 0.59 582s
+  [130] reward 0.123 mixed 0.55 632s
+  [140] reward 0.105 mixed 0.48 679s
+  [150] reward 0.145 mixed 0.62 728s eval {'greedy': 0.09765625, 'sampled': 0.0986328125}
+  [160] reward 0.098 mixed 0.52 784s
+  [170] reward 0.102 mixed 0.44 834s
+  [180] reward 0.109 mixed 0.50 885s
+  [190] reward 0.131 mixed 0.56 937s
+  [200] reward 0.102 mixed 0.45 988s eval {'greedy': 0.08984375, 'sampled': 0.0986328125}
+  [210] reward 0.113 mixed 0.53 1045s
+  [220] reward 0.102 mixed 0.55 1098s
+  [230] reward 0.076 mixed 0.44 1151s
+  [240] reward 0.074 mixed 0.48 1206s
+  [250] reward 0.107 mixed 0.50 1259s eval {'greedy': 0.1015625, 'sampled': 0.103515625}
+  [260] reward 0.096 mixed 0.50 1315s
+  [270] reward 0.109 mixed 0.55 1364s
+  [280] reward 0.125 mixed 0.53 1413s
+  [290] reward 0.119 mixed 0.56 1462s
+  [300] reward 0.094 mixed 0.50 1513s eval {'greedy': 0.09375, 'sampled': 0.1015625}
+cfop_mixtral_6L256_s2_router_lr0.0003_s0 held: EASY n=497 sampled 22.8% greedy 34.2% | MID n=1239 sampled 7.2% greedy 2.8% | HARD n=264 sampled 5.8% greedy 0.4% | ALL n=2000 sampled 10.9% greedy 10.3%
+cfop_mixtral_6L256_s2_router_lr0.0003_s0 random: EASY n=518 sampled 14.1% greedy 2.5% | MID n=477 sampled 13.9% greedy 1.9% | HARD n=5 sampled 15.0% greedy 0.0% | ALL n=1000 sampled 14.0% greedy 2.2%
+cfop_mixtral_6L256_s2_router_lr0.0003_s0
+  L0: routing changed in place   5.9% (decision)   0.1% (all) | by router weights alone   0.1% | expert output change   0.0%
+  L1: routing changed in place   1.1% (decision)   1.4% (all) | by router weights alone   1.4% | expert output change   0.0%
+  L2: routing changed in place   0.8% (decision)   6.4% (all) | by router weights alone   6.0% | expert output change   0.0%
+  L3: routing changed in place   1.7% (decision)   6.0% (all) | by router weights alone   5.9% | expert output change   0.0%
+  L4: routing changed in place   2.4% (decision)  20.9% (all) | by router weights alone  19.0% | expert output change   0.0%
+  L5: routing changed in place   4.5% (decision)  18.6% (all) | by router weights alone  12.1% | expert output change   0.0%
+
+=== rl_confirm.py cfop_mixtral_6L256_s2 lora 3e-3 0
+cfop_mixtral_6L256_s2_lora_lr0.003_s0: 12288 trainable params | start {'greedy': 0.09375, 'sampled': 0.091796875}
+  [10] reward 0.098 mixed 0.47 55s
+  [20] reward 0.104 mixed 0.56 112s
+  [30] reward 0.119 mixed 0.55 168s
+  [40] reward 0.092 mixed 0.42 222s
+  [50] reward 0.082 mixed 0.44 281s eval {'greedy': 0.09765625, 'sampled': 0.1064453125}
+  [60] reward 0.102 mixed 0.58 346s
+  [70] reward 0.129 mixed 0.61 406s
+  [80] reward 0.168 mixed 0.62 469s
+  [90] reward 0.102 mixed 0.58 532s
+  [100] reward 0.129 mixed 0.56 597s eval {'greedy': 0.08203125, 'sampled': 0.1396484375}
+  [110] reward 0.096 mixed 0.55 669s
+  [120] reward 0.176 mixed 0.70 734s
+  [130] reward 0.146 mixed 0.70 804s
+  [140] reward 0.152 mixed 0.66 874s
+  [150] reward 0.213 mixed 0.73 947s eval {'greedy': 0.10546875, 'sampled': 0.158203125}
+  [160] reward 0.168 mixed 0.73 1028s
+  [170] reward 0.156 mixed 0.67 1102s
+  [180] reward 0.186 mixed 0.77 1176s
+  [190] reward 0.199 mixed 0.75 1253s
+  [200] reward 0.172 mixed 0.64 1329s eval {'greedy': 0.15625, 'sampled': 0.2060546875}
+  [210] reward 0.145 mixed 0.72 1410s
+  [220] reward 0.160 mixed 0.67 1485s
+  [230] reward 0.154 mixed 0.72 1560s
+  [240] reward 0.174 mixed 0.81 1643s
+  [250] reward 0.193 mixed 0.72 1722s eval {'greedy': 0.12890625, 'sampled': 0.1806640625}
+  [260] reward 0.217 mixed 0.81 1806s
+  [270] reward 0.195 mixed 0.75 1885s
+  [280] reward 0.188 mixed 0.77 1965s
+  [290] reward 0.229 mixed 0.80 2042s
+  [300] reward 0.205 mixed 0.80 2122s eval {'greedy': 0.15234375, 'sampled': 0.2373046875}
+cfop_mixtral_6L256_s2_lora_lr0.003_s0 held: EASY n=497 sampled 32.6% greedy 37.2% | MID n=1239 sampled 18.8% greedy 9.0% | HARD n=264 sampled 17.4% greedy 5.3% | ALL n=2000 sampled 22.1% greedy 15.6%
+cfop_mixtral_6L256_s2_lora_lr0.003_s0 random: EASY n=518 sampled 42.6% greedy 11.8% | MID n=477 sampled 41.9% greedy 10.7% | HARD n=5 sampled 33.8% greedy 20.0% | ALL n=1000 sampled 42.2% greedy 11.3%
+cfop_mixtral_6L256_s2_lora_lr0.003_s0
+  L0: routing changed in place   7.8% (decision)   0.1% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L1: routing changed in place   5.1% (decision)   1.1% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L2: routing changed in place   1.9% (decision)   1.7% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L3: routing changed in place   4.2% (decision)   3.5% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L4: routing changed in place  11.4% (decision)   6.6% (all) | by router weights alone   0.0% | expert output change   0.0%
+  L5: routing changed in place  11.3% (decision)  13.7% (all) | by router weights alone   0.0% | expert output change   0.0%
+
+=== rl_confirm.py cfop_mixtral_6L256_s2 experts 1e-4 0
+cfop_mixtral_6L256_s2_experts_lr0.0001_s0: 33030144 trainable params | start {'greedy': 0.09375, 'sampled': 0.091796875}
+  [10] reward 0.111 mixed 0.56 47s
+  [20] reward 0.082 mixed 0.42 97s
+  [30] reward 0.160 mixed 0.64 152s
+  [40] reward 0.133 mixed 0.53 207s
+  [50] reward 0.125 mixed 0.62 264s eval {'greedy': 0.12109375, 'sampled': 0.1396484375}
+  [60] reward 0.127 mixed 0.61 326s
+  [70] reward 0.203 mixed 0.72 385s
+  [80] reward 0.238 mixed 0.80 447s
+  [90] reward 0.168 mixed 0.75 511s
+  [100] reward 0.260 mixed 0.86 578s eval {'greedy': 0.16015625, 'sampled': 0.2490234375}
+  [110] reward 0.236 mixed 0.86 653s
+  [120] reward 0.252 mixed 0.84 723s
+  [130] reward 0.316 mixed 0.94 796s
+  [140] reward 0.326 mixed 0.86 869s
+  [150] reward 0.369 mixed 0.98 943s eval {'greedy': 0.265625, 'sampled': 0.33203125}
+  [160] reward 0.381 mixed 0.98 1024s
+  [170] reward 0.383 mixed 1.00 1100s
+  [180] reward 0.418 mixed 0.97 1175s
+  [190] reward 0.469 mixed 0.86 1250s
+  [200] reward 0.430 mixed 0.94 1327s eval {'greedy': 0.3125, 'sampled': 0.4609375}
+  [210] reward 0.451 mixed 0.98 1408s
+  [220] reward 0.479 mixed 1.00 1483s
+  [230] reward 0.457 mixed 0.98 1559s
+  [240] reward 0.477 mixed 1.00 1635s
+  [250] reward 0.506 mixed 0.98 1711s eval {'greedy': 0.42578125, 'sampled': 0.49609375}
+  [260] reward 0.568 mixed 0.94 1790s
+  [270] reward 0.564 mixed 0.98 1865s
+  [280] reward 0.600 mixed 0.98 1940s
+  [290] reward 0.584 mixed 0.92 2013s
+  [300] reward 0.572 mixed 1.00 2087s eval {'greedy': 0.453125, 'sampled': 0.6015625}
+cfop_mixtral_6L256_s2_experts_lr0.0001_s0 held: EASY n=497 sampled 69.3% greedy 64.2% | MID n=1239 sampled 56.6% greedy 38.7% | HARD n=264 sampled 53.8% greedy 40.5% | ALL n=2000 sampled 59.3% greedy 45.3%
+cfop_mixtral_6L256_s2_experts_lr0.0001_s0 random: EASY n=518 sampled 87.7% greedy 42.7% | MID n=477 sampled 86.7% greedy 40.5% | HARD n=5 sampled 87.5% greedy 20.0% | ALL n=1000 sampled 87.2% greedy 41.5%
+cfop_mixtral_6L256_s2_experts_lr0.0001_s0
+  L0: routing changed in place   0.0% (decision)   0.0% (all) | by router weights alone   0.0% | expert output change   8.0%
+  L1: routing changed in place   5.7% (decision)   1.0% (all) | by router weights alone   0.0% | expert output change   7.6%
+  L2: routing changed in place   1.3% (decision)   2.3% (all) | by router weights alone   0.0% | expert output change   8.0%
+  L3: routing changed in place   4.2% (decision)   3.9% (all) | by router weights alone   0.0% | expert output change  10.0%
+  L4: routing changed in place   7.6% (decision)   6.4% (all) | by router weights alone   0.0% | expert output change  10.7%
+  L5: routing changed in place  10.4% (decision)  13.8% (all) | by router weights alone   0.0% | expert output change  11.9%
+
+=== rl_confirm.py cfop_mixtral_6L256_s2 full 1e-4 0
+cfop_mixtral_6L256_s2_full_lr0.0001_s0: 34628096 trainable params | start {'greedy': 0.09375, 'sampled': 0.091796875}
+  [10] reward 0.111 mixed 0.52 57s
+  [20] reward 0.080 mixed 0.48 122s
+  [30] reward 0.141 mixed 0.64 191s
+  [40] reward 0.125 mixed 0.50 260s
+  [50] reward 0.137 mixed 0.64 337s eval {'greedy': 0.1328125, 'sampled': 0.1494140625}
+  [60] reward 0.156 mixed 0.62 422s
+  [70] reward 0.176 mixed 0.78 503s
+  [80] reward 0.217 mixed 0.77 581s
+  [90] reward 0.207 mixed 0.80 668s
+  [100] reward 0.266 mixed 0.83 758s eval {'greedy': 0.21484375, 'sampled': 0.279296875}
+  [110] reward 0.234 mixed 0.75 854s
+  [120] reward 0.309 mixed 0.92 947s
+  [130] reward 0.334 mixed 0.84 1042s
+  [140] reward 0.357 mixed 0.88 1136s
+  [150] reward 0.299 mixed 0.94 1232s eval {'greedy': 0.22265625, 'sampled': 0.3427734375}
+  [160] reward 0.369 mixed 0.92 1337s
+  [170] reward 0.402 mixed 0.95 1435s
+  [180] reward 0.455 mixed 0.95 1533s
+  [190] reward 0.418 mixed 1.00 1633s
+  [200] reward 0.434 mixed 0.95 1732s eval {'greedy': 0.3671875, 'sampled': 0.4931640625}
+  [210] reward 0.424 mixed 0.98 1835s
+  [220] reward 0.502 mixed 1.00 1934s
+  [230] reward 0.486 mixed 1.00 2032s
+  [240] reward 0.508 mixed 1.00 2130s
+  [250] reward 0.568 mixed 1.00 2227s eval {'greedy': 0.36328125, 'sampled': 0.5888671875}
+  [260] reward 0.584 mixed 0.88 2327s
+  [270] reward 0.578 mixed 0.95 2423s
+  [280] reward 0.631 mixed 0.88 2518s
+  [290] reward 0.572 mixed 0.97 2613s
+  [300] reward 0.586 mixed 0.97 2708s eval {'greedy': 0.4296875, 'sampled': 0.6337890625}
+cfop_mixtral_6L256_s2_full_lr0.0001_s0 held: EASY n=497 sampled 70.0% greedy 57.3% | MID n=1239 sampled 59.7% greedy 40.7% | HARD n=264 sampled 56.2% greedy 38.3% | ALL n=2000 sampled 61.8% greedy 44.5%
+cfop_mixtral_6L256_s2_full_lr0.0001_s0 random: EASY n=518 sampled 85.7% greedy 42.5% | MID n=477 sampled 85.3% greedy 44.4% | HARD n=5 sampled 85.0% greedy 60.0% | ALL n=1000 sampled 85.5% greedy 43.5%
+cfop_mixtral_6L256_s2_full_lr0.0001_s0
+  L0: routing changed in place   4.7% (decision)   0.1% (all) | by router weights alone   0.0% | expert output change   6.3%
+  L1: routing changed in place   6.3% (decision)   1.4% (all) | by router weights alone   0.1% | expert output change   6.2%
+  L2: routing changed in place   2.8% (decision)   4.0% (all) | by router weights alone   1.2% | expert output change   6.6%
+  L3: routing changed in place   5.1% (decision)   6.2% (all) | by router weights alone   1.5% | expert output change   7.8%
+  L4: routing changed in place   9.4% (decision)   9.8% (all) | by router weights alone   3.7% | expert output change   9.9%
+  L5: routing changed in place  11.0% (decision)  16.4% (all) | by router weights alone   4.9% | expert output change  11.9%
+
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-fa3m95pn5hteQxd2BHvokd
+[11-05 00:13] stage train_eval done
+[11-05 00:13] stage swap
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-AQzoIlNpWHXJM4uEkRYaCN
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== rl_swap.py cfop_mixtral_6L256_s1 cfop_mixtral_6L256_s1_full_lr0.0001_s0 cfop_mixtral_6L256_s1_experts_lr0.0001_s0
+cfop_mixtral_6L256_s1_full_lr0.0001_s0: base 10.4% RL 63.2% | OPEN 13.5% (R=0.06, RL plays 6% of moves) | RAND 12.4% (R=0.04) | REV 53.8% (R=0.82)
+   C1 (R_open >= 0.5 and R_open - R_rand >= 0.2): False | C2 (R_rev >= 0.5): True
+cfop_mixtral_6L256_s1_experts_lr0.0001_s0: base 10.4% RL 56.2% | OPEN 13.0% (R=0.06, RL plays 6% of moves) | RAND 12.1% (R=0.04) | REV 47.5% (R=0.81)
+   C1 (R_open >= 0.5 and R_open - R_rand >= 0.2): False | C2 (R_rev >= 0.5): True
+
+=== rl_swap.py cfop_mixtral_6L256_s2 cfop_mixtral_6L256_s2_full_lr0.0001_s0 cfop_mixtral_6L256_s2_experts_lr0.0001_s0
+cfop_mixtral_6L256_s2_full_lr0.0001_s0: base 9.9% RL 61.8% | OPEN 13.0% (R=0.06, RL plays 6% of moves) | RAND 12.1% (R=0.04) | REV 52.7% (R=0.82)
+   C1 (R_open >= 0.5 and R_open - R_rand >= 0.2): False | C2 (R_rev >= 0.5): True
+cfop_mixtral_6L256_s2_experts_lr0.0001_s0: base 9.9% RL 59.3% | OPEN 12.8% (R=0.06, RL plays 6% of moves) | RAND 11.8% (R=0.04) | REV 51.0% (R=0.83)
+   C1 (R_open >= 0.5 and R_open - R_rand >= 0.2): False | C2 (R_rev >= 0.5): True
+
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-AQzoIlNpWHXJM4uEkRYaCN
+[11-05 00:51] stage swap done
+[11-05 00:52] ALL DONE

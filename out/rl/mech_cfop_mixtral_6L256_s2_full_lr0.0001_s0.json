@@ -1,0 +1,44 @@
+[
+ {
+  "layer": 0,
+  "routing_in_place_decision": 0.04719002544879913,
+  "routing_in_place_all": 0.0008580004214309156,
+  "routing_weights_top1": 0.00014999999257270247,
+  "expert_change": 0.063288614153862
+ },
+ {
+  "layer": 1,
+  "routing_in_place_decision": 0.06323133409023285,
+  "routing_in_place_all": 0.013810910284519196,
+  "routing_weights_top1": 0.0010499999625608325,
+  "expert_change": 0.06193295121192932
+ },
+ {
+  "layer": 2,
+  "routing_in_place_decision": 0.028292039409279823,
+  "routing_in_place_all": 0.03996943682432175,
+  "routing_weights_top1": 0.011749999597668648,
+  "expert_change": 0.06626983731985092
+ },
+ {
+  "layer": 3,
+  "routing_in_place_decision": 0.050870735198259354,
+  "routing_in_place_all": 0.061528321355581284,
+  "routing_weights_top1": 0.014999999664723873,
+  "expert_change": 0.07833003252744675
+ },
+ {
+  "layer": 4,
+  "routing_in_place_decision": 0.09377574920654297,
+  "routing_in_place_all": 0.0979149267077446,
+  "routing_weights_top1": 0.03659999743103981,
+  "expert_change": 0.09907996654510498
+ },
+ {
+  "layer": 5,
+  "routing_in_place_decision": 0.11042135953903198,
+  "routing_in_place_all": 0.163858100771904,
+  "routing_weights_top1": 0.04884999990463257,
+  "expert_change": 0.11894061416387558
+ }
+]

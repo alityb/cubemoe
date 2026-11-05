@@ -1,0 +1,2141 @@
+{
+ "tag": "cfop_mixtral_6L256_s2",
+ "arm": "experts",
+ "lr": 0.0001,
+ "seed": 0,
+ "B": 64,
+ "G": 8,
+ "temp": 1.0,
+ "budget": 90,
+ "n_params": 33030144,
+ "steps": [
+  {
+   "step": 1,
+   "reward": 0.109375,
+   "mixed_groups": 0.53125,
+   "steps_used": 23323,
+   "sec": 5.0880286693573
+  },
+  {
+   "step": 2,
+   "reward": 0.0859375,
+   "mixed_groups": 0.40625,
+   "steps_used": 17718,
+   "sec": 9.229291439056396
+  },
+  {
+   "step": 3,
+   "reward": 0.08984375,
+   "mixed_groups": 0.453125,
+   "steps_used": 20088,
+   "sec": 13.711080312728882
+  },
+  {
+   "step": 4,
+   "reward": 0.12890625,
+   "mixed_groups": 0.53125,
+   "steps_used": 23183,
+   "sec": 18.655881643295288
+  },
+  {
+   "step": 5,
+   "reward": 0.083984375,
+   "mixed_groups": 0.40625,
+   "steps_used": 17930,
+   "sec": 22.83746075630188
+  },
+  {
+   "step": 6,
+   "reward": 0.10546875,
+   "mixed_groups": 0.46875,
+   "steps_used": 20684,
+   "sec": 27.46713614463806
+  },
+  {
+   "step": 7,
+   "reward": 0.10546875,
+   "mixed_groups": 0.515625,
+   "steps_used": 22637,
+   "sec": 32.390626668930054
+  },
+  {
+   "step": 8,
+   "reward": 0.10546875,
+   "mixed_groups": 0.53125,
+   "steps_used": 23516,
+   "sec": 37.36241865158081
+  },
+  {
+   "step": 9,
+   "reward": 0.107421875,
+   "mixed_groups": 0.4375,
+   "steps_used": 18878,
+   "sec": 41.715054512023926
+  },
+  {
+   "step": 10,
+   "reward": 0.111328125,
+   "mixed_groups": 0.5625,
+   "steps_used": 24734,
+   "sec": 46.95357370376587
+  },
+  {
+   "step": 11,
+   "reward": 0.1015625,
+   "mixed_groups": 0.5,
+   "steps_used": 21980,
+   "sec": 51.72983503341675
+  },
+  {
+   "step": 12,
+   "reward": 0.095703125,
+   "mixed_groups": 0.484375,
+   "steps_used": 21424,
+   "sec": 56.42072367668152
+  },
+  {
+   "step": 13,
+   "reward": 0.09765625,
+   "mixed_groups": 0.53125,
+   "steps_used": 23618,
+   "sec": 61.54662847518921
+  },
+  {
+   "step": 14,
+   "reward": 0.12890625,
+   "mixed_groups": 0.5625,
+   "steps_used": 24669,
+   "sec": 66.77242660522461
+  },
+  {
+   "step": 15,
+   "reward": 0.076171875,
+   "mixed_groups": 0.453125,
+   "steps_used": 20271,
+   "sec": 71.30204057693481
+  },
+  {
+   "step": 16,
+   "reward": 0.11328125,
+   "mixed_groups": 0.546875,
+   "steps_used": 24118,
+   "sec": 76.42804789543152
+  },
+  {
+   "step": 17,
+   "reward": 0.126953125,
+   "mixed_groups": 0.515625,
+   "steps_used": 22643,
+   "sec": 81.37045526504517
+  },
+  {
+   "step": 18,
+   "reward": 0.12109375,
+   "mixed_groups": 0.59375,
+   "steps_used": 26172,
+   "sec": 86.77313804626465
+  },
+  {
+   "step": 19,
+   "reward": 0.12890625,
+   "mixed_groups": 0.609375,
+   "steps_used": 26859,
+   "sec": 92.3008930683136
+  },
+  {
+   "step": 20,
+   "reward": 0.08203125,
+   "mixed_groups": 0.421875,
+   "steps_used": 18686,
+   "sec": 96.64088320732117
+  },
+  {
+   "step": 21,
+   "reward": 0.1328125,
+   "mixed_groups": 0.59375,
+   "steps_used": 26237,
+   "sec": 102.04705476760864
+  },
+  {
+   "step": 22,
+   "reward": 0.1171875,
+   "mixed_groups": 0.578125,
+   "steps_used": 25745,
+   "sec": 107.4777762889862
+  },
+  {
+   "step": 23,
+   "reward": 0.13671875,
+   "mixed_groups": 0.640625,
+   "steps_used": 28243,
+   "sec": 113.17594051361084
+  },
+  {
+   "step": 24,
+   "reward": 0.11328125,
+   "mixed_groups": 0.5625,
+   "steps_used": 24943,
+   "sec": 118.40035581588745
+  },
+  {
+   "step": 25,
+   "reward": 0.171875,
+   "mixed_groups": 0.609375,
+   "steps_used": 26258,
+   "sec": 123.75119256973267
+  },
+  {
+   "step": 26,
+   "reward": 0.095703125,
+   "mixed_groups": 0.5625,
+   "steps_used": 24926,
+   "sec": 129.03050589561462
+  },
+  {
+   "step": 27,
+   "reward": 0.162109375,
+   "mixed_groups": 0.625,
+   "steps_used": 27169,
+   "sec": 134.5779218673706
+  },
+  {
+   "step": 28,
+   "reward": 0.154296875,
+   "mixed_groups": 0.71875,
+   "steps_used": 31670,
+   "sec": 140.80195665359497
+  },
+  {
+   "step": 29,
+   "reward": 0.10546875,
+   "mixed_groups": 0.609375,
+   "steps_used": 27363,
+   "sec": 146.43250679969788
+  },
+  {
+   "step": 30,
+   "reward": 0.16015625,
+   "mixed_groups": 0.640625,
+   "steps_used": 28204,
+   "sec": 152.1557755470276
+  },
+  {
+   "step": 31,
+   "reward": 0.173828125,
+   "mixed_groups": 0.6875,
+   "steps_used": 30041,
+   "sec": 158.13827085494995
+  },
+  {
+   "step": 32,
+   "reward": 0.1171875,
+   "mixed_groups": 0.53125,
+   "steps_used": 23477,
+   "sec": 163.09573984146118
+  },
+  {
+   "step": 33,
+   "reward": 0.171875,
+   "mixed_groups": 0.609375,
+   "steps_used": 26576,
+   "sec": 168.58462142944336
+  },
+  {
+   "step": 34,
+   "reward": 0.11328125,
+   "mixed_groups": 0.625,
+   "steps_used": 27868,
+   "sec": 174.30988764762878
+  },
+  {
+   "step": 35,
+   "reward": 0.1171875,
+   "mixed_groups": 0.59375,
+   "steps_used": 26232,
+   "sec": 179.7141284942627
+  },
+  {
+   "step": 36,
+   "reward": 0.16015625,
+   "mixed_groups": 0.6875,
+   "steps_used": 30116,
+   "sec": 185.72974467277527
+  },
+  {
+   "step": 37,
+   "reward": 0.109375,
+   "mixed_groups": 0.484375,
+   "steps_used": 21242,
+   "sec": 190.3718225955963
+  },
+  {
+   "step": 38,
+   "reward": 0.134765625,
+   "mixed_groups": 0.640625,
+   "steps_used": 28412,
+   "sec": 196.14375829696655
+  },
+  {
+   "step": 39,
+   "reward": 0.13671875,
+   "mixed_groups": 0.609375,
+   "steps_used": 27030,
+   "sec": 201.73505663871765
+  },
+  {
+   "step": 40,
+   "reward": 0.1328125,
+   "mixed_groups": 0.53125,
+   "steps_used": 23373,
+   "sec": 206.71654057502747
+  },
+  {
+   "step": 41,
+   "reward": 0.13671875,
+   "mixed_groups": 0.515625,
+   "steps_used": 22464,
+   "sec": 211.56424832344055
+  },
+  {
+   "step": 42,
+   "reward": 0.171875,
+   "mixed_groups": 0.65625,
+   "steps_used": 28579,
+   "sec": 217.35948491096497
+  },
+  {
+   "step": 43,
+   "reward": 0.19140625,
+   "mixed_groups": 0.734375,
+   "steps_used": 31919,
+   "sec": 223.67606329917908
+  },
+  {
+   "step": 44,
+   "reward": 0.134765625,
+   "mixed_groups": 0.609375,
+   "steps_used": 26912,
+   "sec": 229.21987342834473
+  },
+  {
+   "step": 45,
+   "reward": 0.1328125,
+   "mixed_groups": 0.625,
+   "steps_used": 27717,
+   "sec": 234.87866878509521
+  },
+  {
+   "step": 46,
+   "reward": 0.189453125,
+   "mixed_groups": 0.6875,
+   "steps_used": 29796,
+   "sec": 240.8121361732483
+  },
+  {
+   "step": 47,
+   "reward": 0.16796875,
+   "mixed_groups": 0.734375,
+   "steps_used": 32324,
+   "sec": 247.0888273715973
+  },
+  {
+   "step": 48,
+   "reward": 0.197265625,
+   "mixed_groups": 0.671875,
+   "steps_used": 29550,
+   "sec": 252.9955654144287
+  },
+  {
+   "step": 49,
+   "reward": 0.125,
+   "mixed_groups": 0.625,
+   "steps_used": 27829,
+   "sec": 258.75180411338806
+  },
+  {
+   "step": 50,
+   "reward": 0.125,
+   "mixed_groups": 0.625,
+   "steps_used": 27798,
+   "sec": 264.4652614593506,
+   "eval": {
+    "greedy": 0.12109375,
+    "sampled": 0.1396484375
+   }
+  },
+  {
+   "step": 51,
+   "reward": 0.15625,
+   "mixed_groups": 0.671875,
+   "steps_used": 29551,
+   "sec": 275.1225128173828
+  },
+  {
+   "step": 52,
+   "reward": 0.125,
+   "mixed_groups": 0.59375,
+   "steps_used": 26114,
+   "sec": 280.5053827762604
+  },
+  {
+   "step": 53,
+   "reward": 0.193359375,
+   "mixed_groups": 0.703125,
+   "steps_used": 30446,
+   "sec": 286.4892416000366
+  },
+  {
+   "step": 54,
+   "reward": 0.115234375,
+   "mixed_groups": 0.515625,
+   "steps_used": 22822,
+   "sec": 291.43533658981323
+  },
+  {
+   "step": 55,
+   "reward": 0.166015625,
+   "mixed_groups": 0.671875,
+   "steps_used": 29218,
+   "sec": 297.2202658653259
+  },
+  {
+   "step": 56,
+   "reward": 0.150390625,
+   "mixed_groups": 0.609375,
+   "steps_used": 26806,
+   "sec": 302.72349882125854
+  },
+  {
+   "step": 57,
+   "reward": 0.15234375,
+   "mixed_groups": 0.65625,
+   "steps_used": 28781,
+   "sec": 308.5061242580414
+  },
+  {
+   "step": 58,
+   "reward": 0.158203125,
+   "mixed_groups": 0.703125,
+   "steps_used": 30883,
+   "sec": 314.5947153568268
+  },
+  {
+   "step": 59,
+   "reward": 0.140625,
+   "mixed_groups": 0.625,
+   "steps_used": 27549,
+   "sec": 320.1444013118744
+  },
+  {
+   "step": 60,
+   "reward": 0.126953125,
+   "mixed_groups": 0.609375,
+   "steps_used": 27076,
+   "sec": 325.6970989704132
+  },
+  {
+   "step": 61,
+   "reward": 0.142578125,
+   "mixed_groups": 0.609375,
+   "steps_used": 26852,
+   "sec": 331.20651507377625
+  },
+  {
+   "step": 62,
+   "reward": 0.1640625,
+   "mixed_groups": 0.703125,
+   "steps_used": 30940,
+   "sec": 337.2975490093231
+  },
+  {
+   "step": 63,
+   "reward": 0.173828125,
+   "mixed_groups": 0.71875,
+   "steps_used": 31666,
+   "sec": 343.45946168899536
+  },
+  {
+   "step": 64,
+   "reward": 0.181640625,
+   "mixed_groups": 0.6875,
+   "steps_used": 29914,
+   "sec": 349.43941831588745
+  },
+  {
+   "step": 65,
+   "reward": 0.171875,
+   "mixed_groups": 0.71875,
+   "steps_used": 31613,
+   "sec": 355.5890564918518
+  },
+  {
+   "step": 66,
+   "reward": 0.146484375,
+   "mixed_groups": 0.640625,
+   "steps_used": 28292,
+   "sec": 361.293842792511
+  },
+  {
+   "step": 67,
+   "reward": 0.150390625,
+   "mixed_groups": 0.59375,
+   "steps_used": 26077,
+   "sec": 366.6600761413574
+  },
+  {
+   "step": 68,
+   "reward": 0.169921875,
+   "mixed_groups": 0.671875,
+   "steps_used": 29492,
+   "sec": 372.50969648361206
+  },
+  {
+   "step": 69,
+   "reward": 0.18359375,
+   "mixed_groups": 0.703125,
+   "steps_used": 30732,
+   "sec": 378.64051699638367
+  },
+  {
+   "step": 70,
+   "reward": 0.203125,
+   "mixed_groups": 0.71875,
+   "steps_used": 31201,
+   "sec": 384.7297878265381
+  },
+  {
+   "step": 71,
+   "reward": 0.19140625,
+   "mixed_groups": 0.6875,
+   "steps_used": 30047,
+   "sec": 390.6819763183594
+  },
+  {
+   "step": 72,
+   "reward": 0.158203125,
+   "mixed_groups": 0.71875,
+   "steps_used": 31779,
+   "sec": 396.9392855167389
+  },
+  {
+   "step": 73,
+   "reward": 0.173828125,
+   "mixed_groups": 0.734375,
+   "steps_used": 32390,
+   "sec": 403.2084231376648
+  },
+  {
+   "step": 74,
+   "reward": 0.140625,
+   "mixed_groups": 0.625,
+   "steps_used": 27812,
+   "sec": 408.89359951019287
+  },
+  {
+   "step": 75,
+   "reward": 0.1640625,
+   "mixed_groups": 0.734375,
+   "steps_used": 32494,
+   "sec": 415.18508863449097
+  },
+  {
+   "step": 76,
+   "reward": 0.177734375,
+   "mixed_groups": 0.6875,
+   "steps_used": 30079,
+   "sec": 421.149973154068
+  },
+  {
+   "step": 77,
+   "reward": 0.162109375,
+   "mixed_groups": 0.6875,
+   "steps_used": 30253,
+   "sec": 427.1157214641571
+  },
+  {
+   "step": 78,
+   "reward": 0.177734375,
+   "mixed_groups": 0.734375,
+   "steps_used": 32420,
+   "sec": 433.4106047153473
+  },
+  {
+   "step": 79,
+   "reward": 0.21875,
+   "mixed_groups": 0.828125,
+   "steps_used": 35842,
+   "sec": 440.26859736442566
+  },
+  {
+   "step": 80,
+   "reward": 0.23828125,
+   "mixed_groups": 0.796875,
+   "steps_used": 35035,
+   "sec": 446.9672644138336
+  },
+  {
+   "step": 81,
+   "reward": 0.169921875,
+   "mixed_groups": 0.671875,
+   "steps_used": 29291,
+   "sec": 452.77623748779297
+  },
+  {
+   "step": 82,
+   "reward": 0.234375,
+   "mixed_groups": 0.71875,
+   "steps_used": 31092,
+   "sec": 458.8729999065399
+  },
+  {
+   "step": 83,
+   "reward": 0.21875,
+   "mixed_groups": 0.765625,
+   "steps_used": 33560,
+   "sec": 465.31812047958374
+  },
+  {
+   "step": 84,
+   "reward": 0.216796875,
+   "mixed_groups": 0.828125,
+   "steps_used": 36211,
+   "sec": 472.2145006656647
+  },
+  {
+   "step": 85,
+   "reward": 0.2109375,
+   "mixed_groups": 0.71875,
+   "steps_used": 31199,
+   "sec": 478.30551409721375
+  },
+  {
+   "step": 86,
+   "reward": 0.20703125,
+   "mixed_groups": 0.796875,
+   "steps_used": 34985,
+   "sec": 485.0179269313812
+  },
+  {
+   "step": 87,
+   "reward": 0.193359375,
+   "mixed_groups": 0.78125,
+   "steps_used": 34384,
+   "sec": 491.5790784358978
+  },
+  {
+   "step": 88,
+   "reward": 0.17578125,
+   "mixed_groups": 0.78125,
+   "steps_used": 34677,
+   "sec": 498.20815348625183
+  },
+  {
+   "step": 89,
+   "reward": 0.193359375,
+   "mixed_groups": 0.796875,
+   "steps_used": 34911,
+   "sec": 504.93073201179504
+  },
+  {
+   "step": 90,
+   "reward": 0.16796875,
+   "mixed_groups": 0.75,
+   "steps_used": 33368,
+   "sec": 511.3626365661621
+  },
+  {
+   "step": 91,
+   "reward": 0.19921875,
+   "mixed_groups": 0.78125,
+   "steps_used": 34531,
+   "sec": 517.9785032272339
+  },
+  {
+   "step": 92,
+   "reward": 0.201171875,
+   "mixed_groups": 0.796875,
+   "steps_used": 35012,
+   "sec": 524.7062091827393
+  },
+  {
+   "step": 93,
+   "reward": 0.22265625,
+   "mixed_groups": 0.796875,
+   "steps_used": 35082,
+   "sec": 531.3920714855194
+  },
+  {
+   "step": 94,
+   "reward": 0.1796875,
+   "mixed_groups": 0.75,
+   "steps_used": 32978,
+   "sec": 537.7925493717194
+  },
+  {
+   "step": 95,
+   "reward": 0.220703125,
+   "mixed_groups": 0.75,
+   "steps_used": 32807,
+   "sec": 544.1780190467834
+  },
+  {
+   "step": 96,
+   "reward": 0.1875,
+   "mixed_groups": 0.6875,
+   "steps_used": 29976,
+   "sec": 550.1184391975403
+  },
+  {
+   "step": 97,
+   "reward": 0.234375,
+   "mixed_groups": 0.890625,
+   "steps_used": 39027,
+   "sec": 557.4160199165344
+  },
+  {
+   "step": 98,
+   "reward": 0.25,
+   "mixed_groups": 0.890625,
+   "steps_used": 38957,
+   "sec": 564.7094376087189
+  },
+  {
+   "step": 99,
+   "reward": 0.181640625,
+   "mixed_groups": 0.765625,
+   "steps_used": 33827,
+   "sec": 571.2671220302582
+  },
+  {
+   "step": 100,
+   "reward": 0.259765625,
+   "mixed_groups": 0.859375,
+   "steps_used": 37478,
+   "sec": 578.2798142433167,
+   "eval": {
+    "greedy": 0.16015625,
+    "sampled": 0.2490234375
+   }
+  },
+  {
+   "step": 101,
+   "reward": 0.212890625,
+   "mixed_groups": 0.84375,
+   "steps_used": 37131,
+   "sec": 589.9412744045258
+  },
+  {
+   "step": 102,
+   "reward": 0.2734375,
+   "mixed_groups": 0.765625,
+   "steps_used": 32984,
+   "sec": 596.3407654762268
+  },
+  {
+   "step": 103,
+   "reward": 0.228515625,
+   "mixed_groups": 0.8125,
+   "steps_used": 35771,
+   "sec": 603.1051409244537
+  },
+  {
+   "step": 104,
+   "reward": 0.267578125,
+   "mixed_groups": 0.875,
+   "steps_used": 38049,
+   "sec": 610.3155434131622
+  },
+  {
+   "step": 105,
+   "reward": 0.2578125,
+   "mixed_groups": 0.875,
+   "steps_used": 38380,
+   "sec": 617.5116121768951
+  },
+  {
+   "step": 106,
+   "reward": 0.2265625,
+   "mixed_groups": 0.90625,
+   "steps_used": 40065,
+   "sec": 625.0372738838196
+  },
+  {
+   "step": 107,
+   "reward": 0.21875,
+   "mixed_groups": 0.84375,
+   "steps_used": 37338,
+   "sec": 632.0838959217072
+  },
+  {
+   "step": 108,
+   "reward": 0.212890625,
+   "mixed_groups": 0.828125,
+   "steps_used": 36334,
+   "sec": 638.9870297908783
+  },
+  {
+   "step": 109,
+   "reward": 0.291015625,
+   "mixed_groups": 0.90625,
+   "steps_used": 39402,
+   "sec": 646.3378963470459
+  },
+  {
+   "step": 110,
+   "reward": 0.236328125,
+   "mixed_groups": 0.859375,
+   "steps_used": 37622,
+   "sec": 653.4567546844482
+  },
+  {
+   "step": 111,
+   "reward": 0.2265625,
+   "mixed_groups": 0.859375,
+   "steps_used": 37924,
+   "sec": 660.7229170799255
+  },
+  {
+   "step": 112,
+   "reward": 0.201171875,
+   "mixed_groups": 0.796875,
+   "steps_used": 35150,
+   "sec": 667.4831357002258
+  },
+  {
+   "step": 113,
+   "reward": 0.21484375,
+   "mixed_groups": 0.75,
+   "steps_used": 32875,
+   "sec": 673.8907029628754
+  },
+  {
+   "step": 114,
+   "reward": 0.228515625,
+   "mixed_groups": 0.796875,
+   "steps_used": 34933,
+   "sec": 680.6170284748077
+  },
+  {
+   "step": 115,
+   "reward": 0.251953125,
+   "mixed_groups": 0.859375,
+   "steps_used": 37669,
+   "sec": 687.669216632843
+  },
+  {
+   "step": 116,
+   "reward": 0.2265625,
+   "mixed_groups": 0.84375,
+   "steps_used": 37050,
+   "sec": 694.7104666233063
+  },
+  {
+   "step": 117,
+   "reward": 0.24609375,
+   "mixed_groups": 0.859375,
+   "steps_used": 37753,
+   "sec": 701.7821583747864
+  },
+  {
+   "step": 118,
+   "reward": 0.25390625,
+   "mixed_groups": 0.875,
+   "steps_used": 38583,
+   "sec": 709.0324742794037
+  },
+  {
+   "step": 119,
+   "reward": 0.28515625,
+   "mixed_groups": 0.921875,
+   "steps_used": 40286,
+   "sec": 716.5422306060791
+  },
+  {
+   "step": 120,
+   "reward": 0.251953125,
+   "mixed_groups": 0.84375,
+   "steps_used": 36575,
+   "sec": 723.4314494132996
+  },
+  {
+   "step": 121,
+   "reward": 0.265625,
+   "mixed_groups": 0.90625,
+   "steps_used": 39559,
+   "sec": 730.7886140346527
+  },
+  {
+   "step": 122,
+   "reward": 0.24609375,
+   "mixed_groups": 0.828125,
+   "steps_used": 36263,
+   "sec": 737.6709604263306
+  },
+  {
+   "step": 123,
+   "reward": 0.216796875,
+   "mixed_groups": 0.828125,
+   "steps_used": 36289,
+   "sec": 744.5400912761688
+  },
+  {
+   "step": 124,
+   "reward": 0.283203125,
+   "mixed_groups": 0.890625,
+   "steps_used": 38654,
+   "sec": 751.7327964305878
+  },
+  {
+   "step": 125,
+   "reward": 0.291015625,
+   "mixed_groups": 0.890625,
+   "steps_used": 38946,
+   "sec": 759.0892448425293
+  },
+  {
+   "step": 126,
+   "reward": 0.302734375,
+   "mixed_groups": 0.953125,
+   "steps_used": 41372,
+   "sec": 766.6731696128845
+  },
+  {
+   "step": 127,
+   "reward": 0.23046875,
+   "mixed_groups": 0.84375,
+   "steps_used": 36973,
+   "sec": 773.6773381233215
+  },
+  {
+   "step": 128,
+   "reward": 0.296875,
+   "mixed_groups": 0.890625,
+   "steps_used": 38703,
+   "sec": 780.8796966075897
+  },
+  {
+   "step": 129,
+   "reward": 0.33203125,
+   "mixed_groups": 0.90625,
+   "steps_used": 39057,
+   "sec": 788.1950373649597
+  },
+  {
+   "step": 130,
+   "reward": 0.31640625,
+   "mixed_groups": 0.9375,
+   "steps_used": 40802,
+   "sec": 795.7375404834747
+  },
+  {
+   "step": 131,
+   "reward": 0.28515625,
+   "mixed_groups": 0.828125,
+   "steps_used": 35959,
+   "sec": 802.6067233085632
+  },
+  {
+   "step": 132,
+   "reward": 0.328125,
+   "mixed_groups": 0.859375,
+   "steps_used": 37073,
+   "sec": 809.5871071815491
+  },
+  {
+   "step": 133,
+   "reward": 0.26953125,
+   "mixed_groups": 0.890625,
+   "steps_used": 38999,
+   "sec": 816.8867418766022
+  },
+  {
+   "step": 134,
+   "reward": 0.326171875,
+   "mixed_groups": 0.921875,
+   "steps_used": 40220,
+   "sec": 824.3337113857269
+  },
+  {
+   "step": 135,
+   "reward": 0.291015625,
+   "mixed_groups": 0.9375,
+   "steps_used": 40943,
+   "sec": 831.8648300170898
+  },
+  {
+   "step": 136,
+   "reward": 0.30859375,
+   "mixed_groups": 0.9375,
+   "steps_used": 41132,
+   "sec": 839.5286898612976
+  },
+  {
+   "step": 137,
+   "reward": 0.29296875,
+   "mixed_groups": 0.984375,
+   "steps_used": 43377,
+   "sec": 847.455502986908
+  },
+  {
+   "step": 138,
+   "reward": 0.326171875,
+   "mixed_groups": 0.890625,
+   "steps_used": 38813,
+   "sec": 854.6539030075073
+  },
+  {
+   "step": 139,
+   "reward": 0.33984375,
+   "mixed_groups": 0.90625,
+   "steps_used": 38802,
+   "sec": 861.8761904239655
+  },
+  {
+   "step": 140,
+   "reward": 0.326171875,
+   "mixed_groups": 0.859375,
+   "steps_used": 36910,
+   "sec": 868.9452934265137
+  },
+  {
+   "step": 141,
+   "reward": 0.322265625,
+   "mixed_groups": 0.921875,
+   "steps_used": 40038,
+   "sec": 876.393716096878
+  },
+  {
+   "step": 142,
+   "reward": 0.28515625,
+   "mixed_groups": 0.8125,
+   "steps_used": 35500,
+   "sec": 883.1098821163177
+  },
+  {
+   "step": 143,
+   "reward": 0.337890625,
+   "mixed_groups": 0.953125,
+   "steps_used": 41194,
+   "sec": 890.7345676422119
+  },
+  {
+   "step": 144,
+   "reward": 0.298828125,
+   "mixed_groups": 0.921875,
+   "steps_used": 40308,
+   "sec": 898.2035348415375
+  },
+  {
+   "step": 145,
+   "reward": 0.345703125,
+   "mixed_groups": 0.890625,
+   "steps_used": 38053,
+   "sec": 905.3515691757202
+  },
+  {
+   "step": 146,
+   "reward": 0.36328125,
+   "mixed_groups": 0.921875,
+   "steps_used": 39908,
+   "sec": 912.7117443084717
+  },
+  {
+   "step": 147,
+   "reward": 0.341796875,
+   "mixed_groups": 0.921875,
+   "steps_used": 40055,
+   "sec": 920.2124247550964
+  },
+  {
+   "step": 148,
+   "reward": 0.384765625,
+   "mixed_groups": 0.96875,
+   "steps_used": 41840,
+   "sec": 927.868745803833
+  },
+  {
+   "step": 149,
+   "reward": 0.380859375,
+   "mixed_groups": 0.96875,
+   "steps_used": 42149,
+   "sec": 935.6652572154999
+  },
+  {
+   "step": 150,
+   "reward": 0.369140625,
+   "mixed_groups": 0.984375,
+   "steps_used": 42464,
+   "sec": 943.4234809875488,
+   "eval": {
+    "greedy": 0.265625,
+    "sampled": 0.33203125
+   }
+  },
+  {
+   "step": 151,
+   "reward": 0.296875,
+   "mixed_groups": 0.9375,
+   "steps_used": 41066,
+   "sec": 955.6550962924957
+  },
+  {
+   "step": 152,
+   "reward": 0.341796875,
+   "mixed_groups": 0.953125,
+   "steps_used": 41506,
+   "sec": 963.2839596271515
+  },
+  {
+   "step": 153,
+   "reward": 0.365234375,
+   "mixed_groups": 0.9375,
+   "steps_used": 40156,
+   "sec": 970.7476890087128
+  },
+  {
+   "step": 154,
+   "reward": 0.314453125,
+   "mixed_groups": 0.875,
+   "steps_used": 37930,
+   "sec": 977.9177846908569
+  },
+  {
+   "step": 155,
+   "reward": 0.322265625,
+   "mixed_groups": 0.96875,
+   "steps_used": 42587,
+   "sec": 985.7074971199036
+  },
+  {
+   "step": 156,
+   "reward": 0.35546875,
+   "mixed_groups": 0.9375,
+   "steps_used": 40312,
+   "sec": 993.1705572605133
+  },
+  {
+   "step": 157,
+   "reward": 0.314453125,
+   "mixed_groups": 0.96875,
+   "steps_used": 42444,
+   "sec": 1000.9817564487457
+  },
+  {
+   "step": 158,
+   "reward": 0.296875,
+   "mixed_groups": 0.921875,
+   "steps_used": 40413,
+   "sec": 1008.4684448242188
+  },
+  {
+   "step": 159,
+   "reward": 0.3515625,
+   "mixed_groups": 0.953125,
+   "steps_used": 41224,
+   "sec": 1016.0775611400604
+  },
+  {
+   "step": 160,
+   "reward": 0.380859375,
+   "mixed_groups": 0.984375,
+   "steps_used": 42548,
+   "sec": 1023.843015909195
+  },
+  {
+   "step": 161,
+   "reward": 0.3203125,
+   "mixed_groups": 0.9375,
+   "steps_used": 40743,
+   "sec": 1031.3683407306671
+  },
+  {
+   "step": 162,
+   "reward": 0.306640625,
+   "mixed_groups": 0.953125,
+   "steps_used": 41596,
+   "sec": 1039.0370435714722
+  },
+  {
+   "step": 163,
+   "reward": 0.353515625,
+   "mixed_groups": 0.9375,
+   "steps_used": 40215,
+   "sec": 1046.501617193222
+  },
+  {
+   "step": 164,
+   "reward": 0.361328125,
+   "mixed_groups": 0.921875,
+   "steps_used": 39672,
+   "sec": 1053.8380060195923
+  },
+  {
+   "step": 165,
+   "reward": 0.3671875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41737,
+   "sec": 1061.5039966106415
+  },
+  {
+   "step": 166,
+   "reward": 0.365234375,
+   "mixed_groups": 0.90625,
+   "steps_used": 38724,
+   "sec": 1068.7145285606384
+  },
+  {
+   "step": 167,
+   "reward": 0.333984375,
+   "mixed_groups": 0.953125,
+   "steps_used": 41517,
+   "sec": 1076.3707168102264
+  },
+  {
+   "step": 168,
+   "reward": 0.365234375,
+   "mixed_groups": 0.9375,
+   "steps_used": 40399,
+   "sec": 1083.844267129898
+  },
+  {
+   "step": 169,
+   "reward": 0.390625,
+   "mixed_groups": 0.984375,
+   "steps_used": 42530,
+   "sec": 1091.6252212524414
+  },
+  {
+   "step": 170,
+   "reward": 0.3828125,
+   "mixed_groups": 1.0,
+   "steps_used": 43491,
+   "sec": 1099.5664296150208
+  },
+  {
+   "step": 171,
+   "reward": 0.37109375,
+   "mixed_groups": 0.953125,
+   "steps_used": 41028,
+   "sec": 1107.1784780025482
+  },
+  {
+   "step": 172,
+   "reward": 0.373046875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41632,
+   "sec": 1114.7984681129456
+  },
+  {
+   "step": 173,
+   "reward": 0.33984375,
+   "mixed_groups": 0.9375,
+   "steps_used": 40575,
+   "sec": 1122.2915606498718
+  },
+  {
+   "step": 174,
+   "reward": 0.400390625,
+   "mixed_groups": 0.90625,
+   "steps_used": 38523,
+   "sec": 1129.4539427757263
+  },
+  {
+   "step": 175,
+   "reward": 0.39453125,
+   "mixed_groups": 0.9375,
+   "steps_used": 40078,
+   "sec": 1136.9211621284485
+  },
+  {
+   "step": 176,
+   "reward": 0.388671875,
+   "mixed_groups": 0.984375,
+   "steps_used": 42361,
+   "sec": 1144.6558768749237
+  },
+  {
+   "step": 177,
+   "reward": 0.431640625,
+   "mixed_groups": 0.953125,
+   "steps_used": 41098,
+   "sec": 1152.2511312961578
+  },
+  {
+   "step": 178,
+   "reward": 0.357421875,
+   "mixed_groups": 0.9375,
+   "steps_used": 40730,
+   "sec": 1159.7442727088928
+  },
+  {
+   "step": 179,
+   "reward": 0.4375,
+   "mixed_groups": 0.96875,
+   "steps_used": 41464,
+   "sec": 1167.3790140151978
+  },
+  {
+   "step": 180,
+   "reward": 0.41796875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41629,
+   "sec": 1175.0234529972076
+  },
+  {
+   "step": 181,
+   "reward": 0.3984375,
+   "mixed_groups": 0.984375,
+   "steps_used": 42442,
+   "sec": 1182.798571586609
+  },
+  {
+   "step": 182,
+   "reward": 0.3671875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41953,
+   "sec": 1190.4711334705353
+  },
+  {
+   "step": 183,
+   "reward": 0.4453125,
+   "mixed_groups": 0.953125,
+   "steps_used": 40813,
+   "sec": 1198.0093307495117
+  },
+  {
+   "step": 184,
+   "reward": 0.40234375,
+   "mixed_groups": 0.953125,
+   "steps_used": 41411,
+   "sec": 1205.650306224823
+  },
+  {
+   "step": 185,
+   "reward": 0.41015625,
+   "mixed_groups": 0.96875,
+   "steps_used": 41476,
+   "sec": 1213.2699615955353
+  },
+  {
+   "step": 186,
+   "reward": 0.46484375,
+   "mixed_groups": 0.953125,
+   "steps_used": 39938,
+   "sec": 1220.7544620037079
+  },
+  {
+   "step": 187,
+   "reward": 0.4296875,
+   "mixed_groups": 0.984375,
+   "steps_used": 41863,
+   "sec": 1228.4010553359985
+  },
+  {
+   "step": 188,
+   "reward": 0.427734375,
+   "mixed_groups": 0.9375,
+   "steps_used": 39982,
+   "sec": 1235.8829967975616
+  },
+  {
+   "step": 189,
+   "reward": 0.388671875,
+   "mixed_groups": 0.953125,
+   "steps_used": 41159,
+   "sec": 1243.498477935791
+  },
+  {
+   "step": 190,
+   "reward": 0.46875,
+   "mixed_groups": 0.859375,
+   "steps_used": 36649,
+   "sec": 1250.3632729053497
+  },
+  {
+   "step": 191,
+   "reward": 0.435546875,
+   "mixed_groups": 1.0,
+   "steps_used": 42493,
+   "sec": 1258.135005235672
+  },
+  {
+   "step": 192,
+   "reward": 0.404296875,
+   "mixed_groups": 0.953125,
+   "steps_used": 41396,
+   "sec": 1265.748019695282
+  },
+  {
+   "step": 193,
+   "reward": 0.408203125,
+   "mixed_groups": 0.984375,
+   "steps_used": 42422,
+   "sec": 1273.5160081386566
+  },
+  {
+   "step": 194,
+   "reward": 0.423828125,
+   "mixed_groups": 0.9375,
+   "steps_used": 40098,
+   "sec": 1280.9752781391144
+  },
+  {
+   "step": 195,
+   "reward": 0.404296875,
+   "mixed_groups": 0.984375,
+   "steps_used": 42443,
+   "sec": 1288.7406401634216
+  },
+  {
+   "step": 196,
+   "reward": 0.40234375,
+   "mixed_groups": 0.953125,
+   "steps_used": 41028,
+   "sec": 1296.3690321445465
+  },
+  {
+   "step": 197,
+   "reward": 0.435546875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41455,
+   "sec": 1303.9704155921936
+  },
+  {
+   "step": 198,
+   "reward": 0.455078125,
+   "mixed_groups": 0.953125,
+   "steps_used": 41218,
+   "sec": 1311.579873085022
+  },
+  {
+   "step": 199,
+   "reward": 0.439453125,
+   "mixed_groups": 1.0,
+   "steps_used": 42732,
+   "sec": 1319.3728821277618
+  },
+  {
+   "step": 200,
+   "reward": 0.4296875,
+   "mixed_groups": 0.9375,
+   "steps_used": 40562,
+   "sec": 1326.8853948116302,
+   "eval": {
+    "greedy": 0.3125,
+    "sampled": 0.4609375
+   }
+  },
+  {
+   "step": 201,
+   "reward": 0.443359375,
+   "mixed_groups": 1.0,
+   "steps_used": 42748,
+   "sec": 1339.1984560489655
+  },
+  {
+   "step": 202,
+   "reward": 0.466796875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41331,
+   "sec": 1346.8281426429749
+  },
+  {
+   "step": 203,
+   "reward": 0.47265625,
+   "mixed_groups": 0.953125,
+   "steps_used": 40113,
+   "sec": 1354.2616472244263
+  },
+  {
+   "step": 204,
+   "reward": 0.408203125,
+   "mixed_groups": 0.953125,
+   "steps_used": 41328,
+   "sec": 1361.8722596168518
+  },
+  {
+   "step": 205,
+   "reward": 0.4609375,
+   "mixed_groups": 1.0,
+   "steps_used": 42420,
+   "sec": 1369.6239280700684
+  },
+  {
+   "step": 206,
+   "reward": 0.462890625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41991,
+   "sec": 1377.3794286251068
+  },
+  {
+   "step": 207,
+   "reward": 0.4609375,
+   "mixed_groups": 0.96875,
+   "steps_used": 41330,
+   "sec": 1384.9896533489227
+  },
+  {
+   "step": 208,
+   "reward": 0.4453125,
+   "mixed_groups": 0.96875,
+   "steps_used": 41337,
+   "sec": 1392.590945482254
+  },
+  {
+   "step": 209,
+   "reward": 0.4375,
+   "mixed_groups": 0.953125,
+   "steps_used": 40215,
+   "sec": 1400.046415090561
+  },
+  {
+   "step": 210,
+   "reward": 0.451171875,
+   "mixed_groups": 0.984375,
+   "steps_used": 42351,
+   "sec": 1407.7982141971588
+  },
+  {
+   "step": 211,
+   "reward": 0.4609375,
+   "mixed_groups": 0.984375,
+   "steps_used": 41743,
+   "sec": 1415.4756255149841
+  },
+  {
+   "step": 212,
+   "reward": 0.466796875,
+   "mixed_groups": 0.921875,
+   "steps_used": 39323,
+   "sec": 1422.7804312705994
+  },
+  {
+   "step": 213,
+   "reward": 0.4453125,
+   "mixed_groups": 0.984375,
+   "steps_used": 42151,
+   "sec": 1430.5289270877838
+  },
+  {
+   "step": 214,
+   "reward": 0.421875,
+   "mixed_groups": 1.0,
+   "steps_used": 42846,
+   "sec": 1438.317881345749
+  },
+  {
+   "step": 215,
+   "reward": 0.43359375,
+   "mixed_groups": 0.953125,
+   "steps_used": 40915,
+   "sec": 1445.846622467041
+  },
+  {
+   "step": 216,
+   "reward": 0.447265625,
+   "mixed_groups": 0.953125,
+   "steps_used": 41007,
+   "sec": 1453.4782376289368
+  },
+  {
+   "step": 217,
+   "reward": 0.466796875,
+   "mixed_groups": 0.953125,
+   "steps_used": 40218,
+   "sec": 1460.9117884635925
+  },
+  {
+   "step": 218,
+   "reward": 0.427734375,
+   "mixed_groups": 0.9375,
+   "steps_used": 39853,
+   "sec": 1468.2571232318878
+  },
+  {
+   "step": 219,
+   "reward": 0.537109375,
+   "mixed_groups": 0.9375,
+   "steps_used": 39610,
+   "sec": 1475.5861809253693
+  },
+  {
+   "step": 220,
+   "reward": 0.478515625,
+   "mixed_groups": 1.0,
+   "steps_used": 42420,
+   "sec": 1483.3598673343658
+  },
+  {
+   "step": 221,
+   "reward": 0.48828125,
+   "mixed_groups": 0.96875,
+   "steps_used": 40900,
+   "sec": 1490.857571363449
+  },
+  {
+   "step": 222,
+   "reward": 0.46875,
+   "mixed_groups": 1.0,
+   "steps_used": 42781,
+   "sec": 1498.671569108963
+  },
+  {
+   "step": 223,
+   "reward": 0.42578125,
+   "mixed_groups": 0.953125,
+   "steps_used": 40475,
+   "sec": 1506.1342647075653
+  },
+  {
+   "step": 224,
+   "reward": 0.443359375,
+   "mixed_groups": 0.9375,
+   "steps_used": 40008,
+   "sec": 1513.5865678787231
+  },
+  {
+   "step": 225,
+   "reward": 0.515625,
+   "mixed_groups": 0.96875,
+   "steps_used": 40577,
+   "sec": 1521.0260899066925
+  },
+  {
+   "step": 226,
+   "reward": 0.427734375,
+   "mixed_groups": 0.953125,
+   "steps_used": 40785,
+   "sec": 1528.5330770015717
+  },
+  {
+   "step": 227,
+   "reward": 0.458984375,
+   "mixed_groups": 0.984375,
+   "steps_used": 42200,
+   "sec": 1536.3194012641907
+  },
+  {
+   "step": 228,
+   "reward": 0.51171875,
+   "mixed_groups": 0.96875,
+   "steps_used": 40912,
+   "sec": 1543.793440580368
+  },
+  {
+   "step": 229,
+   "reward": 0.52734375,
+   "mixed_groups": 1.0,
+   "steps_used": 42037,
+   "sec": 1551.5589327812195
+  },
+  {
+   "step": 230,
+   "reward": 0.45703125,
+   "mixed_groups": 0.984375,
+   "steps_used": 42452,
+   "sec": 1559.3035006523132
+  },
+  {
+   "step": 231,
+   "reward": 0.51953125,
+   "mixed_groups": 0.96875,
+   "steps_used": 41147,
+   "sec": 1566.8972475528717
+  },
+  {
+   "step": 232,
+   "reward": 0.505859375,
+   "mixed_groups": 0.96875,
+   "steps_used": 40899,
+   "sec": 1574.3759450912476
+  },
+  {
+   "step": 233,
+   "reward": 0.453125,
+   "mixed_groups": 0.953125,
+   "steps_used": 40234,
+   "sec": 1581.8425047397614
+  },
+  {
+   "step": 234,
+   "reward": 0.4765625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41911,
+   "sec": 1589.496340751648
+  },
+  {
+   "step": 235,
+   "reward": 0.48828125,
+   "mixed_groups": 0.96875,
+   "steps_used": 41195,
+   "sec": 1597.1187212467194
+  },
+  {
+   "step": 236,
+   "reward": 0.46875,
+   "mixed_groups": 0.96875,
+   "steps_used": 40737,
+   "sec": 1604.5894663333893
+  },
+  {
+   "step": 237,
+   "reward": 0.525390625,
+   "mixed_groups": 0.96875,
+   "steps_used": 40776,
+   "sec": 1612.087114572525
+  },
+  {
+   "step": 238,
+   "reward": 0.498046875,
+   "mixed_groups": 0.984375,
+   "steps_used": 41311,
+   "sec": 1619.7134063243866
+  },
+  {
+   "step": 239,
+   "reward": 0.482421875,
+   "mixed_groups": 0.9375,
+   "steps_used": 40046,
+   "sec": 1627.160784482956
+  },
+  {
+   "step": 240,
+   "reward": 0.4765625,
+   "mixed_groups": 1.0,
+   "steps_used": 42734,
+   "sec": 1634.952955007553
+  },
+  {
+   "step": 241,
+   "reward": 0.486328125,
+   "mixed_groups": 0.984375,
+   "steps_used": 42119,
+   "sec": 1642.735957622528
+  },
+  {
+   "step": 242,
+   "reward": 0.546875,
+   "mixed_groups": 0.953125,
+   "steps_used": 40037,
+   "sec": 1650.1529891490936
+  },
+  {
+   "step": 243,
+   "reward": 0.5625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41022,
+   "sec": 1657.7223262786865
+  },
+  {
+   "step": 244,
+   "reward": 0.509765625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41385,
+   "sec": 1665.2941188812256
+  },
+  {
+   "step": 245,
+   "reward": 0.51171875,
+   "mixed_groups": 1.0,
+   "steps_used": 41984,
+   "sec": 1672.9572341442108
+  },
+  {
+   "step": 246,
+   "reward": 0.533203125,
+   "mixed_groups": 0.984375,
+   "steps_used": 41133,
+   "sec": 1680.5698385238647
+  },
+  {
+   "step": 247,
+   "reward": 0.501953125,
+   "mixed_groups": 0.953125,
+   "steps_used": 40420,
+   "sec": 1687.992060661316
+  },
+  {
+   "step": 248,
+   "reward": 0.541015625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41167,
+   "sec": 1695.576173067093
+  },
+  {
+   "step": 249,
+   "reward": 0.50390625,
+   "mixed_groups": 0.96875,
+   "steps_used": 40883,
+   "sec": 1703.0556354522705
+  },
+  {
+   "step": 250,
+   "reward": 0.505859375,
+   "mixed_groups": 0.984375,
+   "steps_used": 41624,
+   "sec": 1710.6975297927856,
+   "eval": {
+    "greedy": 0.42578125,
+    "sampled": 0.49609375
+   }
+  },
+  {
+   "step": 251,
+   "reward": 0.490234375,
+   "mixed_groups": 0.96875,
+   "steps_used": 40773,
+   "sec": 1722.6220643520355
+  },
+  {
+   "step": 252,
+   "reward": 0.53125,
+   "mixed_groups": 0.96875,
+   "steps_used": 41173,
+   "sec": 1730.2442502975464
+  },
+  {
+   "step": 253,
+   "reward": 0.484375,
+   "mixed_groups": 0.96875,
+   "steps_used": 40756,
+   "sec": 1737.7036867141724
+  },
+  {
+   "step": 254,
+   "reward": 0.54296875,
+   "mixed_groups": 0.984375,
+   "steps_used": 41152,
+   "sec": 1745.3195271492004
+  },
+  {
+   "step": 255,
+   "reward": 0.541015625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41146,
+   "sec": 1752.9010379314423
+  },
+  {
+   "step": 256,
+   "reward": 0.537109375,
+   "mixed_groups": 0.96875,
+   "steps_used": 41023,
+   "sec": 1760.4975807666779
+  },
+  {
+   "step": 257,
+   "reward": 0.513671875,
+   "mixed_groups": 0.96875,
+   "steps_used": 41032,
+   "sec": 1768.0837888717651
+  },
+  {
+   "step": 258,
+   "reward": 0.53125,
+   "mixed_groups": 0.953125,
+   "steps_used": 39906,
+   "sec": 1775.4111812114716
+  },
+  {
+   "step": 259,
+   "reward": 0.51171875,
+   "mixed_groups": 0.953125,
+   "steps_used": 40470,
+   "sec": 1782.899833202362
+  },
+  {
+   "step": 260,
+   "reward": 0.568359375,
+   "mixed_groups": 0.9375,
+   "steps_used": 39442,
+   "sec": 1790.2021613121033
+  },
+  {
+   "step": 261,
+   "reward": 0.576171875,
+   "mixed_groups": 0.984375,
+   "steps_used": 40558,
+   "sec": 1797.6532955169678
+  },
+  {
+   "step": 262,
+   "reward": 0.548828125,
+   "mixed_groups": 0.96875,
+   "steps_used": 40644,
+   "sec": 1805.143081665039
+  },
+  {
+   "step": 263,
+   "reward": 0.53515625,
+   "mixed_groups": 0.953125,
+   "steps_used": 40514,
+   "sec": 1812.6239466667175
+  },
+  {
+   "step": 264,
+   "reward": 0.544921875,
+   "mixed_groups": 0.96875,
+   "steps_used": 40651,
+   "sec": 1820.1092636585236
+  },
+  {
+   "step": 265,
+   "reward": 0.537109375,
+   "mixed_groups": 0.953125,
+   "steps_used": 39916,
+   "sec": 1827.4829425811768
+  },
+  {
+   "step": 266,
+   "reward": 0.556640625,
+   "mixed_groups": 0.9375,
+   "steps_used": 39938,
+   "sec": 1834.9737422466278
+  },
+  {
+   "step": 267,
+   "reward": 0.53515625,
+   "mixed_groups": 0.96875,
+   "steps_used": 40705,
+   "sec": 1842.4630246162415
+  },
+  {
+   "step": 268,
+   "reward": 0.515625,
+   "mixed_groups": 0.984375,
+   "steps_used": 41311,
+   "sec": 1850.08615732193
+  },
+  {
+   "step": 269,
+   "reward": 0.50390625,
+   "mixed_groups": 0.96875,
+   "steps_used": 41146,
+   "sec": 1857.6924757957458
+  },
+  {
+   "step": 270,
+   "reward": 0.564453125,
+   "mixed_groups": 0.984375,
+   "steps_used": 41058,
+   "sec": 1865.2788326740265
+  },
+  {
+   "step": 271,
+   "reward": 0.548828125,
+   "mixed_groups": 0.984375,
+   "steps_used": 41582,
+   "sec": 1872.8967735767365
+  },
+  {
+   "step": 272,
+   "reward": 0.537109375,
+   "mixed_groups": 0.953125,
+   "steps_used": 40161,
+   "sec": 1880.342763185501
+  },
+  {
+   "step": 273,
+   "reward": 0.546875,
+   "mixed_groups": 0.96875,
+   "steps_used": 40751,
+   "sec": 1887.8143756389618
+  },
+  {
+   "step": 274,
+   "reward": 0.5703125,
+   "mixed_groups": 0.96875,
+   "steps_used": 40294,
+   "sec": 1895.2729771137238
+  },
+  {
+   "step": 275,
+   "reward": 0.564453125,
+   "mixed_groups": 0.953125,
+   "steps_used": 39654,
+   "sec": 1902.5799534320831
+  },
+  {
+   "step": 276,
+   "reward": 0.552734375,
+   "mixed_groups": 0.9375,
+   "steps_used": 39362,
+   "sec": 1909.887226819992
+  },
+  {
+   "step": 277,
+   "reward": 0.529296875,
+   "mixed_groups": 0.9375,
+   "steps_used": 39047,
+   "sec": 1917.1672792434692
+  },
+  {
+   "step": 278,
+   "reward": 0.560546875,
+   "mixed_groups": 0.953125,
+   "steps_used": 40091,
+   "sec": 1924.5986723899841
+  },
+  {
+   "step": 279,
+   "reward": 0.576171875,
+   "mixed_groups": 0.984375,
+   "steps_used": 40991,
+   "sec": 1932.1709878444672
+  },
+  {
+   "step": 280,
+   "reward": 0.599609375,
+   "mixed_groups": 0.984375,
+   "steps_used": 41234,
+   "sec": 1939.7509524822235
+  },
+  {
+   "step": 281,
+   "reward": 0.6015625,
+   "mixed_groups": 0.9375,
+   "steps_used": 38621,
+   "sec": 1946.8789517879486
+  },
+  {
+   "step": 282,
+   "reward": 0.564453125,
+   "mixed_groups": 0.96875,
+   "steps_used": 40603,
+   "sec": 1954.3508594036102
+  },
+  {
+   "step": 283,
+   "reward": 0.591796875,
+   "mixed_groups": 0.96875,
+   "steps_used": 40317,
+   "sec": 1961.8020188808441
+  },
+  {
+   "step": 284,
+   "reward": 0.591796875,
+   "mixed_groups": 0.9375,
+   "steps_used": 39478,
+   "sec": 1969.1057343482971
+  },
+  {
+   "step": 285,
+   "reward": 0.619140625,
+   "mixed_groups": 0.953125,
+   "steps_used": 39388,
+   "sec": 1976.3824951648712
+  },
+  {
+   "step": 286,
+   "reward": 0.552734375,
+   "mixed_groups": 0.984375,
+   "steps_used": 41171,
+   "sec": 1983.9793496131897
+  },
+  {
+   "step": 287,
+   "reward": 0.5703125,
+   "mixed_groups": 0.9375,
+   "steps_used": 39074,
+   "sec": 1991.2477552890778
+  },
+  {
+   "step": 288,
+   "reward": 0.5703125,
+   "mixed_groups": 0.953125,
+   "steps_used": 39310,
+   "sec": 1998.5208051204681
+  },
+  {
+   "step": 289,
+   "reward": 0.58984375,
+   "mixed_groups": 0.921875,
+   "steps_used": 38412,
+   "sec": 2005.6565470695496
+  },
+  {
+   "step": 290,
+   "reward": 0.583984375,
+   "mixed_groups": 0.921875,
+   "steps_used": 38254,
+   "sec": 2012.7819962501526
+  },
+  {
+   "step": 291,
+   "reward": 0.580078125,
+   "mixed_groups": 0.96875,
+   "steps_used": 40418,
+   "sec": 2020.2306756973267
+  },
+  {
+   "step": 292,
+   "reward": 0.57421875,
+   "mixed_groups": 0.96875,
+   "steps_used": 40376,
+   "sec": 2027.6755578517914
+  },
+  {
+   "step": 293,
+   "reward": 0.6015625,
+   "mixed_groups": 0.953125,
+   "steps_used": 40118,
+   "sec": 2035.1139278411865
+  },
+  {
+   "step": 294,
+   "reward": 0.576171875,
+   "mixed_groups": 0.984375,
+   "steps_used": 41132,
+   "sec": 2042.6919782161713
+  },
+  {
+   "step": 295,
+   "reward": 0.595703125,
+   "mixed_groups": 0.921875,
+   "steps_used": 38935,
+   "sec": 2049.9868533611298
+  },
+  {
+   "step": 296,
+   "reward": 0.603515625,
+   "mixed_groups": 0.96875,
+   "steps_used": 40237,
+   "sec": 2057.4264438152313
+  },
+  {
+   "step": 297,
+   "reward": 0.55859375,
+   "mixed_groups": 0.953125,
+   "steps_used": 40014,
+   "sec": 2064.8796679973602
+  },
+  {
+   "step": 298,
+   "reward": 0.62109375,
+   "mixed_groups": 0.953125,
+   "steps_used": 39620,
+   "sec": 2072.1489596366882
+  },
+  {
+   "step": 299,
+   "reward": 0.6015625,
+   "mixed_groups": 0.9375,
+   "steps_used": 39242,
+   "sec": 2079.405433654785
+  },
+  {
+   "step": 300,
+   "reward": 0.572265625,
+   "mixed_groups": 1.0,
+   "steps_used": 41827,
+   "sec": 2087.0053265094757,
+   "eval": {
+    "greedy": 0.453125,
+    "sampled": 0.6015625
+   }
+  }
+ ],
+ "eval0": {
+  "greedy": 0.09375,
+  "sampled": 0.091796875
+ }
+}

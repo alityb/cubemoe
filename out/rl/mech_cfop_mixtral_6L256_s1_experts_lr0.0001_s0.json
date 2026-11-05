@@ -1,0 +1,44 @@
+[
+ {
+  "layer": 0,
+  "routing_in_place_decision": 0.0,
+  "routing_in_place_all": 0.0,
+  "routing_weights_top1": 0.0,
+  "expert_change": 0.0847993865609169
+ },
+ {
+  "layer": 1,
+  "routing_in_place_decision": 0.00450475187972188,
+  "routing_in_place_all": 0.004359920509159565,
+  "routing_weights_top1": 0.0,
+  "expert_change": 0.06381597369909286
+ },
+ {
+  "layer": 2,
+  "routing_in_place_decision": 0.024226775392889977,
+  "routing_in_place_all": 0.042263761162757874,
+  "routing_weights_top1": 0.0,
+  "expert_change": 0.09901778399944305
+ },
+ {
+  "layer": 3,
+  "routing_in_place_decision": 0.030874032527208328,
+  "routing_in_place_all": 0.057542961090803146,
+  "routing_weights_top1": 0.0,
+  "expert_change": 0.12007109075784683
+ },
+ {
+  "layer": 4,
+  "routing_in_place_decision": 0.09405042976140976,
+  "routing_in_place_all": 0.0761273130774498,
+  "routing_weights_top1": 0.0,
+  "expert_change": 0.1759418547153473
+ },
+ {
+  "layer": 5,
+  "routing_in_place_decision": 0.08432675898075104,
+  "routing_in_place_all": 0.15086224675178528,
+  "routing_weights_top1": 0.0,
+  "expert_change": 0.10226873308420181
+ }
+]

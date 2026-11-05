@@ -1719,3 +1719,17 @@ Seed 0 results (out/rl/swap_*_s0.json; PRELIMINARY, 1 of 3 seeds), pass rate ove
   Same pattern in every bin (OPEN 0.06-0.09, REV 0.81-0.85). C1 FAILS (on its first leg, 0.07 < 0.5, so the
   conservative RAND asymmetry is irrelevant here; RAND's realised RL share matched OPEN at 5.6%), C2 HOLDS.
   -> by the rules above: "execution" — RL changed how segments are carried out, not how they start.
+
+## 38. VERDICTS: RL ROUTING (#7) AND OPENING SWAP (#8), SEEDS 0-2 (2026-11-05)
+
+Seeds 1-2 ran 2026-11-04/05 on ali-moh-islam-1 (src/rl_nov.sh), protocol unchanged. src/rl_report.py 0 1 2:
+gains in sampled pass rate on held-out (ALL): router +0.8/+0.9/+1.0 | lora +9.8/+10.6/+12.2 | experts +44.2/+45.9/+49.5
+| full +46.0/+52.8/+51.9. Flat across EASY/MID/HARD in every seed.
+  #7  H1 (easy gains are routing)      0/3 seeds, mean False -> NOT SUPPORTED
+      H2 (routing beats matched LoRA)  0/3 seeds, mean False -> NOT SUPPORTED
+      H3 (router <= 0.5 x full on HARD) 3/3, mean True -> SUPPORTED (trivially: router gains nothing anywhere)
+      => H (gains on easy problems are routing, on hard problems expert computation) NOT SUPPORTED.
+  #8  full (primary): R(OPEN) 0.07/0.06/0.06, R(RAND) 0.05/0.04/0.04, R(REV) 0.83/0.82/0.82
+      C1 (cue-like openings) 0/3 -> NOT SUPPORTED ; C2 (gain survives base openings) 3/3 -> SUPPORTED
+      experts arm identical (R(OPEN) 0.06-0.07, R(REV) 0.81-0.83). By the §37 reading rules: "execution".
+(Seed 1's random-cube HARD bin is empty; the primary held-out HARD bin had >= 50 in every seed, as pre-registered.)
