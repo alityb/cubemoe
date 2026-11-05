@@ -57,3 +57,7 @@ S = moves remaining, permutation-corrected share I(E;V|S)/H(E|S).
 If fewer than 4 models pass the gate, "at least 3" becomes "all passing models".
 
 Per-stage knockout tables and stage routing shares are reported descriptively.
+
+**Amendment A1 (2026-11-05, before any training):** the hard stop is 3.4 hours per model, not 3.7, to keep the four
+runs under the $30 budget on thisaccisfortheschool. If it binds, a model sees about 56M rather than 60M examples; the
+competence gate still decides inclusion. The new dataset passes all 9 CFOP QA gates (sha256 93f60f1c…).
