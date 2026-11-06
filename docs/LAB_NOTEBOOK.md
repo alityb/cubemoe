@@ -1733,3 +1733,49 @@ gains in sampled pass rate on held-out (ALL): router +0.8/+0.9/+1.0 | lora +9.8/
       C1 (cue-like openings) 0/3 -> NOT SUPPORTED ; C2 (gain survives base openings) 3/3 -> SUPPORTED
       experts arm identical (R(OPEN) 0.06-0.07, R(REV) 0.81-0.83). By the §37 reading rules: "execution".
 (Seed 1's random-cube HARD bin is empty; the primary held-out HARD bin had >= 50 in every seed, as pre-registered.)
+
+## 39. VERDICT: DOES A ROTATION-INVARIANT MOVE RESTRICTION GET ITS OWN EXPERT? (#9, 2026-11-06)
+
+Pre-registration: prereg/PREREG_G1_PLL.md (+ amendment A1, 3.4 h stop), committed before training.
+Data: data/cfop250k_g1pll.npz (sha256 93f60f1c…): cfop250k with every PLL segment replaced by the optimal phase-2
+(G1-move) solution of its case (table: src/gen_cfop_pll_g1.py -> data/cfop_pll_g1.pkl, rebuilt identically).
+
+Training (thisaccisfortheschool, 4 x L40S, 2026-11-05 17:22, ~$27.5): the 3.4 h stop bound in all four, at steps
+52,788 / 53,715 / 52,653 / 53,431 of 58,593 (~54M of 60M examples, ~90%).
+Competence gate (dnfcubes, modal/prod.py::evaluate --n 200 --widths 256 --budget 90 --data cfop250k_g1pll):
+200/200 in all four (avg 44.6 / 44.5 / 44.7 / 44.7 moves; old CFOP models 48.5 at beam 256). All 4 pass, so
+"at least 3 of 4" applies as registered.
+
+Measures (src/g1pll_analysis.py, unchanged; final layer, 1,200 held-out solves). Old models run locally (MPS, fp32),
+new ones on Modal (CUDA, fp32) via run_script after 4 parallel local runs thrashed memory and were killed.
+| model | y_PLL | y_OLL | y_stage | PLL-dedicated experts (PLL drop) |
+|---|---|---|---|---|
+| old s0 | 1.2% | 2.1% | 2.8% | — |
+| old s1 | 2.3% | 4.2% | 5.6% | — |
+| old s2 | 1.5% | 4.2% | 5.4% | — |
+| old s3 | 0.8% | 5.1% | 5.6% | — |
+| old s4 | 0.8% | 2.2% | 3.0% | e0 (3.8, others <= 0.1) |
+| new s0 | 4.2% | 7.4% | 9.6% | e7 (33.8, others <= 0.1) |
+| new s1 | 3.2% | 7.0% | 7.2% | e1 (5.0, others <= 0.2) |
+| new s2 | 3.6% | 6.6% | 7.1% | — (e5: OLL 3.1 / PLL 3.4) |
+| new s3 | 2.3% | 4.0% | 4.3% | e0 (11.6), e1 (8.1) |
+Old mean y_PLL 1.31%, so P1's threshold is 2.63%.
+
+  P1 (y_PLL >= 2 x old mean)        3/4 (s3 misses, 2.3%)        -> HOLDS
+  P2 (y_PLL >= 2 x y_OLL, same model) 0/4 (y_PLL < y_OLL in all four) -> FAILS
+  P3 (a PLL-dedicated expert)       3/4 (s0, s1, s3)             -> HOLDS
+  => H9 (all three required) NOT SUPPORTED.
+
+Descriptive, not part of the verdict:
+- The knockout side changed clearly. Old models: 1 of 5 has a PLL-dedicated expert, and it is marginal (3.8 points).
+  New models: 3 of 4, including a 33.8-point expert in s0 and two in s3. PLL experts in the new models leave OLL
+  untouched (<= 0.9 points).
+- The routing-share side did not single PLL out. y_OLL rose as much as y_PLL (old mean 3.6% -> new 6.3%; y_PLL
+  1.3% -> 3.3%), and y_stage rose 4.5% -> 7.0%. OLL's data are unchanged, so routing became more stage-structured
+  overall, not specifically along the rotation-invariant stage. P2 was the within-model control for exactly this, and
+  it fails.
+- Confound stated in the prereg still applies: the new PLL is also shorter (12.1 vs 23.2 moves) and comes from an
+  optimal search solver, not 7 fixed algorithms. Any of these, not only the move set, could drive the knockout change.
+- Training stopped at ~90% of the registered data; the gate (200/200) shows the models are competent, but the old
+  models saw the full 60M.
+Outputs: out/g1pll/*.json, out/prod/cfop_g1pll_6L256_s*_eval.json.

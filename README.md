@@ -15,7 +15,7 @@ along a single linear direction, and steering that direction changes the moves. 
 
 ![Removing one final-layer expert: every expert that matters hurts phase 1 or phase 2, not both](blog/figures/prod_fig2_knockout.png)
 
-## Where things stand (2026-10-29)
+## Where things stand (2026-11-06)
 
 The models are production-style MoE transformers (`src/model_prod.py`): Mixtral-style, 8 experts with top-2 routing,
 6 layers, d=256, RMSNorm, RoPE, QK-norm and SwiGLU experts. Each one reads the 54 stickers of the current cube and
@@ -31,9 +31,13 @@ predicts the next move. There are 5 seeds per solver.
 **Open question:** why does routing recover one decomposition and not the other? Two pre-registered explanations
 both failed: "routing follows what changes the output" and "routing follows the plan" (`prereg/README.md`).
 
-**RL follow-up (preliminary, 1 of 3 pre-registered seeds):** when GRPO improves the CFOP policy, training only the
-routers changes routing (up to 22% of tokens switch expert) but not solving (+0.8 points); training only the experts
-gives +44, about as much as training everything. Seeds 1–2 run in November. `prereg/PREREG_RL_ROUTING.md`.
+**RL follow-up (pre-registered, 3 seeds):** when GRPO improves the CFOP policy, training only the routers changes
+routing (up to 22% of tokens switch expert) but not solving (+0.8 to +1.0 points); training only the experts gives
++44 to +50, about as much as training everything. `prereg/PREREG_RL_ROUTING.md`, `prereg/PREREG_OPENING_SWAP.md`.
+
+**Move-set test (pre-registered, 4 seeds):** replacing CFOP's PLL with G1-move solutions gives PLL its own expert by
+knockout in 3/4 models (1/5 before), but routing does not single PLL out over OLL, so the hypothesis is not supported.
+`prereg/PREREG_G1_PLL.md`, `docs/LAB_NOTEBOOK.md` §39.
 
 
 ## Repository layout
@@ -45,7 +49,7 @@ gives +44, about as much as training everything. Seeds 1–2 run in November. `p
 | `probe/` | Reference cube implementation, Kociemba and CFOP solvers, CFOP case tables |
 | `llm/` | Follow-up on a real MoE language model (OLMoE-1B-7B, Granite pilot) |
 | `prereg/` | Every pre-registration, with an index of verdicts |
-| `docs/LAB_NOTEBOOK.md` | The full chronological record, including corrections and dead ends (§30–35 cover the latest work) |
+| `docs/LAB_NOTEBOOK.md` | The full chronological record, including corrections and dead ends (§30–39 cover the latest work) |
 | `docs/ARTIFACTS.md` | Every gitignored checkpoint and dataset, with sha256, origin and how to regenerate it |
 | `out/` | Results (JSON) and logs. Checkpoints (`*.pt`) and datasets (`*.npz`) are gitignored |
 | `blog/` | Figures and the scripts that make them |

@@ -155,8 +155,14 @@ Checkpoints for the production-style MoE policies (src/model_prod.py, Mixtral-st
 | file | MB | sha256 | produced by | git |
 |---|---|---|---|---|
 | `data/cfop250k.npz` | 206.0 | `c8a74dc8f148ef6d…` | src/gen_cfop.py (250k CFOP solves); also /vol/data on Modal | gitignored |
+| `data/cfop250k_g1pll.npz` | 187.6 | `93f60f1cf527a4c3…` | src/gen_cfop_g1pll.py (prereg #9); also /vol/data on Modal | gitignored |
+| `data/cfop_pll_g1.pkl` | 0.0 | `bd79d37485b9a458…` | src/gen_cfop_pll_g1.py (179 PLL cases, G1 solutions) | in git |
 | `data/cfop_canon.pkl` | 0.1 | `3239e9fca2fd2df5…` | probe/cfop_canon.py | in git |
 | `data/cfop_extlib.pkl` | 0.0 | `8b1cca336fd84168…` | probe/cfop extraction library | in git |
+| `out/prod/cfop_g1pll_6L256_s0.pt` | 415.6 | `ff2473aa1cbdef25…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
+| `out/prod/cfop_g1pll_6L256_s1.pt` | 415.6 | `8d8c2d3103797322…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
+| `out/prod/cfop_g1pll_6L256_s2.pt` | 415.6 | `d883af50c8438eef…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
+| `out/prod/cfop_g1pll_6L256_s3.pt` | 415.6 | `f4fab4e840b8347f…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
 | `out/prod/cfop_mixtral_6L256_s0.pt` | 415.6 | `f194f2a98d19a876…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
 | `out/prod/cfop_mixtral_6L256_s1.pt` | 415.6 | `68c3b4b977b3666e…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
 | `out/prod/cfop_mixtral_6L256_s2.pt` | 415.6 | `d19ac7fd585e9e92…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
