@@ -1,0 +1,145 @@
+{
+ "kind": "cfop250k_g1pll",
+ "n_solves": 250000,
+ "n_steps": 12527228,
+ "state_conflict_rate": 0.07307059333044608,
+ "state_conflict_n": 57725,
+ "stage_share": {
+  "cross": 0.11971355514563956,
+  "F2L": 0.35469035927181974,
+  "OLL": 0.28415025255387705,
+  "PLL": 0.24144583302866365
+ },
+ "mixed_step_cells": 0.6347806553852137,
+ "move_hist_by_stage": {
+  "cross": {
+   "U": 83457,
+   "U'": 83376,
+   "U2": 83645,
+   "R": 83179,
+   "R'": 83363,
+   "R2": 83503,
+   "F": 83540,
+   "F'": 83167,
+   "F2": 83002,
+   "D": 83544,
+   "D'": 83594,
+   "D2": 83327,
+   "L": 82756,
+   "L'": 82833,
+   "L2": 83516,
+   "B": 83395,
+   "B'": 83307,
+   "B2": 83175
+  },
+  "F2L": {
+   "U": 360316,
+   "U'": 388380,
+   "U2": 309760,
+   "R": 357045,
+   "R'": 374292,
+   "R2": 135068,
+   "F": 228070,
+   "F'": 212672,
+   "F2": 147851,
+   "D": 140563,
+   "D'": 140563,
+   "D2": 80550,
+   "L": 271012,
+   "L'": 262513,
+   "L2": 137412,
+   "B": 372650,
+   "B'": 335619,
+   "B2": 188951
+  },
+  "OLL": {
+   "U": 602756,
+   "U'": 603705,
+   "U2": 434142,
+   "R": 790613,
+   "R'": 790613,
+   "R2": 0,
+   "F": 168893,
+   "F'": 168893,
+   "F2": 0,
+   "D": 0,
+   "D'": 0,
+   "D2": 0,
+   "L": 0,
+   "L'": 0,
+   "L2": 0,
+   "B": 0,
+   "B'": 0,
+   "B2": 0
+  },
+  "PLL": {
+   "U": 337231,
+   "U'": 300459,
+   "U2": 142457,
+   "R": 0,
+   "R'": 0,
+   "R2": 565594,
+   "F": 0,
+   "F'": 0,
+   "F2": 506429,
+   "D": 198628,
+   "D'": 194047,
+   "D2": 22371,
+   "L": 0,
+   "L'": 0,
+   "L2": 359048,
+   "B": 0,
+   "B'": 0,
+   "B2": 398383
+  }
+ },
+ "code_sha256": "2d2babb81a0e589c",
+ "hard_checks": [
+  {
+   "name": "L1 maneuver replays to solved",
+   "ok": true,
+   "detail": "0/250000"
+  },
+  {
+   "name": "L1 every state passes verify()",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "L1 stored states == replayed states",
+   "ok": true,
+   "detail": "0/250000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of cross segment",
+   "ok": true,
+   "detail": "250000/250000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of F2L segment",
+   "ok": true,
+   "detail": "250000/250000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of OLL segment",
+   "ok": true,
+   "detail": "250000/250000"
+  },
+  {
+   "name": "L1b boundary predicate holds at end of PLL segment",
+   "ok": true,
+   "detail": "250000/250000"
+  },
+  {
+   "name": "L5 no duplicate scrambles",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "L5 >=9% of step cells contain >1 stage",
+   "ok": true,
+   "detail": "0.635"
+  }
+ ],
+ "PASS": true
+}
