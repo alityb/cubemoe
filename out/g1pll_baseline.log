@@ -1,0 +1,25 @@
+cfop_mixtral_6L256_s0 [cfop250k]: y_PLL 1.2% | y_OLL 2.1% | y_stage 2.8% | PLL-dedicated experts []
+   e0: cross -0.0  F2L -0.0  OLL +1.6  PLL +3.2
+   e3: cross +0.0  F2L +0.6  OLL +2.1  PLL +0.0
+   e5: cross +10.0  F2L +14.9  OLL +2.4  PLL +6.5
+   e6: cross +0.0  F2L +2.8  OLL +0.3  PLL +0.1
+   e7: cross +1.2  F2L +3.9  OLL +4.4  PLL +2.4
+cfop_mixtral_6L256_s1 [cfop250k]: y_PLL 2.3% | y_OLL 4.2% | y_stage 5.6% | PLL-dedicated experts []
+   e1: cross -0.2  F2L +11.8  OLL +6.4  PLL +11.4
+   e3: cross +0.5  F2L +1.6  OLL +0.1  PLL +6.3
+   e5: cross +10.1  F2L +12.1  OLL +2.0  PLL +1.0
+cfop_mixtral_6L256_s2 [cfop250k]: y_PLL 1.5% | y_OLL 4.2% | y_stage 5.4% | PLL-dedicated experts []
+   e1: cross -0.0  F2L +0.0  OLL +5.4  PLL +4.4
+   e2: cross -0.0  F2L +0.9  OLL +2.1  PLL +0.7
+   e3: cross +6.0  F2L +17.0  OLL +0.3  PLL +0.0
+   e7: cross +12.8  F2L +8.8  OLL -0.2  PLL +2.1
+cfop_mixtral_6L256_s3 [cfop250k]: y_PLL 0.8% | y_OLL 5.1% | y_stage 5.6% | PLL-dedicated experts []
+   e2: cross +0.0  F2L +1.4  OLL +9.7  PLL +4.9
+   e4: cross +3.2  F2L +4.6  OLL +0.0  PLL -0.1
+   e6: cross +0.0  F2L +0.0  OLL +4.0  PLL +0.0
+   e7: cross +5.3  F2L +19.7  OLL +9.6  PLL +12.4
+cfop_mixtral_6L256_s4 [cfop250k]: y_PLL 0.8% | y_OLL 2.2% | y_stage 3.0% | PLL-dedicated experts [0]
+   e0: cross +0.0  F2L +0.0  OLL +0.1  PLL +3.8
+   e3: cross +1.1  F2L +8.2  OLL +0.3  PLL +0.3
+   e5: cross +0.9  F2L +5.4  OLL +7.2  PLL +13.7
+   e6: cross +7.7  F2L +14.6  OLL +8.4  PLL +3.0
