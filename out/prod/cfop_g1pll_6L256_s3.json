@@ -1,0 +1,99 @@
+{
+ "cfg": {
+  "tag": "cfop_g1pll_6L256_s3",
+  "preset": "mixtral",
+  "d": 256,
+  "L": 6,
+  "nh": 4,
+  "bs": 1024,
+  "total_states": 60000000,
+  "lr": 0.001,
+  "seed": 3,
+  "data": "cfop250k_g1pll",
+  "rot": "keepD",
+  "budget": 90
+ },
+ "gates": [
+  {
+   "heldout_acc": 0.8421300053596497,
+   "greedy_solve_heldout": 0.0,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 49.85,
+   "step": 5000,
+   "states_seen": 5120000
+  },
+  {
+   "heldout_acc": 0.8549849987030029,
+   "greedy_solve_heldout": 0.02499999850988388,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 47.775,
+   "step": 10000,
+   "states_seen": 10240000
+  },
+  {
+   "heldout_acc": 0.8665649890899658,
+   "greedy_solve_heldout": 0.03999999910593033,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 46.65,
+   "step": 15000,
+   "states_seen": 15360000
+  },
+  {
+   "heldout_acc": 0.8737499713897705,
+   "greedy_solve_heldout": 0.029999999329447746,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 45.4,
+   "step": 20000,
+   "states_seen": 20480000
+  },
+  {
+   "heldout_acc": 0.8709399700164795,
+   "greedy_solve_heldout": 0.044999998062849045,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 46.25,
+   "step": 25000,
+   "states_seen": 25600000
+  },
+  {
+   "heldout_acc": 0.8710449934005737,
+   "greedy_solve_heldout": 0.05999999865889549,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 45.25,
+   "step": 30000,
+   "states_seen": 30720000
+  },
+  {
+   "heldout_acc": 0.8767799735069275,
+   "greedy_solve_heldout": 0.07000000029802322,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 45.275,
+   "step": 35000,
+   "states_seen": 35840000
+  },
+  {
+   "heldout_acc": 0.8805999755859375,
+   "greedy_solve_heldout": 0.07499999552965164,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 45.875,
+   "step": 40000,
+   "states_seen": 40960000
+  },
+  {
+   "heldout_acc": 0.885284960269928,
+   "greedy_solve_heldout": 0.0949999988079071,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 44.875,
+   "step": 45000,
+   "states_seen": 46080000
+  },
+  {
+   "heldout_acc": 0.873604953289032,
+   "greedy_solve_heldout": 0.11499999463558197,
+   "beam256_solve_heldout": 1.0,
+   "beam256_avg_moves": 45.425,
+   "step": 50000,
+   "states_seen": 51200000
+  }
+ ],
+ "_start": 1793917376.3939583
+}

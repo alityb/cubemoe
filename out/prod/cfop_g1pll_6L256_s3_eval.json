@@ -1,0 +1,15 @@
+{
+ "tag": "cfop_g1pll_6L256_s3",
+ "n": 200,
+ "seed": 2026,
+ "budget": 90,
+ "data": "cfop250k_g1pll",
+ "test_set": "held-out CFOP scrambles",
+ "beam256": {
+  "solved": 200,
+  "rate": 1.0,
+  "avg_moves": 44.745,
+  "max_moves": 60,
+  "sec_per_cube": 0.8859660494327545
+ }
+}

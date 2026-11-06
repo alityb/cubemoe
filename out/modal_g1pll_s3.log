@@ -1,0 +1,31 @@
+✓ Initialized. View run at 
+https://modal.com/apps/thisaccisfortheschool/main/ap-4ZEpuOEgf7HnCu2aV7mEG9
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+cfop_g1pll_6L256_s3 step 200/58593 loss 1.6947 4,571 states/s
+cfop_g1pll_6L256_s3 step 400/58593 loss 1.1627 4,670 states/s
+cfop_g1pll_6L256_s3 step 600/58593 loss 1.0652 4,671 states/s
+cfop_g1pll_6L256_s3 step 800/58593 loss 0.9521 4,634 states/s
+cfop_g1pll_6L256_s3 step 1000/58593 loss 0.8978 4,589 states/s
+cfop_g1pll_6L256_s3 step 1200/58593 loss 0.8258 4,672 states/s
+cfop_g1pll_6L256_s3 step 1400/58593 loss 0.7140 4,688 states/s
+cfop_g1pll_6L256_s3 step 1600/58593 loss 0.7036 4,698 states/s
+cfop_g1pll_6L256_s3 step 1800/58593 loss 0.6533 4,703 states/s
+cfop_g1pll_6L256_s3 step 2000/58593 loss 0.6642 4,700 states/s
+cfop_g1pll_6L256_s3 step 2200/58593 loss 0.6335 4,702 states/s
+cfop_g1pll_6L256_s3 step 2400/58593 loss 0.6140 4,702 states/s
+cfop_g1pll_6L256_s3 step 2600/58593 loss 0.5817 4,704 states/s
+cfop_g1pll_6L256_s3 step 2800/58593 loss 0.5545 4,246 states/s
+cfop_g1pll_6L256_s3 step 3000/58593 loss 0.6229 4,704 states/s
+cfop_g1pll_6L256_s3 step 3200/58593 loss 0.6100 4,707 states/s
+cfop_g1pll_6L256_s3 step 3400/58593 loss 0.6018 4,705 states/s
