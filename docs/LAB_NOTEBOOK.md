@@ -1806,7 +1806,7 @@ Controls (planted dormant backup u of the strongest single-dedicated expert e):
 | C s2 | 0.175 / 0.176 / 0.174 | 0.081 / 0.073 / 0.074 | — |
 | C s3 | 0.017 / 0.018 / 0.017 | 0.052 / 0.048 / 0.046 | — |
 | C s4 | 0.061 / 0.061 / 0.061 | 0.053 / 0.047 / 0.050 | — |
-| G s0..s3 | 0.045 / 0.042 / 0.068 / 0.064 | 0.054 / 0.082 / 0.063 / 0.104 | s3: (0,1) PLL |
+| G s0 / s1 / s2 / s3 (all positions) | 0.045 / 0.042 / 0.068 / 0.064 | 0.054 / 0.082 / 0.063 / 0.104 | s3: (0,1) PLL |
 
   P1 (hidden pair in >= 4/5 C)                        0/5 -> FAILS
   P2 (C BI > K max 0.068 / 0.069, both halves)        3/5 (s0, s1, s2) -> FAILS (needed 4)
