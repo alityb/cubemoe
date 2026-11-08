@@ -1,0 +1,71 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-2K8lRZUxBHiq7x55yAtImw
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== pairs_analysis.py mixtral_6L256_s0 mixed250k
+mixtral_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s0.json (24749 positions)
+
+=== pairs_analysis.py cfop_mixtral_6L256_s0 cfop250k
+cfop_mixtral_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_mixtral_6L256_s0.json (73323 positions)
+
+=== pairs_analysis.py mixtral_6L256_s1 mixed250k
+mixtral_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s1.json (24749 positions)
+
+=== pairs_analysis.py cfop_mixtral_6L256_s1 cfop250k
+cfop_mixtral_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_mixtral_6L256_s1.json (73323 positions)
+
+=== pairs_analysis.py mixtral_6L256_s2 mixed250k
+mixtral_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s2.json (24749 positions)
+
+=== pairs_analysis.py cfop_mixtral_6L256_s2 cfop250k
+cfop_mixtral_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_mixtral_6L256_s2.json (73323 positions)
+
+=== pairs_analysis.py mixtral_6L256_s3 mixed250k
+mixtral_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s3.json (24749 positions)
+
+=== pairs_analysis.py cfop_mixtral_6L256_s3 cfop250k
+cfop_mixtral_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_mixtral_6L256_s3.json (73323 positions)
+
+=== pairs_analysis.py mixtral_6L256_s4 mixed250k
+mixtral_6L256_s4: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s4.json (24749 positions)
+
+=== pairs_analysis.py cfop_mixtral_6L256_s4 cfop250k
+cfop_mixtral_6L256_s4: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_mixtral_6L256_s4.json (73323 positions)
+
+=== pairs_analysis.py cfop_g1pll_6L256_s0 cfop250k_g1pll
+cfop_g1pll_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_g1pll_6L256_s0.json (60062 positions)
+
+=== pairs_analysis.py cfop_g1pll_6L256_s1 cfop250k_g1pll
+cfop_g1pll_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_g1pll_6L256_s1.json (60062 positions)
+
+=== pairs_analysis.py cfop_g1pll_6L256_s2 cfop250k_g1pll
+cfop_g1pll_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_g1pll_6L256_s2.json (60062 positions)
+
+=== pairs_analysis.py cfop_g1pll_6L256_s3 cfop250k_g1pll
+cfop_g1pll_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_g1pll_6L256_s3.json (60062 positions)
+
+=== pairs_analysis.py mixtral_6L256_s0 mixed250k pos
+mixtral_6L256_s0 control pos: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s0_ctrl_pos.json (24749 positions)
+
+=== pairs_analysis.py mixtral_6L256_s0 mixed250k neg
+mixtral_6L256_s0 control neg: wrote /Users/alityb/projects/cubemoe/out/pairs/mixtral_6L256_s0_ctrl_neg.json (24749 positions)
+
+=== pairs_analysis.py cfop_g1pll_6L256_s0 cfop250k_g1pll pos
+cfop_g1pll_6L256_s0 control pos: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_g1pll_6L256_s0_ctrl_pos.json (60062 positions)
+
+=== pairs_analysis.py cfop_g1pll_6L256_s0 cfop250k_g1pll neg
+cfop_g1pll_6L256_s0 control neg: wrote /Users/alityb/projects/cubemoe/out/pairs/cfop_g1pll_6L256_s0_ctrl_neg.json (60062 positions)
+
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-2K8lRZUxBHiq7x55yAtImw

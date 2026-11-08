@@ -1779,3 +1779,65 @@ Descriptive, not part of the verdict:
 - Training stopped at ~90% of the registered data; the gate (200/200) shows the models are competent, but the old
   models saw the full 60M.
 Outputs: out/g1pll/*.json, out/prod/cfop_g1pll_6L256_s*_eval.json.
+
+## 40. VERDICT: DO THE TWO SELECTED EXPERTS BACK EACH OTHER UP? (#10, 2026-11-08)
+
+Pre-registration: prereg/PREREG_EXPERT_PAIRS.md (commit 8261c66; design revised once after an adversarial review,
+recorded there, before running). Literature behind the method: arXiv 2611.05804 (deactivation rule matters),
+2607.28308 (interactions must be measured on the output with routes controlled), 2610.00558 (interactions only
+where experts are co-active), 2610.11775 (routing collections as the unit). Run: 18 jobs on Modal (ali-moh-islam-1,
+L40S, fp32), `modal/prod.py::scripts`; out/pairs/*.json; verdict by src/pairs_report.py -> out/pairs/report.json.
+Positions: K 24,749, C 73,323, G 60,062 (1,200 held-out solves each).
+
+Controls (planted dormant backup u of the strongest single-dedicated expert e):
+  K s0 (e,u)=(2,6) phase2: positive -> hidden pair found, PASS; negative -> not found, PASS
+  G s0 (e,u)=(3,7) PLL   : positive -> hidden pair found, PASS; negative -> not found, PASS
+  (Positive-control mechanics checked on the smoke test: single-e damage 2e-9, u never selected while e is present.)
+
+| model | BI (margin) all / A / B | pair increment all / A / B | hidden pairs |
+|---|---|---|---|
+| K s0 | -0.002 / -0.001 / -0.002 | 0.166 / 0.162 / 0.153 | (0,7) phase1 |
+| K s1 | 0.069 / 0.068 / 0.069 | 0.380 / 0.359 / 0.372 | — |
+| K s2 | 0.029 / 0.029 / 0.029 | -3.08 / -3.05 / -2.26 | (1,4) phase1 |
+| K s3 | 0.054 / 0.054 / 0.055 | -0.07 / -0.45 / -0.23 | (3,6) phase1 |
+| K s4 | 0.064 / 0.063 / 0.064 | -1.38 / -1.15 / -3.83 | (4,5) phase1 |
+| C s0 | 0.087 / 0.087 / 0.086 | 0.090 / 0.084 / 0.088 | — |
+| C s1 | 0.092 / 0.094 / 0.090 | 0.051 / 0.045 / 0.051 | — |
+| C s2 | 0.175 / 0.176 / 0.174 | 0.081 / 0.073 / 0.074 | — |
+| C s3 | 0.017 / 0.018 / 0.017 | 0.052 / 0.048 / 0.046 | — |
+| C s4 | 0.061 / 0.061 / 0.061 | 0.053 / 0.047 / 0.050 | — |
+| G s0..s3 | 0.045 / 0.042 / 0.068 / 0.064 | 0.054 / 0.082 / 0.063 / 0.104 | s3: (0,1) PLL |
+
+  P1 (hidden pair in >= 4/5 C)                        0/5 -> FAILS
+  P2 (C BI > K max 0.068 / 0.069, both halves)        3/5 (s0, s1, s2) -> FAILS (needed 4)
+  P3 (C increment >= max(1.5 x K max, 0.02), halves)  0/5 -> FAILS
+  => H10a NOT SUPPORTED (controls passed, so the method can detect backup); H10b NOT SUPPORTED.
+  By the reading rules: "neither" -> the absence of a CFOP stage split survives the pair-level analysis; it is not an
+  artifact of single-expert, top-1 measurement. (Matches the expectation stated in the prereg for H10a.)
+
+Caveat on P3, stated plainly: the K reference is ill-conditioned. In K, the top-1 expert already explains 68-100% of
+H(phase | S) = 0.124 bits (top-1 0.068-0.124 bits), so the increment's denominator is near zero and three K values are
+large and negative (bias correction penalises the 56-class pair more than the 8-class top-1). The rule used the K max
+(s1, 0.37), which is a well-conditioned value. The conclusion does not hinge on it: against the smallest
+well-conditioned K value (s0, 0.166) every C model is still below (0.05-0.09), and in absolute terms the C pair
+explains only 11-21% of H(stage | S) = 0.543 bits (top-1 7-14%), against 68-100% for the K top-1.
+
+Descriptive (pre-registered as descriptive):
+- Final-layer expert effects are close to additive. Summed pair damage ~ 7 x summed single damage in every model (K s0:
+  1.86 vs 1.82), BI 0-0.18. The router's rerouted substitute almost never covers for a removed expert: the
+  "exclusive" backup term summed over all 28 pairs is -0.03 to +0.07 in every model. What super-additivity there is
+  sits on positions where both experts were selected together (the co-selected partner carries on at full weight).
+- Kociemba's phase 1 is run by a standing PAIR in 4/5 seeds: K s0 (0,7) co-selected on 93% of phase-1 positions,
+  singles 8.6 and 9.9 points, pair 35.3, phase 2 untouched; K s2 (1,4) 91%, 12.4 + 9.3 -> 36.4; K s3 (3,6) 58%,
+  5.5 + 11.7 -> 28.1; K s4 (1,5) 77%. Single-expert knockouts understated Kociemba's phase split by 2-4x.
+G s3's two PLL-dedicated experts from #9 (e0, e1) are the same kind of unit: 11.6 + 8.1 -> 30.9 on PLL, OLL 1.8.
+
+Exploratory, NOT pre-registered (computed after the verdict from the same JSONs): the most co-selected pair per stage.
+- K: each phase has its own standing pair, and its damage stays in that phase (e.g. s0 phase 1 (0,7) 93%, damage 35 vs
+  0 elsewhere; s2 (1,4) 91%, 36 vs 0). Exception: s1 uses one pair (1,6) in both phases.
+- C, all 5 seeds: one standing pair runs cross AND F2L together (co-selected on 76-98% of cross and 40-74% of F2L
+  positions; its knockout costs 14-29 points on both). The last layer has no standing pair of its own: its most
+  co-selected pair is co-selected on only 24-48% of positions and is usually the same cross/F2L pair.
+- G: the same cross/F2L team, plus a PLL-only pair in s0 ((0,7), 55 points on PLL vs 4 elsewhere) and s3 ((0,1), 31 vs 2).
+So the unit of division of labour in this architecture is the co-selected pair, not the single expert. CFOP's
+teams split the solve into "first two layers" vs everything else, not into CFOP's four stages.
