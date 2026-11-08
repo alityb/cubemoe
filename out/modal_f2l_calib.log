@@ -1,0 +1,36 @@
+✓ Initialized. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-qcPRtAED06fucEVUbVZKN5
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== f2l_split.py cfop_mixtral_6L256_s0
+cfop_mixtral_6L256_s0: pair-explained cut info cross|rest 0.064 F2L|LL 0.176 OLL|PLL 0.212 | pick_A_eval_B: team (5, 7) cross 0.77 FL 0.50 KO FL 20.9 LL 8.3; LL pair (4, 5) LL 0.25 | pick_B_eval_A: team (5, 7) cross 0.76 FL 0.49 KO FL 19.8 LL 8.3; LL pair (4, 5) LL 0.25
+
+=== f2l_split.py cfop_mixtral_6L256_s1
+cfop_mixtral_6L256_s1: pair-explained cut info cross|rest 0.058 F2L|LL 0.140 OLL|PLL 0.200 | pick_A_eval_B: team (1, 5) cross 0.78 FL 0.75 KO FL 25.5 LL 10.4; LL pair (1, 5) LL 0.60 | pick_B_eval_A: team (1, 5) cross 0.78 FL 0.75 KO FL 25.3 LL 10.3; LL pair (1, 5) LL 0.60
+
+=== f2l_split.py cfop_mixtral_6L256_s2
+cfop_mixtral_6L256_s2: pair-explained cut info cross|rest 0.088 F2L|LL 0.345 OLL|PLL 0.183 | pick_A_eval_B: team (3, 7) cross 0.93 FL 0.76 KO FL 23.9 LL 1.4; LL pair (3, 7) LL 0.31 | pick_B_eval_A: team (3, 7) cross 0.94 FL 0.76 KO FL 23.4 LL 1.4; LL pair (3, 7) LL 0.31
+
+=== f2l_split.py cfop_mixtral_6L256_s3
+cfop_mixtral_6L256_s3: pair-explained cut info cross|rest 0.089 F2L|LL 0.290 OLL|PLL 0.098 | pick_A_eval_B: team (4, 7) cross 0.98 FL 0.72 KO FL 20.7 LL 5.5; LL pair (2, 7) LL 0.43 | pick_B_eval_A: team (4, 7) cross 0.98 FL 0.72 KO FL 20.0 LL 5.7; LL pair (2, 7) LL 0.43
+
+=== f2l_split.py cfop_mixtral_6L256_s4
+cfop_mixtral_6L256_s4: pair-explained cut info cross|rest 0.043 F2L|LL 0.147 OLL|PLL 0.150 | pick_A_eval_B: team (3, 6) cross 0.79 FL 0.67 KO FL 21.9 LL 4.9; LL pair (5, 6) LL 0.34 | pick_B_eval_A: team (3, 6) cross 0.80 FL 0.68 KO FL 22.6 LL 4.9; LL pair (5, 6) LL 0.34
+
+Stopping app - local entrypoint completed.
+Runner terminated.
+Runner terminated.
+Runner terminated.
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/ali-moh-islam-1/main/ap-qcPRtAED06fucEVUbVZKN5
