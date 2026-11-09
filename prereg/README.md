@@ -24,6 +24,7 @@ are identical, so hashes quoted elsewhere still verify). Details of each run are
 | 10 | `PREREG_EXPERT_PAIRS.md` | 2026-11-08 | Do the two selected experts back each other up, and does the pair carry CFOP's stage? | **Not supported**: P1 0/5, P2 3/5, P3 0/5 (controls pass) |
 | 11 | `PREREG_F2L_SPLIT.md` | 2026-11-08 | Replication on 3 new seeds: do CFOP models run cross + F2L on a standing expert pair? | **Partial**: P1 2/3, P2 2/3, P3 3/3 (team seed-dependent; s5 fails on F2L co-selection) |
 | 12 | `PREREG_GEOMETRY_PATHS.md` | 2026-11-09 | Does each router read its label beyond the dominant geometry of its input, and is CFOP's stage carried by the expert path across layers? | Part A **Selection** (A1 4/5, A2 8/8, A3 5/8, A4 fails); Part B **void** (null out of bounds on Kociemba positions) |
+| 13 | `PREREG_PATHS_FRESH.md` | 2026-11-09 | Replication of #12 Part B on fresh positions, with untrained-model and additive controls: does CFOP's routing path carry the stage? | Pending |
 
 "Rejected" / "failed" means the pre-registered criterion was not met. It does not mean the effect was shown to be absent.
 
