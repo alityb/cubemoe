@@ -1882,3 +1882,46 @@ models, so no last-layer unit, as stated in the prereg.
 Paper-level reading: the robust CFOP finding is "the final layer's most-used pair on cross positions is a unit the
 first two layers depend on" (8/8), not "a standing cross+F2L team" (7/8, failing in a new seed). The latter should be
 reported as typical but seed-dependent.
+
+## 42. VERDICT: ROUTING VS REPRESENTATION GEOMETRY; EXPERT PATHS (#12, 2026-11-09)
+
+Pre-registration: prereg/PREREG_GEOMETRY_PATHS.md (commit f0c96d7; revised once after an independent review, 12
+problems / 4 must-fix, recorded there). Motivated by arXiv 2604.09780 (routing reflects input geometry) and 2603.18297
+(expert paths). Run locally (MPS + CPU), src/geom_run.sh: 13 models x (own positions, other family's positions);
+out/geom/*.json; verdict by src/geom_report.py -> out/geom/report.{json,log}. 26/26 runs completed, none failed.
+
+**Part A (final layer, given moves remaining):** r = router's label share / best cross-fitted linear readout's share;
+"beyond geometry" = above the 99th percentile and >= 1.5 x the median of routers that read only the top-7 principal
+subspace of their input.
+
+| | ceiling | router r | geometry-null r (median) | unconditioned r |
+|---|---|---|---|---|
+| K s0-s4 (phase) | 0.83-0.87 | 0.21-0.40 (median 0.335) | 0.015-0.058 | 0.53-0.75 |
+| C s0-s7 (stage) | 0.60-0.67 | 0.056-0.135 (median 0.084) | 0.025-0.042 | 0.17-0.42 |
+| K routers on CFOP positions | | max 0.062 | | |
+
+  A1 (K beyond geometry, both halves)                      4/5 (s3: 0.17 vs null p99 0.18)  -> PASS
+  A2 (stage present in h, > permutation p99, both halves)  8/8                               -> PASS
+  A3 (C beyond geometry AND r > every K router on CFOP)    5/8 (s3 not beyond geometry; s0, s4 beyond it but r 0.056/0.057
+                                                                < 0.062)                     -> FAIL (needed 6)
+  A4 (median r C >= 0.5 x K)                               0.084 vs 0.335                    -> FAIL
+  => reading rule: **SELECTION.** Stage is present in what the final CFOP router reads: the best single linear
+  readout of h has a stage share of 0.60-0.67 (phase in K: 0.83-0.87). The Kociemba router takes 21-40% of that best
+  phase share, 3.8-15x what a router reading only the dominant directions gets; the CFOP router takes 6-14% of the best
+  stage share, 1.6-3.2x the dominant-geometry null (above it in 7/8 seeds) but barely above what a Kociemba-trained
+  router reads off the same positions (0.062). "Routing reflects geometry" describes the CFOP router's stage
+  information (to within a small margin); it does not describe the Kociemba router's phase information. The
+  Kociemba/CFOP difference is in what the router reads, not in whether stage is available to it.
+
+**Part B: VOID by its pre-registered rule.** B0 required the permutation null in [-0.05, 0.02] in every run; it was
+-0.04 to -0.16 in all 13 runs scored on KOCIEMBA positions (H(phase | S) = 0.12 bits, so the classifier's overfitting
+penalty is large in normalised units) and inside the bounds in all 13 runs on CFOP positions (-0.03 to -0.05). The
+lower bound was added on review to catch a broken classifier; it caught a scale problem instead. No Part B
+prediction is confirmatory.
+
+Exploratory only (CFOP positions, where the null is in bounds; NOT confirmatory): each single layer's routing carries
+0.00-0.15 of H(stage | S), the final layer 0.06-0.15, but the six-layer path 0.41-0.54 in all 8 C models; Kociemba
+routers' paths on the same positions carry 0.25-0.31 (their final layer is degenerate there: pair entropy 0.65-1.78
+bits vs 2.85 for C). If it holds, CFOP's stage is carried combinatorially by the path, about 0.1-0.25 above what any
+trained router's path carries by tracking the cube state. A replication on fresh held-out solves with B0 restricted to
+the positions being scored would make this confirmatory.

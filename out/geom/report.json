@@ -1,0 +1,18 @@
+{
+ "verdict": {
+  "A1": "4/5",
+  "A2": "8/8",
+  "A3": "5/8 (K-on-CFOP max r 0.062)",
+  "A4": "median r C 0.084 vs K 0.335 -> False",
+  "partA": "SELECTION",
+  "B0": false,
+  "B1": "8/8",
+  "B1b": "8/8",
+  "B2": "7/8",
+  "B3": "median I(all) C 0.503 vs K 1.002 -> True",
+  "B2_degenerate_layers": [
+   5
+  ],
+  "partB": "VOID (B0 failed: the permutation null is outside [-0.05, 0.02]) [B2 control degenerate at layers [5]: K routers collapse on CFOP positions]"
+ }
+}
