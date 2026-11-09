@@ -1,0 +1,96 @@
+{
+ "per_seed": {
+  "cfop_mixtral_6L256_s5": {
+   "checks": {
+    "P1": false,
+    "P2": false,
+    "P3": true
+   },
+   "detail": {
+    "pick_A_eval_B": {
+     "P1": false,
+     "P2": false,
+     "P3": true,
+     "ll_pair_is_team": false,
+     "ll_pair_LL_over_FL": 0.39818160223682786
+    },
+    "pick_B_eval_A": {
+     "P1": false,
+     "P2": false,
+     "P3": true,
+     "ll_pair_is_team": false,
+     "ll_pair_LL_over_FL": 0.40887513440008666
+    }
+   },
+   "best_cut": "cross|rest",
+   "cut_info": {
+    "cross|rest": 0.21199473246588924,
+    "F2L|LL": 0.18744438898119808,
+    "OLL|PLL": 0.1673736824699483
+   }
+  },
+  "cfop_mixtral_6L256_s6": {
+   "checks": {
+    "P1": true,
+    "P2": true,
+    "P3": true
+   },
+   "detail": {
+    "pick_A_eval_B": {
+     "P1": true,
+     "P2": true,
+     "P3": true,
+     "ll_pair_is_team": true,
+     "ll_pair_LL_over_FL": 0.14286645809035073
+    },
+    "pick_B_eval_A": {
+     "P1": true,
+     "P2": true,
+     "P3": true,
+     "ll_pair_is_team": true,
+     "ll_pair_LL_over_FL": 0.1459868519254987
+    }
+   },
+   "best_cut": "F2L|LL",
+   "cut_info": {
+    "cross|rest": 0.1237007497949138,
+    "F2L|LL": 0.2669915941039656,
+    "OLL|PLL": 0.13414821749287123
+   }
+  },
+  "cfop_mixtral_6L256_s7": {
+   "checks": {
+    "P1": true,
+    "P2": true,
+    "P3": true
+   },
+   "detail": {
+    "pick_A_eval_B": {
+     "P1": true,
+     "P2": true,
+     "P3": true,
+     "ll_pair_is_team": false,
+     "ll_pair_LL_over_FL": 0.5131824650037554
+    },
+    "pick_B_eval_A": {
+     "P1": true,
+     "P2": true,
+     "P3": true,
+     "ll_pair_is_team": false,
+     "ll_pair_LL_over_FL": 0.5246453846866646
+    }
+   },
+   "best_cut": "F2L|LL",
+   "cut_info": {
+    "cross|rest": 0.04281717560712309,
+    "F2L|LL": 0.3212686333119512,
+    "OLL|PLL": 0.1995770568073857
+   }
+  }
+ },
+ "verdict": {
+  "P1": "2/3 -> PARTIAL",
+  "P2": "2/3 -> PARTIAL",
+  "P3": "3/3 -> REPLICATED"
+ }
+}

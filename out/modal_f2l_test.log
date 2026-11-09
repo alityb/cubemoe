@@ -1,0 +1,26 @@
+✓ Initialized. View run at 
+https://modal.com/apps/dnfcubes/main/ap-5QeAboBE9khhD8ArIn92z4
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+=== f2l_split.py cfop_mixtral_6L256_s5
+cfop_mixtral_6L256_s5: pair-explained cut info cross|rest 0.212 F2L|LL 0.187 OLL|PLL 0.167 | pick_A_eval_B: team (2, 7) cross 0.79 FL 0.38 KO FL 20.9 LL 1.2; LL pair (1, 2) LL 0.44 | pick_B_eval_A: team (2, 7) cross 0.80 FL 0.38 KO FL 20.2 LL 1.3; LL pair (1, 2) LL 0.43
+
+=== f2l_split.py cfop_mixtral_6L256_s6
+cfop_mixtral_6L256_s6: pair-explained cut info cross|rest 0.124 F2L|LL 0.267 OLL|PLL 0.134 | pick_A_eval_B: team (0, 1) cross 0.81 FL 0.78 KO FL 28.1 LL 4.0; LL pair (0, 1) LL 0.56 | pick_B_eval_A: team (0, 1) cross 0.82 FL 0.78 KO FL 28.1 LL 4.1; LL pair (0, 1) LL 0.56
+
+=== f2l_split.py cfop_mixtral_6L256_s7
+cfop_mixtral_6L256_s7: pair-explained cut info cross|rest 0.043 F2L|LL 0.321 OLL|PLL 0.200 | pick_A_eval_B: team (4, 5) cross 0.82 FL 0.67 KO FL 21.2 LL 2.1; LL pair (3, 4) LL 0.34 | pick_B_eval_A: team (4, 5) cross 0.82 FL 0.67 KO FL 21.0 LL 2.2; LL pair (3, 4) LL 0.34
+
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/dnfcubes/main/ap-5QeAboBE9khhD8ArIn92z4

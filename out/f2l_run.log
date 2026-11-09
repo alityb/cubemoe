@@ -1,0 +1,11 @@
+training done Sun Nov  8 20:05:09 EST 2026
+cfop_mixtral_6L256_s5 beam 256: solved 200/200, avg 47.27 moves, 0.91 s/cube
+cfop_mixtral_6L256_s6 beam 256: solved 200/200, avg 48.87 moves, 0.53 s/cube
+cfop_mixtral_6L256_s7 beam 256: solved 199/200, avg 48.74 moves, 0.96 s/cube
+gate cfop_mixtral_6L256_s5: 200/200 -> PASS
+gate cfop_mixtral_6L256_s6: 200/200 -> PASS
+gate cfop_mixtral_6L256_s7: 199/200 -> PASS
+cfop_mixtral_6L256_s5 {'P1': False, 'P2': False, 'P3': True} | best cut (descriptive): cross|rest {'cross|rest': 0.212, 'F2L|LL': 0.187, 'OLL|PLL': 0.167}
+cfop_mixtral_6L256_s6 {'P1': True, 'P2': True, 'P3': True} | best cut (descriptive): F2L|LL {'cross|rest': 0.124, 'F2L|LL': 0.267, 'OLL|PLL': 0.134}
+cfop_mixtral_6L256_s7 {'P1': True, 'P2': True, 'P3': True} | best cut (descriptive): F2L|LL {'cross|rest': 0.043, 'F2L|LL': 0.321, 'OLL|PLL': 0.2}
+{'P1': '2/3 -> PARTIAL', 'P2': '2/3 -> PARTIAL', 'P3': '3/3 -> REPLICATED'}

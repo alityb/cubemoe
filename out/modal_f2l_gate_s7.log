@@ -1,0 +1,18 @@
+✓ Initialized. View run at 
+https://modal.com/apps/dnfcubes/main/ap-GFYhdKX7WFyafKddwmkgiL
+✓ Created objects.
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/modal/prod.py
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/probe
+├── 🔨 Created mount /Users/alityb/projects/cubemoe/src
+├── 🔨 Created function train_a10g.
+├── 🔨 Created function train_l40s.
+├── 🔨 Created function probe_a10g.
+├── 🔨 Created function probe_l40s.
+├── 🔨 Created function evaluate.
+├── 🔨 Created function solve_paths.
+├── 🔨 Created function solve_paths_multi.
+└── 🔨 Created function run_script.
+cfop_mixtral_6L256_s7 beam 256: solved 199/200, avg 48.74 moves, 0.96 s/cube
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/dnfcubes/main/ap-GFYhdKX7WFyafKddwmkgiL

@@ -163,6 +163,9 @@ Checkpoints for the production-style MoE policies (src/model_prod.py, Mixtral-st
 | `out/prod/cfop_g1pll_6L256_s1.pt` | 415.6 | `8d8c2d3103797322…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
 | `out/prod/cfop_g1pll_6L256_s2.pt` | 415.6 | `d883af50c8438eef…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
 | `out/prod/cfop_g1pll_6L256_s3.pt` | 415.6 | `f4fab4e840b8347f…` | modal/prod.py train_l40s --data cfop250k_g1pll (prereg #9, 3.4 h stop); copies on Modal volumes | gitignored |
+| `out/prod/cfop_mixtral_6L256_s5.pt` | 415.6 | `168316d23aa7373a…` | modal/prod.py train_l40s --preset mixtral --data cfop250k (prereg #11, full 58,593 steps on dnfcubes); copies on Modal volume | gitignored |
+| `out/prod/cfop_mixtral_6L256_s6.pt` | 415.6 | `019247e481234b56…` | modal/prod.py train_l40s --preset mixtral --data cfop250k (prereg #11, full 58,593 steps on dnfcubes); copies on Modal volume | gitignored |
+| `out/prod/cfop_mixtral_6L256_s7.pt` | 415.6 | `0f9f8cb46726c169…` | modal/prod.py train_l40s --preset mixtral --data cfop250k (prereg #11, full 58,593 steps on dnfcubes); copies on Modal volume | gitignored |
 | `out/prod/cfop_mixtral_6L256_s0.pt` | 415.6 | `f194f2a98d19a876…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
 | `out/prod/cfop_mixtral_6L256_s1.pt` | 415.6 | `68c3b4b977b3666e…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
 | `out/prod/cfop_mixtral_6L256_s2.pt` | 415.6 | `d19ac7fd585e9e92…` | modal/prod.py train_l40s (Modal L40S, ~hours); copies on Modal volume phasesplit-vol | gitignored |
@@ -322,4 +325,7 @@ e903bc6675899a961522b0ec455798b9436f9ad103ef1d5c26f9c55acc99cecd  llm/ko_granite
 16a0ce498bed23f558861db21ac525089b6c7598bf9adc1fc78297a9dbe92eed  llm/ko_granite-3.1-1b-a400m-base_L23.npz
 2944d0faedb8390c00137d63aff47a4eaf29155f6a9357b10cc4ba19eda7bc3e  llm/ko_granite-3.1-1b-a400m-base_L3.npz
 a524931793b2299226ae7c726f4d691595f826b6f363bb2917cdb4df9dad34f8  llm/ko_granite-3.1-1b-a400m-base_L7.npz
+168316d23aa7373aeba8fb8f9402d8b68d27d9da4b571369271c31fc1abfb86a  out/prod/cfop_mixtral_6L256_s5.pt
+019247e481234b561daa502c5a41145052f19e99b689111c4120c186067ab85f  out/prod/cfop_mixtral_6L256_s6.pt
+0f9f8cb46726c169ee2f4c02d48b3ef47b03a3e4d249ee3fa97f4125bc975bee  out/prod/cfop_mixtral_6L256_s7.pt
 ```

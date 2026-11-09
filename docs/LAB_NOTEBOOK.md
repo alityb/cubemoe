@@ -1841,3 +1841,44 @@ Exploratory, NOT pre-registered (computed after the verdict from the same JSONs)
 - G: the same cross/F2L team, plus a PLL-only pair in s0 ((0,7), 55 points on PLL vs 4 elsewhere) and s3 ((0,1), 31 vs 2).
 So the unit of division of labour in this architecture is the co-selected pair, not the single expert. CFOP's
 teams split the solve into "first two layers" vs everything else, not into CFOP's four stages.
+
+## 41. VERDICT: DO CFOP MODELS RUN CROSS + F2L ON A STANDING EXPERT TEAM? (#11, replication, 2026-11-08)
+
+Pre-registration: prereg/PREREG_F2L_SPLIT.md (commit 74ad8dc; calibration on s0-s4 committed with it, thresholds =
+0.8 x calibration minimum). New models `cfop_mixtral_6L256_s{5,6,7}`, trained on Modal dnfcubes (L40S) exactly as
+s0-s4; all three ran the full 58,593 steps (the 4.2 h stop did not bind). Chain: src/f2l_run.sh (gate -> f2l_split.py
+on Modal -> f2l_report.py). Nothing was measured on these seeds before the chain ran.
+
+Gate (beam 256, 200 held-out scrambles): s5 200/200 (47.3 moves), s6 200/200 (48.9), s7 199/200 (48.7) -> all PASS.
+
+Values below are on the evaluation half; both cross-fitting directions agree to within 0.01 / 0.7 points.
+
+| seed | team (both halves) | co-selected cross / FL / F2L | team FL / best LL pair's LL | team KO points: FL, LL; FL/LL, F2L/LL, margin FL/LL | best LL pair (= team?) | P1 P2 P3 |
+|---|---|---|---|---|---|---|
+| s5 | (2,7) | 0.79 / **0.38** / **0.25** | **0.88** | 20.9, 1.2; 17, 17, 22-27 | (1,2) no | F F T |
+| s6 | (0,1) | 0.81 / 0.78 / 0.77 | 1.38 | 28.1, 4.0; 7.0, 7.9, 7.1 | (0,1) yes | T T T |
+| s7 | (4,5) | 0.82 / 0.67 / 0.62 | 1.96 | 21.2, 2.1; 10, 11, 5.6 | (3,4) no | T T T |
+
+(Bold = below threshold: FL 0.39, F2L 0.32, P2 0.99.)
+
+  P1 (standing team)                 2/3 -> PARTIAL
+  P2 (no more dominant LL pair)      2/3 -> PARTIAL
+  P3 (team is a first-two-layers unit) 3/3 -> REPLICATED
+  By the reading rules: P1 partial -> "the team recurs in some seeds only; report it as seed-dependent, not as a
+  property of CFOP models."
+
+What s5 shows: its team (2,7) is co-selected on 79% of cross positions but only 25% of F2L positions, yet knocking it
+out still costs 20.6 points on F2L (vs 1.2 on the last layer). So in s5 the pair is needed on F2L without being the
+standing pair there. In every one of the 8 models (calibration and new), the most co-selected FL pair is one whose
+removal hurts the first two layers far more than the last layer (FL/LL >= 2.4, here 7-17), and in all 8 it is
+co-selected on >= 76% of cross positions. What does not hold reliably is that the same pair also stands on F2L.
+
+Descriptive, pair-explained share of each two-way cut (top-1 in brackets): s5 cross|rest 0.21 (0.15), F2L|LL 0.19
+(0.13), OLL|PLL 0.17 (0.07); s6 0.12 (0.11), 0.27 (0.15), 0.13 (0.06); s7 0.04 (0.02), 0.32 (0.23), 0.20 (0.11).
+Best cut: F2L|LL in s6 and s7, cross|rest in s5. Over all 8 models: F2L|LL 4, OLL|PLL 3, cross|rest 1. No single
+routing boundary. Best LL pair's LL/FL damage: s5 0.40, s6 0.14 (it is the team), s7 0.51; still < 1 in all 8
+models, so no last-layer unit, as stated in the prereg.
+
+Paper-level reading: the robust CFOP finding is "the final layer's most-used pair on cross positions is a unit the
+first two layers depend on" (8/8), not "a standing cross+F2L team" (7/8, failing in a new seed). The latter should be
+reported as typical but seed-dependent.
