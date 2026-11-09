@@ -1,0 +1,26 @@
+cfop_mixtral_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s0.json (73625 positions)
+cfop_mixtral_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s2.json (73625 positions)
+cfop_mixtral_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s1.json (73625 positions)
+cfop_mixtral_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s3.json (73625 positions)
+cfop_mixtral_6L256_s5: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s5.json (73625 positions)
+cfop_mixtral_6L256_s4: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s4.json (73625 positions)
+cfop_mixtral_6L256_s6: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s6.json (73625 positions)
+cfop_mixtral_6L256_s7: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/cfop_mixtral_6L256_s7.json (73625 positions)
+mixtral_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/mixtral_6L256_s0.json (73625 positions)
+Python(36302) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+mixtral_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/mixtral_6L256_s1.json (73625 positions)
+Python(38296) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(38589) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+mixtral_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/mixtral_6L256_s3.json (73625 positions)
+Python(38995) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+mixtral_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/mixtral_6L256_s2.json (73625 positions)
+mixtral_6L256_s4: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/mixtral_6L256_s4.json (73625 positions)
+--- laptop lost power after 13/16 runs; resuming the 3 untrained models Mon Nov  9 15:11:14 EST 2026
+Python(12206) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+random_s100: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/random_s100.json (73625 positions)
+Python(13162) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+random_s101: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/random_s101.json (73625 positions)
+Python(13729) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+random_s102: wrote /Users/alityb/projects/cubemoe/out/paths_fresh/random_s102.json (73625 positions)
+all runs done Mon Nov  9 15:42:01 EST 2026
+report exit 0

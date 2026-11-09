@@ -1,0 +1,24 @@
+{
+ "primary": {
+  "B0_C": true,
+  "B0_K": true,
+  "B0_random": true,
+  "B1": "8/8",
+  "B1b": "8/8",
+  "B1c": "8/8",
+  "B2": "5/8",
+  "B2r": "8/8",
+  "verdict": "NOT CFOP-SPECIFIC: the path adds stage information, but not beyond Kociemba routers"
+ },
+ "descriptive_nondup": {
+  "B0_C": true,
+  "B0_K": true,
+  "B0_random": true,
+  "B1": "8/8",
+  "B1b": "8/8",
+  "B1c": "0/8",
+  "B2": "8/8",
+  "B2r": "8/8",
+  "verdict": "REPLICATED: the CFOP routing path carries stage-predictive information beyond the final layer, beyond Kociemba-trained routers and beyond a random hash of the state; beyond any single layer; NOT combinatorial (an additive-over-layers model does as well)"
+ }
+}
