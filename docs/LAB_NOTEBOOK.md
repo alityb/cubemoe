@@ -1925,3 +1925,46 @@ routers' paths on the same positions carry 0.25-0.31 (their final layer is degen
 bits vs 2.85 for C). If it holds, CFOP's stage is carried combinatorially by the path, about 0.1-0.25 above what any
 trained router's path carries by tracking the cube state. A replication on fresh held-out solves with B0 restricted to
 the positions being scored would make this confirmatory.
+
+## 43. VERDICT: DOES CFOP'S ROUTING PATH CARRY THE STAGE? (#13, replication of #12 Part B, 2026-11-09)
+
+Pre-registration: prereg/PREREG_PATHS_FRESH.md (commit 2bbf839; revised once after an independent review, 11 items /
+2 must-fix). Fresh positions: CFOP held-out solves 1,200-2,399 (73,625 positions), asserted disjoint from the training
+split. 16 models: C = cfop s0-s7, K = Kociemba s0-s4, U = untrained random_s100-102. Run locally, src/paths_fresh_run.sh;
+the laptop lost power after 13/16 runs (all C and K written); the 3 U runs were re-run on the same code (noted in
+out/paths_fresh_run.log). Verdict by src/paths_fresh_report.py -> out/paths_fresh/report.{json,log}. None failed.
+H(stage | S) = 0.513 bits.
+
+| (mean of both directions) | I(L5) | max single layer | I(L0-4) | I(all) | one-hot - additive | null |
+|---|---|---|---|---|---|---|
+| C s0-s7 | 0.059-0.147 | 0.089-0.151 | 0.292-0.437 | 0.398-0.520 | 0.095-0.153 | -0.031 to -0.041 |
+| K s0-s4 | 0.011-0.034 | 0.068-0.108 | 0.216-0.289 | 0.233-0.299 | 0.08 (all) | -0.024 to -0.035 |
+| U (untrained) | <= 0.019 | <= 0.028 | <= 0.028 | <= 0.028 | ~0 | -0.012 to 0.000 |
+
+  B0 (null in [-0.08, 0.02]; C, K, U)              all in bounds        -> valid
+  B1  (I(all) - I(L5) >= 0.10)                     8/8                  -> PASS
+  B1b (I(all) - max single layer >= 0.05)          8/8                  -> PASS
+  B1c (one-hot - additive >= 0.05)                 8/8 (0.095-0.153)    -> PASS
+  B2  (beat max K by 0.10 on 'all' AND 'L0-4')     5/8 (s3 misses 'all' by 0.001 [0.398 vs 0.399];
+                                                        s3, s4, s7 miss 'L0-4': 0.292/0.382/0.371 vs 0.389) -> FAIL (needed 6)
+  B2r (beat max U by 0.10)                         8/8                  -> PASS
+  => reading rule: **NOT CFOP-SPECIFIC.** The CFOP routing path carries stage information well beyond its final layer
+  and beyond any single layer, and the combination of layers matters (an additive-over-layers model loses 0.10-0.15).
+  But Kociemba-trained routers' paths on the same positions carry 0.23-0.30 of H(stage | S), and the CFOP margin over
+  them (+0.10 to +0.22 on the full path, +0.00 to +0.15 on L0-4) does not clear the pre-registered 0.10 in 6/8 models.
+
+Caveats on the controls (stated after seeing results):
+- The untrained control is weak: untrained routers collapse onto one expert pair at most layers (pair entropy 0.00-1.28
+  bits, mostly ~0), so B2r tests "beyond a near-constant route", not "beyond a random hash of the state". B2r's pass
+  should not be cited as ruling out the hash explanation.
+- Duplicate states: 67.4% of fresh states occur verbatim in CFOP training. On the 32.6% that never do (descriptive),
+  K paths fall to 0.012-0.034 and C paths to 0.200-0.343, so B2 passes 8/8 there, but B1c fails 0/8 (one-hot - additive
+  0.008-0.050): on novel states the C path's stage information is additive over layers, not combinatorial. The
+  combinatorial part of the primary result lives on states C saw in training (consistent with memorised routing for
+  recurring states, a weakness named in the prereg). The K drop on non-duplicates is unexplained; non-duplicate states
+  are likely earlier in the solve, with a different stage mix.
+
+Net: #12's exploratory observation replicates in form (the path carries far more stage than any layer: 0.40-0.52 vs
+<= 0.15) but not as a CFOP-specific property under the pre-registered margin. On novel states the C path carries stage
+much better than K paths (0.20-0.34 vs <= 0.03), additively across layers; this is descriptive and would need its own
+pre-registration.
