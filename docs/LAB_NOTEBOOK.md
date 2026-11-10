@@ -1968,3 +1968,60 @@ Net: #12's exploratory observation replicates in form (the path carries far more
 <= 0.15) but not as a CFOP-specific property under the pre-registered margin. On novel states the C path carries stage
 much better than K paths (0.20-0.34 vs <= 0.03), additively across layers; this is descriptive and would need its own
 pre-registration.
+
+## 44. VERDICT: DOES THE STAGE CARRIED BY THE CFOP PATH CHANGE THE MOVES? (#14, path intervention, 2026-11-09)
+
+Pre-registration: prereg/PREREG_PATH_SWAP.md (commit 4d91da3; revised after an independent review, 3 must-fix;
+calibration on solves 0-1,199 re-run after the revision). Confirmation: held-out solves 3,600-4,799 (cfop250k for C,
+mixed250k for K). src/path_swap_run.sh -> out/path_swap/*.json, report.{json,log}. 13/13 runs, none failed.
+Intervention: the decision token is routed, at every layer of G, through a donor's expert pairs; donors have the same
+moves remaining, a different (cross) or the same (same) label, and the same number of differing experts.
+
+| set 'all' | changed, cross / same | D [CI > 0] | mass cross / same | mass-adjusted D [CI > 0] | probe shift D |
+|---|---|---|---|---|---|
+| K s0-s4 (phase) | 0.41-0.67 / 0.22-0.32 | 0.190-0.353 (5/5) | 0.37-0.46 / 0.48-0.52 | 0.028-0.218 (5/5) | +0.028 to +0.364 |
+| C s0-s7 (stage) | 0.21-0.32 / 0.19-0.30 | -0.006 to 0.025 (5/8) | 0.47-0.55 / 0.47-0.56 | -0.009 to 0.015 (3/8) | -0.001 to +0.022 |
+
+  S0 (K: D >= 0.15, CI > 0, probe shift >= 0.03)    4/5 (s1 probe shift 0.028)   -> PASS
+  S1 (C: D changed, all, CI > 0)                    5/8 (s4, s6, s7 not)         -> FAIL (needed 6)
+  S2 (C: D >= 0.05)                                 0/8
+  S3 (C: L0-4 CI > 0)                               4/8
+  S4 (C: probe shift CI > 0)                        6/8 (about +0.01)
+  S5 (C: mass-adjusted D CI > 0)                    3/8
+  => reading rule: **NO DETECTABLE stage-specific causal effect of the CFOP routing path on moves.** Routing the CFOP
+  decision token along another stage's path changes its move no more (to within 0.025) than an equally different
+  same-stage path; what small difference exists is largely accounted for by the recipient router preferring the
+  same-stage donor's experts. Routing matters (a same-stage swap alone changes 19-30% of moves); the stage the route
+  came from does not. In Kociemba the same test is clearly positive and survives the mass adjustment.
+  With #13: the CFOP path carries stage information, but the model does not use it to pick moves.
+
+## 45. VERDICT: ON NEVER-SEEN STATES, DOES THE CFOP PATH CARRY THE STAGE? (#15, 2026-11-09)
+
+Pre-registration: prereg/PREREG_NOVEL_PATHS.md (commit 1f4a5b1; revised after an independent review, 3 must-fix).
+Held-out solves 4,800-7,199; novel positions (exact state never in the training split): 47,925 of 146,747, all cross
+(14,438) or F2L (33,487; 78.7% of F2L positions are novel); no novel OLL/PLL; no novel state occurs in both halves.
+Label cross vs F2L, H(stage | S) = 0.529 bits. src/novel_paths_run.sh -> out/novel_paths/*.json, report.{json,log}.
+13/13 runs, none failed. All nulls in bounds (C -0.012 to -0.019, K -0.010 to -0.013, rotated -0.011 to -0.020).
+
+| (mean of directions) | max single layer | I(L0-4) | I(all) | one-hot - additive |
+|---|---|---|---|---|
+| C s0-s7 | 0.069-0.210 | 0.202-0.338 | 0.230-0.381 | -0.006 to 0.062 |
+| K s0-s4 | 0.025-0.031 | 0.025-0.051 | 0.026-0.051 | |
+| C pair-matched rotated (entropy gap 0.00 bits) | 0.007-0.069 | 0.056-0.149 | 0.063-0.170 | |
+| C raw rotated (2-4.5 bits more entropy; descriptive) | | 0.125-0.239 | 0.168-0.281 | |
+
+  N1 (I(all) >= 0.10 and >= best layer + 0.05)          8/8 -> PASS
+  N2 (beyond max K by 0.10 on all and L0-4)             8/8 -> PASS
+  N3 (beyond own pair-matched rotated router by 0.10)   8/8 (margins 0.16-0.27) -> PASS
+  N4 (one-hot - additive)                               additive 7/8 (combinatorial 1/8) -> ADDITIVE
+  => reading rule: on states it never saw, the trained CFOP routing path carries cross-vs-F2L information far beyond
+  Kociemba-trained routers and beyond a random readout of the same representation with the same pair distribution:
+  **the trained routing selects for the stage along the path, on novel states; the layers contribute additively.**
+  Caveats from the prereg: only cross vs F2L is testable (every OLL/PLL state recurs in training); cross vs F2L given
+  S is close to an easy state feature (is the cross solved?).
+
+Net of #12-#15: the CFOP router at any single layer barely selects for stage (#12), but the six-layer path does, on
+fresh and on never-seen states (#13, #15), additively across layers on novel states. Yet swapping in another stage's
+path does not change the moves beyond what an equally different same-stage path does (#14). In Kociemba, routing
+selects by phase and the selection drives the moves. CFOP's stage is selected for along the path but is not what the
+routing is used for.
