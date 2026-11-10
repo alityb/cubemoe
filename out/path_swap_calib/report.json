@@ -1,0 +1,8 @@
+{
+ "S0": "4/5",
+ "S1": "7/8",
+ "S2": "0/8",
+ "S3": "6/8",
+ "S4": "7/8",
+ "verdict": "REAL BUT SMALL: a stage-specific causal effect exists but is below 0.05; survives without the final layer; representation moves toward the donor stage"
+}

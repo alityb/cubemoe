@@ -32,3 +32,5 @@ are identical, so hashes quoted elsewhere still verify). Details of each run are
 This changed every commit hash; hashes quoted in this folder, the notebook and the scripts were updated to the new
 ones. Commit dates and file contents of every pre-registration are unchanged, and a bundle of the original history is
 kept offline by the author.
+| 14 | `PREREG_PATH_SWAP.md` | 2026-11-09 | Path intervention: does routing the CFOP decision token along another stage's expert path change its moves more than an equally different same-stage path? | Pending |
+| 15 | `PREREG_NOVEL_PATHS.md` | 2026-11-09 | On states never seen in training (cross vs F2L), does the CFOP path carry the stage beyond Kociemba routers and a pair-matched random readout of its own representation? | Pending |
