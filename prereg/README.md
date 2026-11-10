@@ -27,6 +27,7 @@ are identical, so hashes quoted elsewhere still verify). Details of each run are
 | 13 | `PREREG_PATHS_FRESH.md` | 2026-11-09 | Replication of #12 Part B on fresh positions, with untrained-model and additive controls: does CFOP's routing path carry the stage? | **Not CFOP-specific** (B1 8/8, B1b 8/8, B1c 8/8, B2 5/8, B2r 8/8) |
 | 14 | `PREREG_PATH_SWAP.md` | 2026-11-09 | Path intervention: does routing the CFOP decision token along another stage's expert path change its moves more than an equally different same-stage path? | **No detectable stage-specific effect** (S0 4/5; S1 5/8, S2 0/8, S3 4/8, S4 6/8, S5 3/8) |
 | 15 | `PREREG_NOVEL_PATHS.md` | 2026-11-09 | On states never seen in training (cross vs F2L), does the CFOP path carry the stage beyond Kociemba routers and a pair-matched random readout of its own representation? | **Selected, additive** (N1 8/8, N2 8/8, N3 8/8; N4 additive 7/8) |
+| 16 | `PREREG_STAGE_TAGGED.md` | 2026-11-09 | If the outputs require the CFOP stage (stage-tagged targets), does routing align with it? | Pending |
 
 "Rejected" / "failed" means the pre-registered criterion was not met. It does not mean the effect was shown to be absent.
 

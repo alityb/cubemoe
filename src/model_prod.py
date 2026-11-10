@@ -135,19 +135,25 @@ class Block(nn.Module):
 
 class ProdStateModel(nn.Module):
     """Policy over the CURRENT cube: [CLS][54 stickers] -> next move. Bidirectional attention."""
-    def __init__(self, d=256, L=6, nh=4, preset='olmoe'):
+    def __init__(self, d=256, L=6, nh=4, preset='olmoe', n_groups=1):
+        """n_groups > 1: STAGE-TAGGED outputs (prereg #16): the head predicts (stage, move) pairs, class = g * 18 + move.
+        forward() then returns the MARGINAL move logits (logsumexp over stages), so solvers and analyses see an ordinary
+        18-move policy; set self.return_tagged = True to get the n_groups * 18 tagged logits (training)."""
         super().__init__()
-        p = PRESETS[preset]; self.preset = preset
+        p = PRESETS[preset]; self.preset = preset; self.n_groups = n_groups; self.return_tagged = False
         self.emb = nn.Embedding(N_COLOR, d); self.cls = nn.Parameter(torch.zeros(1, 1, d))
         self.blocks = nn.ModuleList([Block(d, nh, False, p) for _ in range(L)])
-        self.norm = RMSNorm(d); self.head = nn.Linear(d, N_MOVE, bias=False)
+        self.norm = RMSNorm(d); self.head = nn.Linear(d, N_MOVE * n_groups, bias=False)
     def forward(self, st, collect=False):
         x = torch.cat([self.cls.expand(st.shape[0], -1, -1), self.emb(st)], 1)
         info = []; aux = torch.zeros((), device=st.device)
         for b in self.blocks:
             x, probs, topi, a = b(x); aux = aux + a
             if collect: info.append((probs, topi))
-        return self.head(self.norm(x[:, 0])), info, aux
+        z = self.head(self.norm(x[:, 0]))
+        if self.n_groups > 1 and not self.return_tagged:
+            z = torch.logsumexp(z.float().reshape(-1, self.n_groups, N_MOVE), 1).to(z.dtype)
+        return z, info, aux
 
 class ProdSeqModel(nn.Module):
     """Decoder-only over [54 stickers][moves], causal, RoPE. Same input format as src/model.SeqModel."""

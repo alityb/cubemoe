@@ -20,7 +20,7 @@ DEV = 'cuda' if torch.cuda.is_available() else ('mps' if torch.backends.mps.is_a
 
 def load(tag):
     s = torch.load(f'{R}/out/prod/{tag}.pt', map_location='cpu', weights_only=False); c = s['log']['cfg']
-    m = ProdStateModel(d=c['d'], L=c['L'], nh=c['nh'], preset=c['preset']); m.load_state_dict(s['sd'])
+    m = ProdStateModel(d=c['d'], L=c['L'], nh=c['nh'], preset=c['preset'], n_groups=c.get('n_groups', 1)); m.load_state_dict(s['sd'])
     return m.to(DEV).eval(), c
 
 def heldout(n_solves=1200, data='mixed250k'):
