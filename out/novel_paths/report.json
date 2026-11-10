@@ -1,0 +1,25 @@
+{
+ "N0_C": true,
+ "N0_K": true,
+ "N0_rotated": true,
+ "rotated_entropy_gap_bits": {
+  "cfop_mixtral_6L256_s0": 0.0,
+  "cfop_mixtral_6L256_s1": 0.0,
+  "cfop_mixtral_6L256_s2": 0.0,
+  "cfop_mixtral_6L256_s3": 0.0,
+  "cfop_mixtral_6L256_s4": 0.0,
+  "cfop_mixtral_6L256_s5": 0.0,
+  "cfop_mixtral_6L256_s6": 0.0,
+  "cfop_mixtral_6L256_s7": 0.0
+ },
+ "N3_evaluable": true,
+ "N1": "8/8",
+ "N2": "8/8",
+ "N3": "8/8",
+ "N4": {
+  "combinatorial": "1/8",
+  "additive": "7/8",
+  "reading": "additive"
+ },
+ "verdict": "N1 holds (the path carries cross-vs-F2L on novel states); beyond Kociemba routers; beyond a usage-matched random readout of its own representation: the trained routing SELECTS for the stage; layers combine: additive"
+}

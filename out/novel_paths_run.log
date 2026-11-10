@@ -1,0 +1,18 @@
+cfop_mixtral_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s1.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s2.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s0.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s3.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s4: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s4.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s5: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s5.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s6: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s6.json (47925 novel of 146747 positions)
+mixtral_6L256_s0: wrote /Users/alityb/projects/cubemoe/out/novel_paths/mixtral_6L256_s0.json (47925 novel of 146747 positions)
+cfop_mixtral_6L256_s7: wrote /Users/alityb/projects/cubemoe/out/novel_paths/cfop_mixtral_6L256_s7.json (47925 novel of 146747 positions)
+mixtral_6L256_s1: wrote /Users/alityb/projects/cubemoe/out/novel_paths/mixtral_6L256_s1.json (47925 novel of 146747 positions)
+Python(33236) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+mixtral_6L256_s3: wrote /Users/alityb/projects/cubemoe/out/novel_paths/mixtral_6L256_s3.json (47925 novel of 146747 positions)
+Python(33803) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+mixtral_6L256_s2: wrote /Users/alityb/projects/cubemoe/out/novel_paths/mixtral_6L256_s2.json (47925 novel of 146747 positions)
+Python(34079) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+mixtral_6L256_s4: wrote /Users/alityb/projects/cubemoe/out/novel_paths/mixtral_6L256_s4.json (47925 novel of 146747 positions)
+all runs done Mon Nov  9 22:26:17 EST 2026
+report exit 0
